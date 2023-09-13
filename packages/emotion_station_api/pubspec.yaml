@@ -1,0 +1,23 @@
+name: emotion_station_api
+publish_to: none
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  dio: ^5.3.2
+  equatable: ^2.0.5
+  json_annotation: ^4.8.1
+  intl: ^0.18.1
+  injectable: ^2.3.0
+  domain_models:
+    path: ../domain_models
+  common:
+    path: ../common
+
+dev_dependencies:
+  http_mock_adapter: ^0.6.0
+  lints: ^2.0.0
+  json_serializable: ^6.7.1
+  injectable_generator:
+  build_runner: 

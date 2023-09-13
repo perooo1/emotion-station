@@ -1,0 +1,19 @@
+name: repository
+publish_to: none
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  injectable: ^2.3.0
+  emotion_station_api:
+    path: ../emotion_station_api
+  domain_models:
+    path: ../domain_models
+  common:
+    path: ../common
+
+dev_dependencies:
+  lints: ^2.0.0
+  injectable_generator:
+  build_runner: 

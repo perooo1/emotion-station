@@ -1,5 +1,10 @@
-import 'package:emotion_station/injector/injector.dart';
+// Flutter imports:
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:emotion_station/injector/injector.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   await configureDependencies();
@@ -13,8 +18,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('hr'),
+      ],
+      //locale: Locale('en'),
       title: 'Flutter Demo',
-      theme: ThemeData(useMaterial3: true,
+      theme: ThemeData(
+        useMaterial3: true,
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -65,6 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -75,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(l10n.test_string_2),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -97,19 +116,22 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              l10n.test_string,
+              //'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              l10n.test_string,
+
+//              '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: () {},
+        tooltip: l10n.test_string_2,
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:emotion_station/intro/screens/screens.dart';
+import 'package:emotion_station/login_flow/screens/screens.dart';
 import 'package:emotion_station/navigation/navigation.dart';
 
 abstract class IRouter {
@@ -30,7 +30,7 @@ class EmotionStationRouter extends IRouter {
         name: EmotionStationRoutes.introScreen.routeName,
         path: EmotionStationRoutes.introScreen.path,
         pageBuilder: (context, state) => const MaterialPage<void>(
-          child: IntroScreen(),
+          child: LoginScreen(),
         ),
       ),
 

@@ -1,5 +1,8 @@
-import 'package:emotion_station/l10n/generated/l10n.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:emotion_station/l10n/generated/l10n.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});

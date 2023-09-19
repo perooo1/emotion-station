@@ -52,6 +52,7 @@ dependencies:
   import_sorter: ^4.6.0
   flutter_localizations:
     sdk: flutter
+  firebase_core: ^2.16.0
 
 dependency_overrides:
   intl: ^0.18.0

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "912750859643",
+    "project_id": "emotion-station",
+    "storage_bucket": "emotion-station.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912750859643:android:d0201b1ce887dc124119de",
+        "android_client_info": {
+          "package_name": "com.plenart.emotion_station"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt0PxOjASdilrrV-VK8LeLlntINTBMAqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

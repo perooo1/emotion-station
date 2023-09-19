@@ -1,15 +1,21 @@
 // Flutter imports:
-import 'package:emotion_station/l10n/generated/l10n.dart';
-import 'package:emotion_station/navigation/router.dart';
-import 'package:emotion_station/theme/theme.dart';
+import 'package:emotion_station/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 // Project imports:
 import 'package:emotion_station/injector/injector.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:emotion_station/navigation/router.dart';
+import 'package:emotion_station/theme/theme.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   final router = Injector.locateService<IRouter>();
 
@@ -44,7 +50,7 @@ class EmotionStationApp extends StatelessWidget {
       title: 'Emotion Station',
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: _themeManager.themeMode,
+      themeMode: ThemeMode.system, //_themeManager.themeMode,
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

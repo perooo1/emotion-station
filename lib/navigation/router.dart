@@ -1,8 +1,13 @@
-import 'package:emotion_station/intro/screens/screens.dart';
-import 'package:emotion_station/navigation/navigation.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
+
+// Project imports:
+import 'package:emotion_station/intro/screens/screens.dart';
+import 'package:emotion_station/navigation/navigation.dart';
 
 abstract class IRouter {
   GoRouter get router;

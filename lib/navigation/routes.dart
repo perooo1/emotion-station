@@ -6,6 +6,10 @@ class NavigationItem {
 }
 
 class EmotionStationRoutes {
-  static const NavigationItem introScreen =
-      NavigationItem(routeName: 'introScreen', path: '/intro_screen');
+  static const NavigationItem loginScreen =
+      NavigationItem(routeName: 'loginScreen', path: '/login_screen');
+  static const NavigationItem registerScreen =
+      NavigationItem(routeName: 'registerScreen', path: '/register_screen');
+  static const NavigationItem homeScreen =
+      NavigationItem(routeName: 'homeScreen', path: '/home_screen');
 }

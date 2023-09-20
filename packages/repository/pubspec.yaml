@@ -2,7 +2,7 @@ name: repository
 publish_to: none
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: ">=2.19.6 <3.0.0"
 
 dependencies:
   injectable: ^2.3.0
@@ -12,8 +12,9 @@ dependencies:
     path: ../domain_models
   common:
     path: ../common
+  firebase_auth: ^4.10.0
 
 dev_dependencies:
   lints: ^2.0.0
   injectable_generator:
-  build_runner: 
+  build_runner:

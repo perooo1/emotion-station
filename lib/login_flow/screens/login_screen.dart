@@ -1,8 +1,10 @@
 // Flutter imports:
+import 'package:emotion_station/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -19,50 +21,72 @@ class LoginScreen extends StatelessWidget {
         title: Text(l10n.test_string_2),
       ),
 */
-
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
           child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Invoke "debug painting" (press "p" in the console, choose the
-            // "Toggle Debug Paint" action from the Flutter Inspector in Android
-            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-            // to see the wireframe for each widget.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                l10n.test_string,
-                //'You have pushed the button this many times:',
+              const Icon(
+                Icons.account_circle_sharp,
+                size: 150.0,
+                color: Colors.amber,
               ),
+              Text(l10n.test_string),
               Text(
-                l10n.test_string,
-
-                //              '$_counter',
+                l10n.login_message,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: 'Enter password here',
-                  //filled: true,
-                  //fillColor: Colors.primaries.first,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16.0),
+              SizedBox(
+                height: 56,
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: l10n.email_string,
+                    //filled: true,
+                    //fillColor: Colors.primaries.first,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
                   ),
                 ),
               ),
+              const SizedBox(height: 16.0),
+              SizedBox(
+                height: 56,
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: l10n.password_string,
+                    //filled: true,
+                    //fillColor: Colors.primaries.first,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              SizedBox(
+                height: 56,
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () {},
+                  child: Text(l10n.login_message),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(l10n.not_registered_message),
+                  const SizedBox(width: 6),
+                  OutlinedButton(
+                      onPressed: () {
+                        context.go(EmotionStationRoutes.registerScreen.path);
+                      },
+                      child: Text(l10n.register_here_message)),
+                ],
+              )
             ],
           ),
         ),
@@ -71,13 +95,7 @@ class LoginScreen extends StatelessWidget {
         onPressed: () {},
         tooltip: l10n.test_string_2,
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
-
-/*
-    return Center(
-      child: Container(color: Colors.red, child: Text('This is intro screen')),
-    );
-*/
   }
 }

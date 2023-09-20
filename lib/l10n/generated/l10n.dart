@@ -104,6 +104,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'random'**
   String get test_string_2;
+
+  /// No description provided for @email_string.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email_string;
+
+  /// No description provided for @login_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to Emotion Station'**
+  String get login_message;
+
+  /// No description provided for @register_with_us_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Register to Emotion Station'**
+  String get register_with_us_message;
+
+  /// No description provided for @not_registered_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Not registered?'**
+  String get not_registered_message;
+
+  /// No description provided for @already_registered_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Already registered?'**
+  String get already_registered_message;
+
+  /// No description provided for @login_here_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Login here'**
+  String get login_here_message;
+
+  /// No description provided for @register_here_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Register here'**
+  String get register_here_message;
+
+  /// No description provided for @password_string.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password_string;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

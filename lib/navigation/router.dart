@@ -24,16 +24,29 @@ class EmotionStationRouter extends IRouter {
   late final _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    initialLocation: EmotionStationRoutes.introScreen.path,
+    initialLocation: EmotionStationRoutes.loginScreen.path,
     routes: [
       GoRoute(
-        name: EmotionStationRoutes.introScreen.routeName,
-        path: EmotionStationRoutes.introScreen.path,
+        name: EmotionStationRoutes.loginScreen.routeName,
+        path: EmotionStationRoutes.loginScreen.path,
         pageBuilder: (context, state) => const MaterialPage<void>(
           child: LoginScreen(),
         ),
       ),
-
+      GoRoute(
+        name: EmotionStationRoutes.registerScreen.routeName,
+        path: EmotionStationRoutes.registerScreen.path,
+        pageBuilder: (context, state) => const MaterialPage<void>(
+          child: RegisterScreen(),
+        ),
+      ),
+      GoRoute(
+        name: EmotionStationRoutes.homeScreen.routeName,
+        path: EmotionStationRoutes.homeScreen.path,
+        pageBuilder: (context, state) => const MaterialPage<void>(
+          child: HomeScreen(),
+        ),
+      ),
 /*
       ShellRoute(
         navigatorKey: _shellNavigatorKey,

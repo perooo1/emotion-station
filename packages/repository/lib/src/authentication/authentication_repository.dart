@@ -1,25 +1,39 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:domain_models/domain_models.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
 
 abstract class IAuthenticationRepository {
+  Stream<User> get user;
+
   bool get isUserAuthenticated;
   String? get currentUserId;
 
   Future<void> register({required String email, required String password});
-  Future<UserCredential> signIn({required String email, required String password});
+  Future<void> signIn({required String email, required String password});
+  Future<void> signOut();
+  //Future<firebase_auth.UserCredential> signIn({required String email, required String password});
+/*
   Future<void> createUserDocumentInCollection({
     required String email,
     required String password,
     required String name,
   });
-  Future<void> signOut();
+*/
 }
 
 @Singleton(as: IAuthenticationRepository)
 class AuthenticationRepository implements IAuthenticationRepository {
-  late final _auth = FirebaseAuth.instance; // be careful of late?
+  late final _auth = firebase_auth.FirebaseAuth.instance; // be careful of late?
 
-  //TODO: istrazi Stream<User> za auth state changed
+  @override
+  Stream<User> get user {
+    return _auth.authStateChanges().map(
+      (firebaseUser) {
+        final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
+        return user;
+      },
+    );
+  }
 
   @override
   String? get currentUserId => _auth.currentUser?.uid ?? '';
@@ -27,6 +41,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
   @override
   bool get isUserAuthenticated => _auth.currentUser != null;
 
+/*
   @override
   Future<void> createUserDocumentInCollection({
     required String email,
@@ -36,13 +51,27 @@ class AuthenticationRepository implements IAuthenticationRepository {
     // TODO: implement createUserDocumentInCollection
     throw UnimplementedError();
   }
-
+*/
   @override
-  Future<void> register({required String email, required String password}) async =>
+  Future<void> register({required String email, required String password}) async {
+    try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      print(e.message);
+      throw e;
+    }
+  }
 
   @override
-  Future<UserCredential> signIn({required String email, required String password}) async {
+  Future<void> signIn({required String email, required String password}) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      print(e.message);
+      throw e;
+    }
+
+/*
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -53,8 +82,20 @@ class AuthenticationRepository implements IAuthenticationRepository {
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code);
     }
+*/
   }
 
   @override
   Future<void> signOut() async => await _auth.signOut();
+}
+
+extension on firebase_auth.User {
+  /// Maps a [firebase_auth.User] into a [User].
+  User get toUser {
+    return User(
+      id: uid,
+      email: email,
+      name: displayName,
+    );
+  }
 }

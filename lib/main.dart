@@ -11,22 +11,35 @@ import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/navigation/router.dart';
 import 'package:emotion_station/theme/theme.dart';
+import 'package:repository/repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  final authRepository = Injector.locateService<IAuthenticationRepository>();
   final router = Injector.locateService<IRouter>();
+  //await authRepository.user.first; //beware
 
-  runApp(EmotionStationApp(router: router));
+/*
+  final authRepo = AuthenticationRepository();
+  await authRepo.user.first;
+*/
+
+  runApp(EmotionStationApp(authenticationRepository: authRepository, router: router));
 }
 
 ThemeManager _themeManager = ThemeManager();
 
 class EmotionStationApp extends StatelessWidget {
-  const EmotionStationApp({super.key, required this.router});
+  const EmotionStationApp({
+    required this.authenticationRepository,
+    required this.router,
+    super.key,
+  });
 
+  final IAuthenticationRepository authenticationRepository;
   final IRouter router;
 
   // This widget is the root of your application.

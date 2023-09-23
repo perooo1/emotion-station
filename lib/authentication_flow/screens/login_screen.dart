@@ -209,11 +209,6 @@ class _LoginView extends StatelessWidget {
               ),
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            tooltip: l10n.test_string_2,
-            child: const Icon(Icons.add),
-          ),
         );
       },
     );

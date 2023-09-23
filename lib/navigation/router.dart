@@ -30,7 +30,7 @@ class EmotionStationRouter extends IRouter {
   late final _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    initialLocation: EmotionStationRoutes.loginScreen.path,
+    initialLocation: EmotionStationRoutes.registerScreen.path,
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -60,7 +60,7 @@ class EmotionStationRouter extends IRouter {
         ],
       )
 
-      /*
+/*
       GoRoute(
         name: EmotionStationRoutes.loginScreen.routeName,
         path: EmotionStationRoutes.loginScreen.path,
@@ -82,17 +82,24 @@ class EmotionStationRouter extends IRouter {
           child: HomeScreen(),
         ),
       ),
+
 */
     ],
     redirect: (context, state) async {
       final isUserAuthenticated = authenticationRepository.isUserAuthenticated;
       //final isUserAuthenticated = authenticationRepository.isUserAuthenticated; potencijalan problem, možda drugačije provjera user.first.id ili nesta
 
+      if (isUserAuthenticated) {
+        return EmotionStationRoutes.homeScreen.path;
+      }
+
+/*
       if (!isUserAuthenticated) {
         return EmotionStationRoutes.loginScreen.path;
       }
       //return null;
       return EmotionStationRoutes.homeScreen.path;
+*/
     },
   );
 }

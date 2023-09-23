@@ -82,7 +82,7 @@ class RegisterScreen extends StatelessWidget {
                   const SizedBox(width: 6),
                   OutlinedButton(
                       onPressed: () {
-                        context.go(EmotionStationRoutes.loginScreen.path);
+                        context.goNamed(EmotionStationRoutes.loginScreen.routeName);
                       },
                       child: Text(l10n.login_here_message)),
                 ],

@@ -28,7 +28,7 @@ class EmotionStationAuthentication extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthenticatedCubit, BaseAuthenticatedState>(
       listenWhen: (previous, current) => !current.isAuthenticated,
-      listener: (context, state) => context.goNamed(EmotionStationRoutes.loginScreen.path),
+      listener: (context, state) => context.goNamed(EmotionStationRoutes.loginScreen.routeName),
       child: child,
     );
   }

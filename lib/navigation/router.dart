@@ -30,8 +30,41 @@ class EmotionStationRouter extends IRouter {
   late final _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    initialLocation: EmotionStationRoutes.registerScreen.path,
+    initialLocation: EmotionStationRoutes.homeScreen.path,
+    //initialLocation: EmotionStationRoutes.registerScreen.path,
     routes: [
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return ScaffoldWithNavBar(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: _shellNavigatorKey,
+            routes: [
+              GoRoute(
+                name: EmotionStationRoutes.homeScreen.routeName,
+                path: EmotionStationRoutes.homeScreen.path,
+                pageBuilder: (context, state) => const MaterialPage<void>(
+                  child: HomeScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: EmotionStationRoutes.tesetScreen.routeName,
+                path: EmotionStationRoutes.tesetScreen.path,
+                pageBuilder: (context, state) => const MaterialPage<void>(
+                  child: TestScreen(),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+
+      /*
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) => EmotionStationMainLayout(child: child),
@@ -59,8 +92,8 @@ class EmotionStationRouter extends IRouter {
           ),
         ],
       )
+*/
 
-/*
       GoRoute(
         name: EmotionStationRoutes.loginScreen.routeName,
         path: EmotionStationRoutes.loginScreen.path,
@@ -75,6 +108,7 @@ class EmotionStationRouter extends IRouter {
           child: RegisterScreen(),
         ),
       ),
+/*
       GoRoute(
         name: EmotionStationRoutes.homeScreen.routeName,
         path: EmotionStationRoutes.homeScreen.path,
@@ -82,24 +116,22 @@ class EmotionStationRouter extends IRouter {
           child: HomeScreen(),
         ),
       ),
-
 */
     ],
     redirect: (context, state) async {
       final isUserAuthenticated = authenticationRepository.isUserAuthenticated;
       //final isUserAuthenticated = authenticationRepository.isUserAuthenticated; potencijalan problem, možda drugačije provjera user.first.id ili nesta
-
+/*
       if (isUserAuthenticated) {
         return EmotionStationRoutes.homeScreen.path;
       }
+*/
 
-/*
-      if (!isUserAuthenticated) {
+      if (isUserAuthenticated == false &&
+          state.matchedLocation == EmotionStationRoutes.homeScreen.path) {
         return EmotionStationRoutes.loginScreen.path;
       }
-      //return null;
-      return EmotionStationRoutes.homeScreen.path;
-*/
+      return null;
     },
   );
 }

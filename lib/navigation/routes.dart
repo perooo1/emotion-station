@@ -12,4 +12,6 @@ class EmotionStationRoutes {
       NavigationItem(routeName: 'registerScreen', path: '/register_screen');
   static const NavigationItem homeScreen =
       NavigationItem(routeName: 'homeScreen', path: '/home_screen');
+  static const NavigationItem tesetScreen =
+      NavigationItem(routeName: 'testScreen', path: '/test_screen');
 }

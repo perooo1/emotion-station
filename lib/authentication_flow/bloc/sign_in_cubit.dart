@@ -30,4 +30,15 @@ class SignInCubit extends Cubit<SignInState> {
               error is Exception ? SubmissionStatus.genericError : SubmissionStatus.genericError));
     }
   }
+
+  Future<void> signOut() async {
+    try {
+      await authenticationRepository.signOut();
+    } catch (error) {
+      emit(state.copyWith(
+          submissionStatus: error is Exception
+              ? SubmissionStatus.invalidCredentialsError
+              : SubmissionStatus.invalidCredentialsError));
+    }
+  }
 }

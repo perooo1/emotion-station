@@ -1,15 +1,33 @@
 // Flutter imports:
+import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
+import 'package:emotion_station/injector/injector.dart';
+import 'package:emotion_station/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider<SignInCubit>(
+      create: (_) => Injector.locateService<SignInCubit>(),
+      child: const _HomeScreenView(),
+    );
+  }
+}
+
+class _HomeScreenView extends StatelessWidget {
+  const _HomeScreenView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final tempCubit = context.read<SignInCubit>();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +42,10 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         //add logout functionality
-        onPressed: () {},
+        onPressed: () {
+          tempCubit.signOut();
+          context.goNamed(EmotionStationRoutes.registerScreen.routeName);
+        },
         tooltip: l10n.test_string_2,
         child: const Icon(Icons.add),
       ),

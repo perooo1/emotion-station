@@ -91,7 +91,8 @@ class EmotionStationRouter extends IRouter {
       if (!isUserAuthenticated) {
         return EmotionStationRoutes.loginScreen.path;
       }
-      return null;
+      //return null;
+      return EmotionStationRoutes.homeScreen.path;
     },
   );
 }

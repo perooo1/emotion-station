@@ -187,7 +187,8 @@ class _LoginView extends StatelessWidget {
                     height: 56,
                     width: double.infinity,
                     child: FilledButton(
-                      onPressed: () => cubit.onLoginSubmit(),
+                      onPressed: () => cubit
+                          .onLoginSubmit(), //dodat odlazak na home screen, tj trebao bi već biti zbog bloc consumera
                       child: Text(l10n.login_message),
                     ),
                   ),

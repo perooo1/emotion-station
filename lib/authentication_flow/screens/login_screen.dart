@@ -17,7 +17,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SignInCubit>(
-        create: (_) => Injector.locateService<SignInCubit>(), child: const _LoginView());
+      create: (_) => Injector.locateService<SignInCubit>(),
+      child: const _LoginView(),
+    );
   }
 }
 
@@ -105,7 +107,7 @@ class _LoginView extends StatelessWidget {
                       const SizedBox(width: 6),
                       OutlinedButton(
                           onPressed: () {
-                            context.go(EmotionStationRoutes.registerScreen.path);
+                            context.goNamed(EmotionStationRoutes.registerScreen.routeName);
                           },
                           child: Text(l10n.register_here_message)),
                     ],

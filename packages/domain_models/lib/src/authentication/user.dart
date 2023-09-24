@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -21,6 +22,7 @@ class User {
   static const empty = User(id: '');
   bool get isEmpty => this == User.empty;
   bool get isNotEmpty => this != User.empty;
+  String? get fullName => '${this.name} ${this.lastName}';
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

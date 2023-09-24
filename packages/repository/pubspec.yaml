@@ -7,6 +7,7 @@ environment:
 dependencies:
   equatable: ^2.0.5
   injectable: ^2.3.0
+  import_sorter: ^4.6.0
   emotion_station_api:
     path: ../emotion_station_api
   domain_models:
@@ -14,6 +15,7 @@ dependencies:
   common:
     path: ../common
   firebase_auth: ^4.10.0
+  cloud_firestore: ^4.9.2
 
 dev_dependencies:
   lints: ^2.0.0

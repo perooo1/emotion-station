@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
 import 'package:domain_models/domain_models.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
+
+// Project imports:
 import 'package:repository/repository.dart';
 
 abstract class IAuthenticationManager {

@@ -1,5 +1,9 @@
+// Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+
+// Project imports:
+import 'package:repository/src/database/database_repository.dart';
 
 abstract class IAuthenticationRepository {
   Stream<User?> get user;
@@ -21,7 +25,11 @@ abstract class IAuthenticationRepository {
 
 @Singleton(as: IAuthenticationRepository)
 class AuthenticationRepository implements IAuthenticationRepository {
+  AuthenticationRepository({required this.databaseRepository});
+
   late final _auth = FirebaseAuth.instance;
+
+  final IDatabaseRepository databaseRepository;
 
   @override
   Stream<User?> get user {

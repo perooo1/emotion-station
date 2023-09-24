@@ -1,5 +1,6 @@
-import 'package:equatable/equatable.dart';
+// Package imports:
 import 'package:domain_models/domain_models.dart';
+import 'package:equatable/equatable.dart';
 
 class BaseAuthenticatedEvent extends Equatable {
   const BaseAuthenticatedEvent();

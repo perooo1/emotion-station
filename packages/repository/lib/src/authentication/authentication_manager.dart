@@ -14,6 +14,7 @@ abstract class IAuthenticationManager {
 
   Stream<BaseAuthenticatedEvent> get authenticatedChanged;
 
+  User getTrenutniUser();
   Future<void> register({required String email, required String password});
   Future<bool> signIn({required String email, required String password});
   Future<void> signOut();
@@ -27,11 +28,14 @@ class AuthenticationManager implements IAuthenticationManager {
 
   final IAuthenticationRepository authenticationRepository;
 
-  User currentUser = User.empty;
+  User _currentUser = User.empty;
   BaseAuthenticatedEvent _authenticatedState = UnauthenticatedEvent();
 
   final StreamController<BaseAuthenticatedEvent> _authenticatedChangedController =
       StreamController<BaseAuthenticatedEvent>.broadcast();
+
+  @override
+  User getTrenutniUser() => _currentUser;
 
   @override
   Stream<BaseAuthenticatedEvent> get authenticatedChanged => _authenticatedChangedController.stream;
@@ -67,10 +71,10 @@ class AuthenticationManager implements IAuthenticationManager {
       (firebase_auth.User? firebaseUser) {
         if (firebaseUser == null) {
           _setAuthenticatedState(UnauthenticatedEvent());
-          currentUser = User.empty;
+          _currentUser = User.empty;
         } else {
           _setAuthenticatedState(AuthenticatedEvent(user: firebaseUser.toUser));
-          currentUser = firebaseUser.toUser;
+          _currentUser = firebaseUser.toUser;
         }
       },
     );

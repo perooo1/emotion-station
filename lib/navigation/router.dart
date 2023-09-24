@@ -1,15 +1,16 @@
 // Flutter imports:
-import 'package:emotion_station/authentication_flow/screens/emotion_station_main_layout.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
+import 'package:repository/repository.dart';
 
 // Project imports:
 import 'package:emotion_station/authentication_flow/screens/screens.dart';
+import 'package:emotion_station/features/home/screens/screens.dart';
+import 'package:emotion_station/features/test/screens/screens.dart';
 import 'package:emotion_station/navigation/navigation.dart';
-import 'package:repository/repository.dart';
 
 abstract class IRouter {
   GoRouter get router;
@@ -20,7 +21,6 @@ class EmotionStationRouter extends IRouter {
   EmotionStationRouter({required this.authenticationManager});
 
   final IAuthenticationManager authenticationManager;
-  //final IAuthenticationRepository authenticationRepository;
 
   final _rootNavigatorKey = GlobalKey<NavigatorState>();
   final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -32,11 +32,10 @@ class EmotionStationRouter extends IRouter {
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
     initialLocation: EmotionStationRoutes.homeScreen.path,
-    //initialLocation: EmotionStationRoutes.registerScreen.path,
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
-          return ScaffoldWithNavBar(navigationShell: navigationShell);
+          return EmotionStationMainLayout(navigationShell: navigationShell);
         },
         branches: [
           StatefulShellBranch(
@@ -64,37 +63,6 @@ class EmotionStationRouter extends IRouter {
           )
         ],
       ),
-
-      /*
-      ShellRoute(
-        navigatorKey: _shellNavigatorKey,
-        builder: (context, state, child) => EmotionStationMainLayout(child: child),
-        routes: [
-          GoRoute(
-            name: EmotionStationRoutes.loginScreen.routeName,
-            path: EmotionStationRoutes.loginScreen.path,
-            pageBuilder: (context, state) => const MaterialPage<void>(
-              child: LoginScreen(),
-            ),
-          ),
-          GoRoute(
-            name: EmotionStationRoutes.registerScreen.routeName,
-            path: EmotionStationRoutes.registerScreen.path,
-            pageBuilder: (context, state) => const MaterialPage<void>(
-              child: RegisterScreen(),
-            ),
-          ),
-          GoRoute(
-            name: EmotionStationRoutes.homeScreen.routeName,
-            path: EmotionStationRoutes.homeScreen.path,
-            pageBuilder: (context, state) => const MaterialPage<void>(
-              child: HomeScreen(),
-            ),
-          ),
-        ],
-      )
-*/
-
       GoRoute(
         name: EmotionStationRoutes.loginScreen.routeName,
         path: EmotionStationRoutes.loginScreen.path,
@@ -112,12 +80,6 @@ class EmotionStationRouter extends IRouter {
     ],
     redirect: (context, state) async {
       final isUserAuthenticated = authenticationManager.isAuthenticated;
-      //final isUserAuthenticated = authenticationRepository.isUserAuthenticated; potencijalan problem, možda drugačije provjera user.first.id ili nesta
-/*
-      if (isUserAuthenticated) {
-        return EmotionStationRoutes.homeScreen.path;
-      }
-*/
 
       if (isUserAuthenticated == false &&
           state.matchedLocation == EmotionStationRoutes.homeScreen.path) {

@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,6 @@ class SignInCubit extends Cubit<SignInState> {
       : super(const SignInState(email: '', password: ''));
 
   final IAuthenticationManager authenticationManager;
-  //final IAuthenticationRepository authenticationRepository;
 
   void saveEmailToState(String email) {
     emit(state.copyWith(email: email));

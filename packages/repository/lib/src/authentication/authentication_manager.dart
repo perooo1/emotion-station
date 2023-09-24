@@ -6,15 +6,16 @@ import 'package:injectable/injectable.dart';
 import 'package:repository/repository.dart';
 
 abstract class IAuthenticationManager {
-  bool get isAuthenticatedInFirebaseRepo;
-  bool get isAuthenticated;
+  //ovdje jos dodat boolean je li doktor
   String? get currentUserId;
+
+  bool get isAuthenticated;
+  bool get isAuthenticatedInFirebaseRepo;
 
   Stream<BaseAuthenticatedEvent> get authenticatedChanged;
 
   Future<void> register({required String email, required String password});
   Future<bool> signIn({required String email, required String password});
-  //Future<void> signIn({required String email, required String password});
   Future<void> signOut();
 }
 
@@ -25,20 +26,15 @@ class AuthenticationManager implements IAuthenticationManager {
   }
 
   final IAuthenticationRepository authenticationRepository;
-  late final StreamSubscription<firebase_auth.User?> _firebaseUserAuthListener;
 
   User currentUser = User.empty;
   BaseAuthenticatedEvent _authenticatedState = UnauthenticatedEvent();
-
-////////
 
   final StreamController<BaseAuthenticatedEvent> _authenticatedChangedController =
       StreamController<BaseAuthenticatedEvent>.broadcast();
 
   @override
   Stream<BaseAuthenticatedEvent> get authenticatedChanged => _authenticatedChangedController.stream;
-
-////////
 
   @override
   bool get isAuthenticated => _authenticatedState.isAuthenticated;
@@ -55,11 +51,6 @@ class AuthenticationManager implements IAuthenticationManager {
   @override
   Future<void> register({required String email, required String password}) async =>
       await authenticationRepository.register(email: email, password: password);
-/*
-  @override
-  Future<void> signIn({required String email, required String password}) async =>
-      authenticationRepository.signIn(email: email, password: password);
-*/
 
   @override
   Future<bool> signIn({required String email, required String password}) async {
@@ -72,7 +63,7 @@ class AuthenticationManager implements IAuthenticationManager {
   }
 
   void _initListeners() {
-    _firebaseUserAuthListener = authenticationRepository.user.listen(
+    authenticationRepository.user.listen(
       (firebase_auth.User? firebaseUser) {
         if (firebaseUser == null) {
           _setAuthenticatedState(UnauthenticatedEvent());
@@ -81,7 +72,6 @@ class AuthenticationManager implements IAuthenticationManager {
           _setAuthenticatedState(AuthenticatedEvent(user: firebaseUser.toUser));
           currentUser = firebaseUser.toUser;
         }
-        //currentUser = firebaseUser == null ? User.empty : firebaseUser.toUser;
       },
     );
   }

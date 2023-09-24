@@ -1,12 +1,13 @@
 // Flutter imports:
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
-import 'package:emotion_station/injector/injector.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
-import 'package:emotion_station/l10n/generated/l10n.dart';
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
+import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
+import 'package:emotion_station/injector/injector.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});

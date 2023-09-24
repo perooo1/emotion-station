@@ -1,10 +1,12 @@
 // Flutter imports:
-import 'package:emotion_station/navigation/navigation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:go_router/go_router.dart';
 
 // Project imports:
 import 'package:emotion_station/l10n/generated/l10n.dart';
-import 'package:go_router/go_router.dart';
+import 'package:emotion_station/navigation/navigation.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -14,13 +16,6 @@ class RegisterScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
-/*
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(l10n.test_string_2),
-      ),
-*/
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(

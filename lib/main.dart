@@ -1,17 +1,17 @@
 // Flutter imports:
-import 'package:emotion_station/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:repository/repository.dart';
 
 // Project imports:
+import 'package:emotion_station/firebase_options.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/navigation/router.dart';
 import 'package:emotion_station/theme/theme.dart';
-import 'package:repository/repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,12 +20,6 @@ Future<void> main() async {
 
   final authRepository = Injector.locateService<IAuthenticationRepository>();
   final router = Injector.locateService<IRouter>();
-  //await authRepository.user.first; //beware
-
-/*
-  final authRepo = AuthenticationRepository();
-  await authRepo.user.first;
-*/
 
   runApp(EmotionStationApp(authenticationRepository: authRepository, router: router));
 }

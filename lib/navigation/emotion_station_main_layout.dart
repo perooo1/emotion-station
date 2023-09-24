@@ -1,10 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:go_router/go_router.dart';
 
-class ScaffoldWithNavBar extends StatelessWidget {
-  const ScaffoldWithNavBar({super.key, required this.navigationShell});
+class EmotionStationMainLayout extends StatelessWidget {
+  const EmotionStationMainLayout({super.key, required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
+  //ovdje injectat auth manager i onda prikazat/sakrit home ako je doktor
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +31,6 @@ class ScaffoldWithNavBar extends StatelessWidget {
         onDestinationSelected: (index) => _onTap(context, index),
       ),
     );
-
-/*
-    return Scaffold(
-      body: navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'test'),
-        ],
-        currentIndex: navigationShell.currentIndex,
-        onTap: (index) => _onTap(context, index),
-      ),
-    );
-*/
   }
 
   void _onTap(BuildContext context, int index) {

@@ -1,13 +1,15 @@
 // Flutter imports:
-import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
-import 'package:emotion_station/injector/injector.dart';
-import 'package:emotion_station/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
-import 'package:emotion_station/l10n/generated/l10n.dart';
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+// Project imports:
+import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
+import 'package:emotion_station/injector/injector.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:emotion_station/navigation/navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

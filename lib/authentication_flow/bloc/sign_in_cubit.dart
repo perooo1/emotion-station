@@ -1,5 +1,5 @@
-import 'package:domain_models/domain_models.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:repository/repository.dart';
@@ -8,10 +8,11 @@ part 'sign_in_state.dart';
 
 @Injectable()
 class SignInCubit extends Cubit<SignInState> {
-  SignInCubit({required this.authenticationRepository})
+  SignInCubit({required this.authenticationManager})
       : super(const SignInState(email: '', password: ''));
 
-  final IAuthenticationRepository authenticationRepository;
+  final IAuthenticationManager authenticationManager;
+  //final IAuthenticationRepository authenticationRepository;
 
   void saveEmailToState(String email) {
     emit(state.copyWith(email: email));
@@ -23,22 +24,26 @@ class SignInCubit extends Cubit<SignInState> {
 
   Future<void> onLoginSubmit() async {
     try {
-      await authenticationRepository.signIn(email: state.email, password: state.password);
-    } catch (error) {
-      emit(state.copyWith(
-          submissionStatus:
-              error is Exception ? SubmissionStatus.genericError : SubmissionStatus.genericError));
+      emit(state.copyWith(submissionStatus: SubmissionStatus.inProgress));
+      final isSuccess =
+          await authenticationManager.signIn(email: state.email, password: state.password);
+      if (isSuccess == true) {
+        emit(state.copyWith(submissionStatus: SubmissionStatus.success));
+      } else {
+        print('is success in sign in cubit is ${isSuccess.toString()}');
+        emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
+      }
+    } on FirebaseAuthException catch (error) {
+      print(error.message);
+      emit(state.copyWith(submissionStatus: SubmissionStatus.invalidCredentialsError));
     }
   }
 
   Future<void> signOut() async {
     try {
-      await authenticationRepository.signOut();
-    } catch (error) {
-      emit(state.copyWith(
-          submissionStatus: error is Exception
-              ? SubmissionStatus.invalidCredentialsError
-              : SubmissionStatus.invalidCredentialsError));
+      await authenticationManager.signOut();
+    } on FirebaseAuthException catch (error) {
+      emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
     }
   }
 }

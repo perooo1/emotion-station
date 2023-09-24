@@ -17,9 +17,10 @@ abstract class IRouter {
 
 @Singleton(as: IRouter)
 class EmotionStationRouter extends IRouter {
-  EmotionStationRouter({required this.authenticationRepository});
+  EmotionStationRouter({required this.authenticationManager});
 
-  final IAuthenticationRepository authenticationRepository;
+  final IAuthenticationManager authenticationManager;
+  //final IAuthenticationRepository authenticationRepository;
 
   final _rootNavigatorKey = GlobalKey<NavigatorState>();
   final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -108,18 +109,9 @@ class EmotionStationRouter extends IRouter {
           child: RegisterScreen(),
         ),
       ),
-/*
-      GoRoute(
-        name: EmotionStationRoutes.homeScreen.routeName,
-        path: EmotionStationRoutes.homeScreen.path,
-        pageBuilder: (context, state) => const MaterialPage<void>(
-          child: HomeScreen(),
-        ),
-      ),
-*/
     ],
     redirect: (context, state) async {
-      final isUserAuthenticated = authenticationRepository.isUserAuthenticated;
+      final isUserAuthenticated = authenticationManager.isAuthenticated;
       //final isUserAuthenticated = authenticationRepository.isUserAuthenticated; potencijalan problem, možda drugačije provjera user.first.id ili nesta
 /*
       if (isUserAuthenticated) {

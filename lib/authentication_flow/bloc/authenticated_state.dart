@@ -1,3 +1,4 @@
+/*
 part of 'authenticated_cubit.dart';
 
 abstract class BaseAuthenticatedState extends Equatable {
@@ -16,3 +17,4 @@ class UnauthenticatedState extends BaseAuthenticatedState {
   @override
   bool get isAuthenticated => false;
 }
+*/

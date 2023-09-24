@@ -8,6 +8,9 @@
 import 'dart:async' as _i2;
 
 import 'package:injectable/injectable.dart' as _i1;
+import 'package:repository/repository.dart' as _i5;
+import 'package:repository/src/authentication/authentication_manager.dart'
+    as _i4;
 import 'package:repository/src/authentication/authentication_repository.dart'
     as _i3;
 
@@ -16,5 +19,7 @@ class RepositoryPackageModule extends _i1.MicroPackageModule {
   @override
   _i2.FutureOr<void> init(_i1.GetItHelper gh) {
     gh.singleton<_i3.IAuthenticationRepository>(_i3.AuthenticationRepository());
+    gh.singleton<_i4.IAuthenticationManager>(_i4.AuthenticationManager(
+        authenticationRepository: gh<_i5.IAuthenticationRepository>()));
   }
 }

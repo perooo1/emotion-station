@@ -15,8 +15,8 @@ import 'package:repository/repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await configureDependencies();
 
   final authRepository = Injector.locateService<IAuthenticationRepository>();
   final router = Injector.locateService<IRouter>();

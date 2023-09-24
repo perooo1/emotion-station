@@ -17,9 +17,8 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:repository/injector/repository.module.dart' as _i5;
 import 'package:repository/repository.dart' as _i7;
 
-import '../authentication_flow/bloc/authenticated_cubit.dart' as _i6;
-import '../authentication_flow/bloc/sign_in_cubit.dart' as _i9;
-import '../navigation/router.dart' as _i8;
+import '../authentication_flow/bloc/sign_in_cubit.dart' as _i8;
+import '../navigation/router.dart' as _i6;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> init(
@@ -35,11 +34,9 @@ Future<_i1.GetIt> init(
   await _i3.CommonPackageModule().init(gh);
   await _i4.EmotionStationApiPackageModule().init(gh);
   await _i5.RepositoryPackageModule().init(gh);
-  gh.factory<_i6.AuthenticatedCubit>(() => _i6.AuthenticatedCubit(
-      authenticationRepository: gh<_i7.IAuthenticationRepository>()));
-  gh.singleton<_i8.IRouter>(_i8.EmotionStationRouter(
-      authenticationRepository: gh<_i7.IAuthenticationRepository>()));
-  gh.factory<_i9.SignInCubit>(() => _i9.SignInCubit(
-      authenticationRepository: gh<_i7.IAuthenticationRepository>()));
+  gh.singleton<_i6.IRouter>(_i6.EmotionStationRouter(
+      authenticationManager: gh<_i7.IAuthenticationManager>()));
+  gh.factory<_i8.SignInCubit>(() =>
+      _i8.SignInCubit(authenticationManager: gh<_i7.IAuthenticationManager>()));
   return getIt;
 }

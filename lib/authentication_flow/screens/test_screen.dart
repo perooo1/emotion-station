@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +38,6 @@ class _TestScreenView extends StatelessWidget {
         child: Center(
           child: Text('This is test screen for navbar'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: l10n.test_string_2,
-        child: const Icon(Icons.propane),
       ),
     );
   }

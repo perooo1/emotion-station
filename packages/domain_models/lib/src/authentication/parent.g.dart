@@ -17,3 +17,13 @@ Parent _$ParentFromJson(Map<String, dynamic> json) => Parent(
           ?.map((e) => Child.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+
+Map<String, dynamic> _$ParentToJson(Parent instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'lastName': instance.lastName,
+      'email': instance.email,
+      'password': instance.password,
+      'assignedSpecialistId': instance.assignedSpecialistId,
+      'children': instance.children,
+    };

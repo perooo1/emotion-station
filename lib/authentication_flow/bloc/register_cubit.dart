@@ -1,5 +1,8 @@
 // Package imports:
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:domain_models/domain_models.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:repository/repository.dart';
@@ -43,5 +46,46 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(state.copyWith(isSpecialist: isSpecialist));
   }
 
-  Future<void> onRegisterSubmit() async {}
+  Future<void> onRegisterSubmit() async {
+    try {
+      emit(state.copyWith(submissionStatus: SubmissionStatus.inProgress));
+      final isSuccess = await authenticationManager.registerUserWithEmailAndPassword(
+        email: state.email,
+        password: state.password,
+      );
+
+      if (isSuccess) {
+        final newUserId = authenticationManager.currentUserId!;
+        try {
+          final successfull = await authenticationManager.registerUserInDatabase(
+            user: state.isSpecialist
+                ? Specialist(
+                    id: newUserId,
+                    name: state.name,
+                    lastName: state.lastName,
+                    email: state.email,
+                    password: state.password,
+                  )
+                : Parent(
+                    id: newUserId,
+                    name: state.name,
+                    lastName: state.lastName,
+                    email: state.email,
+                    password: state.password,
+                  ),
+          );
+
+          successfull
+              ? emit(state.copyWith(submissionStatus: SubmissionStatus.success))
+              : emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
+        } on FirebaseException catch (e) {
+          print(e.message);
+          emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
+        }
+      }
+    } on FirebaseAuthException catch (error) {
+      print(error.message);
+      emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
+    }
+  }
 }

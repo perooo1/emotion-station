@@ -38,6 +38,12 @@ class _LoginView extends StatelessWidget {
           context.goNamed(EmotionStationRoutes.homeScreen.routeName);
           return;
         }
+        if (state.submissionStatus == SubmissionStatus.genericError ||
+            state.submissionStatus == SubmissionStatus.invalidCredentialsError) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(const SnackBar(content: Text('error loggin in user')));
+        }
       },
       builder: (context, state) {
         return Scaffold(

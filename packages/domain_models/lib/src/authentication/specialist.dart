@@ -6,7 +6,7 @@ import 'package:domain_models/src/authentication/authentication.dart';
 
 part 'specialist.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class Specialist extends User {
   Specialist({
     required super.id,
@@ -22,4 +22,5 @@ class Specialist extends User {
   final List<String>? assignedChildren; //list of childrens' ids
 
   factory Specialist.fromJson(Map<String, dynamic> json) => _$SpecialistFromJson(json);
+  Map<String, dynamic> toJson() => _$SpecialistToJson(this);
 }

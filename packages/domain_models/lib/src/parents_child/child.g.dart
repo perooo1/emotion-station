@@ -15,3 +15,13 @@ Child _$ChildFromJson(Map<String, dynamic> json) => Child(
       isGenderMale: json['isGenderMale'] as bool,
       diagnosis: json['diagnosis'] as String,
     );
+
+Map<String, dynamic> _$ChildToJson(Child instance) => <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'name': instance.name,
+      'lastName': instance.lastName,
+      'age': instance.age,
+      'isGenderMale': instance.isGenderMale,
+      'diagnosis': instance.diagnosis,
+    };

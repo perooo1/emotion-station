@@ -2,34 +2,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
-// Project imports:
-import 'package:repository/src/database/database_repository.dart';
-
 abstract class IAuthenticationRepository {
   Stream<User?> get user;
 
   bool get isUserAuthenticated;
   String? get currentUserId;
 
-  Future<void> register({required String email, required String password});
+  Future<bool> register({required String email, required String password});
   Future<bool> signIn({required String email, required String password});
   Future<void> signOut();
-/*
-  Future<void> createUserDocumentInCollection({
-    required String email,
-    required String password,
-    required String name,
-  });
-*/
 }
 
 @Singleton(as: IAuthenticationRepository)
 class AuthenticationRepository implements IAuthenticationRepository {
-  AuthenticationRepository({required this.databaseRepository});
+  AuthenticationRepository();
 
   late final _auth = FirebaseAuth.instance;
-
-  final IDatabaseRepository databaseRepository;
 
   @override
   Stream<User?> get user {
@@ -42,21 +30,18 @@ class AuthenticationRepository implements IAuthenticationRepository {
   @override
   bool get isUserAuthenticated => _auth.currentUser != null;
 
-/*
   @override
-  Future<void> createUserDocumentInCollection({
+  Future<bool> register({
     required String email,
     required String password,
-    required String name,
-  }) {
-    // TODO: implement createUserDocumentInCollection
-    throw UnimplementedError();
-  }
-*/
-  @override
-  Future<void> register({required String email, required String password}) async {
+  }) async {
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      final response = await _auth.createUserWithEmailAndPassword(
+        //the user is signed in autmatically
+        email: email,
+        password: password,
+      );
+      return response.user?.uid != null ? true : false;
     } on FirebaseAuthException catch (e) {
       print(e.message);
       throw e;

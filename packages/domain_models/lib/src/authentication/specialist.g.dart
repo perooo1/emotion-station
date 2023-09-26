@@ -19,3 +19,14 @@ Specialist _$SpecialistFromJson(Map<String, dynamic> json) => Specialist(
           ?.map((e) => e as String)
           .toList(),
     );
+
+Map<String, dynamic> _$SpecialistToJson(Specialist instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'lastName': instance.lastName,
+      'email': instance.email,
+      'password': instance.password,
+      'connectedParents': instance.connectedParents,
+      'assignedChildren': instance.assignedChildren,
+    };

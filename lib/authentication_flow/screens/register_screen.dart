@@ -39,6 +39,11 @@ class _RegisterView extends StatelessWidget {
           context.goNamed(EmotionStationRoutes.homeScreen.routeName);
           return;
         }
+        if (state.submissionStatus == SubmissionStatus.genericError) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(const SnackBar(content: Text('error registering user')));
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -58,6 +63,8 @@ class _RegisterView extends StatelessWidget {
                     l10n.register_with_us_message,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
+                  if (state.submissionStatus == SubmissionStatus.inProgress)
+                    const CircularProgressIndicator(),
                   SizedBox(
                     height: 56,
                     child: TextField(

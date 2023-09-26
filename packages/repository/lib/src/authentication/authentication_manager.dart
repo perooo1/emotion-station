@@ -18,19 +18,24 @@ abstract class IAuthenticationManager {
 
   Stream<BaseAuthenticatedEvent> get authenticatedChanged;
 
-  User getTrenutniUser();
-  Future<void> register({required String email, required String password});
+  User getCurrentUser();
+  Future<bool> registerUserInDatabase({required User user});
+  Future<bool> registerUserWithEmailAndPassword({required String email, required String password});
   Future<bool> signIn({required String email, required String password});
   Future<void> signOut();
 }
 
 @Singleton(as: IAuthenticationManager)
 class AuthenticationManager implements IAuthenticationManager {
-  AuthenticationManager({required this.authenticationRepository}) {
+  AuthenticationManager({
+    required this.authenticationRepository,
+    required this.databaseRepository,
+  }) {
     _initListeners();
   }
 
   final IAuthenticationRepository authenticationRepository;
+  final IDatabaseRepository databaseRepository;
 
   User _currentUser = User.empty;
   BaseAuthenticatedEvent _authenticatedState = UnauthenticatedEvent();
@@ -39,7 +44,7 @@ class AuthenticationManager implements IAuthenticationManager {
       StreamController<BaseAuthenticatedEvent>.broadcast();
 
   @override
-  User getTrenutniUser() => _currentUser;
+  User getCurrentUser() => _currentUser;
 
   @override
   Stream<BaseAuthenticatedEvent> get authenticatedChanged => _authenticatedChangedController.stream;
@@ -57,8 +62,24 @@ class AuthenticationManager implements IAuthenticationManager {
   Future<void> signOut() async => await authenticationRepository.signOut();
 
   @override
-  Future<void> register({required String email, required String password}) async =>
-      await authenticationRepository.register(email: email, password: password);
+  Future<bool> registerUserWithEmailAndPassword(
+          {required String email, required String password}) async =>
+      await authenticationRepository.register(
+        email: email,
+        password: password,
+      );
+
+  @override
+  Future<bool> registerUserInDatabase({required User user}) async {
+    if (user is Parent) {
+      return await databaseRepository.registerParent(parent: user);
+    } else if (user is Specialist) {
+      return await databaseRepository.registerSpecialist(specialist: user);
+    } else {
+      print('auth manager - register user in db is false');
+      return false;
+    }
+  }
 
   @override
   Future<bool> signIn({required String email, required String password}) async {

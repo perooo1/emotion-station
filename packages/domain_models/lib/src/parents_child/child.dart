@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'child.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class Child {
   Child({
     required this.id,
@@ -27,4 +27,5 @@ class Child {
   bool get isGenderFemale => !isGenderMale;
 
   factory Child.fromJson(Map<String, dynamic> json) => _$ChildFromJson(json);
+  Map<String, dynamic> toJson() => _$ChildToJson(this);
 }

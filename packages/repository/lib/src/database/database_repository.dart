@@ -6,28 +6,48 @@ import 'package:injectable/injectable.dart';
 abstract class IDatabaseRepository {
   FirebaseFirestore get instance;
 
-  Future<void> registerParent({required Parent parent});
-  Future<void> registerSpecialist({required Specialist specialist});
+  Future<bool> registerParent({required Parent parent});
+  Future<bool> registerSpecialist({required Specialist specialist});
 }
 
 @Singleton(as: IDatabaseRepository)
 class DatabaseRepository implements IDatabaseRepository {
-  static const String FIRESTORE_COLLECTION_PARENTS = 'Parents';
-  static const String FIRESTORE_COLLECTION_SPECIALISTS = 'Specialists';
-  static const String FIRESTORE_COLLECTION_CHILDREN = 'Children';
+  final String FIRESTORE_COLLECTION_PARENTS = 'Parents';
+  final String FIRESTORE_COLLECTION_SPECIALISTS = 'Specialists';
+  final String FIRESTORE_COLLECTION_CHILDREN = 'Children';
 
   @override
   FirebaseFirestore get instance => FirebaseFirestore.instance;
 
   @override
-  Future<void> registerParent({required Parent parent}) {
-    // TODO: implement registerParent
-    throw UnimplementedError();
+  Future<bool> registerParent({required Parent parent}) async {
+    try {
+      await instance
+          .collection(FIRESTORE_COLLECTION_PARENTS)
+          .doc(parent.id)
+          .set(parent.toJson(), SetOptions(merge: true))
+          .then((value) => print('parent added'));
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('Error adding parent document: $e');
+      return false;
+    }
   }
 
   @override
-  Future<void> registerSpecialist({required Specialist specialist}) {
-    // TODO: implement registerSpecialist
-    throw UnimplementedError();
+  Future<bool> registerSpecialist({required Specialist specialist}) async {
+    try {
+      await instance
+          .collection(FIRESTORE_COLLECTION_SPECIALISTS)
+          .doc(specialist.id)
+          .set(specialist.toJson(), SetOptions(merge: true))
+          .then((value) => print('specialist added'));
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('Error adding specialist document: $e');
+      return false;
+    }
   }
 }

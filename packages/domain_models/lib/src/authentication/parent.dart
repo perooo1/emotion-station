@@ -6,7 +6,7 @@ import 'package:domain_models/domain_models.dart';
 
 part 'parent.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class Parent extends User {
   Parent({
     //potencijalni required na ostalo
@@ -30,4 +30,5 @@ class Parent extends User {
   final List<Child>? children;
 
   factory Parent.fromJson(Map<String, dynamic> json) => _$ParentFromJson(json);
+  Map<String, dynamic> toJson() => _$ParentToJson(this);
 }

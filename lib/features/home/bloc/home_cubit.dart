@@ -11,7 +11,7 @@ part 'home_state.dart';
 @Injectable()
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required this.authenticationManager})
-      : super(HomeState(currentUser: authenticationManager.getTrenutniUser()));
+      : super(HomeState(currentUser: authenticationManager.getCurrentUser()));
 
   final IAuthenticationManager authenticationManager;
 

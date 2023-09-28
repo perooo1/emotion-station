@@ -61,6 +61,7 @@ class RegisterCubit extends Cubit<RegisterState> {
             user: state.isSpecialist
                 ? Specialist(
                     id: newUserId,
+                    isSpecialist: state.isSpecialist,
                     name: state.name,
                     lastName: state.lastName,
                     email: state.email,
@@ -68,6 +69,7 @@ class RegisterCubit extends Cubit<RegisterState> {
                   )
                 : Parent(
                     id: newUserId,
+                    isSpecialist: state.isSpecialist,
                     name: state.name,
                     lastName: state.lastName,
                     email: state.email,

@@ -7,6 +7,7 @@ part 'user.g.dart';
 class User {
   const User({
     required this.id,
+    this.isSpecialist = false,
     this.name,
     this.lastName,
     this.email,
@@ -14,6 +15,7 @@ class User {
   });
 
   final String id;
+  final bool isSpecialist;
   final String? name;
   final String? lastName;
   final String? email;

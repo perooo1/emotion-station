@@ -10,6 +10,7 @@ part 'specialist.g.dart';
 class Specialist extends User {
   Specialist({
     required super.id,
+    super.isSpecialist = true,
     super.name,
     super.lastName,
     super.email,

@@ -11,6 +11,7 @@ class Parent extends User {
   Parent({
     //potencijalni required na ostalo
     required super.id,
+    super.isSpecialist = false,
     super.name,
     super.lastName,
     super.email,

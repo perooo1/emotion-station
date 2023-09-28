@@ -8,6 +8,7 @@ part of 'specialist.dart';
 
 Specialist _$SpecialistFromJson(Map<String, dynamic> json) => Specialist(
       id: json['id'] as String,
+      isSpecialist: json['isSpecialist'] as bool? ?? true,
       name: json['name'] as String?,
       lastName: json['lastName'] as String?,
       email: json['email'] as String?,
@@ -23,6 +24,7 @@ Specialist _$SpecialistFromJson(Map<String, dynamic> json) => Specialist(
 Map<String, dynamic> _$SpecialistToJson(Specialist instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'isSpecialist': instance.isSpecialist,
       'name': instance.name,
       'lastName': instance.lastName,
       'email': instance.email,

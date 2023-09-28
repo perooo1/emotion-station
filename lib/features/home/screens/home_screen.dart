@@ -44,8 +44,10 @@ class _HomeScreenView extends StatelessWidget {
               child: Column(
                 children: [
                   Text('This is a home widget when logged in'),
-                  Text('Current logged in user id: ${tempCubit.state.currentUser.id}'),
-                  Text('Current logged in user email: ${tempCubit.state.currentUser.email}'),
+                  Text('Current logged in user id: ${state.currentUser.id}'),
+                  Text('Current logged in user email: ${state.currentUser.email}'),
+                  Text(
+                      'Current logged in user specialist from user obj? : ${state.currentUser.isSpecialist.toString()}'),
                 ],
               ),
             ),

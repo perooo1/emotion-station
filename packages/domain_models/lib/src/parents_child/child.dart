@@ -8,6 +8,7 @@ class Child {
   Child({
     required this.id,
     required this.parentId,
+    this.assignedSpecialistId,
     required this.name,
     required this.lastName,
     required this.age,
@@ -17,6 +18,7 @@ class Child {
 
   final String id;
   final String parentId;
+  final String? assignedSpecialistId;
   final String name;
   final String lastName;
   final int age;

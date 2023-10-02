@@ -8,23 +8,6 @@ import 'package:repository/repository.dart';
 
 part 'home_state.dart';
 
-/*
-@Injectable()
-class HomeCubit extends Cubit<HomeState> {
-  HomeCubit({required this.authenticationManager})
-      : super(HomeState(currentUser: authenticationManager.getCurrentUser()));
-
-  final IAuthenticationManager authenticationManager;
-
-  Future<void> signOutHome() async {
-    try {
-      await authenticationManager.signOut();
-    } on firebase_auth.FirebaseAuthException catch (error) {
-      emit(state.copyWith(currentUser: User(id: 'sign out error')));
-    }
-  } 
-}
-*/
 @Injectable()
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required this.authenticationManager}) : super(HomeState(currentUser: User.empty)) {
@@ -54,10 +37,8 @@ class HomeCubit extends Cubit<HomeState> {
           currentUser: currentUser,
         ));
       }
-
-      //emit(HomeState(currentUser: currentUser));
     } catch (e) {
-      // Handle errors if necessary
+      print('error home cubit - getCurrentUserAndSetState');
     }
   }
 }

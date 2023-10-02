@@ -31,7 +31,6 @@ class AuthenticationManager implements IAuthenticationManager {
     required this.databaseRepository,
   }) {
     _initListeners();
-    //getCurrentUser(); jel ovo ima smisla?
   }
 
   final IAuthenticationRepository authenticationRepository;
@@ -44,19 +43,7 @@ class AuthenticationManager implements IAuthenticationManager {
       StreamController<BaseAuthenticatedEvent>.broadcast();
 
   @override
-  User getCurrentUser() =>
-      _currentUser; //ovo bi trebalo vratiti ili Parent ili Specialist, ovisno o tome šta je postaljeno u sign in funkciji i onda u svakom cubitu moram provjeravat
-
-/*
-  @override
-  Future<User> getCurrentUser() async {
-    return _currentUser
-            .isSpecialist // ovdje mi pravi problem jer ona exstenzija dolje mi stavlja odma po defaultu da je null
-        ? await databaseRepository.getSpecialistFromDatabase(userId: _currentUser.id)
-        : await databaseRepository.getParentFromDatabase(userId: _currentUser.id);
-
-  }
-*/
+  User getCurrentUser() => _currentUser;
 
   @override
   Stream<BaseAuthenticatedEvent> get authenticatedChanged => _authenticatedChangedController.stream;
@@ -74,8 +61,10 @@ class AuthenticationManager implements IAuthenticationManager {
   Future<void> signOut() async => await authenticationRepository.signOut();
 
   @override
-  Future<bool> registerUserWithEmailAndPassword(
-          {required String email, required String password}) async =>
+  Future<bool> registerUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async =>
       await authenticationRepository.register(
         email: email,
         password: password,
@@ -84,18 +73,16 @@ class AuthenticationManager implements IAuthenticationManager {
   @override
   Future<bool> registerUserInDatabase({required User user}) async {
     if (user is Parent) {
-      final a = await databaseRepository.registerParent(parent: user);
-      //ovdje isto postavit neki current user na taj objekt ili odmah sign out pa sign in
-
-      if (a == true) {
+      final parentRegisterSuccess = await databaseRepository.registerParent(parent: user);
+      if (parentRegisterSuccess == true) {
         _currentUser = await databaseRepository.getParentFromDatabase(userId: user.id);
         return true;
       }
       return false;
     } else if (user is Specialist) {
-      final b = await databaseRepository.registerSpecialist(specialist: user);
-
-      if (b == true) {
+      final specialistRegisterSuccess =
+          await databaseRepository.registerSpecialist(specialist: user);
+      if (specialistRegisterSuccess == true) {
         _currentUser = await databaseRepository.getSpecialistFromDatabase(userId: user.id);
         return true;
       }
@@ -104,108 +91,32 @@ class AuthenticationManager implements IAuthenticationManager {
       print('auth manager - register user in db is false');
       return false;
     }
-
-/*
-    if (user is Parent) {
-      return await databaseRepository.registerParent(parent: user);
-      //ovdje isto postavit neki current user na taj objekt ili odmah sign out pa sign in
-
-    } else if (user is Specialist) {
-      return await databaseRepository.registerSpecialist(specialist: user);
-    } else {
-      print('auth manager - register user in db is false');
-      return false;
-    }
-*/
   }
 
-/////////////////////////////
-/*
   @override
   Future<bool> signIn({required String email, required String password}) async {
-/*
-    return await authenticationRepository.signIn(
-      email: email,
-      password: password,
-    );
-*/
     final isSignInSuccess = await authenticationRepository.signIn(email: email, password: password);
 
     if (isSignInSuccess == false) {
       print('AUTH MANAGER - signIn() : sign in succes je false : ${isSignInSuccess.toString()}');
       return false;
     } else {
-      // nađi user id i prođi kroz jendnu kolekciju kolekciu. ako ne postoji u njoj prođi kroz drugu,
-      // nađi, serilaliziraj objekt i postavi ga u neku "current user" varijablu u manageru
-      // onda svaki put u cubitu moram provjeravat iz managera je li logiran parent ili specialist
-
-      //prvo ćemo proći kroz specijaliste
-      //delay cisto iz razloga da ako je uspjesno authentikaxija prosla da se stigne postavit ova moja _current user varijabla iz koje vadim id da ne bi bilo gresaka
-
-      await Future.delayed(
-        Duration(seconds: 2),
-        () async {
-          print(
-              'AUTH MANAGER - signIn() : inside delay funcktion, current user id is: ${_currentUser.id}');
-          final specialac =
-              await databaseRepository.getSpecialistFromDatabase(userId: _currentUser.id);
-          if (specialac.id.isNotEmpty) {
-            _currentUser = specialac;
-            return true;
-          } else {
-            print('AUTH MANAGER - signIn() : specialac id is empty : ${specialac.id}');
-            //znači nije pronađen korisnik u kolekciji specijalisti, dakle mora bit u kolekciji parent
-            final mater = await databaseRepository.getParentFromDatabase(userId: _currentUser.id);
-
-            if (mater.id.isNotEmpty) {
-              _currentUser = mater;
-              return true;
-            } else {
-              //znači nije pronađen korisnik u kolekciji parents, nesta gadno ne stima!!
-              print('AUTH MANAGER - signIn() : mater id is empty : ${mater.id}');
-              return false;
-            }
-          }
-        },
-      );
-
-      return true;
-    }
-    // ako je sve u redu, do ove dvije linije ne bi trebao doci
-  }
-*/
-
-///////////////////////////
-
-  @override
-  Future<bool> signIn({required String email, required String password}) async {
-/*
-    return await authenticationRepository.signIn(
-      email: email,
-      password: password,
-    );
-*/
-    final isSignInSuccess = await authenticationRepository.signIn(email: email, password: password);
-
-    if (isSignInSuccess == false) {
-      print('AUTH MANAGER - signIn() : sign in succes je false : ${isSignInSuccess.toString()}');
-      return false;
-    } else {
-      final specialac = await databaseRepository.getSpecialistFromDatabase(userId: _currentUser.id);
-      if (specialac.id.isNotEmpty) {
-        _currentUser = specialac;
+      // first search through specialist collection and return true if document exists
+      final specialist =
+          await databaseRepository.getSpecialistFromDatabase(userId: _currentUser.id);
+      if (specialist.id.isNotEmpty) {
+        _currentUser = specialist;
         return true;
       } else {
-        print('AUTH MANAGER - signIn() : specialac id is empty : ${specialac.id}');
-        //znači nije pronađen korisnik u kolekciji specijalisti, dakle mora bit u kolekciji parent
-        final mater = await databaseRepository.getParentFromDatabase(userId: _currentUser.id);
-
-        if (mater.id.isNotEmpty) {
-          _currentUser = mater;
+        print('AUTH MANAGER - signIn() : specialac id is empty : ${specialist.id}');
+        //if not in specialist, search through parents collection and return if document exists
+        final parent = await databaseRepository.getParentFromDatabase(userId: _currentUser.id);
+        if (parent.id.isNotEmpty) {
+          _currentUser = parent;
           return true;
         } else {
-          //znači nije pronađen korisnik u kolekciji parents, nesta gadno ne stima!!
-          print('AUTH MANAGER - signIn() : mater id is empty : ${mater.id}');
+          //user not found in either collection, something went wrong
+          print('AUTH MANAGER - signIn() : parent id is empty : ${parent.id}');
           return false;
         }
       }
@@ -241,35 +152,4 @@ extension on firebase_auth.User {
       name: displayName,
     );
   }
-/*
-  Parent toParent({required String? assignedSpecialistId, required List<Child>? children}) {
-    return Parent(
-      id: uid,
-      isSpecialist: false,
-      name: parentName,
-      lastName: parentLastName,
-      email: email,
-      password: pwd,
-      assignedSpecialistId: assignedSpecialistId,
-      children: children,
-    );
-  }
-
-  Specialist toSpecialist({
-    List<String>? connectedParents,
-    required List<String>? assignedhildren,
-  }) {
-    return Specialist(
-      id: uid,
-      isSpecialist: true,
-      name: specialistName,
-      lastName: specialistLastName,
-      email: email,
-      password: pwd,
-      assignedChildren: assignedhildren,
-      connectedParents: connectedParents,
-    );
-  }
-
-*/
 }

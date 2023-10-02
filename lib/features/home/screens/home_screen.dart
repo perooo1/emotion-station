@@ -46,6 +46,7 @@ class _HomeScreenView extends StatelessWidget {
                   Text('This is a home widget when logged in'),
                   Text('Current logged in user id: ${state.currentUser.id}'),
                   Text('Current logged in user email: ${state.currentUser.email}'),
+                  Text('Current logged in full name: ${state.currentUser.fullName}'),
                   Text(
                       'Current logged in user specialist from user obj? : ${state.currentUser.isSpecialist.toString()}'),
                 ],

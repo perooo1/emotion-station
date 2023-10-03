@@ -11,6 +11,7 @@ import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/navigation/navigation.dart';
+import 'package:repository/repository.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -32,13 +33,31 @@ class _RegisterView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final cubit = context.read<RegisterCubit>();
 
+/*
+    final IAuthenticationManager authenticationManager =
+        Injector.locateService<AuthenticationManager>();
+*/
     return BlocConsumer<RegisterCubit, RegisterState>(
       listenWhen: (previous, current) => previous.submissionStatus != current.submissionStatus,
       listener: (context, state) {
-        if (state.submissionStatus == SubmissionStatus.success) {
-          context.goNamed(EmotionStationRoutes.homeScreen.routeName);
+/*
+        if (state.submissionStatus == SubmissionStatus.success &&
+            authenticationManager.getCurrentUser().isSpecialist == true) {
+          context.goNamed(EmotionStationRoutes.parentsOverviewScreen.routeName);
+          return; 
+        }
+        if (state.submissionStatus == SubmissionStatus.success &&
+            authenticationManager.getCurrentUser().isSpecialist != true) {
+          context.goNamed(EmotionStationRoutes.stationActivityScreen.routeName);
           return;
         }
+*/
+
+        if (state.submissionStatus == SubmissionStatus.success) {
+          context.goNamed(EmotionStationRoutes.infoScreen.routeName);
+          return;
+        }
+
         if (state.submissionStatus == SubmissionStatus.genericError) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()

@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:emotion_station/features/parent/parent.dart';
+import 'package:emotion_station/features/specialist/parents_overview/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,9 +10,10 @@ import 'package:repository/repository.dart';
 
 // Project imports:
 import 'package:emotion_station/authentication_flow/screens/screens.dart';
-import 'package:emotion_station/features/home/screens/screens.dart';
-import 'package:emotion_station/features/test/screens/screens.dart';
+//import 'package:emotion_station/features/home/screens/screens.dart';
+import 'package:emotion_station/features/common/children/screens/screens.dart';
 import 'package:emotion_station/navigation/navigation.dart';
+import 'package:emotion_station/features/common/info/info.dart';
 
 abstract class IRouter {
   GoRouter get router;
@@ -23,7 +26,8 @@ class EmotionStationRouter extends IRouter {
   final IAuthenticationManager authenticationManager;
 
   final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  final _shellNavigatorKey = GlobalKey<NavigatorState>();
+  final _shellNavigatorKeyParent = GlobalKey<NavigatorState>();
+  final _shellNavigatorKeySpecialist = GlobalKey<NavigatorState>();
 
   @override
   GoRouter get router => _router;
@@ -31,21 +35,50 @@ class EmotionStationRouter extends IRouter {
   late final _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    initialLocation: EmotionStationRoutes.homeScreen.path,
+    initialLocation: authenticationManager.getCurrentUser().isSpecialist
+        ? EmotionStationRoutes.parentsOverviewScreen.path
+        : EmotionStationRoutes.stationActivityScreen.path,
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
-          return EmotionStationMainLayout(navigationShell: navigationShell);
+          return EmotionStationMainLayout(
+            authenticationManager: authenticationManager,
+            navigationShell: navigationShell,
+          );
         },
         branches: [
+          authenticationManager.getCurrentUser().isSpecialist
+              ? StatefulShellBranch(
+                  navigatorKey: _shellNavigatorKeySpecialist,
+                  routes: [
+                    GoRoute(
+                      name: EmotionStationRoutes.parentsOverviewScreen.routeName,
+                      path: EmotionStationRoutes.parentsOverviewScreen.path,
+                      pageBuilder: (context, state) => const MaterialPage<void>(
+                        child: ParentsOverviewScreen(),
+                      ),
+                    ),
+                  ],
+                )
+              : StatefulShellBranch(
+                  navigatorKey: _shellNavigatorKeyParent,
+                  routes: [
+                    GoRoute(
+                      name: EmotionStationRoutes.stationActivityScreen.routeName,
+                      path: EmotionStationRoutes.stationActivityScreen.path,
+                      pageBuilder: (context, state) => const MaterialPage<void>(
+                        child: StationActivityScreen(),
+                      ),
+                    ),
+                  ],
+                ),
           StatefulShellBranch(
-            navigatorKey: _shellNavigatorKey,
             routes: [
               GoRoute(
-                name: EmotionStationRoutes.homeScreen.routeName,
-                path: EmotionStationRoutes.homeScreen.path,
+                name: EmotionStationRoutes.childrenScreen.routeName,
+                path: EmotionStationRoutes.childrenScreen.path,
                 pageBuilder: (context, state) => const MaterialPage<void>(
-                  child: HomeScreen(),
+                  child: ChildrenScreen(),
                 ),
               ),
             ],
@@ -53,14 +86,14 @@ class EmotionStationRouter extends IRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                name: EmotionStationRoutes.tesetScreen.routeName,
-                path: EmotionStationRoutes.tesetScreen.path,
+                name: EmotionStationRoutes.infoScreen.routeName,
+                path: EmotionStationRoutes.infoScreen.path,
                 pageBuilder: (context, state) => const MaterialPage<void>(
-                  child: TestScreen(),
+                  child: InfoScreen(),
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
       GoRoute(
@@ -82,7 +115,8 @@ class EmotionStationRouter extends IRouter {
       final isUserAuthenticated = authenticationManager.isAuthenticated;
 
       if (isUserAuthenticated == false &&
-          state.matchedLocation == EmotionStationRoutes.homeScreen.path) {
+          (state.matchedLocation == EmotionStationRoutes.parentsOverviewScreen.path ||
+              state.matchedLocation == EmotionStationRoutes.stationActivityScreen.path)) {
         return EmotionStationRoutes.registerScreen.path;
       }
       return null;

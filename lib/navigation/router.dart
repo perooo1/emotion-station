@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:emotion_station/features/children/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,7 +10,7 @@ import 'package:repository/repository.dart';
 // Project imports:
 import 'package:emotion_station/authentication_flow/screens/screens.dart';
 import 'package:emotion_station/features/home/screens/screens.dart';
-import 'package:emotion_station/features/test/screens/screens.dart';
+import 'package:emotion_station/features/info/screens/screens.dart';
 import 'package:emotion_station/navigation/navigation.dart';
 
 abstract class IRouter {
@@ -35,7 +36,10 @@ class EmotionStationRouter extends IRouter {
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
-          return EmotionStationMainLayout(navigationShell: navigationShell);
+          return EmotionStationMainLayout(
+            authenticationManager: authenticationManager,
+            navigationShell: navigationShell,
+          );
         },
         branches: [
           StatefulShellBranch(
@@ -53,14 +57,25 @@ class EmotionStationRouter extends IRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                name: EmotionStationRoutes.tesetScreen.routeName,
-                path: EmotionStationRoutes.tesetScreen.path,
+                name: EmotionStationRoutes.childrenScreen.routeName,
+                path: EmotionStationRoutes.childrenScreen.path,
                 pageBuilder: (context, state) => const MaterialPage<void>(
-                  child: TestScreen(),
+                  child: ChildrenScreen(),
                 ),
               ),
             ],
-          )
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: EmotionStationRoutes.infoScreen.routeName,
+                path: EmotionStationRoutes.infoScreen.path,
+                pageBuilder: (context, state) => const MaterialPage<void>(
+                  child: InfoScreen(),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
       GoRoute(

@@ -9,20 +9,20 @@ import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 
-class TestScreen extends StatelessWidget {
-  const TestScreen({super.key});
+class ChildrenScreen extends StatelessWidget {
+  const ChildrenScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SignInCubit>(
       create: (_) => Injector.locateService<SignInCubit>(),
-      child: const _TestScreenView(),
+      child: const _ChildrenScreenView(),
     );
   }
 }
 
-class _TestScreenView extends StatelessWidget {
-  const _TestScreenView({super.key});
+class _ChildrenScreenView extends StatelessWidget {
+  const _ChildrenScreenView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +31,13 @@ class _TestScreenView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('this is a test screen'),
+        title: Text('this is children screen'),
       ),
       body: const Padding(
         //beware of const
         padding: EdgeInsets.all(16.0),
         child: Center(
-          child: Text('This is test screen for navbar'),
+          child: Text('This is children screen'),
         ),
       ),
     );

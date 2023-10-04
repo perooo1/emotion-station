@@ -17,9 +17,10 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:repository/injector/repository.module.dart' as _i5;
 import 'package:repository/repository.dart' as _i7;
 
-import '../authentication_flow/bloc/register_cubit.dart' as _i9;
-import '../authentication_flow/bloc/sign_in_cubit.dart' as _i10;
+import '../authentication_flow/bloc/register_cubit.dart' as _i10;
+import '../authentication_flow/bloc/sign_in_cubit.dart' as _i11;
 import '../features/home/bloc/home_cubit.dart' as _i6;
+import '../features/info/bloc/info_screen_cubit.dart' as _i9;
 import '../navigation/router.dart' as _i8;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -40,9 +41,11 @@ Future<_i1.GetIt> init(
       _i6.HomeCubit(authenticationManager: gh<_i7.IAuthenticationManager>()));
   gh.singleton<_i8.IRouter>(_i8.EmotionStationRouter(
       authenticationManager: gh<_i7.IAuthenticationManager>()));
-  gh.factory<_i9.RegisterCubit>(() => _i9.RegisterCubit(
+  gh.factory<_i9.InfoScreenCubit>(() => _i9.InfoScreenCubit(
       authenticationManager: gh<_i7.IAuthenticationManager>()));
-  gh.factory<_i10.SignInCubit>(() => _i10.SignInCubit(
+  gh.factory<_i10.RegisterCubit>(() => _i10.RegisterCubit(
+      authenticationManager: gh<_i7.IAuthenticationManager>()));
+  gh.factory<_i11.SignInCubit>(() => _i11.SignInCubit(
       authenticationManager: gh<_i7.IAuthenticationManager>()));
   return getIt;
 }

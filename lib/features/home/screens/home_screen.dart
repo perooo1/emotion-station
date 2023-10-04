@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:domain_models/domain_models.dart';
+import 'package:emotion_station/features/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -33,6 +35,20 @@ class _HomeScreenView extends StatelessWidget {
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
+        /*
+        return state.currentUser.isSpecialist
+            ? TherapistTestWidget(specialist: state.currentUser)
+            : ParentTestWidget(parent: state.currentUser);
+*/
+        if (state.currentUser is Specialist) {
+          return TherapistTestWidget(specialist: state.currentUser as Specialist);
+        } else if (state.currentUser is Parent) {
+          return ParentTestWidget(parent: state.currentUser as Parent);
+        } else {
+          return Center(child: Text(' Uh oh! Molimo logirajte se ponovno'));
+        }
+
+/*
         return Scaffold(
           appBar: AppBar(
             title: Text(l10n.test_string_2),
@@ -53,15 +69,9 @@ class _HomeScreenView extends StatelessWidget {
               ),
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              tempCubit.signOutHome();
-              context.goNamed(EmotionStationRoutes.loginScreen.routeName);
-            },
-            tooltip: l10n.test_string_2,
-            child: const Icon(Icons.add),
-          ),
+
         );
+*/
       },
     );
   }

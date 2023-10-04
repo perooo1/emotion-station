@@ -24,6 +24,7 @@ class User {
   static const empty = User(id: '');
   bool get isEmpty => this == User.empty;
   bool get isNotEmpty => this != User.empty;
+  bool get isParent => !isSpecialist;
   String? get fullName => '${this.name} ${this.lastName}';
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

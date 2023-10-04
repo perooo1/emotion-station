@@ -3,28 +3,44 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:go_router/go_router.dart';
+import 'package:repository/repository.dart';
 
 class EmotionStationMainLayout extends StatelessWidget {
-  const EmotionStationMainLayout({super.key, required this.navigationShell});
+  const EmotionStationMainLayout({
+    super.key,
+    required this.authenticationManager,
+    required this.navigationShell,
+  });
 
   final StatefulNavigationShell navigationShell;
-  //ovdje injectat auth manager i onda prikazat/sakrit home ako je doktor
+  final IAuthenticationManager authenticationManager;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationShell,
+      body: navigationShell, // potentially wrap body in SafeArea
       bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
+        destinations: [
+          authenticationManager.getCurrentUser().isSpecialist
+              ? const NavigationDestination(
+                  icon: Icon(Icons.supervisor_account_outlined),
+                  selectedIcon: Icon(Icons.supervisor_account),
+                  label: 'Home',
+                )
+              : const NavigationDestination(
+                  icon: Icon(Icons.train_outlined),
+                  selectedIcon: Icon(Icons.train),
+                  label: 'Home',
+                ),
+          const NavigationDestination(
+            icon: Icon(Icons.child_care_outlined),
+            selectedIcon: Icon(Icons.child_care),
+            label: 'Children',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.work_outline),
-            selectedIcon: Icon(Icons.work),
-            label: 'Test',
+          const NavigationDestination(
+            icon: Icon(Icons.info_outline),
+            selectedIcon: Icon(Icons.info),
+            label: 'Info',
           ),
         ],
         selectedIndex: navigationShell.currentIndex,

@@ -10,7 +10,6 @@ import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/navigation/navigation.dart';
-import 'package:repository/repository.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -31,31 +30,14 @@ class _LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final SignInCubit cubit = context.read<SignInCubit>();
-/*
-    final IAuthenticationManager authenticationManager =
-        Injector.locateService<AuthenticationManager>();
-*/
+
     return BlocConsumer<SignInCubit, SignInState>(
       listenWhen: (previous, current) => previous.submissionStatus != current.submissionStatus,
       listener: (context, state) {
-/*
-        if (state.submissionStatus == SubmissionStatus.success &&
-            authenticationManager.getCurrentUser().isSpecialist == true) {
-          context.goNamed(EmotionStationRoutes.parentsOverviewScreen.routeName);
-          return;
-        }
-        if (state.submissionStatus == SubmissionStatus.success &&
-            authenticationManager.getCurrentUser().isSpecialist != true) {
-          context.goNamed(EmotionStationRoutes.stationActivityScreen.routeName);
-          return;
-        }
-*/
-
         if (state.submissionStatus == SubmissionStatus.success) {
-          context.goNamed(EmotionStationRoutes.infoScreen.routeName);
+          context.goNamed(EmotionStationRoutes.homeScreen.routeName);
           return;
         }
-
         if (state.submissionStatus == SubmissionStatus.genericError ||
             state.submissionStatus == SubmissionStatus.invalidCredentialsError) {
           ScaffoldMessenger.of(context)
@@ -118,7 +100,8 @@ class _LoginView extends StatelessWidget {
                     height: 56,
                     width: double.infinity,
                     child: FilledButton(
-                      onPressed: () => cubit.onLoginSubmit(),
+                      onPressed: () => cubit
+                          .onLoginSubmit(), //dodat odlazak na home screen, tj trebao bi već biti zbog bloc consumera
                       child: Text(l10n.login_message),
                     ),
                   ),

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:emotion_station/features/children/children.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:repository/repository.dart';
 
 class ChildrenScreen extends StatelessWidget {
   const ChildrenScreen({super.key});
@@ -38,6 +41,16 @@ class _ChildrenScreenView extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Center(
           child: Text('This is children screen'),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AddChildDialog(
+            authenticationManager: tempCubit.authenticationManager,
+            databaseRepository: Injector.locateService<IDatabaseRepository>(),
+          ),
         ),
       ),
     );

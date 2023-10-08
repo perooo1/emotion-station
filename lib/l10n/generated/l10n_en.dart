@@ -33,4 +33,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get password_string => 'Password';
+
+  @override
+  String get children_screen_enter_child_info_message => 'Please enter required info about your child';
+
+  @override
+  String get children_screen_enter_child_name => 'Child name:';
+
+  @override
+  String get children_screen_enter_child_last_name => 'Child last name:';
+
+  @override
+  String get children_screen_enter_child_age => 'Child age:';
+
+  @override
+  String get children_screen_enter_child_gender => 'Child gender:';
+
+  @override
+  String get children_screen_enter_child_diagnosis => 'Diagnosis:';
+
+  @override
+  String get children_screen_enter_child_boy => 'Boy';
+
+  @override
+  String get children_screen_enter_child_girl => 'Girl';
 }

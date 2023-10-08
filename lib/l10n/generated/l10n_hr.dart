@@ -33,4 +33,28 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get password_string => 'Zaporka';
+
+  @override
+  String get children_screen_enter_child_info_message => 'Molimo unesite potrebne informacije o Vašem djetetu';
+
+  @override
+  String get children_screen_enter_child_name => 'Ime djeteta:';
+
+  @override
+  String get children_screen_enter_child_last_name => 'Prezime djeteta:';
+
+  @override
+  String get children_screen_enter_child_age => 'Dob djeteta:';
+
+  @override
+  String get children_screen_enter_child_gender => 'Spol djeteta:';
+
+  @override
+  String get children_screen_enter_child_diagnosis => 'Dijagnoza:';
+
+  @override
+  String get children_screen_enter_child_boy => 'Dječak';
+
+  @override
+  String get children_screen_enter_child_girl => 'Djevojčica';
 }

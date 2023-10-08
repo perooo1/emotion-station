@@ -152,6 +152,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password'**
   String get password_string;
+
+  /// No description provided for @children_screen_enter_child_info_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter required info about your child'**
+  String get children_screen_enter_child_info_message;
+
+  /// No description provided for @children_screen_enter_child_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Child name:'**
+  String get children_screen_enter_child_name;
+
+  /// No description provided for @children_screen_enter_child_last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Child last name:'**
+  String get children_screen_enter_child_last_name;
+
+  /// No description provided for @children_screen_enter_child_age.
+  ///
+  /// In en, this message translates to:
+  /// **'Child age:'**
+  String get children_screen_enter_child_age;
+
+  /// No description provided for @children_screen_enter_child_gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Child gender:'**
+  String get children_screen_enter_child_gender;
+
+  /// No description provided for @children_screen_enter_child_diagnosis.
+  ///
+  /// In en, this message translates to:
+  /// **'Diagnosis:'**
+  String get children_screen_enter_child_diagnosis;
+
+  /// No description provided for @children_screen_enter_child_boy.
+  ///
+  /// In en, this message translates to:
+  /// **'Boy'**
+  String get children_screen_enter_child_boy;
+
+  /// No description provided for @children_screen_enter_child_girl.
+  ///
+  /// In en, this message translates to:
+  /// **'Girl'**
+  String get children_screen_enter_child_girl;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

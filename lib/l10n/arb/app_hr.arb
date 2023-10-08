@@ -8,5 +8,14 @@
     "already_registered_message":"Već ste registrirani?",    
     "login_here_message":"Prijavi se ",
     "register_here_message":"Registriraj se",
-    "password_string":"Zaporka"
+    "password_string":"Zaporka",
+
+    "children_screen_enter_child_info_message":"Molimo unesite potrebne informacije o Vašem djetetu",
+    "children_screen_enter_child_name":"Ime djeteta:",
+    "children_screen_enter_child_last_name":"Prezime djeteta:",
+    "children_screen_enter_child_age":"Dob djeteta:",
+    "children_screen_enter_child_gender":"Spol djeteta:",
+    "children_screen_enter_child_diagnosis":"Dijagnoza:",
+    "children_screen_enter_child_boy":"Dječak",
+    "children_screen_enter_child_girl":"Djevojčica"
 }

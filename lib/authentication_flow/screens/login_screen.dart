@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:emotion_station/components/components.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -65,6 +66,13 @@ class _LoginView extends StatelessWidget {
                   ),
                   if (state.submissionStatus == SubmissionStatus.inProgress)
                     const CircularProgressIndicator(),
+                  ESTextInput(
+                    borderRadius: 16.0,
+                    height: 56.0,
+                    labelText: l10n.email_string,
+                    onChanged: (email) => cubit.saveEmailToState(email),
+                  ),
+/*
                   SizedBox(
                     height: 56,
                     child: TextField(
@@ -79,6 +87,8 @@ class _LoginView extends StatelessWidget {
                       onChanged: (value) => cubit.saveEmailToState(value),
                     ),
                   ),
+*/
+
                   const SizedBox(height: 16.0),
                   SizedBox(
                     height: 56,

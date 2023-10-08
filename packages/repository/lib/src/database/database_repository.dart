@@ -6,6 +6,8 @@ import 'package:injectable/injectable.dart';
 abstract class IDatabaseRepository {
   FirebaseFirestore get instance;
 
+  Future<bool> createChildInDatabase({required Child child});
+
   Future<bool> registerParent({required Parent parent});
   Future<bool> registerSpecialist({required Specialist specialist});
 
@@ -21,6 +23,22 @@ class DatabaseRepository implements IDatabaseRepository {
 
   @override
   FirebaseFirestore get instance => FirebaseFirestore.instance;
+
+  @override
+  Future<bool> createChildInDatabase({required Child child}) async {
+    try {
+      await instance
+          .collection(FIRESTORE_COLLECTION_PARENTS)
+          .doc(child.id)
+          .set(child.toJson(), SetOptions(merge: true))
+          .then((value) => print('child added'));
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - createChildInDatabase() : Error adding child document: $e');
+      return false;
+    }
+  }
 
   @override
   Future<bool> registerParent({required Parent parent}) async {

@@ -8,5 +8,14 @@
     "already_registered_message":"Already registered?",    
     "login_here_message":"Login here",
     "register_here_message":"Register here",
-    "password_string":"Password"
+    "password_string":"Password",
+    
+    "children_screen_enter_child_info_message":"Please enter required info about your child",
+    "children_screen_enter_child_name":"Child name:",
+    "children_screen_enter_child_last_name":"Child last name:",
+    "children_screen_enter_child_age":"Child age:",
+    "children_screen_enter_child_gender":"Child gender:",
+    "children_screen_enter_child_diagnosis":"Diagnosis:",
+    "children_screen_enter_child_boy":"Boy",
+    "children_screen_enter_child_girl":"Girl"
 }

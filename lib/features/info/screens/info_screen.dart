@@ -41,14 +41,23 @@ class _InfoScreenView extends StatelessWidget {
             //beware of const
             padding: EdgeInsets.all(16.0),
             child: Center(
-              child: Text(
-                  ' is current user specialist? ${state.currentUser.isSpecialist.toString()} '),
+              child: Column(
+                children: [
+                  Text('current user full name: ${state.currentUser.fullName}'),
+                  Text('current user email: ${state.currentUser.email}'),
+                  Text(
+                      ' is current user specialist? ${state.currentUser.isSpecialist.toString()} '),
+                ],
+              ),
             ),
           ),
           floatingActionButton: FloatingActionButton(
             tooltip: l10n.test_string_2,
             child: const Icon(Icons.logout),
-            onPressed: () => context.goNamed(EmotionStationRoutes.loginScreen.routeName),
+            onPressed: () {
+              infoScreenCubit.authenticationManager.signOut();
+              context.goNamed(EmotionStationRoutes.loginScreen.routeName);
+            },
           ),
         );
       },

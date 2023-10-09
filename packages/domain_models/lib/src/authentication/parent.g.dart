@@ -15,7 +15,7 @@ Parent _$ParentFromJson(Map<String, dynamic> json) => Parent(
       password: json['password'] as String?,
       assignedSpecialistId: json['assignedSpecialistId'] as String?,
       children: (json['children'] as List<dynamic>?)
-          ?.map((e) => Child.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e as String)
           .toList(),
     );
 

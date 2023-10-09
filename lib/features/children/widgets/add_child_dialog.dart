@@ -1,8 +1,10 @@
+import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/components/components.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:repository/repository.dart';
+import 'package:uuid/uuid.dart';
 
 class AddChildDialog extends StatefulWidget {
   const AddChildDialog({
@@ -19,13 +21,38 @@ class AddChildDialog extends StatefulWidget {
 }
 
 class _AddChildDialogState extends State<AddChildDialog> {
-  String name = '';
-  String? lastName = '';
-  int? age;
-  bool isGenderMale = true;
-  String diagnosis = '';
+  String _name = '';
+  String _lastName = '';
+  int? _age;
+  bool _isGenderMale = true;
+  String _diagnosis = '';
 
-  Future<void> addToDatabase() async {}
+  Future<void> createChildInDatabase() async {
+    final child = Child(
+      id: const Uuid().v4(),
+      parentId: widget.authenticationManager.getCurrentUser().id,
+      name: _name,
+      lastName: _lastName,
+      age: _age!,
+      isGenderMale: _isGenderMale,
+      diagnosis: _diagnosis,
+    );
+
+    final addChildSuccess = await widget.databaseRepository.createChildInDatabase(
+      child: child,
+      parrentId: widget.authenticationManager.getCurrentUser().id,
+    );
+    print(addChildSuccess);
+
+/*
+    final parentRegisterSuccess = await databaseRepository.registerParent(parent: user);
+      if (parentRegisterSuccess == true) {
+        _currentUser = await databaseRepository.getParentFromDatabase(userId: user.id);
+        return true;
+      }
+      return false;
+*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +72,22 @@ class _AddChildDialogState extends State<AddChildDialog> {
                 borderRadius: 16.0,
                 height: 56.0,
                 labelText: l10n.children_screen_enter_child_name,
-                onChanged: (p0) {},
+                onChanged: (name) {
+                  setState(() {
+                    _name = name;
+                  });
+                },
               ),
               const SizedBox(height: 16),
               ESTextInput(
                 borderRadius: 16.0,
                 height: 56.0,
                 labelText: l10n.children_screen_enter_child_last_name,
-                onChanged: (p0) {},
+                onChanged: (lastName) {
+                  setState(() {
+                    _lastName = lastName;
+                  });
+                },
               ),
               const SizedBox(height: 16),
               Row(
@@ -61,9 +96,9 @@ class _AddChildDialogState extends State<AddChildDialog> {
                     child: RadioListTile(
                       title: Text(l10n.children_screen_enter_child_boy),
                       value: true,
-                      groupValue: isGenderMale,
+                      groupValue: _isGenderMale,
                       onChanged: (value) => setState(
-                        () => isGenderMale = value!,
+                        () => _isGenderMale = value!,
                       ),
                     ),
                   ),
@@ -71,9 +106,9 @@ class _AddChildDialogState extends State<AddChildDialog> {
                     child: RadioListTile(
                       title: Text(l10n.children_screen_enter_child_girl),
                       value: false,
-                      groupValue: isGenderMale,
+                      groupValue: _isGenderMale,
                       onChanged: (value) => setState(
-                        () => isGenderMale = value!,
+                        () => _isGenderMale = value!,
                       ),
                     ),
                   ),
@@ -84,22 +119,31 @@ class _AddChildDialogState extends State<AddChildDialog> {
                 borderRadius: 16.0,
                 height: 56.0,
                 labelText: l10n.children_screen_enter_child_age,
-                onChanged: (p0) {},
+                onChanged: (age) {
+                  setState(() {
+                    _age = int.parse(age);
+                  });
+                },
               ),
               const SizedBox(height: 16),
               ESTextInput(
                 borderRadius: 16.0,
                 height: 56.0,
                 labelText: l10n.children_screen_enter_child_diagnosis,
-                onChanged: (p0) {},
+                onChanged: (diagnosis) {
+                  setState(() {
+                    _diagnosis = diagnosis;
+                  });
+                },
               ),
               const SizedBox(height: 16),
               FilledButton(
                 onPressed: () {
                   //Navigator.pop(context);
+                  createChildInDatabase();
                   context.pop();
                 },
-                child: const Text('Close'),
+                child: const Text('Add child'),
               ),
             ],
           ),

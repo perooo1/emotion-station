@@ -59,7 +59,6 @@ class _LoginView extends StatelessWidget {
                     size: 150.0,
                     color: Colors.amber,
                   ),
-                  //Text(l10n.test_string),
                   Text(
                     l10n.login_message,
                     style: Theme.of(context).textTheme.headlineMedium,
@@ -72,46 +71,20 @@ class _LoginView extends StatelessWidget {
                     labelText: l10n.email_string,
                     onChanged: (email) => cubit.saveEmailToState(email),
                   ),
-/*
-                  SizedBox(
-                    height: 56,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: l10n.email_string,
-                        //filled: true,
-                        //fillColor: Colors.primaries.first,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                      ),
-                      onChanged: (value) => cubit.saveEmailToState(value),
-                    ),
-                  ),
-*/
-
                   const SizedBox(height: 16.0),
-                  SizedBox(
-                    height: 56,
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: l10n.password_string,
-                        //filled: true,
-                        //fillColor: Colors.primaries.first,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                      ),
-                      onChanged: (value) => cubit.savePwdToState(value),
-                    ),
+                  ESTextInput(
+                    borderRadius: 16.0,
+                    height: 56.0,
+                    labelText: l10n.email_string,
+                    obscureText: true,
+                    onChanged: (password) => cubit.savePwdToState(password),
                   ),
                   const SizedBox(height: 16.0),
                   SizedBox(
                     height: 56,
                     width: double.infinity,
                     child: FilledButton(
-                      onPressed: () => cubit
-                          .onLoginSubmit(), //dodat odlazak na home screen, tj trebao bi već biti zbog bloc consumera
+                      onPressed: () => cubit.onLoginSubmit(),
                       child: Text(l10n.login_message),
                     ),
                   ),
@@ -122,10 +95,11 @@ class _LoginView extends StatelessWidget {
                       Text(l10n.not_registered_message),
                       const SizedBox(width: 6),
                       OutlinedButton(
-                          onPressed: () {
-                            context.goNamed(EmotionStationRoutes.registerScreen.routeName);
-                          },
-                          child: Text(l10n.register_here_message)),
+                        onPressed: () {
+                          context.goNamed(EmotionStationRoutes.registerScreen.routeName);
+                        },
+                        child: Text(l10n.register_here_message),
+                      ),
                     ],
                   )
                 ],

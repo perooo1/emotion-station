@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:emotion_station/components/components.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -65,57 +66,33 @@ class _RegisterView extends StatelessWidget {
                   ),
                   if (state.submissionStatus == SubmissionStatus.inProgress)
                     const CircularProgressIndicator(),
-                  SizedBox(
-                    height: 56,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Name',
-                        //filled: true,
-                        //fillColor: Colors.primaries.first,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                      ),
-                      onChanged: (value) => cubit.saveNameToState(value),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 56,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'last name',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                      ),
-                      onChanged: (value) => cubit.saveLastNameToState(value),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 56,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: l10n.email_string,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                      ),
-                      onChanged: (value) => cubit.saveEmailToState(value),
-                    ),
+                  ESTextInput(
+                    borderRadius: 16.0,
+                    height: 56.0,
+                    labelText: 'Name',
+                    onChanged: (value) => cubit.saveNameToState(value),
                   ),
                   const SizedBox(height: 16.0),
-                  SizedBox(
-                    height: 56,
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: l10n.password_string,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                      ),
-                      onChanged: (value) => cubit.savePwdToState(value),
-                    ),
+                  ESTextInput(
+                    borderRadius: 16.0,
+                    height: 56.0,
+                    labelText: 'Last Name',
+                    onChanged: (value) => cubit.saveLastNameToState(value),
+                  ),
+                  const SizedBox(height: 16.0),
+                  ESTextInput(
+                    borderRadius: 16.0,
+                    height: 56.0,
+                    labelText: 'Email',
+                    onChanged: (value) => cubit.saveEmailToState(value),
+                  ),
+                  const SizedBox(height: 16.0),
+                  ESTextInput(
+                    borderRadius: 16.0,
+                    height: 56.0,
+                    labelText: 'Password',
+                    obscureText: true,
+                    onChanged: (value) => cubit.savePwdToState(value),
                   ),
                   const SizedBox(height: 16.0),
                   Row(

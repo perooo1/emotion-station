@@ -7,6 +7,7 @@ class ESTextInput extends StatelessWidget {
     this.filled = false,
     required this.height,
     required this.labelText,
+    this.obscureText = false,
     required this.onChanged,
   });
 
@@ -14,6 +15,7 @@ class ESTextInput extends StatelessWidget {
   final bool filled;
   final double height;
   final String labelText;
+  final bool obscureText;
   final Function(String) onChanged;
 
   @override
@@ -28,6 +30,7 @@ class ESTextInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
           ),
         ),
+        obscureText: obscureText,
         onChanged: (value) => onChanged(value),
         //onChanged: (value) => cubit.saveEmailToState(value),
       ),

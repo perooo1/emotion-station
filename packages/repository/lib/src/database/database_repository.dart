@@ -6,11 +6,15 @@ import 'package:injectable/injectable.dart';
 abstract class IDatabaseRepository {
   FirebaseFirestore get instance;
 
-  Future<bool> createChildInDatabase({required Child child, required String parrentId});
+  //streams
+  Stream<QuerySnapshot> getChildrenStream({required String parentId});
 
+  //read-write
+  Future<bool> createChildInDatabase({required Child child, required String parrentId});
   Future<bool> registerParent({required Parent parent});
   Future<bool> registerSpecialist({required Specialist specialist});
 
+  Future<Child> getChildFromDatabase({required String childId});
   Future<Parent> getParentFromDatabase({required String userId});
   Future<Specialist> getSpecialistFromDatabase({required String userId});
 }
@@ -23,6 +27,16 @@ class DatabaseRepository implements IDatabaseRepository {
 
   @override
   FirebaseFirestore get instance => FirebaseFirestore.instance;
+
+  //streams
+
+  @override
+  Stream<QuerySnapshot> getChildrenStream({required String parentId}) => instance
+      .collection(FIRESTORE_COLLECTION_CHILDREN)
+      .where("parentId", isEqualTo: parentId)
+      .snapshots();
+
+  //read-write
 
   @override
   Future<bool> createChildInDatabase({required Child child, required String parrentId}) async {
@@ -75,6 +89,38 @@ class DatabaseRepository implements IDatabaseRepository {
   }
 
   @override
+  Future<Child> getChildFromDatabase({required String childId}) async {
+    try {
+      final snapshot = await instance.collection(FIRESTORE_COLLECTION_CHILDREN).doc(childId).get();
+      if (snapshot.data() != null) {
+        return Child.fromJson(snapshot.data()!);
+      } else {
+        print('DB MANAGER - getParentFromDatabase() : getParentFromDatabase snapshot data is null');
+        return Child(
+          id: '',
+          parentId: '',
+          name: '',
+          lastName: '',
+          age: 0,
+          isGenderMale: true,
+          diagnosis: '',
+        );
+      }
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - getParentFromDatabase() : error reading parent doc from database: $e');
+      return Child(
+        id: '',
+        parentId: '',
+        name: '',
+        lastName: '',
+        age: 0,
+        isGenderMale: true,
+        diagnosis: '',
+      );
+    }
+  }
+
+  @override
   Future<Parent> getParentFromDatabase({required String userId}) async {
     try {
       final snapshot = await instance.collection(FIRESTORE_COLLECTION_PARENTS).doc(userId).get();
@@ -86,7 +132,6 @@ class DatabaseRepository implements IDatabaseRepository {
       }
     } on FirebaseException catch (e) {
       print('DB MANAGER - getParentFromDatabase() : error reading parent doc from database: $e');
-
       return Parent(id: '');
     }
   }
@@ -113,7 +158,6 @@ class DatabaseRepository implements IDatabaseRepository {
   Future<bool> _connectChildWithParent(
       {required String childId, required String parentDocId}) async {
     // need to pass parent Id (which is currently logged in user)
-
     try {
       await instance
           .collection(FIRESTORE_COLLECTION_PARENTS)

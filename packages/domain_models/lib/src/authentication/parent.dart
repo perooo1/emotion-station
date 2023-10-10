@@ -28,7 +28,7 @@ class Parent extends User {
   });*/
 
   final String? assignedSpecialistId;
-  final List<Child>? children;
+  final List<String>? children;
 
   factory Parent.fromJson(Map<String, dynamic> json) => _$ParentFromJson(json);
   Map<String, dynamic> toJson() => _$ParentToJson(this);

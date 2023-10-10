@@ -45,7 +45,9 @@ class _HomeScreenView extends StatelessWidget {
         } else if (state.currentUser is Parent) {
           return ParentTestWidget(parent: state.currentUser as Parent);
         } else {
-          return Center(child: Text(' Uh oh! Molimo logirajte se ponovno'));
+          return Center(
+              child: Text(
+                  ' Uh oh! Molimo logirajte se ponovno')); //ovdje samo pushat full screen dialog s button za log out i odlazak na login ekran
         }
 
 /*

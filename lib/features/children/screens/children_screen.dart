@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:emotion_station/features/children/bloc/children_screen_cubit.dart';
 import 'package:emotion_station/features/children/children.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,8 @@ class ChildrenScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SignInCubit>(
-      create: (_) => Injector.locateService<SignInCubit>(),
+    return BlocProvider<ChildrenScreenCubit>(
+      create: (_) => Injector.locateService<ChildrenScreenCubit>(),
       child: const _ChildrenScreenView(),
     );
   }
@@ -30,29 +31,65 @@ class _ChildrenScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final tempCubit = context.read<SignInCubit>();
+    final tempCubit = context.read<ChildrenScreenCubit>();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('this is children screen'),
-      ),
-      body: const Padding(
-        //beware of const
-        padding: EdgeInsets.all(16.0),
-        child: Center(
-          child: Text('This is children screen'),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AddChildDialog(
-            authenticationManager: tempCubit.authenticationManager,
-            databaseRepository: Injector.locateService<IDatabaseRepository>(),
+    return BlocBuilder<ChildrenScreenCubit, ChildrenScreenState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('this is children screen'),
           ),
-        ),
-      ),
+          body: Padding(
+            //beware of const
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                        state.children?[index].fullName ?? 'child name at index $index iz null'),
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 16,
+                ),
+                itemCount: state.children?.length ?? 0,
+              ),
+/*
+              child: Column(
+                children: [
+                  Text('This is children screen'),
+                  const SizedBox(height: 16),
+
+                  ListView.separated(
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(state.children?[index].fullName ??
+                            'child name at index $index iz null'),
+                      );
+                    },
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 16,
+                    ),
+                    itemCount: state.children?.length ?? 0,
+                  ),
+                ],
+              ),
+*/
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AddChildDialog(
+                authenticationManager: tempCubit.authenticationManager,
+                databaseRepository: Injector.locateService<IDatabaseRepository>(),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

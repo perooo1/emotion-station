@@ -21,7 +21,8 @@ class TherapistTestWidget extends StatelessWidget {
                 color: Colors.purple,
               ),
               Text('tihs should only bee seen by specialist'),
-              Text('is current user specialist? ${specialist.isSpecialist.toString()}'),
+              Text(
+                  'is current user specialist? ${specialist.isSpecialist.toString()}'),
               OutlinedButton(
                 onPressed: () {},
                 child: Text('random button'),

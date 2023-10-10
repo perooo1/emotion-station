@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/bloc/children_screen_cubit.dart';
 import 'package:emotion_station/features/children/children.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,11 @@ class _ChildrenScreenView extends StatelessWidget {
             //beware of const
             padding: const EdgeInsets.all(16.0),
             child: Center(
-              child: ListView.separated(
+                child: state.currentUser is Specialist
+                    ? TherapistChildrenScreenView()
+                    : ParentChildrenScreenView(children: state.children)
+                /*
+              ListView.separated(
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(
@@ -55,6 +60,8 @@ class _ChildrenScreenView extends StatelessWidget {
                 ),
                 itemCount: state.children?.length ?? 0,
               ),
+
+               */
 /*
               child: Column(
                 children: [
@@ -76,16 +83,23 @@ class _ChildrenScreenView extends StatelessWidget {
                 ],
               ),
 */
-            ),
+                ),
           ),
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () => showDialog<String>(
               context: context,
-              builder: (BuildContext context) => AddChildDialog(
-                authenticationManager: tempCubit.authenticationManager,
-                databaseRepository: Injector.locateService<IDatabaseRepository>(),
-              ),
+              builder: (BuildContext context) => state.currentUser.isSpecialist
+                  ? ConnectWithParentDialog(
+                      authenticationManager: tempCubit.authenticationManager,
+                      databaseRepository:
+                          Injector.locateService<IDatabaseRepository>(),
+                    )
+                  : AddChildDialog(
+                      authenticationManager: tempCubit.authenticationManager,
+                      databaseRepository:
+                          Injector.locateService<IDatabaseRepository>(),
+                    ),
             ),
           ),
         );

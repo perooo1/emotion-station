@@ -40,8 +40,10 @@ class _HomeScreenView extends StatelessWidget {
             ? TherapistTestWidget(specialist: state.currentUser)
             : ParentTestWidget(parent: state.currentUser);
 */
+
         if (state.currentUser is Specialist) {
-          return TherapistTestWidget(specialist: state.currentUser as Specialist);
+          return TherapistTestWidget(
+              specialist: state.currentUser as Specialist);
         } else if (state.currentUser is Parent) {
           return ParentTestWidget(parent: state.currentUser as Parent);
         } else {

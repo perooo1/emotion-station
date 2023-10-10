@@ -45,8 +45,8 @@ class ChildrenScreenCubit extends Cubit<ChildrenScreenState> {
   }
 
   void _startListening() {
-    _childrenStream =
-        databaseRepository.getChildrenStream(parentId: authenticationManager.getCurrentUser().id);
+    _childrenStream = databaseRepository.getChildrenStream(
+        parentId: authenticationManager.getCurrentUser().id);
 
     _childrenStream?.listen(
       (querySnapshot) {

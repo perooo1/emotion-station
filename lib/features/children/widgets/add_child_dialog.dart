@@ -40,7 +40,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
 
     final addChildSuccess = await widget.databaseRepository.createChildInDatabase(
       child: child,
-      parrentId: widget.authenticationManager.getCurrentUser().id,
+      parentId: widget.authenticationManager.getCurrentUser().id,
     );
     print(addChildSuccess);
 

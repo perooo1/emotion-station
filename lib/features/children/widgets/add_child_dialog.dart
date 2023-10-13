@@ -28,9 +28,12 @@ class _AddChildDialogState extends State<AddChildDialog> {
   String _diagnosis = '';
 
   Future<void> createChildInDatabase() async {
+    final parent = widget.authenticationManager.getCurrentUser() as Parent;
+
     final child = Child(
       id: const Uuid().v4(),
       parentId: widget.authenticationManager.getCurrentUser().id,
+      assignedSpecialistId: parent.assignedSpecialistId,
       name: _name,
       lastName: _lastName,
       age: _age!,

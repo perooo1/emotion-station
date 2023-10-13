@@ -7,7 +7,8 @@ abstract class IDatabaseRepository {
   FirebaseFirestore get instance;
 
   //streams
-  Stream<QuerySnapshot> getChildrenStream({required String parentId});
+  Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId});
+  //Stream<QuerySnapshot> getChildrenStream({required String parentId});
 
   //write
   Future<bool> createChildInDatabase({required Child child, required String parentId});
@@ -40,11 +41,42 @@ class DatabaseRepository implements IDatabaseRepository {
 
   //streams
 
+  Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId}) {
+    final bool isSpecialist = specialistId != null;
+    if (parentId == null && specialistId == null) {
+      throw FormatException('Both parent and specialist are null!');
+    }
+
+    return isSpecialist
+        ? instance
+            .collection(FIRESTORE_COLLECTION_CHILDREN)
+            .where('assignedSpecialistId', isEqualTo: specialistId)
+            .snapshots()
+        : instance
+            .collection(FIRESTORE_COLLECTION_CHILDREN)
+            .where('parentId', isEqualTo: parentId)
+            .snapshots();
+
+/*
+    return instance
+        .collection(FIRESTORE_COLLECTION_CHILDREN)
+        .where(
+          isSpecialist ? 'assignedSpecialistId' : 'parentId',
+          isEqualTo: isSpecialist ? specialistId : parentId,
+        )
+        //.where("parentId", isEqualTo: parentId)
+        .snapshots();
+
+*/
+  }
+
+/*
   @override
   Stream<QuerySnapshot> getChildrenStream({required String parentId}) => instance
       .collection(FIRESTORE_COLLECTION_CHILDREN)
       .where("parentId", isEqualTo: parentId)
       .snapshots();
+*/
 
   //write
 

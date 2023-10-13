@@ -45,6 +45,37 @@ class ChildrenScreenCubit extends Cubit<ChildrenScreenState> {
   }
 
   void _startListening() {
+    if (authenticationManager.getCurrentUser() is Specialist) {
+      _childrenStream = databaseRepository.getChildrenStream(
+        specialistId: authenticationManager.getCurrentUser().id,
+      );
+
+      _childrenStream?.listen(
+        (querySnapshot) {
+          final List<Child> children = [];
+          for (var doc in querySnapshot.docs) {
+            children.add(Child.fromJson(doc.data() as Map<String, dynamic>));
+          }
+          emit(state.copyWith(children: children));
+        },
+      );
+    } else {
+      _childrenStream = databaseRepository.getChildrenStream(
+        parentId: authenticationManager.getCurrentUser().id,
+      );
+
+      _childrenStream?.listen(
+        (querySnapshot) {
+          final List<Child> children = [];
+          for (var doc in querySnapshot.docs) {
+            children.add(Child.fromJson(doc.data() as Map<String, dynamic>));
+          }
+          emit(state.copyWith(children: children));
+        },
+      );
+    }
+
+/*
     _childrenStream = databaseRepository.getChildrenStream(
         parentId: authenticationManager.getCurrentUser().id);
 
@@ -57,5 +88,6 @@ class ChildrenScreenCubit extends Cubit<ChildrenScreenState> {
         emit(state.copyWith(children: children));
       },
     );
+*/
   }
 }

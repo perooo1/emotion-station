@@ -11,14 +11,13 @@ class ParentChildrenScreenView extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (context, index) {
         return ListTile(
+          tileColor: Colors.amber,
           title: Text(
             children?[index].fullName ?? 'child name at index $index iz null',
           ),
         );
       },
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 16,
-      ),
+      separatorBuilder: (context, index) => const SizedBox(height: 16),
       itemCount: children?.length ?? 0,
     );
   }

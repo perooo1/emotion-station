@@ -45,7 +45,7 @@ class _ChildrenScreenView extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Center(
                 child: state.currentUser is Specialist
-                    ? TherapistChildrenScreenView()
+                    ? TherapistChildrenScreenView(children: state.children)
                     : ParentChildrenScreenView(children: state.children)
                 /*
               ListView.separated(
@@ -92,13 +92,11 @@ class _ChildrenScreenView extends StatelessWidget {
               builder: (BuildContext context) => state.currentUser.isSpecialist
                   ? ConnectWithParentDialog(
                       authenticationManager: tempCubit.authenticationManager,
-                      databaseRepository:
-                          Injector.locateService<IDatabaseRepository>(),
+                      databaseRepository: Injector.locateService<IDatabaseRepository>(),
                     )
                   : AddChildDialog(
                       authenticationManager: tempCubit.authenticationManager,
-                      databaseRepository:
-                          Injector.locateService<IDatabaseRepository>(),
+                      databaseRepository: Injector.locateService<IDatabaseRepository>(),
                     ),
             ),
           ),

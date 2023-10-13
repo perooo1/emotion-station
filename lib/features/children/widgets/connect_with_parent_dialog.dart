@@ -14,17 +14,17 @@ class ConnectWithParentDialog extends StatefulWidget {
   final IDatabaseRepository databaseRepository;
 
   @override
-  State<ConnectWithParentDialog> createState() =>
-      _ConnectWithParentDialogState();
+  State<ConnectWithParentDialog> createState() => _ConnectWithParentDialogState();
 }
 
 class _ConnectWithParentDialogState extends State<ConnectWithParentDialog> {
   String _parentEmail = '';
 
   Future<void> connectTherapistToParent() async {
-    final success = widget.databaseRepository.connectSpecialistWithParent(
-        parentEmail: _parentEmail,
-        currentSpecialistId: widget.authenticationManager.getCurrentUser().id);
+    final success = await widget.databaseRepository.connectSpecialistWithParent(
+      parentEmail: _parentEmail,
+      currentSpecialistId: widget.authenticationManager.getCurrentUser().id,
+    );
 
     print(success);
   }

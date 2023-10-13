@@ -110,15 +110,19 @@ class DatabaseRepository implements IDatabaseRepository {
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
-        final DocumentSnapshot document = querySnapshot.docs[0];
+        final DocumentSnapshot parent = querySnapshot.docs[0];
+        final String parentId = parent.id;
 
         await instance
             .collection(FIRESTORE_COLLECTION_PARENTS)
-            .doc(document.id)
+            .doc(parentId)
             .update({'assignedSpecialistId': currentSpecialistId});
 
-        final a = _assignSpecialistToChild(currentSpecialistId: currentSpecialistId);
-
+        final a = await _assignSpecialistToChild(
+          currentSpecialistId: currentSpecialistId,
+          parentId: parentId,
+        );
+        print('db repo, a is $a');
         return true;
       } else {
         return false;
@@ -223,19 +227,22 @@ class DatabaseRepository implements IDatabaseRepository {
     }
   }
 
-  Future<bool> _assignSpecialistToChild({required String currentSpecialistId}) async {
+  Future<bool> _assignSpecialistToChild({
+    required String currentSpecialistId,
+    required String parentId,
+  }) async {
     try {
       final querySnapshot = await instance
           .collection(FIRESTORE_COLLECTION_CHILDREN)
-          .where('parentId', isEqualTo: currentSpecialistId)
+          .where('parentId', isEqualTo: parentId)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
         querySnapshot.docs.forEach(
-          (DocumentSnapshot element) async {
+          (DocumentSnapshot child) async {
             await instance
                 .collection(FIRESTORE_COLLECTION_CHILDREN)
-                .doc(element.id)
+                .doc(child.id)
                 .update({'assignedSpecialistId': currentSpecialistId});
           },
         );

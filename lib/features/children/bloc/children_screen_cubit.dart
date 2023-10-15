@@ -22,10 +22,6 @@ class ChildrenScreenCubit extends Cubit<ChildrenScreenState> {
 
   Stream<QuerySnapshot>? _childrenStream;
 
-  Stream<QuerySnapshot> _initStream() {
-    return databaseRepository.instance.collection('Children').snapshots();
-  }
-
   void _getCurrentUserAndSetState() {
     try {
       final currentUser = authenticationManager.getCurrentUser();
@@ -74,20 +70,5 @@ class ChildrenScreenCubit extends Cubit<ChildrenScreenState> {
         },
       );
     }
-
-/*
-    _childrenStream = databaseRepository.getChildrenStream(
-        parentId: authenticationManager.getCurrentUser().id);
-
-    _childrenStream?.listen(
-      (querySnapshot) {
-        final List<Child> children = [];
-        for (var doc in querySnapshot.docs) {
-          children.add(Child.fromJson(doc.data() as Map<String, dynamic>));
-        }
-        emit(state.copyWith(children: children));
-      },
-    );
-*/
   }
 }

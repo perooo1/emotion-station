@@ -42,8 +42,10 @@ Future<_i1.GetIt> init(
         authenticationManager: gh<_i7.IAuthenticationManager>(),
         databaseRepository: gh<_i7.IDatabaseRepository>(),
       ));
-  gh.factory<_i8.HomeCubit>(() =>
-      _i8.HomeCubit(authenticationManager: gh<_i7.IAuthenticationManager>()));
+  gh.factory<_i8.HomeCubit>(() => _i8.HomeCubit(
+        authenticationManager: gh<_i7.IAuthenticationManager>(),
+        databaseRepository: gh<_i7.IDatabaseRepository>(),
+      ));
   gh.singleton<_i9.IRouter>(_i9.EmotionStationRouter(
       authenticationManager: gh<_i7.IAuthenticationManager>()));
   gh.factory<_i10.InfoScreenCubit>(() => _i10.InfoScreenCubit(

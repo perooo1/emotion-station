@@ -1,15 +1,21 @@
 import 'package:domain_models/domain_models.dart';
+import 'package:emotion_station/features/home/bloc/home_cubit.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ParentTestWidget extends StatelessWidget {
-  const ParentTestWidget({super.key, required this.parent});
+  const ParentTestWidget({
+    required this.parent,
+    super.key,
+  });
 
   final Parent parent;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final cubit = context.read<HomeCubit>();
 
     return Scaffold(
       appBar: AppBar(
@@ -27,6 +33,19 @@ class ParentTestWidget extends StatelessWidget {
               ),
               Text('tihs should only bee seen by parent'),
               Text('is current user parent? ${parent.isParent.toString()}'),
+              const SizedBox(height: 16.0),
+              DropdownMenu<Child>(
+                initialSelection: cubit.state.selectedChild,
+                onSelected: (value) {
+                  cubit.onChildSelected(value!);
+                },
+                dropdownMenuEntries: cubit.state.children?.map<DropdownMenuEntry<Child>>(
+                      (Child value) {
+                        return DropdownMenuEntry<Child>(value: value, label: value.name);
+                      },
+                    ).toList() ??
+                    List.empty(),
+              ),
 /*
               Text('This is a home widget when logged in'),
               Text('Current logged in user id: ${state.currentUser.id}'),

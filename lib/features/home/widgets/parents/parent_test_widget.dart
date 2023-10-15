@@ -1,8 +1,12 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/home/bloc/home_cubit.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:emotion_station/navigation/navigation.dart';
+import 'package:emotion_station/utils/constants/activity_types.dart';
+import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ParentTestWidget extends StatelessWidget {
   const ParentTestWidget({
@@ -46,6 +50,22 @@ class ParentTestWidget extends StatelessWidget {
                     ).toList() ??
                     List.empty(),
               ),
+              const SizedBox(height: 16.0),
+              ElevatedButton(
+                child: Text('Activity test'),
+                onPressed: () {
+                  context.goNamed(
+                    EmotionStationRoutes.activityScreen.routeName,
+                    pathParameters: {
+                      ActivityRouteParameters.childId: cubit.state.selectedChild!.id
+                    },
+                    queryParameters: {
+                      ActivityRouteParameters.activityType: ActivityType.stationOfHappiness.name
+                    },
+                  );
+                },
+              ),
+
 /*
               Text('This is a home widget when logged in'),
               Text('Current logged in user id: ${state.currentUser.id}'),

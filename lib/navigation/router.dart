@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:emotion_station/features/children/screens/screens.dart';
+import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -51,6 +52,24 @@ class EmotionStationRouter extends IRouter {
                 pageBuilder: (context, state) => const MaterialPage<void>(
                   child: HomeScreen(),
                 ),
+                routes: [
+                  GoRoute(
+                    name: EmotionStationRoutes.activityScreen.routeName,
+                    path:
+                        '${EmotionStationRoutes.activityScreen.path}/:${ActivityRouteParameters.childId}',
+                    pageBuilder: (context, state) {
+                      final id = state.pathParameters[ActivityRouteParameters.childId];
+                      final activityTypeName =
+                          state.uri.queryParameters[ActivityRouteParameters.activityType];
+                      return MaterialPage<void>(
+                        child: ActivityScreen(
+                          childId: id!,
+                          activityTypeName: activityTypeName!,
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),

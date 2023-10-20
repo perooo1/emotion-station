@@ -8,7 +8,6 @@ abstract class IDatabaseRepository {
 
   //streams
   Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId});
-  //Stream<QuerySnapshot> getChildrenStream({required String parentId});
 
   //write
   Future<bool> createChildInDatabase({required Child child, required String parentId});
@@ -32,9 +31,10 @@ abstract class IDatabaseRepository {
 
 @Singleton(as: IDatabaseRepository)
 class DatabaseRepository implements IDatabaseRepository {
+  final String FIRESTORE_COLLECTION_ACTIVITIES = 'Activities';
+  final String FIRESTORE_COLLECTION_CHILDREN = 'Children';
   final String FIRESTORE_COLLECTION_PARENTS = 'Parents';
   final String FIRESTORE_COLLECTION_SPECIALISTS = 'Specialists';
-  final String FIRESTORE_COLLECTION_CHILDREN = 'Children';
 
   @override
   FirebaseFirestore get instance => FirebaseFirestore.instance;
@@ -56,27 +56,7 @@ class DatabaseRepository implements IDatabaseRepository {
             .collection(FIRESTORE_COLLECTION_CHILDREN)
             .where('parentId', isEqualTo: parentId)
             .snapshots();
-
-/*
-    return instance
-        .collection(FIRESTORE_COLLECTION_CHILDREN)
-        .where(
-          isSpecialist ? 'assignedSpecialistId' : 'parentId',
-          isEqualTo: isSpecialist ? specialistId : parentId,
-        )
-        //.where("parentId", isEqualTo: parentId)
-        .snapshots();
-
-*/
   }
-
-/*
-  @override
-  Stream<QuerySnapshot> getChildrenStream({required String parentId}) => instance
-      .collection(FIRESTORE_COLLECTION_CHILDREN)
-      .where("parentId", isEqualTo: parentId)
-      .snapshots();
-*/
 
   //write
 

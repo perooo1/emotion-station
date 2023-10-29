@@ -31,7 +31,7 @@ abstract class IDatabaseRepository {
 
 @Singleton(as: IDatabaseRepository)
 class DatabaseRepository implements IDatabaseRepository {
-  final String FIRESTORE_COLLECTION_ACTIVITIES = 'Activities';
+  final String FIRESTORE_COLLECTION_ACTIVITY_RECORDS = 'ActivityRecords';
   final String FIRESTORE_COLLECTION_CHILDREN = 'Children';
   final String FIRESTORE_COLLECTION_PARENTS = 'Parents';
   final String FIRESTORE_COLLECTION_SPECIALISTS = 'Specialists';

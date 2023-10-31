@@ -36,10 +36,12 @@ class _ActivityView extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<ActivityCubit>();
 
-    return BlocConsumer<ActivityCubit, ActivityState>(
+    return BlocBuilder<ActivityCubit, ActivityState>(
+      /*
       listenWhen: (previous, current) =>
           previous.reckoginitionAnswer1 != current.reckoginitionAnswer1,
       listener: (context, state) {},
+      */
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(),
@@ -72,10 +74,19 @@ class _ActivityView extends StatelessWidget {
                   //effect: SwapEffect(type: SwapType.yRotation),
                 ),
                 TextButton(
-                  onPressed: () => cubit.controller.nextPage(
-                    duration: Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  ),
+                  onPressed: () {
+                    if (cubit.controller.page == cubit.controller.position.maxScrollExtent) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => SimpleDialog(children: [Text('Bravo')]),
+                      );
+                    } else {
+                      cubit.controller.nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                  },
                   child: Text('next stop'),
                 ),
               ],

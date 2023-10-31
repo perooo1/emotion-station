@@ -31,7 +31,7 @@ class ActivityState extends Equatable {
   }) {
     return ActivityState(
       emotionStation: emotionStation ?? this.emotionStation,
-      reckoginitionAnswer1: reckoginitionAnswer1 ?? this.reckoginitionAnswer1,
+      reckoginitionAnswer1: reckoginitionAnswer1, // ?? this.reckoginitionAnswer1,
       reckoginitionAnswer2: reckoginitionAnswer2 ?? this.reckoginitionAnswer2,
       understandingVisualAnswer1: understandingVisualAnswer1 ?? this.understandingVisualAnswer1,
       understandingVisualAnswer2: understandingVisualAnswer2 ?? this.understandingVisualAnswer2,

@@ -22,7 +22,7 @@ class ActivityCubit extends Cubit<ActivityState> {
 
   final controller = PageController();
 
-  void setAnswer(ComprehensionLevel answer) {
+  void setAnswer(ComprehensionLevel? answer) {
     emit(state.copyWith(reckoginitionAnswer1: answer));
   }
 

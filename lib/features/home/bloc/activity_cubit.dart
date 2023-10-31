@@ -22,8 +22,28 @@ class ActivityCubit extends Cubit<ActivityState> {
 
   final controller = PageController();
 
-  void setAnswer(ComprehensionLevel? answer) {
-    emit(state.copyWith(reckoginitionAnswer1: answer));
+  void setAnswer(ComprehensionLevel? answer, int index) {
+    //potential non-nullable parameter
+    switch (index) {
+      case 0:
+        emit(state.copyWith(reckoginitionAnswer1: answer));
+        break;
+      case 1:
+        emit(state.copyWith(reckoginitionAnswer2: answer));
+        break;
+      case 2:
+        emit(state.copyWith(understandingTextualAnswer1: answer));
+        break;
+      case 3:
+        emit(state.copyWith(understandingTextualAnswer2: answer));
+        break;
+      case 4:
+        emit(state.copyWith(understandingVisualAnswer1: answer));
+        break;
+      default:
+        emit(state.copyWith(understandingVisualAnswer2: answer));
+        break;
+    }
   }
 
   @override

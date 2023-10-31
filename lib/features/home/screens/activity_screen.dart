@@ -52,12 +52,12 @@ class _ActivityView extends StatelessWidget {
             itemBuilder: (context, index) {
               final question = state.emotionStation.questions[index];
 
-              return QuestionView(question: question);
+              return QuestionView(question: question, index: index);
             },
           ),
           bottomSheet: Container(
             height: 80,
-            color: Theme.of(context).colorScheme.tertiaryContainer,
+            color: Theme.of(context).colorScheme.primaryContainer,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -71,7 +71,9 @@ class _ActivityView extends StatelessWidget {
                 SmoothPageIndicator(
                   controller: cubit.controller,
                   count: state.emotionStation.questions.length,
-                  //effect: SwapEffect(type: SwapType.yRotation),
+                  effect: WormEffect(
+                      dotColor: Theme.of(context).colorScheme.onPrimary,
+                      activeDotColor: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 TextButton(
                   onPressed: () {

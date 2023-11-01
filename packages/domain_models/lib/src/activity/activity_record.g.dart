@@ -10,6 +10,7 @@ ActivityRecord _$ActivityRecordFromJson(Map<String, dynamic> json) =>
     ActivityRecord(
       emotionStation: EmotionStation.fromJson(
           json['emotionStation'] as Map<String, dynamic>),
+      childId: json['childId'] as String,
       recognitionAnswer1:
           $enumDecode(_$ComprehensionLevelEnumMap, json['recognitionAnswer1']),
       recognitionAnswer2:
@@ -38,7 +39,8 @@ ActivityRecord _$ActivityRecordFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ActivityRecordToJson(ActivityRecord instance) =>
     <String, dynamic>{
-      'emotionStation': instance.emotionStation,
+      'emotionStation': instance.emotionStation.toJson(),
+      'childId': instance.childId,
       'recognitionAnswer1':
           _$ComprehensionLevelEnumMap[instance.recognitionAnswer1]!,
       'recognitionAnswer2':

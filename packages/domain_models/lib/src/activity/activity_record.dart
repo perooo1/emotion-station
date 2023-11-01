@@ -3,10 +3,11 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'activity_record.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class ActivityRecord {
   ActivityRecord({
     required this.emotionStation,
+    required this.childId,
     required this.recognitionAnswer1,
     required this.recognitionAnswer2,
     required this.understandingVisualAnswer1,
@@ -22,6 +23,7 @@ class ActivityRecord {
   });
 
   final EmotionStation emotionStation;
+  final String childId;
   final ComprehensionLevel recognitionAnswer1;
   final ComprehensionLevel recognitionAnswer2;
   final ComprehensionLevel understandingVisualAnswer1;

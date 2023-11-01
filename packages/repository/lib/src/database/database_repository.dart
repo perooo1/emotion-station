@@ -11,21 +11,17 @@ abstract class IDatabaseRepository {
 
   //write
   Future<bool> createChildInDatabase({required Child child, required String parentId});
-
-  Future<bool> registerParent({required Parent parent});
-
-  Future<bool> registerSpecialist({required Specialist specialist});
-
   Future<bool> connectSpecialistWithParent({
     required String parentEmail,
     required String currentSpecialistId,
   });
+  Future<bool> recordCompletedActivity({required ActivityRecord activityRecord});
+  Future<bool> registerParent({required Parent parent});
+  Future<bool> registerSpecialist({required Specialist specialist});
 
   //read
   Future<Child> getChildFromDatabase({required String childId});
-
   Future<Parent> getParentFromDatabase({required String userId});
-
   Future<Specialist> getSpecialistFromDatabase({required String userId});
 }
 
@@ -90,6 +86,23 @@ class DatabaseRepository implements IDatabaseRepository {
       return true;
     } on FirebaseException catch (e) {
       print('DB MANAGER - registerSpecialist() : Error adding parent document: $e');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> recordCompletedActivity({required ActivityRecord activityRecord}) async {
+    try {
+      await instance
+          .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
+          .doc(
+              '${activityRecord.emotionStation.activityType.name}-${activityRecord.childId}-${DateTime.now().toString()}')
+          .set(activityRecord.toJson(), SetOptions(merge: true))
+          .then((value) => print('activity record'));
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - recordCompletedActivity() : Error adding activity record document: $e');
       return false;
     }
   }

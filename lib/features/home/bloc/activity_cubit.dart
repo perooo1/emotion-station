@@ -9,7 +9,7 @@ part 'activity_state.dart';
 
 @Injectable()
 class ActivityCubit extends Cubit<ActivityState> {
-  ActivityCubit()
+  ActivityCubit({required this.databaseRepository})
       : super(
           ActivityState(
             emotionStation: EmotionStation(
@@ -20,10 +20,11 @@ class ActivityCubit extends Cubit<ActivityState> {
           ),
         );
 
-  final controller = PageController();
-  int currentPageIndex = 0;
+  final IDatabaseRepository databaseRepository;
 
+  final controller = PageController();
   final stopwatch = Stopwatch()..start();
+  int currentPageIndex = 0;
 
   bool isOptionSelected() {
     switch (currentPageIndex) {
@@ -83,17 +84,6 @@ class ActivityCubit extends Cubit<ActivityState> {
       emit(state.copyWith(understandingVisualAnswer2Duration: stopwatch.elapsed));
       stopwatch.stop();
     }
-    /*
-     else if (state.recognitionAnswer1 != null &&
-        state.recognitionAnswer2 != null &&
-        state.understandingTextualAnswer1 != null &&
-        state.understandingTextualAnswer2 != null &&
-        state.understandingVisualAnswer1 != null &&
-        state.understandingVisualAnswer2 != null) {
-      emit(state.copyWith(understandingVisualAnswer2Duration: stopwatch.elapsed));
-      stopwatch.stop();
-    }
-    */
   }
 
   void setAnswer(ComprehensionLevel? answer, int index) {
@@ -120,11 +110,12 @@ class ActivityCubit extends Cubit<ActivityState> {
     }
   }
 
-  void recordActivity() {
+  Future<void> recordActivity({required String childId}) async {
     //todo make async and future type BE CAREFUL OF LAST TIMER
 
     final activityRecord = ActivityRecord(
       emotionStation: state.emotionStation,
+      childId: childId,
       recognitionAnswer1: state.recognitionAnswer1!,
       recognitionAnswer2: state.recognitionAnswer2!,
       understandingTextualAnswer1: state.understandingTextualAnswer1!,
@@ -143,6 +134,8 @@ class ActivityCubit extends Cubit<ActivityState> {
       understandingVisualAnswer2Duration:
           state.understandingVisualAnswer2Duration! - state.understandingVisualAnswer1Duration!,
     );
+
+    final a = await databaseRepository.recordCompletedActivity(activityRecord: activityRecord);
   }
 
   @override

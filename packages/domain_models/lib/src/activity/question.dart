@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'question.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Question {
   Question({
     required this.text,

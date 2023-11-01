@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'emotion_station.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class EmotionStation {
   EmotionStation({
     required this.activityType,

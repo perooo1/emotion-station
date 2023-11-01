@@ -19,7 +19,7 @@ Map<String, dynamic> _$EmotionStationToJson(EmotionStation instance) =>
     <String, dynamic>{
       'activityType': _$ActivityTypeEnumMap[instance.activityType]!,
       'stationName': instance.stationName,
-      'questions': instance.questions,
+      'questions': instance.questions.map((e) => e.toJson()).toList(),
     };
 
 const _$ActivityTypeEnumMap = {

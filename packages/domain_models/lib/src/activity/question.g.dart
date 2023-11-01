@@ -25,7 +25,7 @@ Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
       'activityType': _$ActivityTypeEnumMap[instance.activityType]!,
       'opservationCategory':
           _$OpservationCategoryEnumMap[instance.opservationCategory]!,
-      'options': instance.options,
+      'options': instance.options.map((e) => e.toJson()).toList(),
     };
 
 const _$ActivityTypeEnumMap = {

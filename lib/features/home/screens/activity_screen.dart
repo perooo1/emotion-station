@@ -83,7 +83,7 @@ class _ActivityView extends StatelessWidget {
                       cubit.manageStopwatch();
 
                       if (cubit.currentPageIndex + 1 == state.emotionStation.questions.length) {
-                        cubit.recordActivity();
+                        cubit.recordActivity(childId: childId);
                         showDialog(
                           context: context,
                           builder: (context) => Dialog.fullscreen(child: ActivityFinishedDialog()),

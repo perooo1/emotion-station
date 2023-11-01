@@ -1,4 +1,4 @@
-export 'activity_finished.dart';
+export 'activity_finished_dialog.dart';
 export 'emotion_reckognition.dart';
 export 'emotion_understanding_textual.dart';
 export 'emotion_understanding_visual.dart';

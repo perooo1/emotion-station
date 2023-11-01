@@ -22,4 +22,5 @@ const _$ComprehensionLevelEnumMap = {
   ComprehensionLevel.high: 'high',
   ComprehensionLevel.partial: 'partial',
   ComprehensionLevel.low: 'low',
+  ComprehensionLevel.initialDefault: 'initialDefault',
 };

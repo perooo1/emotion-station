@@ -1,3 +1,4 @@
+import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/home/bloc/activity_cubit.dart';
 import 'package:emotion_station/features/home/widgets/activity/activity.dart';
 import 'package:emotion_station/injector/injector.config.dart';
@@ -52,6 +53,7 @@ class _ActivityView extends StatelessWidget {
             itemCount: state.emotionStation.questions.length,
             itemBuilder: (context, index) {
               final question = state.emotionStation.questions[index];
+              cubit.currentPageIndex = index;
               return QuestionView(question: question, index: index);
             },
           ),
@@ -77,12 +79,26 @@ class _ActivityView extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    cubit.manageStopwatch();
+                    if (cubit.isOptionSelected()) {
+                      cubit.manageStopwatch();
 
-                    cubit.controller.nextPage(
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
+                      if (cubit.currentPageIndex + 1 == state.emotionStation.questions.length) {
+                        cubit.recordActivity();
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog.fullscreen(child: ActivityFinishedDialog()),
+                        );
+                      } else {
+                        cubit.controller.nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(const SnackBar(content: Text('Select an option first')));
+                    }
                   },
                   child: Text('next stop'),
                 ),
@@ -212,4 +228,3 @@ class _ActivityScreenState extends State<ActivityScreen> {
   }
 }
 */
-

@@ -21,26 +21,26 @@ class ActivityState extends Equatable {
 
   final ComprehensionLevel? recognitionAnswer1;
   final ComprehensionLevel? recognitionAnswer2;
-  final ComprehensionLevel? understandingVisualAnswer1;
-  final ComprehensionLevel? understandingVisualAnswer2;
   final ComprehensionLevel? understandingTextualAnswer1;
   final ComprehensionLevel? understandingTextualAnswer2;
+  final ComprehensionLevel? understandingVisualAnswer1;
+  final ComprehensionLevel? understandingVisualAnswer2;
 
   final Duration? recognitionAnswer1Duration;
   final Duration? recognitionAnswer2Duration;
-  final Duration? understandingVisualAnswer1Duration;
-  final Duration? understandingVisualAnswer2Duration;
   final Duration? understandingTextualAnswer1Duration;
   final Duration? understandingTextualAnswer2Duration;
+  final Duration? understandingVisualAnswer1Duration;
+  final Duration? understandingVisualAnswer2Duration;
 
   ActivityState copyWith({
     EmotionStation? emotionStation,
     ComprehensionLevel? recognitionAnswer1,
     ComprehensionLevel? recognitionAnswer2,
-    ComprehensionLevel? understandingVisualAnswer1,
-    ComprehensionLevel? understandingVisualAnswer2,
     ComprehensionLevel? understandingTextualAnswer1,
     ComprehensionLevel? understandingTextualAnswer2,
+    ComprehensionLevel? understandingVisualAnswer1,
+    ComprehensionLevel? understandingVisualAnswer2,
     Duration? recognitionAnswer1Duration,
     Duration? recognitionAnswer2Duration,
     Duration? understandingVisualAnswer1Duration,
@@ -53,10 +53,10 @@ class ActivityState extends Equatable {
       //answers
       recognitionAnswer1: recognitionAnswer1 ?? this.recognitionAnswer1,
       recognitionAnswer2: recognitionAnswer2 ?? this.recognitionAnswer2,
-      understandingVisualAnswer1: understandingVisualAnswer1 ?? this.understandingVisualAnswer1,
-      understandingVisualAnswer2: understandingVisualAnswer2 ?? this.understandingVisualAnswer2,
       understandingTextualAnswer1: understandingTextualAnswer1 ?? this.understandingTextualAnswer1,
       understandingTextualAnswer2: understandingTextualAnswer2 ?? this.understandingTextualAnswer2,
+      understandingVisualAnswer1: understandingVisualAnswer1 ?? this.understandingVisualAnswer1,
+      understandingVisualAnswer2: understandingVisualAnswer2 ?? this.understandingVisualAnswer2,
       //duration
 
       recognitionAnswer1Duration: recognitionAnswer1Duration ?? this.recognitionAnswer1Duration,
@@ -77,10 +77,10 @@ class ActivityState extends Equatable {
         emotionStation,
         recognitionAnswer1,
         recognitionAnswer2,
-        understandingVisualAnswer1,
-        understandingVisualAnswer2,
         understandingTextualAnswer1,
         understandingTextualAnswer2,
+        understandingVisualAnswer1,
+        understandingVisualAnswer2,
         recognitionAnswer1Duration,
         recognitionAnswer2Duration,
         understandingVisualAnswer1Duration,

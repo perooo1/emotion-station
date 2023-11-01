@@ -21,10 +21,26 @@ class ActivityCubit extends Cubit<ActivityState> {
         );
 
   final controller = PageController();
-  int currentPage = 0;
-  bool isFirstPageVisited = false;
+  int currentPageIndex = 0;
 
   final stopwatch = Stopwatch()..start();
+
+  bool isOptionSelected() {
+    switch (currentPageIndex) {
+      case 0:
+        return state.recognitionAnswer1 != null;
+      case 1:
+        return state.recognitionAnswer2 != null;
+      case 2:
+        return state.understandingTextualAnswer1 != null;
+      case 3:
+        return state.understandingTextualAnswer2 != null;
+      case 4:
+        return state.understandingVisualAnswer1 != null;
+      default:
+        return state.understandingVisualAnswer2 != null;
+    }
+  }
 
   void manageStopwatch() {
     // I dont like!!!!!!
@@ -104,21 +120,34 @@ class ActivityCubit extends Cubit<ActivityState> {
     }
   }
 
+  void recordActivity() {
+    //todo make async and future type BE CAREFUL OF LAST TIMER
+
+    final activityRecord = ActivityRecord(
+      emotionStation: state.emotionStation,
+      recognitionAnswer1: state.recognitionAnswer1!,
+      recognitionAnswer2: state.recognitionAnswer2!,
+      understandingTextualAnswer1: state.understandingTextualAnswer1!,
+      understandingTextualAnswer2: state.understandingTextualAnswer2!,
+      understandingVisualAnswer1: state.understandingVisualAnswer1!,
+      understandingVisualAnswer2: state.understandingVisualAnswer2!,
+      recognitionAnswer1Duration: state.recognitionAnswer1Duration!,
+      recognitionAnswer2Duration:
+          state.recognitionAnswer2Duration! - state.recognitionAnswer1Duration!,
+      understandingTextualAnswer1Duration:
+          state.understandingTextualAnswer1Duration! - state.recognitionAnswer2Duration!,
+      understandingTextualAnswer2Duration:
+          state.understandingTextualAnswer2Duration! - state.understandingTextualAnswer1Duration!,
+      understandingVisualAnswer1Duration:
+          state.understandingVisualAnswer1Duration! - state.understandingTextualAnswer2Duration!,
+      understandingVisualAnswer2Duration:
+          state.understandingVisualAnswer2Duration! - state.understandingVisualAnswer1Duration!,
+    );
+  }
+
   @override
   Future<void> close() {
     controller.dispose();
     return super.close();
   }
-
-/*
-  ActivityCubit(super.initialState) {
-    state.copyWith(
-      emotionStation: EmotionStation(
-        activityType: ActivityType.stationOfHappiness,
-        stationName: ActivityType.stationOfHappiness.name,
-        questions: QuestionsCroatian().questionsHappiness,
-      ),
-    );
-  }
-*/
 }

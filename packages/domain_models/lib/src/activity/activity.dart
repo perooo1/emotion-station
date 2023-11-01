@@ -1,3 +1,4 @@
+export 'activity_record.dart';
 export 'activity_types.dart';
 export 'comprehension_level.dart';
 export 'emotion_station.dart';

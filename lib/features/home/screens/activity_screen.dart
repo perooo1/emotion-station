@@ -1,5 +1,6 @@
 import 'package:emotion_station/features/home/bloc/activity_cubit.dart';
 import 'package:emotion_station/features/home/widgets/activity/activity.dart';
+import 'package:emotion_station/injector/injector.config.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/utils/constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -46,12 +47,11 @@ class _ActivityView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(),
           body: PageView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             controller: cubit.controller,
             itemCount: state.emotionStation.questions.length,
             itemBuilder: (context, index) {
               final question = state.emotionStation.questions[index];
-
               return QuestionView(question: question, index: index);
             },
           ),
@@ -77,17 +77,12 @@ class _ActivityView extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    if (cubit.controller.page == cubit.controller.position.maxScrollExtent) {
-                      showDialog(
-                        context: context,
-                        builder: (context) => SimpleDialog(children: [Text('Bravo')]),
-                      );
-                    } else {
-                      cubit.controller.nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    }
+                    cubit.manageStopwatch();
+
+                    cubit.controller.nextPage(
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
                   },
                   child: Text('next stop'),
                 ),

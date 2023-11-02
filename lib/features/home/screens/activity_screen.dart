@@ -23,7 +23,7 @@ class ActivityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emotionStation = getAppropriateStation(activityTypeName);
+    final emotionStation = getAppropriateStation(activityTypeName, context);
 
     return BlocProvider<ActivityCubit>(
       //create: (_) => Injector.locateService<ActivityCubit>(),
@@ -32,19 +32,38 @@ class ActivityScreen extends StatelessWidget {
     );
   }
 
-  EmotionStation getAppropriateStation(String activityTypeName) {
-    if (activityTypeName == ActivityType.stationOfHappiness.name) {
-      return EmotionStation(
-        activityType: ActivityType.stationOfHappiness,
-        stationName: ActivityType.stationOfHappiness.name,
-        questions: QuestionsCroatian().questionsHappiness,
-      );
+  EmotionStation getAppropriateStation(String activityTypeName, BuildContext context) {
+    final currentLocalization = Localizations.localeOf(context);
+    //first check the language and then emotion station types
+
+    if (currentLocalization.languageCode == 'hr') {
+      if (activityTypeName == ActivityType.stationOfHappiness.name) {
+        return EmotionStation(
+          activityType: ActivityType.stationOfHappiness,
+          stationName: ActivityType.stationOfHappiness.name,
+          questions: QuestionsCroatian().questionsHappiness,
+        );
+      } else {
+        return EmotionStation(
+          activityType: ActivityType.stationOfSadness,
+          stationName: ActivityType.stationOfSadness.name,
+          questions: QuestionsCroatian().questionsSadness,
+        );
+      }
     } else {
-      return EmotionStation(
-        activityType: ActivityType.stationOfSadness,
-        stationName: ActivityType.stationOfSadness.name,
-        questions: QuestionsCroatian().questionsSadness,
-      );
+      if (activityTypeName == ActivityType.stationOfHappiness.name) {
+        return EmotionStation(
+          activityType: ActivityType.stationOfHappiness,
+          stationName: ActivityType.stationOfHappiness.name,
+          questions: QuestionsEnglish().questionsHappiness,
+        );
+      } else {
+        return EmotionStation(
+          activityType: ActivityType.stationOfSadness,
+          stationName: ActivityType.stationOfSadness.name,
+          questions: QuestionsEnglish().questionsSadness,
+        );
+      }
     }
   }
 }

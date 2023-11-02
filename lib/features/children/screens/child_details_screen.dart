@@ -50,7 +50,19 @@ class _ChildDetailsView extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    tileColor: Colors.pink,
+                    //title: Text(state.activityRecords?[index].emotionStation.stationName ?? 'Null' ),
+                    title: Text(state.activityRecords?[index].timeOfActivity.toString() ?? 'null'),
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 16),
+                itemCount: state.activityRecords?.length ?? 0,
+              ),
             ],
           ),
         );

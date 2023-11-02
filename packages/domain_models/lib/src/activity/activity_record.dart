@@ -8,6 +8,7 @@ class ActivityRecord {
   ActivityRecord({
     required this.emotionStation,
     required this.childId,
+    required this.timeOfActivity,
     required this.recognitionAnswer1,
     required this.recognitionAnswer2,
     required this.understandingVisualAnswer1,
@@ -24,6 +25,7 @@ class ActivityRecord {
 
   final EmotionStation emotionStation;
   final String childId;
+  final DateTime timeOfActivity;
   final ComprehensionLevel recognitionAnswer1;
   final ComprehensionLevel recognitionAnswer2;
   final ComprehensionLevel understandingVisualAnswer1;

@@ -11,6 +11,7 @@ ActivityRecord _$ActivityRecordFromJson(Map<String, dynamic> json) =>
       emotionStation: EmotionStation.fromJson(
           json['emotionStation'] as Map<String, dynamic>),
       childId: json['childId'] as String,
+      timeOfActivity: DateTime.parse(json['timeOfActivity'] as String),
       recognitionAnswer1:
           $enumDecode(_$ComprehensionLevelEnumMap, json['recognitionAnswer1']),
       recognitionAnswer2:
@@ -41,6 +42,7 @@ Map<String, dynamic> _$ActivityRecordToJson(ActivityRecord instance) =>
     <String, dynamic>{
       'emotionStation': instance.emotionStation.toJson(),
       'childId': instance.childId,
+      'timeOfActivity': instance.timeOfActivity.toIso8601String(),
       'recognitionAnswer1':
           _$ComprehensionLevelEnumMap[instance.recognitionAnswer1]!,
       'recognitionAnswer2':

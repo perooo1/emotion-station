@@ -9,16 +9,25 @@ part 'activity_state.dart';
 
 @Injectable()
 class ActivityCubit extends Cubit<ActivityState> {
+  ActivityCubit({
+    @factoryParam required EmotionStation emotionStation,
+    required this.databaseRepository,
+  }) : super(
+          ActivityState(emotionStation: emotionStation),
+        );
+
+/*
   ActivityCubit({required this.databaseRepository})
       : super(
           ActivityState(
             emotionStation: EmotionStation(
-              activityType: ActivityType.stationOfHappiness,
-              stationName: ActivityType.stationOfHappiness.name,
+              activityType: ActivityType.stationOfSadness,
+              stationName: ActivityType.stationOfSadness.name,
               questions: QuestionsCroatian().questionsHappiness,
             ),
           ),
         );
+*/
 
   final IDatabaseRepository databaseRepository;
 
@@ -116,6 +125,7 @@ class ActivityCubit extends Cubit<ActivityState> {
     final activityRecord = ActivityRecord(
       emotionStation: state.emotionStation,
       childId: childId,
+      timeOfActivity: DateTime.now(),
       recognitionAnswer1: state.recognitionAnswer1!,
       recognitionAnswer2: state.recognitionAnswer2!,
       understandingTextualAnswer1: state.understandingTextualAnswer1!,

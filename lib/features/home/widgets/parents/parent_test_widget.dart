@@ -51,7 +51,7 @@ class ParentTestWidget extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
               ElevatedButton(
-                child: Text('Activity test'),
+                child: Text('Station of happiness test'),
                 onPressed: () {
                   context.goNamed(
                     EmotionStationRoutes.activityScreen.routeName,
@@ -60,6 +60,20 @@ class ParentTestWidget extends StatelessWidget {
                     },
                     queryParameters: {
                       ActivityRouteParameters.activityType: ActivityType.stationOfHappiness.name
+                    },
+                  );
+                },
+              ),
+              ElevatedButton(
+                child: Text('Station of sadness test'),
+                onPressed: () {
+                  context.goNamed(
+                    EmotionStationRoutes.activityScreen.routeName,
+                    pathParameters: {
+                      ActivityRouteParameters.childId: cubit.state.selectedChild!.id
+                    },
+                    queryParameters: {
+                      ActivityRouteParameters.activityType: ActivityType.stationOfSadness.name
                     },
                   );
                 },

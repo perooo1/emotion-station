@@ -6,7 +6,9 @@ import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/utils/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:repository/repository.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ActivityScreen extends StatelessWidget {
@@ -21,10 +23,29 @@ class ActivityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final emotionStation = getAppropriateStation(activityTypeName);
+
     return BlocProvider<ActivityCubit>(
-      create: (_) => Injector.locateService<ActivityCubit>(),
+      //create: (_) => Injector.locateService<ActivityCubit>(),
+      create: (_) => GetIt.I.get<ActivityCubit>(param1: emotionStation),
       child: _ActivityView(activityTypeName: activityTypeName, childId: childId),
     );
+  }
+
+  EmotionStation getAppropriateStation(String activityTypeName) {
+    if (activityTypeName == ActivityType.stationOfHappiness.name) {
+      return EmotionStation(
+        activityType: ActivityType.stationOfHappiness,
+        stationName: ActivityType.stationOfHappiness.name,
+        questions: QuestionsCroatian().questionsHappiness,
+      );
+    } else {
+      return EmotionStation(
+        activityType: ActivityType.stationOfSadness,
+        stationName: ActivityType.stationOfSadness.name,
+        questions: QuestionsCroatian().questionsSadness,
+      );
+    }
   }
 }
 

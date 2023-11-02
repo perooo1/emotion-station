@@ -96,7 +96,7 @@ class DatabaseRepository implements IDatabaseRepository {
       await instance
           .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
           .doc(
-              '${activityRecord.emotionStation.activityType.name}-${activityRecord.childId}-${DateTime.now().toString()}')
+              '${activityRecord.emotionStation.activityType.name}-${activityRecord.childId}-${activityRecord.timeOfActivity.toString()}')
           .set(activityRecord.toJson(), SetOptions(merge: true))
           .then((value) => print('activity record'));
 

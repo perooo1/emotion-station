@@ -8,6 +8,7 @@ abstract class IDatabaseRepository {
 
   //streams
   Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId});
+  Stream<QuerySnapshot> getRecordedActivitiesStream({String? childId});
 
   //write
   Future<bool> createChildInDatabase({required Child child, required String parentId});
@@ -52,6 +53,17 @@ class DatabaseRepository implements IDatabaseRepository {
             .collection(FIRESTORE_COLLECTION_CHILDREN)
             .where('parentId', isEqualTo: parentId)
             .snapshots();
+  }
+
+  @override
+  Stream<QuerySnapshot<Object?>> getRecordedActivitiesStream({String? childId}) {
+    if (childId == null) {
+      throw FormatException('Both parent and specialist are null!');
+    }
+    return instance
+        .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
+        .where('childId', isEqualTo: childId)
+        .snapshots();
   }
 
   //write

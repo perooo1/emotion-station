@@ -1,5 +1,7 @@
 import 'package:domain_models/domain_models.dart';
+import 'package:emotion_station/navigation/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TherapistChildrenScreenView extends StatelessWidget {
   const TherapistChildrenScreenView({super.key, required this.children});
@@ -14,6 +16,10 @@ class TherapistChildrenScreenView extends StatelessWidget {
           tileColor: Colors.purple,
           title: Text(
             children?[index].fullName ?? 'THIS IS THERAPIST child name at index $index iz null',
+          ),
+          onTap: () => context.goNamed(
+            EmotionStationRoutes.childDetailsScreen.routeName,
+            extra: children?[index],
           ),
         );
       },

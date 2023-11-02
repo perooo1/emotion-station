@@ -10,6 +10,8 @@ class EmotionStationRoutes {
       NavigationItem(routeName: 'activityScreen', path: 'activity_screen');
   static const NavigationItem childrenScreen =
       NavigationItem(routeName: 'childrenScreen', path: '/children_screen');
+  static const NavigationItem childDetailsScreen =
+      NavigationItem(routeName: 'childDetailsScreen', path: 'child_details_screen');
   static const NavigationItem homeScreen =
       NavigationItem(routeName: 'homeScreen', path: '/home_screen');
   static const NavigationItem infoScreen =

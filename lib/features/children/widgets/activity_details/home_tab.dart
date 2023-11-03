@@ -29,29 +29,32 @@ class HomeTab extends StatelessWidget {
                         maxY: 20.0,
                         borderData: FlBorderData(show: false),
                         titlesData: FlTitlesData(
-                            show: true,
-                            rightTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
+                          show: true,
+                          rightTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          topTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 42,
+                              interval: 1,
+                              getTitlesWidget: (value, meta) {
+                                return _bottomTitles(value, meta, cubit);
+                              },
                             ),
-                            topTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
+                          ),
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              interval: 1,
+                              reservedSize: 45,
+                              getTitlesWidget: _leftTitles,
                             ),
-                            bottomTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                reservedSize: 42,
-                                interval: 1,
-                                getTitlesWidget: _bottomTitles,
-                              ),
-                            ),
-                            leftTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                interval: 1,
-                                reservedSize: 45,
-                                getTitlesWidget: _leftTitles,
-                              ),
-                            )),
+                          ),
+                        ),
                         barGroups: cubit.state.homeFirstChartBarGroups,
                         gridData: const FlGridData(show: false),
                       ),
@@ -67,11 +70,14 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  Widget _bottomTitles(double value, TitleMeta meta) {
+  Widget _bottomTitles(double value, TitleMeta meta, CompletedActivityCubit cubit) {
     final titles = <String>['Recognition', 'Textual', 'Visual'];
 
-    final Widget text = Text(titles[value.toInt()]);
-
+    final Widget text = Text(titles[cubit.bottomTitlesIndex]);
+    if (cubit.bottomTitlesIndex == 2) {
+      cubit.bottomTitlesIndex = 0;
+    }
+    cubit.bottomTitlesIndex += 1;
     return SideTitleWidget(
       space: 16.0,
       axisSide: meta.axisSide,

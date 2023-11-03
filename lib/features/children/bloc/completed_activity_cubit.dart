@@ -16,6 +16,8 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
     _mapActivityToChartData(activityRecord: activityRecord);
   }
 
+  int bottomTitlesIndex = 0;
+
   void _mapActivityToChartData({required ActivityRecord activityRecord}) {
     final barGroupRecognition = _makeGroupData(
       x: 0,
@@ -49,12 +51,20 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
       barRods: [
         BarChartRodData(
           toY: y1,
-          color: Colors.blue,
+          color: y1 == 19.0
+              ? Colors.greenAccent
+              : y1 == 10.0
+                  ? Colors.orangeAccent
+                  : Colors.redAccent,
           width: 7,
         ),
         BarChartRodData(
           toY: y2,
-          color: Colors.red,
+          color: y2 == 19.0
+              ? Colors.greenAccent
+              : y2 == 10.0
+                  ? Colors.orangeAccent
+                  : Colors.redAccent,
           width: 7,
         ),
       ],

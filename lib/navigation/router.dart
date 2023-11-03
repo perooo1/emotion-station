@@ -87,9 +87,44 @@ class EmotionStationRouter extends IRouter {
                     name: EmotionStationRoutes.childDetailsScreen.routeName,
                     path: EmotionStationRoutes.childDetailsScreen.path,
                     pageBuilder: (context, state) {
+                      final childData = state.extra! as ChildRouteData;
+                      final child = childData.child ??
+                          Child(
+                            id: 'id',
+                            parentId: 'fef',
+                            name: 'name',
+                            lastName: 'lastName',
+                            age: 5,
+                            isGenderMale: true,
+                            diagnosis: 'diagnosis',
+                          );
+
+                      return MaterialPage<void>(child: ChildDetailsScreen(child: child));
+
+/*
                       final child = state.extra! as Child;
                       return MaterialPage<void>(child: ChildDetailsScreen(child: child));
+*/
                     },
+                    routes: [
+                      GoRoute(
+                        name: EmotionStationRoutes.completedActivityDetails.routeName,
+                        path: EmotionStationRoutes.completedActivityDetails.path,
+                        pageBuilder: (context, state) {
+                          final childData = state.extra! as ChildRouteData;
+                          return MaterialPage<void>(
+                              child: CompletedActivityDetails(
+                                  activityRecord: childData.activityRecord!));
+
+/*
+                          final activityRecord = state.extra! as ActivityRecord;
+                          return MaterialPage<void>(
+                            child: CompletedActivityDetails(activityRecord: activityRecord),
+                          );
+*/
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -1,8 +1,11 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/bloc/child_details_cubit.dart';
+import 'package:emotion_station/navigation/navigation.dart';
+import 'package:emotion_station/utils/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 class ChildDetailsScreen extends StatelessWidget {
   const ChildDetailsScreen({super.key, required this.child});
@@ -56,8 +59,20 @@ class _ChildDetailsView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     tileColor: Colors.pink,
-                    //title: Text(state.activityRecords?[index].emotionStation.stationName ?? 'Null' ),
                     title: Text(state.activityRecords?[index].timeOfActivity.toString() ?? 'null'),
+                    onTap: () => context.goNamed(
+                      EmotionStationRoutes.completedActivityDetails.routeName,
+                      extra: ChildRouteData(
+                        child: null,
+                        activityRecord: state.activityRecords?[index],
+                      ),
+                    ),
+/*
+                    onTap: () => context.goNamed(
+                      EmotionStationRoutes.completedActivityDetails.routeName,
+                      extra: state.activityRecords?[index],
+                    ),
+*/
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 16),

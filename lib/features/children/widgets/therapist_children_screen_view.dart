@@ -1,5 +1,6 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/navigation/navigation.dart';
+import 'package:emotion_station/utils/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,8 +20,18 @@ class TherapistChildrenScreenView extends StatelessWidget {
           ),
           onTap: () => context.goNamed(
             EmotionStationRoutes.childDetailsScreen.routeName,
+            extra: ChildRouteData(
+              child: children?[index],
+              activityRecord: null,
+            ),
+          ),
+
+/*
+          onTap: () => context.goNamed(
+            EmotionStationRoutes.childDetailsScreen.routeName,
             extra: children?[index],
           ),
+*/
         );
       },
       separatorBuilder: (context, index) => const SizedBox(height: 16),

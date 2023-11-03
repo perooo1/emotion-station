@@ -48,12 +48,12 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
       x: 0,
       barRods: [
         BarChartRodData(
-          toY: 19,
+          toY: y1,
           color: Colors.blue,
           width: 7,
         ),
         BarChartRodData(
-          toY: 10,
+          toY: y2,
           color: Colors.red,
           width: 7,
         ),

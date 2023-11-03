@@ -17,14 +17,15 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:repository/injector/repository.module.dart' as _i5;
 import 'package:repository/repository.dart' as _i8;
 
-import '../authentication_flow/bloc/register_cubit.dart' as _i14;
-import '../authentication_flow/bloc/sign_in_cubit.dart' as _i15;
+import '../authentication_flow/bloc/register_cubit.dart' as _i15;
+import '../authentication_flow/bloc/sign_in_cubit.dart' as _i16;
 import '../features/children/bloc/child_details_cubit.dart' as _i9;
 import '../features/children/bloc/children_screen_cubit.dart' as _i10;
+import '../features/children/bloc/completed_activity_cubit.dart' as _i11;
 import '../features/home/bloc/activity_cubit.dart' as _i6;
-import '../features/home/bloc/home_cubit.dart' as _i11;
-import '../features/info/bloc/info_screen_cubit.dart' as _i13;
-import '../navigation/router.dart' as _i12;
+import '../features/home/bloc/home_cubit.dart' as _i12;
+import '../features/info/bloc/info_screen_cubit.dart' as _i14;
+import '../navigation/router.dart' as _i13;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> init(
@@ -60,17 +61,22 @@ Future<_i1.GetIt> init(
         authenticationManager: gh<_i8.IAuthenticationManager>(),
         databaseRepository: gh<_i8.IDatabaseRepository>(),
       ));
-  gh.factory<_i11.HomeCubit>(() => _i11.HomeCubit(
+  gh.factoryParam<_i11.CompletedActivityCubit, _i7.ActivityRecord, dynamic>((
+    activityRecord,
+    _,
+  ) =>
+      _i11.CompletedActivityCubit(activityRecord: activityRecord));
+  gh.factory<_i12.HomeCubit>(() => _i12.HomeCubit(
         authenticationManager: gh<_i8.IAuthenticationManager>(),
         databaseRepository: gh<_i8.IDatabaseRepository>(),
       ));
-  gh.singleton<_i12.IRouter>(_i12.EmotionStationRouter(
+  gh.singleton<_i13.IRouter>(_i13.EmotionStationRouter(
       authenticationManager: gh<_i8.IAuthenticationManager>()));
-  gh.factory<_i13.InfoScreenCubit>(() => _i13.InfoScreenCubit(
+  gh.factory<_i14.InfoScreenCubit>(() => _i14.InfoScreenCubit(
       authenticationManager: gh<_i8.IAuthenticationManager>()));
-  gh.factory<_i14.RegisterCubit>(() => _i14.RegisterCubit(
+  gh.factory<_i15.RegisterCubit>(() => _i15.RegisterCubit(
       authenticationManager: gh<_i8.IAuthenticationManager>()));
-  gh.factory<_i15.SignInCubit>(() => _i15.SignInCubit(
+  gh.factory<_i16.SignInCubit>(() => _i16.SignInCubit(
       authenticationManager: gh<_i8.IAuthenticationManager>()));
   return getIt;
 }

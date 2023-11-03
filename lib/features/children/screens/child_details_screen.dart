@@ -22,7 +22,7 @@ class ChildDetailsScreen extends StatelessWidget {
 }
 
 class _ChildDetailsView extends StatelessWidget {
-  const _ChildDetailsView({super.key});
+  const _ChildDetailsView();
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,6 @@ class _ChildDetailsView extends StatelessWidget {
                         activityRecord: state.activityRecords?[index],
                       ),
                     ),
-/*
-                    onTap: () => context.goNamed(
-                      EmotionStationRoutes.completedActivityDetails.routeName,
-                      extra: state.activityRecords?[index],
-                    ),
-*/
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 16),
@@ -83,36 +77,5 @@ class _ChildDetailsView extends StatelessWidget {
         );
       },
     );
-/*
-    return Scaffold(
-      appBar: AppBar(title: Text(child.fullName), centerTitle: true),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Center(
-            child: Card(
-              color: child.isGenderMale
-                  ? Theme.of(context).colorScheme.primaryContainer
-                  : Theme.of(context).colorScheme.tertiaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(child.fullName),
-                    Text(child.diagnosis),
-                    Text(child.age.toString()),
-                    Text('parent id: ${child.parentId}'),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-    */
   }
 }

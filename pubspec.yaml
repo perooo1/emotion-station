@@ -57,6 +57,7 @@ dependencies:
   cloud_firestore: ^4.9.2
   uuid: ^4.1.0
   smooth_page_indicator: ^1.1.0
+  fl_chart: ^0.64.0
 
 dependency_overrides:
   intl: ^0.18.0

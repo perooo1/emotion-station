@@ -52,9 +52,9 @@ class _CompletedActivityDetailsView extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
-                Center(child: Text('Home')),
-                Center(child: Text('reckognition')),
-                EmotionUnderstanding(),
+                HomeTab(),
+                EmotionRecognitionTab(),
+                EmotionUnderstandingTab(),
               ],
             ),
             floatingActionButton: FloatingActionButton.extended(

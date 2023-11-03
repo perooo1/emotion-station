@@ -28,7 +28,7 @@ class EmotionStationMainLayout extends StatelessWidget {
                 authenticationManager.getCurrentUser().isSpecialist
                     ? const NavigationDestination(
                         icon: Icon(Icons.home_outlined),
-                        selectedIcon: Icon(Icons.home_filled),
+                        selectedIcon: Icon(Icons.home),
                         label: 'Home',
                       )
                     : const NavigationDestination(

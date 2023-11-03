@@ -1,13 +1,32 @@
 part of 'completed_activity_cubit.dart';
 
 class CompletedActivityState extends Equatable {
-  const CompletedActivityState({required this.activityRecord});
-  final ActivityRecord activityRecord;
+  const CompletedActivityState({
+    required this.activityRecord,
+    this.homeFirstChartBarGroups,
+    this.homeFirstChartTitlesData,
+  });
 
-  CompletedActivityState copyWith({required ActivityRecord? activityRecord}) {
-    return CompletedActivityState(activityRecord: activityRecord ?? this.activityRecord);
+  final ActivityRecord activityRecord;
+  final List<BarChartGroupData>? homeFirstChartBarGroups;
+  final FlTitlesData? homeFirstChartTitlesData;
+
+  CompletedActivityState copyWith({
+    ActivityRecord? activityRecord,
+    List<BarChartGroupData>? homeFirstChartBarGroups,
+    FlTitlesData? homeFirstChartTitlesData,
+  }) {
+    return CompletedActivityState(
+      activityRecord: activityRecord ?? this.activityRecord,
+      homeFirstChartBarGroups: homeFirstChartBarGroups ?? this.homeFirstChartBarGroups,
+      homeFirstChartTitlesData: homeFirstChartTitlesData ?? this.homeFirstChartTitlesData,
+    );
   }
 
   @override
-  List<Object?> get props => [activityRecord];
+  List<Object?> get props => [
+        activityRecord,
+        homeFirstChartBarGroups,
+        homeFirstChartTitlesData,
+      ];
 }

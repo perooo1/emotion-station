@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class EmotionUnderstanding extends StatefulWidget {
-  const EmotionUnderstanding({super.key});
+class EmotionUnderstandingTab extends StatefulWidget {
+  const EmotionUnderstandingTab({super.key});
 
   @override
-  State<EmotionUnderstanding> createState() => _EmotionUnderstandingState();
+  State<EmotionUnderstandingTab> createState() => _EmotionUnderstandingTabState();
 }
 
-class _EmotionUnderstandingState extends State<EmotionUnderstanding> with TickerProviderStateMixin {
+class _EmotionUnderstandingTabState extends State<EmotionUnderstandingTab>
+    with TickerProviderStateMixin {
   late final TabController _nestedTabController;
 
   @override

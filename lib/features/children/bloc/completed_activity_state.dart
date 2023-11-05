@@ -5,33 +5,33 @@ class CompletedActivityState extends Equatable {
     required this.activityRecord,
     this.homeTabBarChartData,
     this.homeTabLineChartData,
-    //this.homeFirstChartBarGroups,
+    this.homeTabRadarChartData,
   });
 
   final ActivityRecord activityRecord;
-  //final List<BarChartGroupData>? homeFirstChartBarGroups;
   final BarChartDataHolder? homeTabBarChartData;
   final LineChartDataHolder? homeTabLineChartData;
+  final RadarChartDataHolder? homeTabRadarChartData;
 
   CompletedActivityState copyWith({
     ActivityRecord? activityRecord,
-    //List<BarChartGroupData>? homeFirstChartBarGroups,
     BarChartDataHolder? homeTabBarChartData,
     LineChartDataHolder? homeTabLineChartData,
+    RadarChartDataHolder? homeTabRadarChartData,
   }) {
     return CompletedActivityState(
       activityRecord: activityRecord ?? this.activityRecord,
-      //homeFirstChartBarGroups: homeFirstChartBarGroups ?? this.homeFirstChartBarGroups,
       homeTabBarChartData: homeTabBarChartData ?? this.homeTabBarChartData,
       homeTabLineChartData: homeTabLineChartData ?? this.homeTabLineChartData,
+      homeTabRadarChartData: homeTabRadarChartData ?? this.homeTabRadarChartData,
     );
   }
 
   @override
   List<Object?> get props => [
         activityRecord,
-        //homeFirstChartBarGroups,
         homeTabBarChartData,
         homeTabLineChartData,
+        homeTabRadarChartData,
       ];
 }

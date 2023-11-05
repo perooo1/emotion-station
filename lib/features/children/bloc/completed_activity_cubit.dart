@@ -14,32 +14,27 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
       : super(CompletedActivityState(activityRecord: activityRecord)) {
     _mapActivityToBarChart(activityRecord: activityRecord);
     _mapActivityToLineChart(activityRecord: activityRecord);
+    _mapActivityToRadarChart(activityRecord: activityRecord);
   }
 
   int bottomTitlesIndex = 0;
 
   void _mapActivityToBarChart({required ActivityRecord activityRecord}) {
-    final barGroupRecognition = _makeGroupData(
+    final barGroupRecognition = _createHomeTabBarChartDataGroup(
       x: 0,
-      y1: activityRecord.recognitionAnswer1.toDouble(),
-      y2: activityRecord.recognitionAnswer2.toDouble(),
+      y1: activityRecord.recognitionAnswer1.toBarChartData(),
+      y2: activityRecord.recognitionAnswer2.toBarChartData(),
     );
-    final barGroupTextualUnderstanding = _makeGroupData(
+    final barGroupTextualUnderstanding = _createHomeTabBarChartDataGroup(
       x: 1,
-      y1: activityRecord.understandingTextualAnswer1.toDouble(),
-      y2: activityRecord.understandingTextualAnswer2.toDouble(),
+      y1: activityRecord.understandingTextualAnswer1.toBarChartData(),
+      y2: activityRecord.understandingTextualAnswer2.toBarChartData(),
     );
-    final barGroupVisualUnderstanding = _makeGroupData(
+    final barGroupVisualUnderstanding = _createHomeTabBarChartDataGroup(
       x: 2,
-      y1: activityRecord.understandingVisualAnswer1.toDouble(),
-      y2: activityRecord.understandingVisualAnswer2.toDouble(),
+      y1: activityRecord.understandingVisualAnswer1.toBarChartData(),
+      y2: activityRecord.understandingVisualAnswer2.toBarChartData(),
     );
-
-    final chartItems = [
-      barGroupRecognition,
-      barGroupTextualUnderstanding,
-      barGroupVisualUnderstanding,
-    ];
 
     emit(
       state.copyWith(
@@ -52,10 +47,13 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
         ),
       ),
     );
-//    emit(state.copyWith(homeFirstChartBarGroups: chartItems));
   }
 
-  BarChartGroupData _makeGroupData({required int x, required double y1, required double y2}) {
+  BarChartGroupData _createHomeTabBarChartDataGroup({
+    required int x,
+    required double y1,
+    required double y2,
+  }) {
     return BarChartGroupData(
       barsSpace: 4,
       x: 0,
@@ -121,6 +119,44 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
           maxAxisValues: axisValues,
           spots: spots,
         ),
+      ),
+    );
+  }
+
+  void _mapActivityToRadarChart({required ActivityRecord activityRecord}) {
+    final List<RadarChartDataSet> lista = [
+      RadarChartDataSet(
+        title: 'Emotion Comprehension Level ',
+        color: Colors.red,
+        values: [
+          (activityRecord.recognitionAnswer1.toRadarChartData() +
+                  activityRecord.recognitionAnswer2.toRadarChartData()) /
+              2.0,
+          (activityRecord.understandingTextualAnswer1.toRadarChartData() +
+                  activityRecord.understandingTextualAnswer2.toRadarChartData()) /
+              2.0,
+          (activityRecord.understandingVisualAnswer1.toRadarChartData() +
+                  activityRecord.understandingVisualAnswer2.toRadarChartData()) /
+              2.0,
+        ],
+      ),
+    ];
+
+    final List<RadarDataSet> dtst = lista.asMap().entries.map((entry) {
+      final dataset = entry.value;
+
+      return RadarDataSet(
+        fillColor: Colors.pink.withOpacity(0.2),
+        borderColor: Colors.pink,
+        entryRadius: 3,
+        dataEntries: dataset.values.map((e) => RadarEntry(value: e)).toList(),
+        borderWidth: 2.3,
+      );
+    }).toList();
+
+    emit(
+      state.copyWith(
+        homeTabRadarChartData: RadarChartDataHolder(rawData: lista, radarDataset: dtst),
       ),
     );
   }

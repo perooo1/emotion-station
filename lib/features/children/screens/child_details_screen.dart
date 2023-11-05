@@ -1,7 +1,7 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/bloc/child_details_cubit.dart';
 import 'package:emotion_station/navigation/navigation.dart';
-import 'package:emotion_station/utils/constants/constants.dart';
+import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';

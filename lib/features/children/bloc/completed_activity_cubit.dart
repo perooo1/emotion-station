@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:domain_models/domain_models.dart';
+import 'package:emotion_station/utils/utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,12 +12,13 @@ part 'completed_activity_state.dart';
 class CompletedActivityCubit extends Cubit<CompletedActivityState> {
   CompletedActivityCubit({@factoryParam required ActivityRecord activityRecord})
       : super(CompletedActivityState(activityRecord: activityRecord)) {
-    _mapActivityToChartData(activityRecord: activityRecord);
+    _mapActivityToBarChart(activityRecord: activityRecord);
+    _mapActivityToLineChart(activityRecord: activityRecord);
   }
 
   int bottomTitlesIndex = 0;
 
-  void _mapActivityToChartData({required ActivityRecord activityRecord}) {
+  void _mapActivityToBarChart({required ActivityRecord activityRecord}) {
     final barGroupRecognition = _makeGroupData(
       x: 0,
       y1: activityRecord.recognitionAnswer1.toDouble(),
@@ -68,6 +68,49 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
           width: 7,
         ),
       ],
+    );
+  }
+
+  void _mapActivityToLineChart({required ActivityRecord activityRecord}) {
+    final activityFullDuration = activityRecord.recognitionAnswer1Duration +
+        activityRecord.recognitionAnswer2Duration +
+        activityRecord.understandingTextualAnswer1Duration +
+        activityRecord.understandingTextualAnswer2Duration +
+        activityRecord.understandingVisualAnswer1Duration +
+        activityRecord.understandingVisualAnswer2Duration;
+
+    final durations = [
+      activityRecord.recognitionAnswer1Duration.inSeconds.toDouble(),
+      activityRecord.recognitionAnswer2Duration.inSeconds.toDouble(),
+      activityRecord.understandingTextualAnswer1Duration.inSeconds.toDouble(),
+      activityRecord.understandingTextualAnswer2Duration.inSeconds.toDouble(),
+      activityRecord.understandingVisualAnswer1Duration.inSeconds.toDouble(),
+      activityRecord.understandingVisualAnswer2Duration.inSeconds.toDouble(),
+    ];
+
+    final maxY = durations.reduce(
+      (currentMax, element) => element > currentMax ? element : currentMax,
+    );
+
+    final List<double> axisValues = [0.0, 6.0, 0.0, maxY];
+
+    final List<FlSpot> spots = [
+      FlSpot(1, activityRecord.recognitionAnswer1Duration.inSeconds.toDouble()),
+      FlSpot(2, activityRecord.recognitionAnswer2Duration.inSeconds.toDouble()),
+      FlSpot(3, activityRecord.understandingTextualAnswer1Duration.inSeconds.toDouble()),
+      FlSpot(4, activityRecord.understandingTextualAnswer2Duration.inSeconds.toDouble()),
+      FlSpot(5, activityRecord.understandingVisualAnswer1Duration.inSeconds.toDouble()),
+      FlSpot(6, activityRecord.understandingVisualAnswer2Duration.inSeconds.toDouble()),
+    ];
+
+    emit(
+      state.copyWith(
+        lineChartDataHolder: LineChartDataHolder(
+          fullActivityDuration: activityFullDuration,
+          maxAxisValues: axisValues,
+          spots: spots,
+        ),
+      ),
     );
   }
 }

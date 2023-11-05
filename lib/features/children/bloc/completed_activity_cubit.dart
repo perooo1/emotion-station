@@ -41,7 +41,18 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
       barGroupVisualUnderstanding,
     ];
 
-    emit(state.copyWith(homeFirstChartBarGroups: chartItems));
+    emit(
+      state.copyWith(
+        homeTabBarChartData: BarChartDataHolder(
+          dataGroups: [
+            barGroupRecognition,
+            barGroupTextualUnderstanding,
+            barGroupVisualUnderstanding,
+          ],
+        ),
+      ),
+    );
+//    emit(state.copyWith(homeFirstChartBarGroups: chartItems));
   }
 
   BarChartGroupData _makeGroupData({required int x, required double y1, required double y2}) {
@@ -105,7 +116,7 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
 
     emit(
       state.copyWith(
-        lineChartDataHolder: LineChartDataHolder(
+        homeTabLineChartData: LineChartDataHolder(
           fullActivityDuration: activityFullDuration,
           maxAxisValues: axisValues,
           spots: spots,

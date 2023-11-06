@@ -3,8 +3,8 @@ import 'package:emotion_station/features/children/widgets/activity_details/activ
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EmotionRecognitionTab extends StatelessWidget {
-  const EmotionRecognitionTab({super.key});
+class TextualUnderstandingTab extends StatelessWidget {
+  const TextualUnderstandingTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,15 @@ class EmotionRecognitionTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 12.0),
             ESBarChart(
-              maxY: cubit.state.recognitionTabComprehensionData?.maxY ?? 20.0,
-              barGroups: cubit.state.recognitionTabComprehensionData?.dataGroups,
+              maxY: cubit.state.textualTabComprehensionData?.maxY ?? 20.0,
+              barGroups: cubit.state.textualTabComprehensionData?.dataGroups,
             ),
             const SizedBox(height: 12.0),
             ESBarChart(
-              maxY: cubit.state.recognitionTabDurationData?.maxY ?? 20.0,
-              barGroups: cubit.state.recognitionTabDurationData?.dataGroups,
+              maxY: cubit.state.textualTabDurationData?.maxY ?? 20.0,
+              barGroups: cubit.state.textualTabDurationData?.dataGroups,
             ),
           ],
         ),

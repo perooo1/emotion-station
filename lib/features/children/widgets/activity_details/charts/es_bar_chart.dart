@@ -1,18 +1,18 @@
-import 'package:emotion_station/features/children/bloc/completed_activity_cubit.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeTabBarChart extends StatelessWidget {
-  const HomeTabBarChart({required this.maxY, required this.barGroups, super.key});
+class ESBarChart extends StatelessWidget {
+  const ESBarChart({
+    required this.barGroups,
+    required this.maxY,
+    super.key,
+  });
 
-  final double maxY;
   final List<BarChartGroupData>? barGroups;
+  final double maxY;
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<CompletedActivityCubit>();
-
     return AspectRatio(
       aspectRatio: 1,
       child: Card(
@@ -35,9 +35,7 @@ class HomeTabBarChart extends StatelessWidget {
                     showTitles: true,
                     reservedSize: 42,
                     interval: 1,
-                    getTitlesWidget: (value, meta) {
-                      return _bottomTitles(value, meta, cubit);
-                    },
+                    getTitlesWidget: _bottomTitlesComprehension,
                   ),
                 ),
                 leftTitles: AxisTitles(
@@ -45,13 +43,11 @@ class HomeTabBarChart extends StatelessWidget {
                     showTitles: true,
                     interval: 1,
                     reservedSize: 45,
-                    getTitlesWidget: _leftTitles,
+                    getTitlesWidget: _leftTitlesComprehension,
                   ),
                 ),
               ),
-              //barGroups: cubit.state.homeFirstChartBarGroups,
               barGroups: barGroups,
-              //barGroups: cubit.state.homeTabBarChartData?.dataGroups,
               gridData: const FlGridData(show: false),
             ),
           ),
@@ -60,14 +56,10 @@ class HomeTabBarChart extends StatelessWidget {
     );
   }
 
-  Widget _bottomTitles(double value, TitleMeta meta, CompletedActivityCubit cubit) {
+  Widget _bottomTitlesComprehension(double value, TitleMeta meta) {
     final titles = <String>['Recognition', 'Textual', 'Visual'];
 
-    final Widget text = Text(titles[cubit.bottomTitlesIndex]);
-    if (cubit.bottomTitlesIndex == 2) {
-      cubit.bottomTitlesIndex = 0;
-    }
-    cubit.bottomTitlesIndex += 1;
+    final Widget text = Text(titles[value.toInt()]);
     return SideTitleWidget(
       space: 16.0,
       axisSide: meta.axisSide,
@@ -75,7 +67,7 @@ class HomeTabBarChart extends StatelessWidget {
     );
   }
 
-  Widget _leftTitles(double value, TitleMeta meta) {
+  Widget _leftTitlesComprehension(double value, TitleMeta meta) {
     String text;
 
     if (value == 0) {

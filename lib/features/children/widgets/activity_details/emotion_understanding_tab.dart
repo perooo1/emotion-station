@@ -1,3 +1,4 @@
+import 'package:emotion_station/features/children/children.dart';
 import 'package:flutter/material.dart';
 
 class EmotionUnderstandingTab extends StatefulWidget {
@@ -31,16 +32,16 @@ class _EmotionUnderstandingTabState extends State<EmotionUnderstandingTab>
         TabBar.secondary(
           controller: _nestedTabController,
           tabs: [
-            Tab(text: 'Visual'),
             Tab(text: 'Textual'),
+            Tab(text: 'Visual'),
           ],
         ),
         Expanded(
           child: TabBarView(
             controller: _nestedTabController,
             children: [
-              Center(child: Text('Visual')),
-              Center(child: Text('Textual')),
+              TextualUnderstandingTab(),
+              VisualUnderstandingTab(),
             ],
           ),
         ),

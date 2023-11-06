@@ -36,8 +36,8 @@ class _CompletedActivityDetailsView extends StatelessWidget {
               bottom: TabBar(
                 tabs: [
                   Tab(
-                    text: 'Home',
-                    icon: Icon(Icons.home),
+                    text: 'Overview',
+                    icon: Icon(Icons.dataset),
                   ),
                   Tab(
                     text: 'Reckognition',
@@ -52,7 +52,7 @@ class _CompletedActivityDetailsView extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
-                HomeTab(),
+                OverviewTab(),
                 EmotionRecognitionTab(),
                 EmotionUnderstandingTab(),
               ],

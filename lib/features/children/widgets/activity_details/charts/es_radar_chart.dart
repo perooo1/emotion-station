@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class HomeTabRadarChart extends StatelessWidget {
-  const HomeTabRadarChart({required this.dataSets, super.key});
+class ESRadarChart extends StatelessWidget {
+  const ESRadarChart({required this.dataSets, super.key});
 
   final List<RadarDataSet> dataSets;
 

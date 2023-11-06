@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class HomeTabLineChart extends StatelessWidget {
-  const HomeTabLineChart({required this.axisBorderValues, required this.spots, super.key});
+class ESLineChart extends StatelessWidget {
+  const ESLineChart({required this.axisBorderValues, required this.spots, super.key});
 
   final List<double> axisBorderValues;
   final List<FlSpot> spots;

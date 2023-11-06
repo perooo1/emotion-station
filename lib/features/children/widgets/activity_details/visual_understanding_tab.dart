@@ -1,11 +1,10 @@
 import 'package:emotion_station/features/children/bloc/completed_activity_cubit.dart';
-import 'package:emotion_station/features/children/children.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:emotion_station/features/children/widgets/activity_details/activity_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+class VisualUnderstandingTab extends StatelessWidget {
+  const VisualUnderstandingTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +22,16 @@ class HomeTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            HomeTabBarChart(
-              maxY: cubit.state.homeTabBarChartData?.maxY ?? 20.0,
-              barGroups: cubit.state.homeTabBarChartData?.dataGroups,
+            const SizedBox(height: 12.0),
+            ESBarChart(
+              maxY: cubit.state.visualTabComprehensionData?.maxY ?? 20.0,
+              barGroups: cubit.state.visualTabComprehensionData?.dataGroups,
             ),
             const SizedBox(height: 12.0),
-            HomeTabLineChart(
-              axisBorderValues: cubit.state.homeTabLineChartData?.maxAxisValues ?? [],
-              spots: cubit.state.homeTabLineChartData?.spots ?? [],
+            ESBarChart(
+              maxY: cubit.state.visualTabDurationData?.maxY ?? 20.0,
+              barGroups: cubit.state.visualTabDurationData?.dataGroups,
             ),
-            const SizedBox(height: 12.0),
-            HomeTabRadarChart(dataSets: cubit.state.homeTabRadarChartData?.radarDataset ?? []),
           ],
         ),
       ),

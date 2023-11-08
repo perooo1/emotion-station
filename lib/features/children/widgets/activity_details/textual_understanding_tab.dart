@@ -24,13 +24,17 @@ class TextualUnderstandingTab extends StatelessWidget {
           children: [
             const SizedBox(height: 12.0),
             ESBarChart(
-              maxY: cubit.state.textualTabComprehensionData?.maxY ?? 20.0,
-              barGroups: cubit.state.textualTabComprehensionData?.dataGroups,
+              isShowingDurationData: true,
+              isObservationCategoryChart: true,
+              yAxisName: 'Vrijeme',
+              maxY: cubit.state.textualTabDurationData?.maxY ?? 20.0,
+              barGroups: cubit.state.textualTabDurationData?.dataGroups,
             ),
             const SizedBox(height: 12.0),
             ESBarChart(
-              maxY: cubit.state.textualTabDurationData?.maxY ?? 20.0,
-              barGroups: cubit.state.textualTabDurationData?.dataGroups,
+              isObservationCategoryChart: true,
+              maxY: cubit.state.textualTabComprehensionData?.maxY ?? 20.0,
+              barGroups: cubit.state.textualTabComprehensionData?.dataGroups,
             ),
           ],
         ),

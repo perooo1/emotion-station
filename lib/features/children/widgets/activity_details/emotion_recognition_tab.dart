@@ -23,13 +23,16 @@ class EmotionRecognitionTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ESBarChart(
-              maxY: cubit.state.recognitionTabComprehensionData?.maxY ?? 20.0,
-              barGroups: cubit.state.recognitionTabComprehensionData?.dataGroups,
+              isObservationCategoryChart: true,
+              isShowingDurationData: true,
+              maxY: cubit.state.recognitionTabDurationData?.maxY ?? 20.0,
+              barGroups: cubit.state.recognitionTabDurationData?.dataGroups,
             ),
             const SizedBox(height: 12.0),
             ESBarChart(
-              maxY: cubit.state.recognitionTabDurationData?.maxY ?? 20.0,
-              barGroups: cubit.state.recognitionTabDurationData?.dataGroups,
+              isObservationCategoryChart: true,
+              maxY: cubit.state.recognitionTabComprehensionData?.maxY ?? 20.0,
+              barGroups: cubit.state.recognitionTabComprehensionData?.dataGroups,
             ),
           ],
         ),

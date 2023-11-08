@@ -24,13 +24,16 @@ class VisualUnderstandingTab extends StatelessWidget {
           children: [
             const SizedBox(height: 12.0),
             ESBarChart(
-              maxY: cubit.state.visualTabComprehensionData?.maxY ?? 20.0,
-              barGroups: cubit.state.visualTabComprehensionData?.dataGroups,
+              isObservationCategoryChart: true,
+              isShowingDurationData: true,
+              maxY: cubit.state.visualTabDurationData?.maxY ?? 20.0,
+              barGroups: cubit.state.visualTabDurationData?.dataGroups,
             ),
             const SizedBox(height: 12.0),
             ESBarChart(
-              maxY: cubit.state.visualTabDurationData?.maxY ?? 20.0,
-              barGroups: cubit.state.visualTabDurationData?.dataGroups,
+              isObservationCategoryChart: true,
+              maxY: cubit.state.visualTabComprehensionData?.maxY ?? 20.0,
+              barGroups: cubit.state.visualTabComprehensionData?.dataGroups,
             ),
           ],
         ),

@@ -4,10 +4,16 @@ import 'package:flutter/material.dart';
 class ESBarChart extends StatelessWidget {
   const ESBarChart({
     required this.barGroups,
+    this.yAxisName,
+    this.isObservationCategoryChart = false,
+    this.isShowingDurationData = false,
     required this.maxY,
     super.key,
   });
 
+  final bool isShowingDurationData;
+  final bool isObservationCategoryChart;
+  final String? yAxisName;
   final List<BarChartGroupData>? barGroups;
   final double maxY;
 
@@ -35,20 +41,33 @@ class ESBarChart extends StatelessWidget {
                     showTitles: true,
                     reservedSize: 42,
                     interval: 1,
-                    getTitlesWidget: _bottomTitlesComprehension,
+                    getTitlesWidget: isObservationCategoryChart
+                        ? _bottomTitlesObservationCategoryChart
+                        : _bottomTitlesOverviewChart,
                   ),
                 ),
-                leftTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                    showTitles: true,
-                    interval: 1,
-                    reservedSize: 45,
-                    getTitlesWidget: _leftTitlesComprehension,
-                  ),
-                ),
+                leftTitles: isShowingDurationData
+                    ? AxisTitles(
+                        axisNameWidget: Text(yAxisName ?? ''),
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          interval: 1,
+                          reservedSize: 45,
+                        ),
+                      )
+                    : AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          interval: 1,
+                          reservedSize: 45,
+                          getTitlesWidget: _leftTitlesComprehension,
+                        ),
+                      ),
               ),
               barGroups: barGroups,
-              gridData: const FlGridData(show: false),
+              gridData: isShowingDurationData
+                  ? const FlGridData(drawHorizontalLine: true)
+                  : const FlGridData(show: false),
             ),
           ),
         ),
@@ -56,7 +75,21 @@ class ESBarChart extends StatelessWidget {
     );
   }
 
-  Widget _bottomTitlesComprehension(double value, TitleMeta meta) {
+  Widget _bottomTitlesObservationCategoryChart(double value, TitleMeta meta) {
+    final titles = <String>[
+      'Question 1',
+      'Question 2',
+    ];
+
+    final Widget text = Text(titles[value.toInt()]);
+    return SideTitleWidget(
+      space: 16.0,
+      axisSide: meta.axisSide,
+      child: text,
+    );
+  }
+
+  Widget _bottomTitlesOverviewChart(double value, TitleMeta meta) {
     final titles = <String>['Recognition', 'Textual', 'Visual'];
 
     final Widget text = Text(titles[value.toInt()]);

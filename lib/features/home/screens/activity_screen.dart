@@ -79,11 +79,6 @@ class _ActivityView extends StatelessWidget {
     final cubit = context.read<ActivityCubit>();
 
     return BlocBuilder<ActivityCubit, ActivityState>(
-      /*
-      listenWhen: (previous, current) =>
-          previous.reckoginitionAnswer1 != current.reckoginitionAnswer1,
-      listener: (context, state) {},
-      */
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(),

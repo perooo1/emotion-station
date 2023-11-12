@@ -47,8 +47,24 @@ class _HomeScreenView extends StatelessWidget {
           return ParentTestWidget(parent: state.currentUser as Parent);
         } else {
           return Center(
+            child: Column(
+              children: [
+                Text(' Uh oh! Molimo logirajte se ponovno'),
+                FilledButton(
+                    onPressed: () {
+                      tempCubit.authenticationManager.signOut();
+                      context.goNamed(EmotionStationRoutes.loginScreen.routeName);
+                    },
+                    child: Text('Close activity')),
+              ],
+            ),
+          );
+
+/*
+          return Center(
               child: Text(
                   ' Uh oh! Molimo logirajte se ponovno')); //ovdje samo pushat full screen dialog s button za log out i odlazak na login ekran
+*/
         }
 
 /*

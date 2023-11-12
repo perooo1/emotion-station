@@ -163,7 +163,7 @@ class EmotionStationRouter extends IRouter {
 
       if (isUserAuthenticated == false &&
           state.matchedLocation == EmotionStationRoutes.homeScreen.path) {
-        return EmotionStationRoutes.registerScreen.path;
+        return EmotionStationRoutes.loginScreen.path;
       }
       return null;
     },

@@ -48,61 +48,75 @@ class _LoginView extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Icon(
-                    Icons.account_circle_sharp,
-                    size: 150.0,
-                    color: Colors.amber,
-                  ),
-                  Text(
-                    l10n.login_message,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  if (state.submissionStatus == SubmissionStatus.inProgress)
-                    const CircularProgressIndicator(),
-                  ESTextInput(
-                    borderRadius: 16.0,
-                    height: 56.0,
-                    labelText: l10n.email_string,
-                    onChanged: (email) => cubit.saveEmailToState(email),
-                  ),
-                  const SizedBox(height: 16.0),
-                  ESTextInput(
-                    borderRadius: 16.0,
-                    height: 56.0,
-                    labelText: l10n.email_string,
-                    obscureText: true,
-                    onChanged: (password) => cubit.savePwdToState(password),
-                  ),
-                  const SizedBox(height: 16.0),
-                  SizedBox(
-                    height: 56,
-                    width: double.infinity,
-                    child: FilledButton(
-                      onPressed: () => cubit.onLoginSubmit(),
-                      child: Text(l10n.login_message),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(l10n.not_registered_message),
-                      const SizedBox(width: 6),
-                      OutlinedButton(
-                        onPressed: () {
-                          context.goNamed(EmotionStationRoutes.registerScreen.routeName);
-                        },
-                        child: Text(l10n.register_here_message),
+          appBar: AppBar(),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Transform.flip(
+                      flipX: true,
+                      child: Image.asset(
+                        height: 200,
+                        color: Colors.purple,
+                        colorBlendMode: BlendMode.lighten,
+                        width: 200,
+                        'assets/images/register_icon.webp',
                       ),
-                    ],
-                  )
-                ],
+                    ),
+                    Text(
+                      l10n.login_message,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    const SizedBox(height: 16.0),
+                    state.submissionStatus == SubmissionStatus.inProgress
+                        ? const CircularProgressIndicator()
+                        : Column(
+                            children: [
+                              ESTextInput(
+                                borderRadius: 16.0,
+                                height: 56.0,
+                                labelText: l10n.email_string,
+                                onChanged: (email) => cubit.saveEmailToState(email),
+                              ),
+                              const SizedBox(height: 16.0),
+                              ESTextInput(
+                                borderRadius: 16.0,
+                                height: 56.0,
+                                labelText: l10n.password_string,
+                                obscureText: true,
+                                onChanged: (password) => cubit.savePwdToState(password),
+                              ),
+                              const SizedBox(height: 16.0),
+                              SizedBox(
+                                height: 56,
+                                width: double.infinity,
+                                child: FilledButton(
+                                  onPressed: () => cubit.onLoginSubmit(),
+                                  child: Text(l10n.login_message),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(l10n.not_registered_message),
+                                  const SizedBox(width: 6),
+                                  OutlinedButton(
+                                    onPressed: () {
+                                      context
+                                          .goNamed(EmotionStationRoutes.registerScreen.routeName);
+                                    },
+                                    child: Text(l10n.register_here_message),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                  ],
+                ),
               ),
             ),
           ),

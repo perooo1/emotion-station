@@ -56,40 +56,53 @@ class _LoginView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Transform.flip(
-                      flipX: true,
-                      child: Image.asset(
-                        height: 200,
-                        color: Colors.purple,
-                        colorBlendMode: BlendMode.lighten,
-                        width: 200,
-                        'assets/images/register_icon.webp',
-                      ),
-                    ),
+                    MediaQuery.of(context).platformBrightness == Brightness.dark
+                        ? Transform.flip(
+                            flipX: true,
+                            child: Image.asset(
+                              height: 200,
+                              width: 200,
+                              'assets/images/register_icon_dark_mode.png',
+                            ),
+                          )
+                        : Transform.flip(
+                            flipX: true,
+                            child: Image.asset(
+                              height: 200,
+                              color: Colors.purple,
+                              colorBlendMode: BlendMode.lighten,
+                              width: 200,
+                              'assets/images/register_icon_light_mode.webp',
+                            ),
+                          ),
                     Text(
                       l10n.login_message,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 16.0),
+                    Column(
+                      children: [
+                        ESTextInput(
+                          borderRadius: 16.0,
+                          height: 56.0,
+                          labelText: l10n.email_string,
+                          onChanged: (email) => cubit.saveEmailToState(email),
+                        ),
+                        const SizedBox(height: 16.0),
+                        ESTextInput(
+                          borderRadius: 16.0,
+                          height: 56.0,
+                          labelText: l10n.password_string,
+                          obscureText: true,
+                          onChanged: (password) => cubit.savePwdToState(password),
+                        ),
+                        const SizedBox(height: 16.0),
+                      ],
+                    ),
                     state.submissionStatus == SubmissionStatus.inProgress
                         ? const CircularProgressIndicator()
                         : Column(
                             children: [
-                              ESTextInput(
-                                borderRadius: 16.0,
-                                height: 56.0,
-                                labelText: l10n.email_string,
-                                onChanged: (email) => cubit.saveEmailToState(email),
-                              ),
-                              const SizedBox(height: 16.0),
-                              ESTextInput(
-                                borderRadius: 16.0,
-                                height: 56.0,
-                                labelText: l10n.password_string,
-                                obscureText: true,
-                                onChanged: (password) => cubit.savePwdToState(password),
-                              ),
-                              const SizedBox(height: 16.0),
                               SizedBox(
                                 height: 56,
                                 width: double.infinity,
@@ -105,10 +118,8 @@ class _LoginView extends StatelessWidget {
                                   Text(l10n.not_registered_message),
                                   const SizedBox(width: 6),
                                   OutlinedButton(
-                                    onPressed: () {
-                                      context
-                                          .goNamed(EmotionStationRoutes.registerScreen.routeName);
-                                    },
+                                    onPressed: () => context
+                                        .goNamed(EmotionStationRoutes.registerScreen.routeName),
                                     child: Text(l10n.register_here_message),
                                   ),
                                 ],

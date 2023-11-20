@@ -63,12 +63,11 @@ class ParentTestWidget extends StatelessWidget {
                       List.empty(),
                 ),
                 const SizedBox(height: 16.0),
-
                 StationStartButton(
                   fillColor: Colors.yellow.shade100,
                   borderColor: Colors.yellow,
                   borderRadius: 12,
-                  title: 'Station of Happiness',
+                  title: l10n.station_of_happiness,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
@@ -86,7 +85,7 @@ class ParentTestWidget extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.secondaryContainer,
                   borderColor: Theme.of(context).colorScheme.secondary,
                   borderRadius: 12,
-                  title: 'Station of Sadness',
+                  title: l10n.station_of_sadness,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
@@ -104,7 +103,7 @@ class ParentTestWidget extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.tertiaryContainer,
                   borderColor: Theme.of(context).colorScheme.tertiary,
                   borderRadius: 12,
-                  title: 'Station of Fear',
+                  title: l10n.station_of_fear,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
@@ -122,7 +121,7 @@ class ParentTestWidget extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.errorContainer,
                   borderColor: Theme.of(context).colorScheme.error,
                   borderRadius: 12,
-                  title: 'Station of Anger',
+                  title: l10n.station_of_anger,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,

@@ -23,12 +23,24 @@ class QuestionView extends StatelessWidget {
           if (question.imageAssetPath != null)
             Image.asset(
               question.imageAssetPath!,
+              width: 250,
+              height: 250,
               fit: BoxFit.fill,
             ),
           if (question.storyText != null)
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Expanded(
+                  child: Text(question.storyText!),
+                ),
+              ),
+            ),
+          /*
             Expanded(
               child: Text(question.storyText!),
             ),
+            */
           const SizedBox(height: 16),
           Expanded(child: Text(question.text)),
           const SizedBox(height: 16),

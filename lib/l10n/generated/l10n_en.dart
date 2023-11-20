@@ -35,6 +35,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password_string => 'Password';
 
   @override
+  String get station_of_happiness => 'Station of Happiness';
+
+  @override
+  String get station_of_sadness => 'Station of Sadness';
+
+  @override
+  String get station_of_fear => 'Station of Fear';
+
+  @override
+  String get station_of_anger => 'Station of Anger';
+
+  @override
   String get children_screen_enter_child_info_message => 'Please enter required info about your child';
 
   @override

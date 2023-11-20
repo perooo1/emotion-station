@@ -153,6 +153,30 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get password_string;
 
+  /// No description provided for @station_of_happiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Station of Happiness'**
+  String get station_of_happiness;
+
+  /// No description provided for @station_of_sadness.
+  ///
+  /// In en, this message translates to:
+  /// **'Station of Sadness'**
+  String get station_of_sadness;
+
+  /// No description provided for @station_of_fear.
+  ///
+  /// In en, this message translates to:
+  /// **'Station of Fear'**
+  String get station_of_fear;
+
+  /// No description provided for @station_of_anger.
+  ///
+  /// In en, this message translates to:
+  /// **'Station of Anger'**
+  String get station_of_anger;
+
   /// No description provided for @children_screen_enter_child_info_message.
   ///
   /// In en, this message translates to:

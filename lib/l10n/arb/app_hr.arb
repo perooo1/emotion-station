@@ -10,6 +10,11 @@
     "register_here_message":"Registriraj se",
     "password_string":"Zaporka",
 
+    "station_of_happiness":"Stanica sreće", 
+    "station_of_sadness":"Stanica tuge",
+    "station_of_fear":"Stanica straha",
+    "station_of_anger":"Stanica ljutnje",
+
     "children_screen_enter_child_info_message":"Molimo unesite potrebne informacije o Vašem djetetu",
     "children_screen_enter_child_name":"Ime djeteta:",
     "children_screen_enter_child_last_name":"Prezime djeteta:",

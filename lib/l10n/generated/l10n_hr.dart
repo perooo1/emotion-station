@@ -35,6 +35,18 @@ class AppLocalizationsHr extends AppLocalizations {
   String get password_string => 'Zaporka';
 
   @override
+  String get station_of_happiness => 'Stanica sreće';
+
+  @override
+  String get station_of_sadness => 'Stanica tuge';
+
+  @override
+  String get station_of_fear => 'Stanica straha';
+
+  @override
+  String get station_of_anger => 'Stanica ljutnje';
+
+  @override
   String get children_screen_enter_child_info_message => 'Molimo unesite potrebne informacije o Vašem djetetu';
 
   @override

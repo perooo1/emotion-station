@@ -9,6 +9,11 @@
     "login_here_message":"Login here",
     "register_here_message":"Register here",
     "password_string":"Password",
+
+    "station_of_happiness":"Station of Happiness",
+    "station_of_sadness":"Station of Sadness",
+    "station_of_fear":"Station of Fear",
+    "station_of_anger":"Station of Anger",
     
     "children_screen_enter_child_info_message":"Please enter required info about your child",
     "children_screen_enter_child_name":"Child name:",

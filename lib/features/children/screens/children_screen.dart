@@ -38,7 +38,12 @@ class _ChildrenScreenView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('this is children screen'),
+            centerTitle: true,
+            title: Text(
+              state.currentUser is Specialist
+                  ? l10n.childrenScreenSpecialistTitle
+                  : l10n.childrenScreenParentTitle,
+            ),
           ),
           body: Padding(
             //beware of const

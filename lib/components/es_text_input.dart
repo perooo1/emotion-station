@@ -32,7 +32,6 @@ class ESTextInput extends StatelessWidget {
         ),
         obscureText: obscureText,
         onChanged: (value) => onChanged(value),
-        //onChanged: (value) => cubit.saveEmailToState(value),
       ),
     );
   }

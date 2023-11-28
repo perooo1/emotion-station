@@ -1,9 +1,10 @@
+import 'package:common/common.dart';
 import 'package:domain_models/domain_models.dart';
 
 class QuestionsCroatian {
   final List<Question> questionsHappiness = [
     Question(
-      imageAssetPath: 'assets/images/recognition_happines.webp',
+      imageAssetPath: Images.recognitionHappines,
       text: 'Koju emociju na slici prepoznaješ?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionReckognition,
@@ -14,7 +15,7 @@ class QuestionsCroatian {
       ],
     ),
     Question(
-      imageAssetPath: 'assets/images/happiness_surprise.webp',
+      imageAssetPath: Images.happinessSurprise,
       text: 'Kako se djeca na slici osjećaju?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionReckognition,
@@ -66,7 +67,7 @@ class QuestionsCroatian {
       ],
     ),
     Question(
-      imageAssetPath: 'assets/images/understanding_happiness.webp',
+      imageAssetPath: Images.understandingHappiness,
       text: 'Odgovori, kako se djevojčica na slici osjeća?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionUnderstandingVisual,
@@ -79,7 +80,7 @@ class QuestionsCroatian {
       ],
     ),
     Question(
-      imageAssetPath: 'assets/images/understanding_surprise.webp',
+      imageAssetPath: Images.understandingSurprise,
       text: 'Što misliš, kako se djeca na slici osjećaju?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionUnderstandingVisual,
@@ -170,7 +171,8 @@ class QuestionsCroatian {
 class QuestionsEnglish {
   final List<Question> questionsHappiness = [
     Question(
-      imageAssetPath: 'assets/images/recognition_happines.webp',
+      imageAssetPath: Images.recognitionHappines,
+      //imageAssetPath: 'assets/images/recognition_happines.webp',
       text: 'Which emotion do you recognize?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionReckognition,
@@ -181,7 +183,8 @@ class QuestionsEnglish {
       ],
     ),
     Question(
-      imageAssetPath: 'assets/images/happiness_surprise.webp',
+      imageAssetPath: Images.happinessSurprise,
+      //imageAssetPath: 'assets/images/happiness_surprise.webp',
       text: 'How do the children in the picture feel?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionReckognition,
@@ -232,7 +235,8 @@ class QuestionsEnglish {
       ],
     ),
     Question(
-      imageAssetPath: 'assets/images/understanding_happiness.webp',
+      imageAssetPath: Images.understandingHappiness,
+      //imageAssetPath: 'assets/images/understanding_happiness.webp',
       text: 'How does the girl in the picture feel?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionUnderstandingVisual,
@@ -249,7 +253,8 @@ class QuestionsEnglish {
       ],
     ),
     Question(
-      imageAssetPath: 'assets/images/understanding_surprise.webp',
+      imageAssetPath: Images.understandingSurprise,
+      //imageAssetPath: 'assets/images/understanding_surprise.webp',
       text: 'What do you think, how do the children feel?',
       activityType: ActivityType.stationOfHappiness,
       opservationCategory: OpservationCategory.emotionUnderstandingVisual,

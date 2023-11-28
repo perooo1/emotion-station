@@ -52,7 +52,7 @@ class _InfoScreenView extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            tooltip: l10n.test_string_2,
+            tooltip: l10n.testString2,
             child: const Icon(Icons.logout),
             onPressed: () {
               infoScreenCubit.authenticationManager.signOut();

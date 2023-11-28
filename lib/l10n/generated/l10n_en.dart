@@ -5,68 +5,131 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get test_string => 'this is a test string';
+  String get emotionStation => 'Emotion Station';
 
   @override
-  String get test_string_2 => 'random';
+  String get testString => 'this is a test string';
 
   @override
-  String get email_string => 'Email';
+  String get testString2 => 'random';
 
   @override
-  String get login_message => 'Login to Emotion Station';
+  String get emailString => 'Email';
 
   @override
-  String get register_with_us_message => 'Register to Emotion Station';
+  String get passwordString => 'Password';
 
   @override
-  String get not_registered_message => 'Not registered?';
+  String get nameString => 'Name';
 
   @override
-  String get already_registered_message => 'Already registered?';
+  String get lastNameString => 'Last Name';
 
   @override
-  String get login_here_message => 'Login here';
+  String get connectWithParent => 'Connect with parent';
 
   @override
-  String get register_here_message => 'Register here';
+  String get parentEmail => 'Parent\'s Email';
 
   @override
-  String get password_string => 'Password';
+  String get exitString => 'Exit';
 
   @override
-  String get station_of_happiness => 'Station of Happiness';
+  String get cancelString => 'Cancel';
 
   @override
-  String get station_of_sadness => 'Station of Sadness';
+  String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override
-  String get station_of_fear => 'Station of Fear';
+  String get activityFinishedDialogButtonText => 'Back to stations screen';
 
   @override
-  String get station_of_anger => 'Station of Anger';
+  String get activityScreenNextStation => 'Next Station';
 
   @override
-  String get children_screen_enter_child_info_message => 'Please enter required info about your child';
+  String get exitActivityDialogTitle => 'Exit the activity?';
 
   @override
-  String get children_screen_enter_child_name => 'Child name:';
+  String get exitActivityDialogContent => 'Ask your parent if you can exit the activity! If you exit current data will be lost.';
 
   @override
-  String get children_screen_enter_child_last_name => 'Child last name:';
+  String get stationOfHappiness => 'Station of Happiness';
 
   @override
-  String get children_screen_enter_child_age => 'Child age:';
+  String get stationOfSadness => 'Station of Sadness';
 
   @override
-  String get children_screen_enter_child_gender => 'Child gender:';
+  String get stationOfFear => 'Station of Fear';
 
   @override
-  String get children_screen_enter_child_diagnosis => 'Diagnosis:';
+  String get stationOfAnger => 'Station of Anger';
 
   @override
-  String get children_screen_enter_child_boy => 'Boy';
+  String get childrenScreenParentTitle => 'Your children';
 
   @override
-  String get children_screen_enter_child_girl => 'Girl';
+  String get childrenScreenSpecialistTitle => 'Assigned children';
+
+  @override
+  String get childrenScreenEnterChildInfoMessage => 'Please enter required info about your child';
+
+  @override
+  String get childrenScreenEnterChildName => 'Child name:';
+
+  @override
+  String get childrenScreenEnterChildLast_name => 'Child last name:';
+
+  @override
+  String get childrenScreenEnterChildAge => 'Child age:';
+
+  @override
+  String get childrenScreenEnterChildGender => 'Child gender:';
+
+  @override
+  String get childrenScreenEnterChildDiagnosis => 'Diagnosis:';
+
+  @override
+  String get childrenScreenEnterChildBoy => 'Boy';
+
+  @override
+  String get childrenScreenEnterChildGirl => 'Girl';
+
+  @override
+  String get homeScreenSelectChildForActivity => 'Please select child for activity';
+
+  @override
+  String get loginMessage => 'Login to Emotion Station';
+
+  @override
+  String get loginHereMessage => 'Login here';
+
+  @override
+  String get registerWithUsMessage => 'Register to Emotion Station';
+
+  @override
+  String get notRegisteredMessage => 'Not registered?';
+
+  @override
+  String get alreadyRegisteredMessage => 'Already registered?';
+
+  @override
+  String get registerHereMessage => 'Register here';
+
+  @override
+  String get registerScreenSpecialistOption => 'Register as Therapist';
+
+  @override
+  String get snackbarMessageLoginError => 'Error Logging In';
+
+  @override
+  String get snackbarMessageRegisterError => 'Error registering the user.';
+
+  @override
+  String get snackbarMessageSelectOption => 'Select option';
+
+  @override
+  String get errorLoadingDataGoToLoginScreen => 'To Login screen';
+
+  @override
+  String get errorLoadingDataMessage => 'There was an error loding user data from network. Please login to the app.';
 }

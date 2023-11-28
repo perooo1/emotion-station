@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:common/common.dart';
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/home/bloc/home_cubit.dart';
 import 'package:emotion_station/features/home/widgets/widgets.dart';
@@ -26,8 +27,7 @@ class ParentTestWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Emotion Station'),
-        //title: Text(l10n.test_string_2),
+        title: Text(l10n.emotionStation),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -38,10 +38,10 @@ class ParentTestWidget extends StatelessWidget {
                 Image.asset(
                   height: 200,
                   width: 200,
-                  'assets/images/home_screen_hero.png',
+                  Images.homeScreenHero,
                 ),
                 const SizedBox(height: 16.0),
-                Text('Select a child for activity'),
+                Text('${l10n.homeScreenSelectChildForActivity}:'),
                 const SizedBox(height: 16.0),
                 DropdownMenu<Child>(
                   inputDecorationTheme: InputDecorationTheme(
@@ -67,7 +67,7 @@ class ParentTestWidget extends StatelessWidget {
                   fillColor: Colors.yellow.shade100,
                   borderColor: Colors.yellow,
                   borderRadius: 12,
-                  title: l10n.station_of_happiness,
+                  title: l10n.stationOfHappiness,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
@@ -85,7 +85,7 @@ class ParentTestWidget extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.secondaryContainer,
                   borderColor: Theme.of(context).colorScheme.secondary,
                   borderRadius: 12,
-                  title: l10n.station_of_sadness,
+                  title: l10n.stationOfSadness,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
@@ -103,7 +103,7 @@ class ParentTestWidget extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.tertiaryContainer,
                   borderColor: Theme.of(context).colorScheme.tertiary,
                   borderRadius: 12,
-                  title: l10n.station_of_fear,
+                  title: l10n.stationOfFear,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
@@ -121,7 +121,7 @@ class ParentTestWidget extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.errorContainer,
                   borderColor: Theme.of(context).colorScheme.error,
                   borderRadius: 12,
-                  title: l10n.station_of_anger,
+                  title: l10n.stationOfAnger,
                   onAction: () {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,

@@ -3,6 +3,7 @@ import 'package:emotion_station/features/home/bloc/activity_cubit.dart';
 import 'package:emotion_station/features/home/widgets/activity/activity.dart';
 import 'package:emotion_station/injector/injector.config.dart';
 import 'package:emotion_station/injector/injector.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/utils/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,11 +78,13 @@ class _ActivityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ActivityCubit>();
+    final l10n = AppLocalizations.of(context);
 
     return BlocBuilder<ActivityCubit, ActivityState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          //appBar: AppBar(),
+          appBar: AppBar(automaticallyImplyLeading: false),
           body: PageView.builder(
             physics: const NeverScrollableScrollPhysics(),
             controller: cubit.controller,
@@ -98,6 +101,57 @@ class _ActivityView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(l10n.exitActivityDialogTitle),
+                        content: Text(l10n.exitActivityDialogContent),
+                        actions: [
+                          TextButton(
+                              onPressed: () => context.pop(), child: Text(l10n.cancelString)),
+                          TextButton(
+                            onPressed: () {
+                              context.pop(); // pop dialog
+                              context.pop(); // pop activity
+                            },
+                            child: Text(l10n.exitString),
+                          ),
+                        ],
+                      ),
+                    ),
+
+/*
+                    onPressed: () => cubit.controller.previousPage(
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    ),
+*/
+
+                    child: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.close,
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          ),
+                          Text(
+                            l10n.exitString,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+/*
                 TextButton(
                   onPressed: () => cubit.controller.previousPage(
                     duration: Duration(milliseconds: 500),
@@ -105,6 +159,8 @@ class _ActivityView extends StatelessWidget {
                   ),
                   child: Text('exit'),
                 ),
+*/
+
                 SmoothPageIndicator(
                   controller: cubit.controller,
                   count: state.emotionStation.questions.length,
@@ -112,6 +168,52 @@ class _ActivityView extends StatelessWidget {
                       dotColor: Theme.of(context).colorScheme.onPrimary,
                       activeDotColor: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    onPressed: () {
+                      if (cubit.isOptionSelected()) {
+                        cubit.manageStopwatch();
+
+                        if (cubit.currentPageIndex + 1 == state.emotionStation.questions.length) {
+                          cubit.recordActivity(childId: childId);
+                          showDialog(
+                            context: context,
+                            builder: (context) =>
+                                Dialog.fullscreen(child: ActivityFinishedDialog()),
+                          );
+                        } else {
+                          cubit.controller.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(content: Text(l10n.snackbarMessageSelectOption)));
+                      }
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        ),
+                        Text(
+                          l10n.activityScreenNextStation,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+
+/*
                 TextButton(
                   onPressed: () {
                     if (cubit.isOptionSelected()) {
@@ -137,6 +239,7 @@ class _ActivityView extends StatelessWidget {
                   },
                   child: Text('next stop'),
                 ),
+*/
               ],
             ),
           ),

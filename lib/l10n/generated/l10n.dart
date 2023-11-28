@@ -93,137 +93,263 @@ abstract class AppLocalizations {
     Locale('hr')
   ];
 
-  /// No description provided for @test_string.
+  /// No description provided for @emotionStation.
+  ///
+  /// In en, this message translates to:
+  /// **'Emotion Station'**
+  String get emotionStation;
+
+  /// No description provided for @testString.
   ///
   /// In en, this message translates to:
   /// **'this is a test string'**
-  String get test_string;
+  String get testString;
 
-  /// No description provided for @test_string_2.
+  /// No description provided for @testString2.
   ///
   /// In en, this message translates to:
   /// **'random'**
-  String get test_string_2;
+  String get testString2;
 
-  /// No description provided for @email_string.
+  /// No description provided for @emailString.
   ///
   /// In en, this message translates to:
   /// **'Email'**
-  String get email_string;
+  String get emailString;
 
-  /// No description provided for @login_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Login to Emotion Station'**
-  String get login_message;
-
-  /// No description provided for @register_with_us_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Register to Emotion Station'**
-  String get register_with_us_message;
-
-  /// No description provided for @not_registered_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Not registered?'**
-  String get not_registered_message;
-
-  /// No description provided for @already_registered_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Already registered?'**
-  String get already_registered_message;
-
-  /// No description provided for @login_here_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Login here'**
-  String get login_here_message;
-
-  /// No description provided for @register_here_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Register here'**
-  String get register_here_message;
-
-  /// No description provided for @password_string.
+  /// No description provided for @passwordString.
   ///
   /// In en, this message translates to:
   /// **'Password'**
-  String get password_string;
+  String get passwordString;
 
-  /// No description provided for @station_of_happiness.
+  /// No description provided for @nameString.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get nameString;
+
+  /// No description provided for @lastNameString.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lastNameString;
+
+  /// No description provided for @connectWithParent.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with parent'**
+  String get connectWithParent;
+
+  /// No description provided for @parentEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent\'s Email'**
+  String get parentEmail;
+
+  /// No description provided for @exitString.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exitString;
+
+  /// No description provided for @cancelString.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelString;
+
+  /// No description provided for @activityFinishedDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have finished your journey and reached emotion station! You can now give back the phone to your parents!'**
+  String get activityFinishedDialogMessage;
+
+  /// No description provided for @activityFinishedDialogButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to stations screen'**
+  String get activityFinishedDialogButtonText;
+
+  /// No description provided for @activityScreenNextStation.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Station'**
+  String get activityScreenNextStation;
+
+  /// No description provided for @exitActivityDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit the activity?'**
+  String get exitActivityDialogTitle;
+
+  /// No description provided for @exitActivityDialogContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask your parent if you can exit the activity! If you exit current data will be lost.'**
+  String get exitActivityDialogContent;
+
+  /// No description provided for @stationOfHappiness.
   ///
   /// In en, this message translates to:
   /// **'Station of Happiness'**
-  String get station_of_happiness;
+  String get stationOfHappiness;
 
-  /// No description provided for @station_of_sadness.
+  /// No description provided for @stationOfSadness.
   ///
   /// In en, this message translates to:
   /// **'Station of Sadness'**
-  String get station_of_sadness;
+  String get stationOfSadness;
 
-  /// No description provided for @station_of_fear.
+  /// No description provided for @stationOfFear.
   ///
   /// In en, this message translates to:
   /// **'Station of Fear'**
-  String get station_of_fear;
+  String get stationOfFear;
 
-  /// No description provided for @station_of_anger.
+  /// No description provided for @stationOfAnger.
   ///
   /// In en, this message translates to:
   /// **'Station of Anger'**
-  String get station_of_anger;
+  String get stationOfAnger;
 
-  /// No description provided for @children_screen_enter_child_info_message.
+  /// No description provided for @childrenScreenParentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your children'**
+  String get childrenScreenParentTitle;
+
+  /// No description provided for @childrenScreenSpecialistTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned children'**
+  String get childrenScreenSpecialistTitle;
+
+  /// No description provided for @childrenScreenEnterChildInfoMessage.
   ///
   /// In en, this message translates to:
   /// **'Please enter required info about your child'**
-  String get children_screen_enter_child_info_message;
+  String get childrenScreenEnterChildInfoMessage;
 
-  /// No description provided for @children_screen_enter_child_name.
+  /// No description provided for @childrenScreenEnterChildName.
   ///
   /// In en, this message translates to:
   /// **'Child name:'**
-  String get children_screen_enter_child_name;
+  String get childrenScreenEnterChildName;
 
-  /// No description provided for @children_screen_enter_child_last_name.
+  /// No description provided for @childrenScreenEnterChildLast_name.
   ///
   /// In en, this message translates to:
   /// **'Child last name:'**
-  String get children_screen_enter_child_last_name;
+  String get childrenScreenEnterChildLast_name;
 
-  /// No description provided for @children_screen_enter_child_age.
+  /// No description provided for @childrenScreenEnterChildAge.
   ///
   /// In en, this message translates to:
   /// **'Child age:'**
-  String get children_screen_enter_child_age;
+  String get childrenScreenEnterChildAge;
 
-  /// No description provided for @children_screen_enter_child_gender.
+  /// No description provided for @childrenScreenEnterChildGender.
   ///
   /// In en, this message translates to:
   /// **'Child gender:'**
-  String get children_screen_enter_child_gender;
+  String get childrenScreenEnterChildGender;
 
-  /// No description provided for @children_screen_enter_child_diagnosis.
+  /// No description provided for @childrenScreenEnterChildDiagnosis.
   ///
   /// In en, this message translates to:
   /// **'Diagnosis:'**
-  String get children_screen_enter_child_diagnosis;
+  String get childrenScreenEnterChildDiagnosis;
 
-  /// No description provided for @children_screen_enter_child_boy.
+  /// No description provided for @childrenScreenEnterChildBoy.
   ///
   /// In en, this message translates to:
   /// **'Boy'**
-  String get children_screen_enter_child_boy;
+  String get childrenScreenEnterChildBoy;
 
-  /// No description provided for @children_screen_enter_child_girl.
+  /// No description provided for @childrenScreenEnterChildGirl.
   ///
   /// In en, this message translates to:
   /// **'Girl'**
-  String get children_screen_enter_child_girl;
+  String get childrenScreenEnterChildGirl;
+
+  /// No description provided for @homeScreenSelectChildForActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select child for activity'**
+  String get homeScreenSelectChildForActivity;
+
+  /// No description provided for @loginMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to Emotion Station'**
+  String get loginMessage;
+
+  /// No description provided for @loginHereMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Login here'**
+  String get loginHereMessage;
+
+  /// No description provided for @registerWithUsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Register to Emotion Station'**
+  String get registerWithUsMessage;
+
+  /// No description provided for @notRegisteredMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Not registered?'**
+  String get notRegisteredMessage;
+
+  /// No description provided for @alreadyRegisteredMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Already registered?'**
+  String get alreadyRegisteredMessage;
+
+  /// No description provided for @registerHereMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Register here'**
+  String get registerHereMessage;
+
+  /// No description provided for @registerScreenSpecialistOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Register as Therapist'**
+  String get registerScreenSpecialistOption;
+
+  /// No description provided for @snackbarMessageLoginError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error Logging In'**
+  String get snackbarMessageLoginError;
+
+  /// No description provided for @snackbarMessageRegisterError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error registering the user.'**
+  String get snackbarMessageRegisterError;
+
+  /// No description provided for @snackbarMessageSelectOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Select option'**
+  String get snackbarMessageSelectOption;
+
+  /// No description provided for @errorLoadingDataGoToLoginScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'To Login screen'**
+  String get errorLoadingDataGoToLoginScreen;
+
+  /// No description provided for @errorLoadingDataMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'There was an error loding user data from network. Please login to the app.'**
+  String get errorLoadingDataMessage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

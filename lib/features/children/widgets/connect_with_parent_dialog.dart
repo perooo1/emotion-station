@@ -1,4 +1,5 @@
 import 'package:emotion_station/components/components.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:repository/repository.dart';
@@ -31,6 +32,8 @@ class _ConnectWithParentDialogState extends State<ConnectWithParentDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Dialog(
       child: Padding(
         padding: EdgeInsets.all(16.0),
@@ -39,7 +42,7 @@ class _ConnectWithParentDialogState extends State<ConnectWithParentDialog> {
             ESTextInput(
               borderRadius: 16.0,
               height: 56.0,
-              labelText: 'Parents email',
+              labelText: l10n.parentEmail,
               onChanged: (value) {
                 setState(
                   () {
@@ -53,7 +56,7 @@ class _ConnectWithParentDialogState extends State<ConnectWithParentDialog> {
                 connectTherapistToParent();
                 context.pop();
               },
-              child: const Text('Connect with parent'),
+              child: Text(l10n.connectWithParent),
             ),
           ],
         ),

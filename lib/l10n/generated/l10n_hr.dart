@@ -5,68 +5,131 @@ class AppLocalizationsHr extends AppLocalizations {
   AppLocalizationsHr([String locale = 'hr']) : super(locale);
 
   @override
-  String get test_string => 'ovo je testni string';
+  String get emotionStation => 'Emotion Station';
 
   @override
-  String get test_string_2 => 'bezveze';
+  String get testString => 'ovo je testni string';
 
   @override
-  String get email_string => 'Email';
+  String get testString2 => 'bezveze';
 
   @override
-  String get login_message => 'Prijavite se u Emotion Station';
+  String get emailString => 'Email';
 
   @override
-  String get register_with_us_message => 'Registirirajte se na Emotion Station';
+  String get passwordString => 'Zaporka';
 
   @override
-  String get not_registered_message => 'Niste registrirani?';
+  String get nameString => 'Ime';
 
   @override
-  String get already_registered_message => 'Već ste registrirani?';
+  String get lastNameString => 'Prezime';
 
   @override
-  String get login_here_message => 'Prijavi se ';
+  String get connectWithParent => 'Poveži se s roditeljem';
 
   @override
-  String get register_here_message => 'Registriraj se';
+  String get parentEmail => 'Email roditelja';
 
   @override
-  String get password_string => 'Zaporka';
+  String get exitString => 'Izlazak';
 
   @override
-  String get station_of_happiness => 'Stanica sreće';
+  String get cancelString => 'Odustani';
 
   @override
-  String get station_of_sadness => 'Stanica tuge';
+  String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override
-  String get station_of_fear => 'Stanica straha';
+  String get activityFinishedDialogButtonText => 'Povratak na glavni ekran';
 
   @override
-  String get station_of_anger => 'Stanica ljutnje';
+  String get activityScreenNextStation => 'Slijedeće';
 
   @override
-  String get children_screen_enter_child_info_message => 'Molimo unesite potrebne informacije o Vašem djetetu';
+  String get exitActivityDialogTitle => 'Izlazak iz aktivnosti?';
 
   @override
-  String get children_screen_enter_child_name => 'Ime djeteta:';
+  String get exitActivityDialogContent => 'Pitaj roditelja smiješ li izaći iz aktivnosti! Trenutni podatci će biti izgubljeni.';
 
   @override
-  String get children_screen_enter_child_last_name => 'Prezime djeteta:';
+  String get stationOfHappiness => 'Stanica sreće';
 
   @override
-  String get children_screen_enter_child_age => 'Dob djeteta:';
+  String get stationOfSadness => 'Stanica tuge';
 
   @override
-  String get children_screen_enter_child_gender => 'Spol djeteta:';
+  String get stationOfFear => 'Stanica straha';
 
   @override
-  String get children_screen_enter_child_diagnosis => 'Dijagnoza:';
+  String get stationOfAnger => 'Stanica ljutnje';
 
   @override
-  String get children_screen_enter_child_boy => 'Dječak';
+  String get childrenScreenParentTitle => 'Vaša djeca';
 
   @override
-  String get children_screen_enter_child_girl => 'Djevojčica';
+  String get childrenScreenSpecialistTitle => 'Povezana djeca';
+
+  @override
+  String get childrenScreenEnterChildInfoMessage => 'Molimo unesite potrebne informacije o Vašem djetetu';
+
+  @override
+  String get childrenScreenEnterChildName => 'Ime djeteta:';
+
+  @override
+  String get childrenScreenEnterChildLast_name => 'Prezime djeteta:';
+
+  @override
+  String get childrenScreenEnterChildAge => 'Dob djeteta:';
+
+  @override
+  String get childrenScreenEnterChildGender => 'Spol djeteta:';
+
+  @override
+  String get childrenScreenEnterChildDiagnosis => 'Dijagnoza:';
+
+  @override
+  String get childrenScreenEnterChildBoy => 'Dječak';
+
+  @override
+  String get childrenScreenEnterChildGirl => 'Djevojčica';
+
+  @override
+  String get homeScreenSelectChildForActivity => 'Odaberite dijete koje će izvršiti aktivnost';
+
+  @override
+  String get loginMessage => 'Prijavite se u Emotion Station';
+
+  @override
+  String get loginHereMessage => 'Prijavi se ';
+
+  @override
+  String get registerWithUsMessage => 'Registirirajte se na Emotion Station';
+
+  @override
+  String get notRegisteredMessage => 'Niste registrirani?';
+
+  @override
+  String get alreadyRegisteredMessage => 'Već ste registrirani?';
+
+  @override
+  String get registerHereMessage => 'Registriraj se';
+
+  @override
+  String get registerScreenSpecialistOption => 'Registriraj kao terapeuta';
+
+  @override
+  String get snackbarMessageLoginError => 'Pogreška pri prijavi korisnika.';
+
+  @override
+  String get snackbarMessageRegisterError => 'Pogreška pri registraciji korisnika.';
+
+  @override
+  String get snackbarMessageSelectOption => 'Odaberi opciju.';
+
+  @override
+  String get errorLoadingDataGoToLoginScreen => 'Idi na ekran za prijavu';
+
+  @override
+  String get errorLoadingDataMessage => 'Došlo je do pogreške pri dohvaćanju podataka. Molimo prijavite se ponovno.';
 }

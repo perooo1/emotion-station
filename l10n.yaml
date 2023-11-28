@@ -4,3 +4,4 @@ template-arb-file: app_en.arb
 output-localization-file: l10n.dart
 synthetic-package: false
 nullable-getter: false
+#untranslated-messages-file: poruke.dart

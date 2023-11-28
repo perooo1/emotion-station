@@ -69,12 +69,12 @@ class _AddChildDialogState extends State<AddChildDialog> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(l10n.children_screen_enter_child_info_message),
+              Text(l10n.childrenScreenEnterChildInfoMessage),
               const SizedBox(height: 16),
               ESTextInput(
                 borderRadius: 16.0,
                 height: 56.0,
-                labelText: l10n.children_screen_enter_child_name,
+                labelText: l10n.childrenScreenEnterChildName,
                 onChanged: (name) {
                   setState(() {
                     _name = name;
@@ -85,7 +85,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
               ESTextInput(
                 borderRadius: 16.0,
                 height: 56.0,
-                labelText: l10n.children_screen_enter_child_last_name,
+                labelText: l10n.childrenScreenEnterChildLast_name,
                 onChanged: (lastName) {
                   setState(() {
                     _lastName = lastName;
@@ -97,7 +97,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
                 children: [
                   Expanded(
                     child: RadioListTile(
-                      title: Text(l10n.children_screen_enter_child_boy),
+                      title: Text(l10n.childrenScreenEnterChildBoy),
                       value: true,
                       groupValue: _isGenderMale,
                       onChanged: (value) => setState(
@@ -107,7 +107,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
                   ),
                   Expanded(
                     child: RadioListTile(
-                      title: Text(l10n.children_screen_enter_child_girl),
+                      title: Text(l10n.childrenScreenEnterChildGirl),
                       value: false,
                       groupValue: _isGenderMale,
                       onChanged: (value) => setState(
@@ -121,7 +121,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
               ESTextInput(
                 borderRadius: 16.0,
                 height: 56.0,
-                labelText: l10n.children_screen_enter_child_age,
+                labelText: l10n.childrenScreenEnterChildAge,
                 onChanged: (age) {
                   setState(() {
                     _age = int.parse(age);
@@ -132,7 +132,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
               ESTextInput(
                 borderRadius: 16.0,
                 height: 56.0,
-                labelText: l10n.children_screen_enter_child_diagnosis,
+                labelText: l10n.childrenScreenEnterChildDiagnosis,
                 onChanged: (diagnosis) {
                   setState(() {
                     _diagnosis = diagnosis;

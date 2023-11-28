@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:common/common.dart';
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -46,25 +47,30 @@ class _HomeScreenView extends StatelessWidget {
         } else if (state.currentUser is Parent) {
           return ParentTestWidget(parent: state.currentUser as Parent);
         } else {
-          return Center(
-            child: Column(
-              children: [
-                Text(' Uh oh! Molimo logirajte se ponovno'),
-                FilledButton(
-                    onPressed: () {
-                      tempCubit.authenticationManager.signOut();
-                      context.goNamed(EmotionStationRoutes.loginScreen.routeName);
-                    },
-                    child: Text('Close activity')),
-              ],
+          Future.delayed(
+            Duration.zero,
+            () => showDialog(
+              context: context,
+              builder: (context) => Dialog.fullscreen(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(Images.dataLoadingErrorImage),
+                    Text(l10n.errorLoadingDataMessage),
+                    FilledButton(
+                      onPressed: () {
+                        tempCubit.authenticationManager.signOut();
+                        context.goNamed(EmotionStationRoutes.loginScreen.routeName);
+                      },
+                      child: Text(l10n.errorLoadingDataGoToLoginScreen),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
-
-/*
-          return Center(
-              child: Text(
-                  ' Uh oh! Molimo logirajte se ponovno')); //ovdje samo pushat full screen dialog s button za log out i odlazak na login ekran
-*/
+          return const Placeholder();
         }
 
 /*

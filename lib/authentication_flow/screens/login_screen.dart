@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:common/common.dart';
 import 'package:emotion_station/components/components.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,7 @@ class _LoginView extends StatelessWidget {
             state.submissionStatus == SubmissionStatus.invalidCredentialsError) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(content: Text('error loggin in user')));
+            ..showSnackBar(SnackBar(content: Text(l10n.snackbarMessageLoginError)));
         }
       },
       builder: (context, state) {
@@ -62,7 +63,7 @@ class _LoginView extends StatelessWidget {
                             child: Image.asset(
                               height: 200,
                               width: 200,
-                              'assets/images/register_icon_dark_mode.png',
+                              Images.registerIconDarkMode,
                             ),
                           )
                         : Transform.flip(
@@ -72,11 +73,11 @@ class _LoginView extends StatelessWidget {
                               color: Colors.purple,
                               colorBlendMode: BlendMode.lighten,
                               width: 200,
-                              'assets/images/register_icon_light_mode.webp',
+                              Images.registerIconLightMode,
                             ),
                           ),
                     Text(
-                      l10n.login_message,
+                      l10n.loginMessage,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 16.0),
@@ -85,14 +86,14 @@ class _LoginView extends StatelessWidget {
                         ESTextInput(
                           borderRadius: 16.0,
                           height: 56.0,
-                          labelText: l10n.email_string,
+                          labelText: l10n.emailString,
                           onChanged: (email) => cubit.saveEmailToState(email),
                         ),
                         const SizedBox(height: 16.0),
                         ESTextInput(
                           borderRadius: 16.0,
                           height: 56.0,
-                          labelText: l10n.password_string,
+                          labelText: l10n.passwordString,
                           obscureText: true,
                           onChanged: (password) => cubit.savePwdToState(password),
                         ),
@@ -108,19 +109,19 @@ class _LoginView extends StatelessWidget {
                                 width: double.infinity,
                                 child: FilledButton(
                                   onPressed: () => cubit.onLoginSubmit(),
-                                  child: Text(l10n.login_message),
+                                  child: Text(l10n.loginMessage),
                                 ),
                               ),
                               const SizedBox(height: 16),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(l10n.not_registered_message),
+                                  Text(l10n.notRegisteredMessage),
                                   const SizedBox(width: 6),
                                   OutlinedButton(
                                     onPressed: () => context
                                         .goNamed(EmotionStationRoutes.registerScreen.routeName),
-                                    child: Text(l10n.register_here_message),
+                                    child: Text(l10n.registerHereMessage),
                                   ),
                                 ],
                               ),

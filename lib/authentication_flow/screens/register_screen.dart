@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:common/common.dart';
 import 'package:emotion_station/components/components.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,7 @@ class _RegisterView extends StatelessWidget {
         if (state.submissionStatus == SubmissionStatus.genericError) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(content: Text('error registering user')));
+            ..showSnackBar(SnackBar(content: Text(l10n.snackbarMessageRegisterError)));
         }
       },
       builder: (context, state) {
@@ -60,18 +61,19 @@ class _RegisterView extends StatelessWidget {
                         ? Image.asset(
                             height: 200,
                             width: 200,
-                            'assets/images/register_icon_dark_mode.png',
+                            Images.registerIconDarkMode,
                           )
                         : Image.asset(
                             height: 200,
                             color: Colors.purple,
                             colorBlendMode: BlendMode.lighten,
                             width: 200,
-                            'assets/images/register_icon_light_mode.webp',
+                            Images.registerIconLightMode,
                           ),
                     Text(
-                      l10n.register_with_us_message,
+                      l10n.registerWithUsMessage,
                       style: Theme.of(context).textTheme.headlineMedium,
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
                     Column(
@@ -79,39 +81,40 @@ class _RegisterView extends StatelessWidget {
                         ESTextInput(
                           borderRadius: 16.0,
                           height: 56.0,
-                          labelText: 'Name',
+                          labelText: l10n.nameString,
                           onChanged: (value) => cubit.saveNameToState(value),
                         ),
                         const SizedBox(height: 16.0),
                         ESTextInput(
                           borderRadius: 16.0,
                           height: 56.0,
-                          labelText: 'Last Name',
+                          labelText: l10n.lastNameString,
                           onChanged: (value) => cubit.saveLastNameToState(value),
                         ),
                         const SizedBox(height: 16.0),
                         ESTextInput(
                           borderRadius: 16.0,
                           height: 56.0,
-                          labelText: 'Email',
+                          labelText: l10n.emailString,
                           onChanged: (value) => cubit.saveEmailToState(value),
                         ),
                         const SizedBox(height: 16.0),
                         ESTextInput(
                           borderRadius: 16.0,
                           height: 56.0,
-                          labelText: 'Password',
+                          labelText: l10n.passwordString,
                           obscureText: true,
                           onChanged: (value) => cubit.savePwdToState(value),
                         ),
                         const SizedBox(height: 16.0),
                         Row(
                           children: [
-                            const Text('I AM A SPECIALIST'),
+                            Text(l10n.registerScreenSpecialistOption),
+                            const Spacer(),
                             Switch(
                               value: state.isSpecialist,
                               onChanged: (value) => cubit.setIsSpecialist(value),
-                            )
+                            ),
                           ],
                         ),
                         const SizedBox(height: 16.0),
@@ -126,19 +129,19 @@ class _RegisterView extends StatelessWidget {
                                 width: double.infinity,
                                 child: FilledButton(
                                   onPressed: () => cubit.onRegisterSubmit(),
-                                  child: Text(l10n.register_here_message),
+                                  child: Text(l10n.registerHereMessage),
                                 ),
                               ),
                               const SizedBox(height: 16),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(l10n.already_registered_message),
+                                  Text(l10n.alreadyRegisteredMessage),
                                   const SizedBox(width: 6),
                                   OutlinedButton(
                                     onPressed: () =>
                                         context.goNamed(EmotionStationRoutes.loginScreen.routeName),
-                                    child: Text(l10n.login_here_message),
+                                    child: Text(l10n.loginHereMessage),
                                   ),
                                 ],
                               ),

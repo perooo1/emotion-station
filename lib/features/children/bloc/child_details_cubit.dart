@@ -19,18 +19,42 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   final IDatabaseRepository databaseRepository;
 
   Stream<QuerySnapshot>? _activityRecordsStream;
+  Stream<QuerySnapshot>? _singleChildStream;
 
   void selectForecastEmotion(EmotionForecast emotion) {
     emit(state.copyWith(selectedEmotion: emotion));
   }
 
   void selectForecastDate(DateTime date) {
-    emit(state.copyWith(selectedEmotionDate: date));
+    emit(state.copyWith(selectedEmotionDate: DateTime(date.year, date.month, date.day)));
+  }
+
+  Future<void> updateChildEmotionForecast() async {
+    final forecast = state.emotionForecast;
+    if (forecast != null) {
+      forecast[state.selectedEmotionDate ?? DateTime.now()] = state.selectedEmotion;
+
+      final a = await databaseRepository.updateChildEmotionForecast(
+        childId: state.child.id,
+        forecast: forecast,
+      );
+    } else {
+      final Map<DateTime, EmotionForecast> newForecast = {
+        state.selectedEmotionDate ?? DateTime.now(): state.selectedEmotion
+      };
+
+      final a = await databaseRepository.updateChildEmotionForecast(
+        childId: state.child.id,
+        forecast: newForecast,
+      );
+    }
   }
 
   _startListening() {
     _activityRecordsStream =
         databaseRepository.getRecordedActivitiesStream(childId: state.child.id);
+
+    _singleChildStream = databaseRepository.getSingleChildStream(childId: state.child.id);
 
     _activityRecordsStream?.listen(
       (querySnapshot) {
@@ -41,6 +65,15 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
         records.sort((a, b) => b.timeOfActivity.compareTo(a.timeOfActivity));
         emit(state.copyWith(activityRecords: records, child: null));
         //emit(state.copyWith(activityRecords: records));
+      },
+    );
+
+    _singleChildStream?.listen(
+      (querySnapshot) {
+        //final DocumentSnapshot child = querySnapshot.docs[0];
+        final Child child = Child.fromJson(querySnapshot.docs[0].data() as Map<String, dynamic>);
+
+        emit(state.copyWith(emotionForecast: child.emotionForecast));
       },
     );
   }

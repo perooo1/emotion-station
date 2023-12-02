@@ -99,6 +99,7 @@ class _ChildDetailsView extends StatelessWidget {
                   },
                 ),
               ),
+
 /*
               ListView.separated(
                 shrinkWrap: true,
@@ -132,7 +133,7 @@ class _ChildDetailsView extends StatelessWidget {
                 setForecastEmotion: (EmotionForecast emotion) =>
                     cubit.selectForecastEmotion(emotion),
                 setForecastDate: (DateTime date) => cubit.selectForecastDate(date),
-                setForecast: () {},
+                setForecast: () => cubit.updateChildEmotionForecast(),
               ),
             ),
           ),

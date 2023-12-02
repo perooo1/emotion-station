@@ -9,6 +9,7 @@ abstract class IDatabaseRepository {
   //streams
   Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId});
   Stream<QuerySnapshot> getRecordedActivitiesStream({String? childId});
+  Stream<QuerySnapshot> getSingleChildStream({String? childId});
 
   //write
   Future<bool> createChildInDatabase({required Child child, required String parentId});
@@ -19,6 +20,10 @@ abstract class IDatabaseRepository {
   Future<bool> recordCompletedActivity({required ActivityRecord activityRecord});
   Future<bool> registerParent({required Parent parent});
   Future<bool> registerSpecialist({required Specialist specialist});
+  Future<bool> updateChildEmotionForecast({
+    required String childId,
+    required Map<DateTime, EmotionForecast>? forecast,
+  });
 
   //read
   Future<Child> getChildFromDatabase({required String childId});
@@ -63,6 +68,17 @@ class DatabaseRepository implements IDatabaseRepository {
     return instance
         .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
         .where('childId', isEqualTo: childId)
+        .snapshots();
+  }
+
+  @override
+  Stream<QuerySnapshot> getSingleChildStream({String? childId}) {
+    if (childId == null) {
+      throw FormatException('Child id is null!');
+    }
+    return instance
+        .collection(FIRESTORE_COLLECTION_CHILDREN)
+        .where('id', isEqualTo: childId)
         .snapshots();
   }
 
@@ -167,6 +183,31 @@ class DatabaseRepository implements IDatabaseRepository {
     } on FirebaseException catch (e) {
       print(
           'DB MANAGER - connectSpecialistWithParent() : Error connecting specialist with parent: $e');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> updateChildEmotionForecast({
+    required String childId,
+    required Map<DateTime, EmotionForecast>? forecast,
+  }) async {
+    try {
+      final Map<String, String> convertedForecast = forecast?.map(
+            (key, value) => MapEntry(key.toString(), value.name.toString()),
+            //(key, value) => MapEntry(key.toString(), value.toString()),
+          ) ??
+          {};
+
+      await instance
+          .collection(FIRESTORE_COLLECTION_CHILDREN)
+          .doc(childId)
+          .update({'emotionForecast': convertedForecast});
+      //.update({'emotionForecast.${forecast?.keys.first}': forecast?.values.first});
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - updateChildEmotionForecast() : Error updateing child emo forecast: $e');
       return false;
     }
   }

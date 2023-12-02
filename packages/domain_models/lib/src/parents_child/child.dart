@@ -26,7 +26,7 @@ class Child {
   final int age;
   final bool isGenderMale;
   final String diagnosis;
-  final Map<DateTime, EmotionForecast?>? emotionForecast;
+  final Map<DateTime, EmotionForecast>? emotionForecast;
 
   String get fullName => '${this.name} ${this.lastName}';
   bool get isGenderFemale => !isGenderMale;

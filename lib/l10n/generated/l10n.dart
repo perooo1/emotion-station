@@ -273,6 +273,30 @@ abstract class AppLocalizations {
   /// **'Girl'**
   String get childrenScreenEnterChildGirl;
 
+  /// No description provided for @childDetailsScreenAddEmotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Add emotion'**
+  String get childDetailsScreenAddEmotion;
+
+  /// No description provided for @emotionForecastSad.
+  ///
+  /// In en, this message translates to:
+  /// **'Sad, Weepy '**
+  String get emotionForecastSad;
+
+  /// No description provided for @emotionForecastHappy.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy, In a good mood'**
+  String get emotionForecastHappy;
+
+  /// No description provided for @emotionForecastAngry.
+  ///
+  /// In en, this message translates to:
+  /// **'Angry, Irritable'**
+  String get emotionForecastAngry;
+
   /// No description provided for @homeScreenSelectChildForActivity.
   ///
   /// In en, this message translates to:

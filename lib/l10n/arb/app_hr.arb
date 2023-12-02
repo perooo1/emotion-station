@@ -36,6 +36,12 @@
     "childrenScreenEnterChildBoy":"Dječak",
     "childrenScreenEnterChildGirl":"Djevojčica",
 
+    "childDetailsScreenAddEmotion":"Dodaj emociju",
+
+    "emotionForecastSad":"Tužan, plačljiv",
+    "emotionForecastHappy":"Sretan, dobro raspoložen",
+    "emotionForecastAngry":"Ljut, razdražljiv",
+
     "homeScreenSelectChildForActivity":"Odaberite dijete koje će izvršiti aktivnost",
     
     "loginMessage":"Prijavite se u Emotion Station",

@@ -36,6 +36,12 @@
     "childrenScreenEnterChildBoy":"Boy",
     "childrenScreenEnterChildGirl":"Girl",
 
+    "childDetailsScreenAddEmotion":"Add emotion",
+
+    "emotionForecastSad":"Sad, Weepy ",
+    "emotionForecastHappy":"Happy, In a good mood",
+    "emotionForecastAngry":"Angry, Irritable",
+
     "homeScreenSelectChildForActivity":"Please select child for activity",
 
     "loginMessage":"Login to Emotion Station",

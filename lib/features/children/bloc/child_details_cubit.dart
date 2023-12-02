@@ -20,6 +20,14 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
 
   Stream<QuerySnapshot>? _activityRecordsStream;
 
+  void selectForecastEmotion(EmotionForecast emotion) {
+    emit(state.copyWith(selectedEmotion: emotion));
+  }
+
+  void selectForecastDate(DateTime date) {
+    emit(state.copyWith(selectedEmotionDate: date));
+  }
+
   _startListening() {
     _activityRecordsStream =
         databaseRepository.getRecordedActivitiesStream(childId: state.child.id);
@@ -32,6 +40,7 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
         }
         records.sort((a, b) => b.timeOfActivity.compareTo(a.timeOfActivity));
         emit(state.copyWith(activityRecords: records, child: null));
+        //emit(state.copyWith(activityRecords: records));
       },
     );
   }

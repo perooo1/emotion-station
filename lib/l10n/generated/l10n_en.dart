@@ -95,6 +95,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get childrenScreenEnterChildGirl => 'Girl';
 
   @override
+  String get childDetailsScreenAddEmotion => 'Add emotion';
+
+  @override
+  String get emotionForecastSad => 'Sad, Weepy ';
+
+  @override
+  String get emotionForecastHappy => 'Happy, In a good mood';
+
+  @override
+  String get emotionForecastAngry => 'Angry, Irritable';
+
+  @override
   String get homeScreenSelectChildForActivity => 'Please select child for activity';
 
   @override

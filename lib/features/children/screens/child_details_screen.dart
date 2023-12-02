@@ -1,11 +1,14 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/bloc/child_details_cubit.dart';
+import 'package:emotion_station/features/children/children.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/navigation/navigation.dart';
 import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class ChildDetailsScreen extends StatelessWidget {
   const ChildDetailsScreen({super.key, required this.child});
@@ -26,6 +29,11 @@ class _ChildDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final lokal = Localizations.localeOf(context);
+
+    final cubit = context.read<ChildDetailsCubit>();
+
     return BlocBuilder<ChildDetailsCubit, ChildDetailsState>(
       builder: (context, state) {
         return Scaffold(
@@ -54,7 +62,43 @@ class _ChildDetailsView extends StatelessWidget {
                   ),
                 ),
               ),
-
+              TableCalendar(
+                focusedDay: DateTime.now(),
+                firstDay: DateTime(2022),
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                lastDay: DateTime.now(),
+                locale: '${lokal.languageCode}_${lokal.countryCode}',
+                /*
+                eventLoader: (day) {
+          
+          
+                  final List<DateTime> matchingDates = state.outbursts
+                      .where((date) =>
+                          date.year == day.year && date.month == day.month && date.day == day.day)
+                      .toList();
+          
+                  return matchingDates;
+          
+          
+                  /*
+                      final List<DateTime> evnt = [];
+          
+                      if (state.outbursts.contains(day)) {
+                        evnt.add(day);
+                      }
+                      return evnt;
+                      */
+                },
+          */
+                calendarBuilders: CalendarBuilders(
+                  markerBuilder: (context, day, events) {
+                    if (events.isNotEmpty) {
+                      return Icon(Icons.celebration);
+                    }
+                    return null;
+                  },
+                ),
+              ),
 /*
               ListView.separated(
                 shrinkWrap: true,
@@ -76,6 +120,21 @@ class _ChildDetailsView extends StatelessWidget {
               ),
 */
             ],
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            icon: Icon(Icons.mood),
+            label: Text(l10n.childDetailsScreenAddEmotion),
+            onPressed: () => showDialog(
+              context: context,
+              builder: (context) => AddEmotionDialog(
+                selectedEmotion: state.selectedEmotion,
+                childName: state.child.name,
+                setForecastEmotion: (EmotionForecast emotion) =>
+                    cubit.selectForecastEmotion(emotion),
+                setForecastDate: (DateTime date) => cubit.selectForecastDate(date),
+                setForecast: () {},
+              ),
+            ),
           ),
         );
       },

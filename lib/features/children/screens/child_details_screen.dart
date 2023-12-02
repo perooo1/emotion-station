@@ -54,6 +54,8 @@ class _ChildDetailsView extends StatelessWidget {
                   ),
                 ),
               ),
+
+/*
               ListView.separated(
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -72,6 +74,7 @@ class _ChildDetailsView extends StatelessWidget {
                 separatorBuilder: (context, index) => const SizedBox(height: 16),
                 itemCount: state.activityRecords?.length ?? 0,
               ),
+*/
             ],
           ),
         );

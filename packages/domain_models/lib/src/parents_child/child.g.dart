@@ -15,6 +15,10 @@ Child _$ChildFromJson(Map<String, dynamic> json) => Child(
       age: json['age'] as int,
       isGenderMale: json['isGenderMale'] as bool,
       diagnosis: json['diagnosis'] as String,
+      emotionForecast: (json['emotionForecast'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(DateTime.parse(k),
+            $enumDecodeNullable(_$EmotionForecastEnumMap, e)),
+      ),
     );
 
 Map<String, dynamic> _$ChildToJson(Child instance) => <String, dynamic>{
@@ -26,4 +30,12 @@ Map<String, dynamic> _$ChildToJson(Child instance) => <String, dynamic>{
       'age': instance.age,
       'isGenderMale': instance.isGenderMale,
       'diagnosis': instance.diagnosis,
+      'emotionForecast': instance.emotionForecast?.map(
+          (k, e) => MapEntry(k.toIso8601String(), _$EmotionForecastEnumMap[e])),
     };
+
+const _$EmotionForecastEnumMap = {
+  EmotionForecast.sad: 'sad',
+  EmotionForecast.happy: 'happy',
+  EmotionForecast.angry: 'angry',
+};

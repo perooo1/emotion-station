@@ -51,44 +51,7 @@ class _ChildrenScreenView extends StatelessWidget {
             child: Center(
                 child: state.currentUser is Specialist
                     ? TherapistChildrenScreenView(children: state.children)
-                    : ParentChildrenScreenView(children: state.children)
-                /*
-              ListView.separated(
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                        state.children?[index].fullName ?? 'child name at index $index iz null'),
-                  );
-                },
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 16,
-                ),
-                itemCount: state.children?.length ?? 0,
-              ),
-
-               */
-/*
-              child: Column(
-                children: [
-                  Text('This is children screen'),
-                  const SizedBox(height: 16),
-
-                  ListView.separated(
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(state.children?[index].fullName ??
-                            'child name at index $index iz null'),
-                      );
-                    },
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 16,
-                    ),
-                    itemCount: state.children?.length ?? 0,
-                  ),
-                ],
-              ),
-*/
-                ),
+                    : ParentChildrenScreenView(children: state.children)),
           ),
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),

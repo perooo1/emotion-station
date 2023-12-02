@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:domain_models/domain_models.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'child.g.dart';
@@ -14,6 +15,7 @@ class Child {
     required this.age,
     required this.isGenderMale,
     required this.diagnosis,
+    this.emotionForecast,
   });
 
   final String id;
@@ -24,6 +26,7 @@ class Child {
   final int age;
   final bool isGenderMale;
   final String diagnosis;
+  final Map<DateTime, EmotionForecast?>? emotionForecast;
 
   String get fullName => '${this.name} ${this.lastName}';
   bool get isGenderFemale => !isGenderMale;

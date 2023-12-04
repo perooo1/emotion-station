@@ -1,8 +1,6 @@
 import 'package:domain_models/domain_models.dart';
-import 'package:emotion_station/features/children/bloc/child_details_cubit.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -64,9 +62,11 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               //selected: widget.selectedEmotion == EmotionForecast.sad,
               onSelected: (_) {
                 widget.setForecastEmotion(EmotionForecast.sad);
-                setState(() {
-                  currentState = EmotionForecast.sad;
-                });
+                setState(
+                  () {
+                    currentState = EmotionForecast.sad;
+                  },
+                );
               },
             ),
             ChoiceChip(
@@ -89,9 +89,11 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               //selected: widget.selectedEmotion == EmotionForecast.happy,
               onSelected: (_) {
                 widget.setForecastEmotion(EmotionForecast.happy);
-                setState(() {
-                  currentState = EmotionForecast.happy;
-                });
+                setState(
+                  () {
+                    currentState = EmotionForecast.happy;
+                  },
+                );
               },
             ),
             ChoiceChip(
@@ -114,13 +116,16 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               //selected: widget.selectedEmotion == EmotionForecast.angry,
               onSelected: (_) {
                 widget.setForecastEmotion(EmotionForecast.angry);
-                setState(() {
-                  currentState = EmotionForecast.angry;
-                });
+                setState(
+                  () {
+                    currentState = EmotionForecast.angry;
+                  },
+                );
               },
             ),
             TableCalendar(
-              focusedDay: DateTime.now(),
+              focusedDay: today,
+              startingDayOfWeek: StartingDayOfWeek.monday,
               firstDay: DateTime(2022),
               lastDay: DateTime.now(),
               onDaySelected: (selectedDay, focusedDay) => _onDaySelected(selectedDay, focusedDay),
@@ -141,11 +146,6 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
-    /*
-      pozovi cubit i postavi state? ili cemo to radit 
-      NENENE cubit pozvat klikom na gumb jer ovako će se svaki puta 
-      state updatead kada se promijeni datum
-      */
     setState(
       () {
         today = day;

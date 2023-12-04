@@ -34,6 +34,8 @@ class _ChildDetailsView extends StatelessWidget {
 
     final cubit = context.read<ChildDetailsCubit>();
 
+    final _currentDate = DateTime.now();
+
     return BlocBuilder<ChildDetailsCubit, ChildDetailsState>(
       builder: (context, state) {
         return Scaffold(
@@ -63,39 +65,54 @@ class _ChildDetailsView extends StatelessWidget {
                 ),
               ),
               TableCalendar(
-                focusedDay: DateTime.now(),
+                focusedDay: _currentDate,
                 firstDay: DateTime(2022),
                 startingDayOfWeek: StartingDayOfWeek.monday,
                 lastDay: DateTime.now(),
                 locale: '${lokal.languageCode}_${lokal.countryCode}',
-                /*
                 eventLoader: (day) {
-          
-          
+                  var a = state.emotionForecast?.entries
+                      .where(
+                        (element) =>
+                            element.key.year == day.year &&
+                            element.key.month == day.month &&
+                            element.key.day == day.day,
+                      )
+                      .map((e) => e.value)
+                      .toList();
+
+                  return a ?? [];
+                  /*
                   final List<DateTime> matchingDates = state.outbursts
                       .where((date) =>
                           date.year == day.year && date.month == day.month && date.day == day.day)
                       .toList();
           
                   return matchingDates;
-          
-          
-                  /*
-                      final List<DateTime> evnt = [];
-          
-                      if (state.outbursts.contains(day)) {
-                        evnt.add(day);
-                      }
-                      return evnt;
-                      */
-                },
           */
+                },
                 calendarBuilders: CalendarBuilders(
                   markerBuilder: (context, day, events) {
+                    if (events.isNotEmpty) {
+                      final a = events as List<EmotionForecast>;
+                      for (var element in a) {
+                        if (element.name == EmotionForecast.sad.name) {
+                          return Icon(Icons.cloudy_snowing);
+                        } else if (element.name == EmotionForecast.happy.name) {
+                          return Icon(Icons.wb_sunny_outlined);
+                        } else {
+                          return Icon(Icons.thunderstorm);
+                        }
+                      }
+                    }
+                    return null;
+
+/*
                     if (events.isNotEmpty) {
                       return Icon(Icons.celebration);
                     }
                     return null;
+*/
                   },
                 ),
               ),

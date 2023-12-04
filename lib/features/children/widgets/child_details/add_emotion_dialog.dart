@@ -124,6 +124,7 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               },
             ),
             TableCalendar(
+              headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
               focusedDay: today,
               startingDayOfWeek: StartingDayOfWeek.monday,
               firstDay: DateTime(2022),
@@ -132,7 +133,7 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               selectedDayPredicate: (day) => isSameDay(day, today),
             ),
             FilledButton(
-              child: Text('Add'),
+              child: Text(l10n.childDetailsScreenAddEmotion),
               onPressed: () {
                 widget.setForecastDate(today);
                 widget.setForecast();

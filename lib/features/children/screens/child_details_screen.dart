@@ -34,7 +34,7 @@ class _ChildDetailsView extends StatelessWidget {
 
     final cubit = context.read<ChildDetailsCubit>();
 
-    final _currentDate = DateTime.now();
+    var _focusedDay = DateTime.now();
 
     return BlocBuilder<ChildDetailsCubit, ChildDetailsState>(
       builder: (context, state) {
@@ -64,14 +64,175 @@ class _ChildDetailsView extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ChoiceChip(
+                        avatar: state.emotionsInCalendar == EmotionsInCalendar.all
+                            ? Icon(
+                                Icons.event_note,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              )
+                            : Icon(
+                                Icons.event_note_outlined,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              ),
+                        showCheckmark: false,
+                        label: Text(l10n.childDetailsScreenAllEmotions),
+                        selected: state.emotionsInCalendar == EmotionsInCalendar.all,
+                        onSelected: (_) {
+                          cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.all);
+                        },
+                      ),
+                      ChoiceChip(
+                        showCheckmark: false,
+                        avatar: state.emotionsInCalendar == EmotionsInCalendar.sad
+                            ? Icon(
+                                Icons.cloudy_snowing,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              )
+                            : Icon(
+                                Icons.cloud_outlined,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              ),
+                        label: Text(l10n.emotionForecastSad),
+                        selected: state.emotionsInCalendar == EmotionsInCalendar.sad,
+                        onSelected: (_) {
+                          cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.sad);
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 16.0),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ChoiceChip(
+                        showCheckmark: false,
+                        avatar: state.emotionsInCalendar == EmotionsInCalendar.angry
+                            ? Icon(
+                                Icons.thunderstorm,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              )
+                            : Icon(
+                                Icons.thunderstorm_outlined,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              ),
+                        label: Text(l10n.emotionForecastAngry),
+                        selected: state.emotionsInCalendar == EmotionsInCalendar.angry,
+                        onSelected: (_) {
+                          cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.angry);
+                        },
+                      ),
+                      ChoiceChip(
+                        showCheckmark: false,
+                        avatar: state.emotionsInCalendar == EmotionsInCalendar.happy
+                            ? Icon(
+                                Icons.sunny,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              )
+                            : Icon(
+                                Icons.wb_sunny_outlined,
+                                color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                                    ? Colors.white
+                                    : null,
+                              ),
+                        label: Text(l10n.emotionForecastHappy),
+                        selected: state.emotionsInCalendar == EmotionsInCalendar.happy,
+                        onSelected: (_) {
+                          cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.happy);
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
               TableCalendar(
-                focusedDay: _currentDate,
+                onPageChanged: (focusedDay) => _focusedDay = focusedDay,
+                headerStyle: const HeaderStyle(titleCentered: true, formatButtonVisible: false),
+                focusedDay: _focusedDay,
                 firstDay: DateTime(2022),
                 startingDayOfWeek: StartingDayOfWeek.monday,
                 lastDay: DateTime.now(),
                 locale: '${lokal.languageCode}_${lokal.countryCode}',
                 eventLoader: (day) {
-                  var a = state.emotionForecast?.entries
+                  if (state.emotionsInCalendar == EmotionsInCalendar.sad) {
+                    var forecast = state.emotionForecast?.entries
+                        .where(
+                          (element) =>
+                              element.key.year == day.year &&
+                              element.key.month == day.month &&
+                              element.key.day == day.day &&
+                              element.value == EmotionForecast.sad,
+                        )
+                        .map((e) => e.value)
+                        .toList();
+
+                    return forecast ?? [];
+                  } else if (state.emotionsInCalendar == EmotionsInCalendar.happy) {
+                    var forecast = state.emotionForecast?.entries
+                        .where(
+                          (element) =>
+                              element.key.year == day.year &&
+                              element.key.month == day.month &&
+                              element.key.day == day.day &&
+                              element.value == EmotionForecast.happy,
+                        )
+                        .map((e) => e.value)
+                        .toList();
+
+                    return forecast ?? [];
+                  } else if (state.emotionsInCalendar == EmotionsInCalendar.angry) {
+                    var forecast = state.emotionForecast?.entries
+                        .where(
+                          (element) =>
+                              element.key.year == day.year &&
+                              element.key.month == day.month &&
+                              element.key.day == day.day &&
+                              element.value == EmotionForecast.angry,
+                        )
+                        .map((e) => e.value)
+                        .toList();
+
+                    return forecast ?? [];
+                  } else {
+                    var forecast = state.emotionForecast?.entries
+                        .where(
+                          (element) =>
+                              element.key.year == day.year &&
+                              element.key.month == day.month &&
+                              element.key.day == day.day,
+                        )
+                        .map((e) => e.value)
+                        .toList();
+
+                    return forecast ?? [];
+                  }
+
+/*
+
+                  var forecast = state.emotionForecast?.entries
                       .where(
                         (element) =>
                             element.key.year == day.year &&
@@ -81,15 +242,8 @@ class _ChildDetailsView extends StatelessWidget {
                       .map((e) => e.value)
                       .toList();
 
-                  return a ?? [];
-                  /*
-                  final List<DateTime> matchingDates = state.outbursts
-                      .where((date) =>
-                          date.year == day.year && date.month == day.month && date.day == day.day)
-                      .toList();
-          
-                  return matchingDates;
-          */
+                  return forecast ?? [];
+*/
                 },
                 calendarBuilders: CalendarBuilders(
                   markerBuilder: (context, day, events) {
@@ -106,13 +260,6 @@ class _ChildDetailsView extends StatelessWidget {
                       }
                     }
                     return null;
-
-/*
-                    if (events.isNotEmpty) {
-                      return Icon(Icons.celebration);
-                    }
-                    return null;
-*/
                   },
                 ),
               ),
@@ -139,21 +286,23 @@ class _ChildDetailsView extends StatelessWidget {
 */
             ],
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            icon: Icon(Icons.mood),
-            label: Text(l10n.childDetailsScreenAddEmotion),
-            onPressed: () => showDialog(
-              context: context,
-              builder: (context) => AddEmotionDialog(
-                selectedEmotion: state.selectedEmotion,
-                childName: state.child.name,
-                setForecastEmotion: (EmotionForecast emotion) =>
-                    cubit.selectForecastEmotion(emotion),
-                setForecastDate: (DateTime date) => cubit.selectForecastDate(date),
-                setForecast: () => cubit.updateChildEmotionForecast(),
-              ),
-            ),
-          ),
+          floatingActionButton: cubit.authenticationManager.getCurrentUser().isParent
+              ? FloatingActionButton.extended(
+                  icon: Icon(Icons.mood),
+                  label: Text(l10n.childDetailsScreenAddEmotion),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => AddEmotionDialog(
+                      selectedEmotion: state.selectedEmotionAddDialog,
+                      childName: state.child.name,
+                      setForecastEmotion: (EmotionForecast emotion) =>
+                          cubit.selectForecastEmotionAddDialog(emotion),
+                      setForecastDate: (DateTime date) => cubit.selectForecastDateAddDialog(date),
+                      setForecast: () => cubit.updateChildEmotionForecast(),
+                    ),
+                  ),
+                )
+              : null,
         );
       },
     );

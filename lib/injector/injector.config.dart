@@ -55,6 +55,7 @@ Future<_i1.GetIt> init(
   ) =>
       _i9.ChildDetailsCubit(
         child: child,
+        authenticationManager: gh<_i8.IAuthenticationManager>(),
         databaseRepository: gh<_i8.IDatabaseRepository>(),
       ));
   gh.factory<_i10.ChildrenScreenCubit>(() => _i10.ChildrenScreenCubit(

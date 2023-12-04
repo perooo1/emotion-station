@@ -279,6 +279,12 @@ abstract class AppLocalizations {
   /// **'Add emotion'**
   String get childDetailsScreenAddEmotion;
 
+  /// No description provided for @childDetailsScreenAllEmotions.
+  ///
+  /// In en, this message translates to:
+  /// **'All emotions'**
+  String get childDetailsScreenAllEmotions;
+
   /// No description provided for @emotionForecastSad.
   ///
   /// In en, this message translates to:

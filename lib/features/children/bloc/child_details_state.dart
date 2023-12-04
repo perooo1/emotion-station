@@ -5,29 +5,38 @@ class ChildDetailsState extends Equatable {
     this.activityRecords,
     required this.child,
     this.selectedEmotion = EmotionForecast.happy,
-    this.selectedEmotionDate,
+    this.selectedEmotionAddDialog = EmotionForecast.happy,
+    this.selectedEmotionDateAddDialog,
     this.emotionForecast,
+    this.emotionsInCalendar = EmotionsInCalendar.all,
   });
 
   final List<ActivityRecord>? activityRecords;
   final Child child;
   final EmotionForecast selectedEmotion;
-  final DateTime? selectedEmotionDate;
+  final EmotionForecast selectedEmotionAddDialog;
+  final DateTime? selectedEmotionDateAddDialog;
   final Map<DateTime, EmotionForecast>? emotionForecast;
+  final EmotionsInCalendar emotionsInCalendar;
 
   ChildDetailsState copyWith({
     List<ActivityRecord>? activityRecords,
     Child? child,
     EmotionForecast? selectedEmotion,
-    DateTime? selectedEmotionDate,
+    EmotionForecast? selectedEmotionAddDialog,
+    DateTime? selectedEmotionDateAddDialog,
     Map<DateTime, EmotionForecast>? emotionForecast,
+    EmotionsInCalendar? emotionsInCalendar,
   }) {
     return ChildDetailsState(
       activityRecords: activityRecords ?? this.activityRecords,
       child: child ?? this.child,
       selectedEmotion: selectedEmotion ?? this.selectedEmotion,
-      selectedEmotionDate: selectedEmotionDate ?? this.selectedEmotionDate,
+      selectedEmotionAddDialog: selectedEmotionAddDialog ?? this.selectedEmotionAddDialog,
+      selectedEmotionDateAddDialog:
+          selectedEmotionDateAddDialog ?? this.selectedEmotionDateAddDialog,
       emotionForecast: emotionForecast ?? this.emotionForecast,
+      emotionsInCalendar: emotionsInCalendar ?? this.emotionsInCalendar,
     );
   }
 
@@ -36,7 +45,11 @@ class ChildDetailsState extends Equatable {
         activityRecords,
         child,
         selectedEmotion,
-        selectedEmotionDate,
+        selectedEmotionAddDialog,
+        selectedEmotionDateAddDialog,
         emotionForecast,
+        emotionsInCalendar,
       ];
 }
+
+enum EmotionsInCalendar { all, sad, happy, angry }

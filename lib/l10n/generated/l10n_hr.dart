@@ -98,6 +98,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get childDetailsScreenAddEmotion => 'Dodaj emociju';
 
   @override
+  String get childDetailsScreenAllEmotions => 'Sve emocije';
+
+  @override
   String get emotionForecastSad => 'Tužan, plačljiv';
 
   @override

@@ -98,6 +98,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get childDetailsScreenAddEmotion => 'Add emotion';
 
   @override
+  String get childDetailsScreenAllEmotions => 'All emotions';
+
+  @override
   String get emotionForecastSad => 'Sad, Weepy ';
 
   @override

@@ -11,28 +11,40 @@ part 'child_details_state.dart';
 class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   ChildDetailsCubit({
     @factoryParam required Child child,
+    required this.authenticationManager,
     required this.databaseRepository,
   }) : super(ChildDetailsState(child: child)) {
     _startListening();
   }
 
+  final IAuthenticationManager authenticationManager;
   final IDatabaseRepository databaseRepository;
 
   Stream<QuerySnapshot>? _activityRecordsStream;
   Stream<QuerySnapshot>? _singleChildStream;
 
-  void selectForecastEmotion(EmotionForecast emotion) {
-    emit(state.copyWith(selectedEmotion: emotion));
+  void selectForecastEmotionToDisplay(EmotionsInCalendar emotion) {
+    emit(state.copyWith(emotionsInCalendar: emotion));
   }
 
-  void selectForecastDate(DateTime date) {
-    emit(state.copyWith(selectedEmotionDate: DateTime(date.year, date.month, date.day)));
+/*
+  void selectForecastEmotionToDisplay(EmotionForecast emotion) {
+    emit(state.copyWith(selectedEmotion: emotion));
+  }
+*/
+  void selectForecastEmotionAddDialog(EmotionForecast emotion) {
+    emit(state.copyWith(selectedEmotionAddDialog: emotion));
+  }
+
+  void selectForecastDateAddDialog(DateTime date) {
+    emit(state.copyWith(selectedEmotionDateAddDialog: DateTime(date.year, date.month, date.day)));
   }
 
   Future<void> updateChildEmotionForecast() async {
     final forecast = state.emotionForecast;
     if (forecast != null) {
-      forecast[state.selectedEmotionDate ?? DateTime.now()] = state.selectedEmotion;
+      forecast[state.selectedEmotionDateAddDialog ?? DateTime.now()] =
+          state.selectedEmotionAddDialog;
 
       final a = await databaseRepository.updateChildEmotionForecast(
         childId: state.child.id,
@@ -40,7 +52,7 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
       );
     } else {
       final Map<DateTime, EmotionForecast> newForecast = {
-        state.selectedEmotionDate ?? DateTime.now(): state.selectedEmotion
+        state.selectedEmotionDateAddDialog ?? DateTime.now(): state.selectedEmotionAddDialog
       };
 
       final a = await databaseRepository.updateChildEmotionForecast(

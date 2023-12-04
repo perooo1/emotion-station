@@ -285,6 +285,30 @@ abstract class AppLocalizations {
   /// **'All emotions'**
   String get childDetailsScreenAllEmotions;
 
+  /// No description provided for @childDetailsScreenChildInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Child info'**
+  String get childDetailsScreenChildInfo;
+
+  /// No description provided for @childDetailsScreenChildActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get childDetailsScreenChildActivities;
+
+  /// No description provided for @childDetailsScreenChildActivitiesOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get childDetailsScreenChildActivitiesOverview;
+
+  /// No description provided for @childDetailsScreenChildActivitiesCompletedActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed activities'**
+  String get childDetailsScreenChildActivitiesCompletedActivities;
+
   /// No description provided for @emotionForecastSad.
   ///
   /// In en, this message translates to:

@@ -38,6 +38,10 @@
 
     "childDetailsScreenAddEmotion":"Dodaj emociju",
     "childDetailsScreenAllEmotions":"Sve emocije",
+    "childDetailsScreenChildInfo":"Informacije o djetetu",
+    "childDetailsScreenChildActivities":"Aktivnosti",
+    "childDetailsScreenChildActivitiesOverview":"Pregled",
+    "childDetailsScreenChildActivitiesCompletedActivities":"Riješene aktivnosit",
 
     "emotionForecastSad":"Tužan, plačljiv",
     "emotionForecastHappy":"Sretan, dobro raspoložen",

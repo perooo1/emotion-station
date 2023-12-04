@@ -101,6 +101,18 @@ class AppLocalizationsHr extends AppLocalizations {
   String get childDetailsScreenAllEmotions => 'Sve emocije';
 
   @override
+  String get childDetailsScreenChildInfo => 'Informacije o djetetu';
+
+  @override
+  String get childDetailsScreenChildActivities => 'Aktivnosti';
+
+  @override
+  String get childDetailsScreenChildActivitiesOverview => 'Pregled';
+
+  @override
+  String get childDetailsScreenChildActivitiesCompletedActivities => 'Riješene aktivnosit';
+
+  @override
   String get emotionForecastSad => 'Tužan, plačljiv';
 
   @override

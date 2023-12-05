@@ -21,57 +21,109 @@ class ESBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: BarChart(
-            BarChartData(
-              maxY: maxY,
-              borderData: FlBorderData(show: false),
-              titlesData: FlTitlesData(
-                show: true,
-                rightTitles: const AxisTitles(
-                  sideTitles: SideTitles(showTitles: false),
-                ),
-                topTitles: const AxisTitles(
-                  sideTitles: SideTitles(showTitles: false),
-                ),
-                bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                    showTitles: true,
-                    reservedSize: 42,
-                    interval: 1,
-                    getTitlesWidget: isObservationCategoryChart
-                        ? _bottomTitlesObservationCategoryChart
-                        : _bottomTitlesOverviewChart,
-                  ),
-                ),
-                leftTitles: isShowingDurationData
-                    ? AxisTitles(
-                        axisNameWidget: Text(yAxisName ?? ''),
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          interval: 1,
-                          reservedSize: 45,
-                        ),
-                      )
-                    : AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          interval: 1,
-                          reservedSize: 45,
-                          getTitlesWidget: _leftTitlesComprehension,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          children: [
+            if (isGeneralOverview)
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(6.0),
+                        decoration: BoxDecoration(
+                          color: Colors.greenAccent,
+                          shape: BoxShape.circle,
                         ),
                       ),
+                      const SizedBox(width: 8),
+                      Text('Prepoznavanje emocije')
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(6.0),
+                        decoration: BoxDecoration(
+                          color: Colors.orangeAccent,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text('Textualno razumijevanje')
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(6.0),
+                        decoration: BoxDecoration(
+                          color: Colors.redAccent,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text('Vizualno razumijevanje')
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                ],
               ),
-              barGroups: barGroups,
-              gridData: isShowingDurationData
-                  ? const FlGridData(drawHorizontalLine: true)
-                  : const FlGridData(show: false),
+            AspectRatio(
+              aspectRatio: 1,
+              child: BarChart(
+                BarChartData(
+                  maxY: maxY,
+                  borderData: FlBorderData(show: false),
+                  titlesData: FlTitlesData(
+                    show: true,
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 42,
+                        interval: 1,
+                        getTitlesWidget: isObservationCategoryChart
+                            ? _bottomTitlesObservationCategoryChart
+                            : _bottomTitlesOverviewChart,
+                      ),
+                    ),
+                    leftTitles: isShowingDurationData
+                        ? AxisTitles(
+                            axisNameWidget: Text(yAxisName ?? ''),
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              interval: 1,
+                              reservedSize: 45,
+                            ),
+                          )
+                        : AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              interval: 1,
+                              reservedSize: 45,
+                              getTitlesWidget: _leftTitlesComprehension,
+                            ),
+                          ),
+                  ),
+                  barGroups: barGroups,
+                  gridData: isShowingDurationData
+                      ? const FlGridData(drawHorizontalLine: true)
+                      : const FlGridData(show: false),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -93,9 +145,10 @@ class ESBarChart extends StatelessWidget {
 
   Widget _bottomTitlesOverviewChart(double value, TitleMeta meta) {
     if (isGeneralOverview == true) {
-      final titles = <String>['Happiness', 'Sadness', 'Fear', 'Anger'];
+      final titles = <String>['Happy', 'Sadness', 'Fear', 'Anger'];
+      final titlesCroatian = <String>['Sreća', 'Tuga', 'Strah', 'Ljutnja'];
 
-      final Widget text = Text(titles[value.toInt()]);
+      final Widget text = Text(titlesCroatian[value.toInt()]);
       return SideTitleWidget(
         space: 16.0,
         axisSide: meta.axisSide,
@@ -103,8 +156,9 @@ class ESBarChart extends StatelessWidget {
       );
     } else {
       final titles = <String>['Recognition', 'Textual', 'Visual'];
+      final titlesCroatian = <String>['Prepoznavanje', 'Teskt', 'Vizualno'];
 
-      final Widget text = Text(titles[value.toInt()]);
+      final Widget text = Text(titlesCroatian[value.toInt()]);
       return SideTitleWidget(
         space: 16.0,
         axisSide: meta.axisSide,
@@ -118,11 +172,14 @@ class ESBarChart extends StatelessWidget {
 
     if (isGeneralOverview == true) {
       if (value == 0) {
-        text = 'Low';
+        text = 'Nisko';
+        //text = 'Low';
       } else if (value == 20) {
-        text = 'Partial';
+        text = 'Djelomično';
+        //text = 'Partial';
       } else if (value == 39) {
-        text = 'High';
+        text = 'Visoko';
+        //text = 'High';
       } else {
         return Container();
       }
@@ -134,11 +191,14 @@ class ESBarChart extends StatelessWidget {
       );
     } else {
       if (value == 0) {
-        text = 'Low';
+        text = 'Nisko';
+        //text = 'Low';
       } else if (value == 10) {
-        text = 'Partial';
+        text = 'Djelomično';
+        //text = 'Partial';
       } else if (value == 19) {
-        text = 'High';
+        text = 'Visoko';
+        //text = 'High';
       } else {
         return Container();
       }

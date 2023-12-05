@@ -26,6 +26,7 @@ class ChildActivitesOverviewTab extends StatelessWidget {
             ESRadarChart(
               rawDataSets: cubit.state.overviewRadarChartData?.rawData ?? [],
               dataSets: cubit.state.overviewRadarChartData?.radarDataset ?? [],
+              isGeneralOverview: true,
             ),
             ESBarChart(
               barGroups: cubit.state.overviewBarChartData?.dataGroups,

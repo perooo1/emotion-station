@@ -149,21 +149,21 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
     );
 
     final barGroupSadness = _createOverviewTabBarChartDataGroup(
-      x: 0,
+      x: 1,
       y1: stationOfSadnessData['recognition'] ?? 0.0,
       y2: stationOfSadnessData['textual'] ?? 0.0,
       y3: stationOfSadnessData['visual'] ?? 0.0,
     );
 
     final barGroupFear = _createOverviewTabBarChartDataGroup(
-      x: 0,
+      x: 2,
       y1: stationOfFearData['recognition'] ?? 0.0,
       y2: stationOfFearData['textual'] ?? 0.0,
       y3: stationOfFearData['visual'] ?? 0.0,
     );
 
     final barGroupAnger = _createOverviewTabBarChartDataGroup(
-      x: 0,
+      x: 3,
       y1: stationOfAngerData['recognition'] ?? 0.0,
       y2: stationOfAngerData['textual'] ?? 0.0,
       y3: stationOfAngerData['visual'] ?? 0.0,
@@ -257,28 +257,31 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
       _mapToRadarDataSet(
         stationOfHappinessData,
         stationOfHappinessColor,
-        'Station of Happiness',
+        'Stanica sreće',
+        //'Station of Happiness',
       ),
     );
     rawDataSets.add(
       _mapToRadarDataSet(
         stationOfSadnessData,
         stationOfSadnessColor,
-        'Station of Sadness',
+        'Stanica tuge',
       ),
     );
     rawDataSets.add(
       _mapToRadarDataSet(
         stationOfFearData,
         stationOfFearColor,
-        'Station of Fear',
+        'Stanica straha',
+        //'Station of Fear',
       ),
     );
     rawDataSets.add(
       _mapToRadarDataSet(
         stationOfAngerData,
         stationOfAngerColor,
-        'Station of Anger',
+        'Stanica ljutnje',
+        //'Station of Anger',
       ),
     );
 

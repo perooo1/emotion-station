@@ -9,10 +9,12 @@ class ESBarChart extends StatelessWidget {
     this.isShowingDurationData = false,
     required this.maxY,
     super.key,
+    this.isGeneralOverview = false,
   });
 
   final bool isShowingDurationData;
   final bool isObservationCategoryChart;
+  final bool isGeneralOverview;
   final String? yAxisName;
   final List<BarChartGroupData>? barGroups;
   final double maxY;
@@ -90,33 +92,62 @@ class ESBarChart extends StatelessWidget {
   }
 
   Widget _bottomTitlesOverviewChart(double value, TitleMeta meta) {
-    final titles = <String>['Recognition', 'Textual', 'Visual'];
+    if (isGeneralOverview == true) {
+      final titles = <String>['Happiness', 'Sadness', 'Fear', 'Anger'];
 
-    final Widget text = Text(titles[value.toInt()]);
-    return SideTitleWidget(
-      space: 16.0,
-      axisSide: meta.axisSide,
-      child: text,
-    );
+      final Widget text = Text(titles[value.toInt()]);
+      return SideTitleWidget(
+        space: 16.0,
+        axisSide: meta.axisSide,
+        child: text,
+      );
+    } else {
+      final titles = <String>['Recognition', 'Textual', 'Visual'];
+
+      final Widget text = Text(titles[value.toInt()]);
+      return SideTitleWidget(
+        space: 16.0,
+        axisSide: meta.axisSide,
+        child: text,
+      );
+    }
   }
 
   Widget _leftTitlesComprehension(double value, TitleMeta meta) {
     String text;
 
-    if (value == 0) {
-      text = 'Low';
-    } else if (value == 10) {
-      text = 'Partial';
-    } else if (value == 19) {
-      text = 'High';
-    } else {
-      return Container();
-    }
+    if (isGeneralOverview == true) {
+      if (value == 0) {
+        text = 'Low';
+      } else if (value == 20) {
+        text = 'Partial';
+      } else if (value == 39) {
+        text = 'High';
+      } else {
+        return Container();
+      }
 
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 0,
-      child: Text(text),
-    );
+      return SideTitleWidget(
+        axisSide: meta.axisSide,
+        space: 0,
+        child: Text(text),
+      );
+    } else {
+      if (value == 0) {
+        text = 'Low';
+      } else if (value == 10) {
+        text = 'Partial';
+      } else if (value == 19) {
+        text = 'High';
+      } else {
+        return Container();
+      }
+
+      return SideTitleWidget(
+        axisSide: meta.axisSide,
+        space: 0,
+        child: Text(text),
+      );
+    }
   }
 }

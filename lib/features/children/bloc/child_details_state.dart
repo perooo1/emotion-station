@@ -9,6 +9,12 @@ class ChildDetailsState extends Equatable {
     this.selectedEmotionDateAddDialog,
     this.emotionForecast,
     this.emotionsInCalendar = EmotionsInCalendar.all,
+    this.stationOfHappinessRecords,
+    this.stationOfSadnessRecords,
+    this.stationOfAngerRecords,
+    this.stationOfFearRecords,
+    this.overviewBarChartData,
+    this.overviewRadarChartData,
   });
 
   final List<ActivityRecord>? activityRecords;
@@ -19,7 +25,16 @@ class ChildDetailsState extends Equatable {
   final Map<DateTime, EmotionForecast>? emotionForecast;
   final EmotionsInCalendar emotionsInCalendar;
 
+  final List<ActivityRecord>? stationOfHappinessRecords;
+  final List<ActivityRecord>? stationOfSadnessRecords;
+  final List<ActivityRecord>? stationOfAngerRecords;
+  final List<ActivityRecord>? stationOfFearRecords;
+
+  final BarChartDataHolder? overviewBarChartData;
+  final RadarChartDataHolder? overviewRadarChartData;
+
   ChildDetailsState copyWith({
+    //potencijalno dodat podatke za grafove da budu jednaki početnim this.
     List<ActivityRecord>? activityRecords,
     Child? child,
     EmotionForecast? selectedEmotion,
@@ -37,6 +52,37 @@ class ChildDetailsState extends Equatable {
           selectedEmotionDateAddDialog ?? this.selectedEmotionDateAddDialog,
       emotionForecast: emotionForecast ?? this.emotionForecast,
       emotionsInCalendar: emotionsInCalendar ?? this.emotionsInCalendar,
+      stationOfHappinessRecords: stationOfHappinessRecords,
+      stationOfSadnessRecords: stationOfSadnessRecords,
+      stationOfFearRecords: stationOfFearRecords,
+      stationOfAngerRecords: stationOfAngerRecords,
+      overviewBarChartData: overviewBarChartData,
+      overviewRadarChartData: overviewRadarChartData,
+    );
+  }
+
+  ChildDetailsState copyWithActivitiesOverviewData({
+    List<ActivityRecord>? stationOfHappinessRecords,
+    List<ActivityRecord>? stationOfSadnessRecords,
+    List<ActivityRecord>? stationOfAngerRecords,
+    List<ActivityRecord>? stationOfFearRecords,
+    BarChartDataHolder? overviewBarChartData,
+    RadarChartDataHolder? overviewRadarChartData,
+  }) {
+    return ChildDetailsState(
+      activityRecords: activityRecords,
+      child: child,
+      selectedEmotion: selectedEmotion,
+      selectedEmotionAddDialog: selectedEmotionAddDialog,
+      selectedEmotionDateAddDialog: selectedEmotionDateAddDialog,
+      emotionForecast: emotionForecast,
+      emotionsInCalendar: emotionsInCalendar,
+      stationOfHappinessRecords: stationOfHappinessRecords ?? this.stationOfHappinessRecords,
+      stationOfSadnessRecords: stationOfSadnessRecords ?? this.stationOfSadnessRecords,
+      stationOfAngerRecords: stationOfAngerRecords ?? this.stationOfAngerRecords,
+      stationOfFearRecords: stationOfFearRecords ?? this.stationOfFearRecords,
+      overviewBarChartData: overviewBarChartData ?? this.overviewBarChartData,
+      overviewRadarChartData: overviewRadarChartData ?? this.overviewRadarChartData,
     );
   }
 
@@ -49,6 +95,12 @@ class ChildDetailsState extends Equatable {
         selectedEmotionDateAddDialog,
         emotionForecast,
         emotionsInCalendar,
+        stationOfHappinessRecords,
+        stationOfSadnessRecords,
+        stationOfAngerRecords,
+        stationOfFearRecords,
+        overviewBarChartData,
+        overviewRadarChartData,
       ];
 }
 

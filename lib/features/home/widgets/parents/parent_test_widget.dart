@@ -111,7 +111,7 @@ class ParentTestWidget extends StatelessWidget {
                         ActivityRouteParameters.childId: cubit.state.selectedChild!.id
                       },
                       queryParameters: {
-                        ActivityRouteParameters.activityType: ActivityType.stationOfSadness.name
+                        ActivityRouteParameters.activityType: ActivityType.stationOfFear.name
                       },
                     );
                   },
@@ -129,7 +129,7 @@ class ParentTestWidget extends StatelessWidget {
                         ActivityRouteParameters.childId: cubit.state.selectedChild!.id
                       },
                       queryParameters: {
-                        ActivityRouteParameters.activityType: ActivityType.stationOfSadness.name
+                        ActivityRouteParameters.activityType: ActivityType.stationOfAnger.name
                       },
                     );
                   },

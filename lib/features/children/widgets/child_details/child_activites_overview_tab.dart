@@ -24,6 +24,7 @@ class ChildActivitesOverviewTab extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ESRadarChart(
+              rawDataSets: cubit.state.overviewRadarChartData?.rawData ?? [],
               dataSets: cubit.state.overviewRadarChartData?.radarDataset ?? [],
             ),
             ESBarChart(

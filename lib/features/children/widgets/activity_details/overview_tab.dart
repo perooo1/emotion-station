@@ -33,7 +33,10 @@ class OverviewTab extends StatelessWidget {
               spots: cubit.state.homeTabLineChartData?.spots ?? [],
             ),
             const SizedBox(height: 12.0),
-            ESRadarChart(dataSets: cubit.state.homeTabRadarChartData?.radarDataset ?? []),
+            ESRadarChart(
+              rawDataSets: cubit.state.homeTabRadarChartData?.rawData ?? [],
+              dataSets: cubit.state.homeTabRadarChartData?.radarDataset ?? [],
+            ),
           ],
         ),
       ),

@@ -253,10 +253,34 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
 
     final List<RadarChartDataSet> rawDataSets = [];
 
-    rawDataSets.add(_mapToRadarDataSet(stationOfHappinessData, stationOfHappinessColor));
-    rawDataSets.add(_mapToRadarDataSet(stationOfSadnessData, stationOfSadnessColor));
-    rawDataSets.add(_mapToRadarDataSet(stationOfFearData, stationOfFearColor));
-    rawDataSets.add(_mapToRadarDataSet(stationOfAngerData, stationOfAngerColor));
+    rawDataSets.add(
+      _mapToRadarDataSet(
+        stationOfHappinessData,
+        stationOfHappinessColor,
+        'Station of Happiness',
+      ),
+    );
+    rawDataSets.add(
+      _mapToRadarDataSet(
+        stationOfSadnessData,
+        stationOfSadnessColor,
+        'Station of Sadness',
+      ),
+    );
+    rawDataSets.add(
+      _mapToRadarDataSet(
+        stationOfFearData,
+        stationOfFearColor,
+        'Station of Fear',
+      ),
+    );
+    rawDataSets.add(
+      _mapToRadarDataSet(
+        stationOfAngerData,
+        stationOfAngerColor,
+        'Station of Anger',
+      ),
+    );
 
     final List<RadarDataSet> radarDataset = rawDataSets.asMap().entries.map(
       (entry) {
@@ -313,9 +337,13 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
     return results;
   }
 
-  RadarChartDataSet _mapToRadarDataSet(Map<String, double> averageData, Color color) {
+  RadarChartDataSet _mapToRadarDataSet(
+    Map<String, double> averageData,
+    Color color,
+    String title,
+  ) {
     return RadarChartDataSet(
-      title: 'Comprehension lvlv',
+      title: title,
       color: color,
       values: [
         averageData['recognition'] ?? 0.0,

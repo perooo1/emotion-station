@@ -35,6 +35,11 @@
     "childrenScreenEnterChildDiagnosis":"Dijagnoza:",
     "childrenScreenEnterChildBoy":"Dječak",
     "childrenScreenEnterChildGirl":"Djevojčica",
+    "childrenScreenEnterChildPregnancyBirthWeek":"Tjedan trudnoće u kojem je dijete rođeno",
+    "childrenScreenEnterChildPregnancyTreatmentStartMonth":"Početak tretmana",
+    "childrenScreenEnterChildPregnancyStartOfTreatment":"Tretman krenuo",
+    "childrenScreenEnterChildAttendsKindergarten":"Pohađa dječji vrtić?",
+    "childrenScreenEnterChildRiskyPregnancy":"Rizična trudnoća?",
 
     "childDetailsScreenAddEmotion":"Dodaj emociju",
     "childDetailsScreenAllEmotions":"Sve emocije",

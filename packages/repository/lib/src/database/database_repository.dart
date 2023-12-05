@@ -230,6 +230,10 @@ class DatabaseRepository implements IDatabaseRepository {
           age: 0,
           isGenderMale: true,
           diagnosis: '',
+          attendsKindergarten: false,
+          riskyPregnancy: false,
+          pregnancyBirthWeek: 22,
+          treatmentStartMonth: DateTime.now(),
         );
       }
     } on FirebaseException catch (e) {
@@ -242,6 +246,10 @@ class DatabaseRepository implements IDatabaseRepository {
         age: 0,
         isGenderMale: true,
         diagnosis: '',
+        attendsKindergarten: false,
+        riskyPregnancy: false,
+        pregnancyBirthWeek: 22,
+        treatmentStartMonth: DateTime.now(),
       );
     }
   }

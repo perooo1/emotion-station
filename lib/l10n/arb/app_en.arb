@@ -35,6 +35,11 @@
     "childrenScreenEnterChildDiagnosis":"Diagnosis:",
     "childrenScreenEnterChildBoy":"Boy",
     "childrenScreenEnterChildGirl":"Girl",
+    "childrenScreenEnterChildPregnancyBirthWeek":"Pregnancy birth week",
+    "childrenScreenEnterChildPregnancyTreatmentStartMonth":"Select treatment start month",
+    "childrenScreenEnterChildPregnancyStartOfTreatment":"Start of treatment",
+    "childrenScreenEnterChildAttendsKindergarten":"Attends kindergarten?",
+    "childrenScreenEnterChildRiskyPregnancy":"Risky pregnancy?",
 
     "childDetailsScreenAddEmotion":"Add emotion",
     "childDetailsScreenAllEmotions":"All emotions",

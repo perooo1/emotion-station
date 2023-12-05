@@ -2,6 +2,7 @@ import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/bloc/child_details_cubit.dart';
 import 'package:emotion_station/features/children/children.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -35,7 +36,7 @@ class _ChildDetailsView extends StatelessWidget {
           length: 2,
           child: Scaffold(
             appBar: AppBar(
-              title: Text(state.child.fullName),
+              title: Text(state.child.fullName.capitalize()),
               centerTitle: true,
               bottom: TabBar(
                 tabs: [

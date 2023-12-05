@@ -1,6 +1,7 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/bloc/completed_activity_cubit.dart';
 import 'package:emotion_station/features/children/children.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -24,6 +25,8 @@ class _CompletedActivityDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return BlocBuilder<CompletedActivityCubit, CompletedActivityState>(
       builder: (context, state) {
         return DefaultTabController(
@@ -32,7 +35,18 @@ class _CompletedActivityDetailsView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text(state.activityRecord.emotionStation.stationName),
+              title: Text(
+                state.activityRecord.emotionStation.activityType == ActivityType.stationOfHappiness
+                    ? l10n.stationOfHappiness
+                    : state.activityRecord.emotionStation.activityType ==
+                            ActivityType.stationOfSadness
+                        ? l10n.stationOfSadness
+                        : state.activityRecord.emotionStation.activityType ==
+                                ActivityType.stationOfFear
+                            ? l10n.stationOfFear
+                            : l10n.stationOfAnger,
+              ),
+              //title: Text(state.activityRecord.emotionStation.stationName),
               bottom: TabBar(
                 tabs: [
                   Tab(

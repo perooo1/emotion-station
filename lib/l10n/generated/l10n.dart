@@ -273,6 +273,36 @@ abstract class AppLocalizations {
   /// **'Girl'**
   String get childrenScreenEnterChildGirl;
 
+  /// No description provided for @childrenScreenEnterChildPregnancyBirthWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Pregnancy birth week'**
+  String get childrenScreenEnterChildPregnancyBirthWeek;
+
+  /// No description provided for @childrenScreenEnterChildPregnancyTreatmentStartMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Select treatment start month'**
+  String get childrenScreenEnterChildPregnancyTreatmentStartMonth;
+
+  /// No description provided for @childrenScreenEnterChildPregnancyStartOfTreatment.
+  ///
+  /// In en, this message translates to:
+  /// **'Start of treatment'**
+  String get childrenScreenEnterChildPregnancyStartOfTreatment;
+
+  /// No description provided for @childrenScreenEnterChildAttendsKindergarten.
+  ///
+  /// In en, this message translates to:
+  /// **'Attends kindergarten?'**
+  String get childrenScreenEnterChildAttendsKindergarten;
+
+  /// No description provided for @childrenScreenEnterChildRiskyPregnancy.
+  ///
+  /// In en, this message translates to:
+  /// **'Risky pregnancy?'**
+  String get childrenScreenEnterChildRiskyPregnancy;
+
   /// No description provided for @childDetailsScreenAddEmotion.
   ///
   /// In en, this message translates to:

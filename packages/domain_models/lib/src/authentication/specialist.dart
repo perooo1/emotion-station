@@ -17,10 +17,20 @@ class Specialist extends User {
     super.password,
     this.connectedParents,
     this.assignedChildren,
+    this.workAddress,
+    this.workHours,
+    this.professionalPhoneNum,
+    this.occupation,
+    this.additionalEducation,
   });
 
   final List<String>? connectedParents; //list of parents' ids
   final List<String>? assignedChildren; //list of childrens' ids
+  final String? workAddress;
+  final String? workHours;
+  final String? professionalPhoneNum;
+  final String? occupation;
+  final String? additionalEducation;
 
   factory Specialist.fromJson(Map<String, dynamic> json) => _$SpecialistFromJson(json);
   Map<String, dynamic> toJson() => _$SpecialistToJson(this);

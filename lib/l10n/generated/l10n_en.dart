@@ -95,6 +95,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get childrenScreenEnterChildGirl => 'Girl';
 
   @override
+  String get childrenScreenEnterChildPregnancyBirthWeek => 'Pregnancy birth week';
+
+  @override
+  String get childrenScreenEnterChildPregnancyTreatmentStartMonth => 'Select treatment start month';
+
+  @override
+  String get childrenScreenEnterChildPregnancyStartOfTreatment => 'Start of treatment';
+
+  @override
+  String get childrenScreenEnterChildAttendsKindergarten => 'Attends kindergarten?';
+
+  @override
+  String get childrenScreenEnterChildRiskyPregnancy => 'Risky pregnancy?';
+
+  @override
   String get childDetailsScreenAddEmotion => 'Add emotion';
 
   @override

@@ -3,6 +3,8 @@ import 'package:emotion_station/components/components.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:repository/repository.dart';
 import 'package:uuid/uuid.dart';
 
@@ -26,6 +28,10 @@ class _AddChildDialogState extends State<AddChildDialog> {
   int? _age;
   bool _isGenderMale = true;
   String _diagnosis = '';
+  bool _attendsKindergarten = false;
+  bool _riskyPregnancy = false;
+  int? _pregnancyBirthWeek;
+  DateTime _treatmentStartMonth = DateTime.now();
 
   Future<void> createChildInDatabase() async {
     final parent = widget.authenticationManager.getCurrentUser() as Parent;
@@ -39,6 +45,10 @@ class _AddChildDialogState extends State<AddChildDialog> {
       age: _age!,
       isGenderMale: _isGenderMale,
       diagnosis: _diagnosis,
+      attendsKindergarten: _attendsKindergarten,
+      riskyPregnancy: _riskyPregnancy,
+      pregnancyBirthWeek: _pregnancyBirthWeek!,
+      treatmentStartMonth: _treatmentStartMonth,
     );
 
     final addChildSuccess = await widget.databaseRepository.createChildInDatabase(
@@ -69,16 +79,21 @@ class _AddChildDialogState extends State<AddChildDialog> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(l10n.childrenScreenEnterChildInfoMessage),
+              Text(
+                l10n.childrenScreenEnterChildInfoMessage,
+                style: const TextStyle(fontStyle: FontStyle.italic),
+              ),
               const SizedBox(height: 16),
               ESTextInput(
                 borderRadius: 16.0,
                 height: 56.0,
                 labelText: l10n.childrenScreenEnterChildName,
                 onChanged: (name) {
-                  setState(() {
-                    _name = name;
-                  });
+                  setState(
+                    () {
+                      _name = name;
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 16),
@@ -87,9 +102,11 @@ class _AddChildDialogState extends State<AddChildDialog> {
                 height: 56.0,
                 labelText: l10n.childrenScreenEnterChildLast_name,
                 onChanged: (lastName) {
-                  setState(() {
-                    _lastName = lastName;
-                  });
+                  setState(
+                    () {
+                      _lastName = lastName;
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 16),
@@ -138,6 +155,71 @@ class _AddChildDialogState extends State<AddChildDialog> {
                     _diagnosis = diagnosis;
                   });
                 },
+              ),
+              const SizedBox(height: 16),
+              ESTextInput(
+                borderRadius: 16.0,
+                height: 56.0,
+                labelText: l10n.childrenScreenEnterChildPregnancyBirthWeek,
+                onChanged: (week) {
+                  setState(() {
+                    _pregnancyBirthWeek = int.parse(week);
+                  });
+                },
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    child: Text(l10n.childrenScreenEnterChildPregnancyTreatmentStartMonth),
+                    onPressed: () => showMonthPicker(
+                      context: context,
+                      lastDate: DateTime.now(),
+                      roundedCornersRadius: 27.0,
+                    ).then(
+                      (value) {
+                        if (value != null) {
+                          setState(
+                            () {
+                              _treatmentStartMonth = DateTime(value.year, value.month);
+                            },
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      '${l10n.childrenScreenEnterChildPregnancyStartOfTreatment}: ${DateFormat('MM/yyyy').format(_treatmentStartMonth)}',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Attends kindergarten?'),
+                  Switch(
+                    value: _attendsKindergarten,
+                    onChanged: (value) => setState(() => _attendsKindergarten = value),
+                  )
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Risky pregnancy?'),
+                  Switch(
+                    value: _riskyPregnancy,
+                    onChanged: (value) => setState(() => _riskyPregnancy = value),
+                  )
+                ],
               ),
               const SizedBox(height: 16),
               FilledButton(

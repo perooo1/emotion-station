@@ -97,6 +97,10 @@ class EmotionStationRouter extends IRouter {
                             age: 5,
                             isGenderMale: true,
                             diagnosis: 'diagnosis',
+                            attendsKindergarten: false,
+                            riskyPregnancy: false,
+                            pregnancyBirthWeek: 22,
+                            treatmentStartMonth: DateTime.now(),
                           );
 
                       return MaterialPage<void>(child: ChildDetailsScreen(child: child));

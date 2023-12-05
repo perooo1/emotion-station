@@ -19,6 +19,11 @@ Specialist _$SpecialistFromJson(Map<String, dynamic> json) => Specialist(
       assignedChildren: (json['assignedChildren'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      workAddress: json['workAddress'] as String?,
+      workHours: json['workHours'] as String?,
+      professionalPhoneNum: json['professionalPhoneNum'] as String?,
+      occupation: json['occupation'] as String?,
+      additionalEducation: json['additionalEducation'] as String?,
     );
 
 Map<String, dynamic> _$SpecialistToJson(Specialist instance) =>
@@ -31,4 +36,9 @@ Map<String, dynamic> _$SpecialistToJson(Specialist instance) =>
       'password': instance.password,
       'connectedParents': instance.connectedParents,
       'assignedChildren': instance.assignedChildren,
+      'workAddress': instance.workAddress,
+      'workHours': instance.workHours,
+      'professionalPhoneNum': instance.professionalPhoneNum,
+      'occupation': instance.occupation,
+      'additionalEducation': instance.additionalEducation,
     };

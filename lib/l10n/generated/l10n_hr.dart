@@ -95,6 +95,21 @@ class AppLocalizationsHr extends AppLocalizations {
   String get childrenScreenEnterChildGirl => 'Djevojčica';
 
   @override
+  String get childrenScreenEnterChildPregnancyBirthWeek => 'Tjedan trudnoće u kojem je dijete rođeno';
+
+  @override
+  String get childrenScreenEnterChildPregnancyTreatmentStartMonth => 'Početak tretmana';
+
+  @override
+  String get childrenScreenEnterChildPregnancyStartOfTreatment => 'Tretman krenuo';
+
+  @override
+  String get childrenScreenEnterChildAttendsKindergarten => 'Pohađa dječji vrtić?';
+
+  @override
+  String get childrenScreenEnterChildRiskyPregnancy => 'Rizična trudnoća?';
+
+  @override
   String get childDetailsScreenAddEmotion => 'Dodaj emociju';
 
   @override

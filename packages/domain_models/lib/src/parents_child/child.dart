@@ -16,6 +16,10 @@ class Child {
     required this.isGenderMale,
     required this.diagnosis,
     this.emotionForecast,
+    this.attendsKindergarten = false,
+    this.riskyPregnancy = false,
+    required this.pregnancyBirthWeek,
+    required this.treatmentStartMonth,
   });
 
   final String id;
@@ -27,6 +31,10 @@ class Child {
   final bool isGenderMale;
   final String diagnosis;
   final Map<DateTime, EmotionForecast>? emotionForecast;
+  final bool? attendsKindergarten;
+  final bool? riskyPregnancy;
+  final int? pregnancyBirthWeek;
+  final DateTime? treatmentStartMonth;
 
   String get fullName => '${this.name} ${this.lastName}';
   bool get isGenderFemale => !isGenderMale;

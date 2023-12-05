@@ -11,16 +11,29 @@ class ChildActivitesOverviewTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<ChildDetailsCubit>();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ESBarChart(
-          barGroups: cubit.state.overviewBarChartData?.dataGroups,
-          maxY: 40.0,
-          isGeneralOverview: true,
-        )
-      ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 16.0,
+          top: 16.0,
+          right: 16.0,
+          bottom: 75.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ESRadarChart(
+              dataSets: cubit.state.overviewRadarChartData?.radarDataset ?? [],
+            ),
+            ESBarChart(
+              barGroups: cubit.state.overviewBarChartData?.dataGroups,
+              maxY: 40.0,
+              isGeneralOverview: true,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

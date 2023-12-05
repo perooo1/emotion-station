@@ -18,7 +18,6 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
     required this.databaseRepository,
   }) : super(ChildDetailsState(child: child)) {
     _startListening();
-    //_mapOverviewTabCharts();
   }
 
   final IAuthenticationManager authenticationManager;
@@ -27,15 +26,15 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   Stream<QuerySnapshot>? _activityRecordsStream;
   Stream<QuerySnapshot>? _singleChildStream;
 
+  final Color stationOfHappinessColor = Colors.yellow;
+  final Color stationOfSadnessColor = Colors.blue;
+  final Color stationOfFearColor = Colors.purple;
+  final Color stationOfAngerColor = Colors.red;
+
   void selectForecastEmotionToDisplay(EmotionsInCalendar emotion) {
     emit(state.copyWith(emotionsInCalendar: emotion));
   }
 
-/*
-  void selectForecastEmotionToDisplay(EmotionForecast emotion) {
-    emit(state.copyWith(selectedEmotion: emotion));
-  }
-*/
   void selectForecastEmotionAddDialog(EmotionForecast emotion) {
     emit(state.copyWith(selectedEmotionAddDialog: emotion));
   }
@@ -119,7 +118,8 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
             stationOfFearRecords: stationOfFearRecords,
           ),
         );
-        _mapOverviewTabCharts();
+        _mapOverviewTabChart();
+        _mapOverviewRadarChart();
       },
     );
 
@@ -135,12 +135,11 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
 
   //Overview charts
 
-  void _mapOverviewTabCharts() {
-    final stationOfHappinessData = _calculateAverageData(state.stationOfHappinessRecords);
-    final stationOfSadnessData = _calculateAverageData(state.stationOfSadnessRecords);
-    final stationOfFearData = _calculateAverageData(state.stationOfFearRecords);
-    final stationOfAngerData = _calculateAverageData(state.stationOfAngerRecords);
-//bar grupe ce biti stanice
+  void _mapOverviewTabChart() {
+    final stationOfHappinessData = _calculateAverageBarChartData(state.stationOfHappinessRecords);
+    final stationOfSadnessData = _calculateAverageBarChartData(state.stationOfSadnessRecords);
+    final stationOfFearData = _calculateAverageBarChartData(state.stationOfFearRecords);
+    final stationOfAngerData = _calculateAverageBarChartData(state.stationOfAngerRecords);
 
     final barGroupHappiness = _createOverviewTabBarChartDataGroup(
       x: 0,
@@ -184,7 +183,7 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
     );
   }
 
-  Map<String, double> _calculateAverageData(List<ActivityRecord>? stationRecords) {
+  Map<String, double> _calculateAverageBarChartData(List<ActivityRecord>? stationRecords) {
     double recognitionData = 0.0;
     double textualData = 0.0;
     double visualData = 0.0;
@@ -203,9 +202,6 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
         visualData += element.understandingVisualAnswer2.toBarChartData();
       },
     );
-    print(recognitionData);
-    print(textualData);
-    print(visualData);
 
     recognitionData = recognitionData / (stationRecords?.length ?? 1.0);
     textualData = textualData / (stationRecords?.length ?? 1.0);
@@ -230,33 +226,101 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
       barRods: [
         BarChartRodData(
           toY: y1,
-          color: y1 == 19.0
-              ? Colors.greenAccent
-              : y1 == 10.0
-                  ? Colors.orangeAccent
-                  : Colors.redAccent,
+          color: Colors.greenAccent,
           width: 7,
         ),
         if (y2 != 0.0)
           BarChartRodData(
             toY: y2,
-            color: y2 == 19.0
-                ? Colors.greenAccent
-                : y2 == 10.0
-                    ? Colors.orangeAccent
-                    : Colors.redAccent,
+            color: Colors.orangeAccent,
             width: 7,
           ),
         if (y3 != 0.0)
           BarChartRodData(
             toY: y3,
-            color: y3 == 19.0
-                ? Colors.greenAccent
-                : y3 == 10.0
-                    ? Colors.orangeAccent
-                    : Colors.redAccent,
+            color: Colors.redAccent,
             width: 7,
           ),
+      ],
+    );
+  }
+
+  void _mapOverviewRadarChart() {
+    final stationOfHappinessData = _calculateAverageRadarChartData(state.stationOfHappinessRecords);
+    final stationOfSadnessData = _calculateAverageRadarChartData(state.stationOfSadnessRecords);
+    final stationOfFearData = _calculateAverageRadarChartData(state.stationOfFearRecords);
+    final stationOfAngerData = _calculateAverageRadarChartData(state.stationOfAngerRecords);
+
+    final List<RadarChartDataSet> rawDataSets = [];
+
+    rawDataSets.add(_mapToRadarDataSet(stationOfHappinessData, stationOfHappinessColor));
+    rawDataSets.add(_mapToRadarDataSet(stationOfSadnessData, stationOfSadnessColor));
+    rawDataSets.add(_mapToRadarDataSet(stationOfFearData, stationOfFearColor));
+    rawDataSets.add(_mapToRadarDataSet(stationOfAngerData, stationOfAngerColor));
+
+    final List<RadarDataSet> radarDataset = rawDataSets.asMap().entries.map(
+      (entry) {
+        final dataset = entry.value;
+
+        return RadarDataSet(
+          fillColor: dataset.color.withOpacity(0.2),
+          borderColor: dataset.color,
+          entryRadius: 3,
+          dataEntries: dataset.values.map((e) => RadarEntry(value: e)).toList(),
+          borderWidth: 2.3,
+        );
+      },
+    ).toList();
+
+    emit(
+      state.copyWithActivitiesOverviewData(
+        overviewRadarChartData: RadarChartDataHolder(
+          rawData: rawDataSets,
+          radarDataset: radarDataset,
+        ),
+      ),
+    );
+  }
+
+  Map<String, double> _calculateAverageRadarChartData(List<ActivityRecord>? stationRecords) {
+    double recognitionData = 0.0;
+    double textualData = 0.0;
+    double visualData = 0.0;
+
+    final Map<String, double> results = {};
+
+    stationRecords?.forEach(
+      (element) {
+        recognitionData += element.recognitionAnswer1.toRadarChartData();
+        recognitionData += element.recognitionAnswer2.toRadarChartData();
+
+        textualData += element.understandingTextualAnswer1.toRadarChartData();
+        textualData += element.understandingTextualAnswer2.toRadarChartData();
+
+        visualData += element.understandingVisualAnswer1.toRadarChartData();
+        visualData += element.understandingVisualAnswer2.toRadarChartData();
+      },
+    );
+
+    recognitionData = recognitionData / (stationRecords?.length ?? 1.0);
+    textualData = textualData / (stationRecords?.length ?? 1.0);
+    visualData = visualData / (stationRecords?.length ?? 1.0);
+
+    results['recognition'] = recognitionData;
+    results['textual'] = textualData;
+    results['visual'] = visualData;
+
+    return results;
+  }
+
+  RadarChartDataSet _mapToRadarDataSet(Map<String, double> averageData, Color color) {
+    return RadarChartDataSet(
+      title: 'Comprehension lvlv',
+      color: color,
+      values: [
+        averageData['recognition'] ?? 0.0,
+        averageData['textual'] ?? 0.0,
+        averageData['visual'] ?? 0.0,
       ],
     );
   }

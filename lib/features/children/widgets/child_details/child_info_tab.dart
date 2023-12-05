@@ -22,7 +22,6 @@ class ChildInfoTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 12),
           TableCalendar(
             onPageChanged: (focusedDay) => focusedDay = focusedDay,
             headerStyle: const HeaderStyle(titleCentered: true, formatButtonVisible: false),

@@ -151,8 +151,8 @@ class CompletedActivityCubit extends Cubit<CompletedActivityState> {
       final dataset = entry.value;
 
       return RadarDataSet(
-        fillColor: Colors.pink.withOpacity(0.2),
-        borderColor: Colors.pink,
+        fillColor: dataset.color.withOpacity(0.2),
+        borderColor: dataset.color,
         entryRadius: 3,
         dataEntries: dataset.values.map((e) => RadarEntry(value: e)).toList(),
         borderWidth: 2.3,

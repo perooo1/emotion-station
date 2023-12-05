@@ -34,7 +34,6 @@ class ChildDetailsState extends Equatable {
   final RadarChartDataHolder? overviewRadarChartData;
 
   ChildDetailsState copyWith({
-    //potencijalno dodat podatke za grafove da budu jednaki početnim this.
     List<ActivityRecord>? activityRecords,
     Child? child,
     EmotionForecast? selectedEmotion,

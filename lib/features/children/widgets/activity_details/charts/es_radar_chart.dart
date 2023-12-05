@@ -2,9 +2,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class ESRadarChart extends StatelessWidget {
-  const ESRadarChart({required this.dataSets, super.key});
+  const ESRadarChart({required this.dataSets, super.key, this.isGeneralOverview = false});
 
   final List<RadarDataSet> dataSets;
+  final bool isGeneralOverview;
 
   @override
   Widget build(BuildContext context) {

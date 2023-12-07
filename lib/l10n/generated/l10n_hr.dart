@@ -38,6 +38,12 @@ class AppLocalizationsHr extends AppLocalizations {
   String get cancelString => 'Odustani';
 
   @override
+  String get signOutString => 'Odjavi se';
+
+  @override
+  String get addChildString => 'Dodaj dijete';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override
@@ -51,6 +57,36 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get exitActivityDialogContent => 'Pitaj roditelja smiješ li izaći iz aktivnosti! Trenutni podatci će biti izgubljeni.';
+
+  @override
+  String get infoScreenTitleParent => 'Informacije o terapeutu';
+
+  @override
+  String get infoScreenTitleSpecialist => 'Vaše informacije';
+
+  @override
+  String get infoScreenEditInfo => 'Uredi informacije';
+
+  @override
+  String get infoScreenOccupation => 'Zanimanje';
+
+  @override
+  String get infoScreenWorkplace => 'Radno mjesto';
+
+  @override
+  String get infoScreenWorkHours => 'Radno vrijeme';
+
+  @override
+  String get infoScreenPhoneNumber => 'Broj telefona';
+
+  @override
+  String get infoScreenAdditionalEducation => 'Dodatne edukacije';
+
+  @override
+  String get infoScreenTherapistNotConnectedMessage => 'Kada se povežete, ovdje ćete moći vidjeti informacije o terapeutu.';
+
+  @override
+  String get infoScreenEditTherapistInfoDialogMessage => 'Roditelji će moći vidjeti informacije koje ovdje unesete';
 
   @override
   String get stationOfHappiness => 'Stanica sreće';

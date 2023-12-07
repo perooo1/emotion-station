@@ -11,6 +11,8 @@
     "parentEmail":"Parent's Email",
     "exitString":"Exit",
     "cancelString":"Cancel",
+    "signOutString":"Sign Out",
+    "addChildString":"Add child",
 
     "activityFinishedDialogMessage":"You have finished your journey and reached emotion station! You can now give back the phone to your parents!",
     "activityFinishedDialogButtonText":"Back to stations screen",
@@ -19,6 +21,17 @@
     
     "exitActivityDialogTitle":"Exit the activity?",
     "exitActivityDialogContent":"Ask your parent if you can exit the activity! If you exit current data will be lost.",
+
+    "infoScreenTitleParent":"Therapist Info",
+    "infoScreenTitleSpecialist":"Your Info",
+    "infoScreenEditInfo":"Edit Info",
+    "infoScreenOccupation":"Occupation",
+    "infoScreenWorkplace":"Workplace",
+    "infoScreenWorkHours":"Business hours",
+    "infoScreenPhoneNumber":"Phone number",
+    "infoScreenAdditionalEducation":"Additional education",
+    "infoScreenTherapistNotConnectedMessage":"When you connect with therapist, here you will be able to see information about them.",
+    "infoScreenEditTherapistInfoDialogMessage":"Parents will see the info you enter here",
 
     "stationOfHappiness":"Station of Happiness",
     "stationOfSadness":"Station of Sadness",

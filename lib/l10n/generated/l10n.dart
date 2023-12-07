@@ -159,6 +159,18 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancelString;
 
+  /// No description provided for @signOutString.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOutString;
+
+  /// No description provided for @addChildString.
+  ///
+  /// In en, this message translates to:
+  /// **'Add child'**
+  String get addChildString;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:
@@ -188,6 +200,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ask your parent if you can exit the activity! If you exit current data will be lost.'**
   String get exitActivityDialogContent;
+
+  /// No description provided for @infoScreenTitleParent.
+  ///
+  /// In en, this message translates to:
+  /// **'Therapist Info'**
+  String get infoScreenTitleParent;
+
+  /// No description provided for @infoScreenTitleSpecialist.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Info'**
+  String get infoScreenTitleSpecialist;
+
+  /// No description provided for @infoScreenEditInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Info'**
+  String get infoScreenEditInfo;
+
+  /// No description provided for @infoScreenOccupation.
+  ///
+  /// In en, this message translates to:
+  /// **'Occupation'**
+  String get infoScreenOccupation;
+
+  /// No description provided for @infoScreenWorkplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Workplace'**
+  String get infoScreenWorkplace;
+
+  /// No description provided for @infoScreenWorkHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Business hours'**
+  String get infoScreenWorkHours;
+
+  /// No description provided for @infoScreenPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get infoScreenPhoneNumber;
+
+  /// No description provided for @infoScreenAdditionalEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional education'**
+  String get infoScreenAdditionalEducation;
+
+  /// No description provided for @infoScreenTherapistNotConnectedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'When you connect with therapist, here you will be able to see information about them.'**
+  String get infoScreenTherapistNotConnectedMessage;
+
+  /// No description provided for @infoScreenEditTherapistInfoDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Parents will see the info you enter here'**
+  String get infoScreenEditTherapistInfoDialogMessage;
 
   /// No description provided for @stationOfHappiness.
   ///

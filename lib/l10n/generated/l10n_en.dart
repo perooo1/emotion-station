@@ -38,6 +38,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancelString => 'Cancel';
 
   @override
+  String get signOutString => 'Sign Out';
+
+  @override
+  String get addChildString => 'Add child';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override
@@ -51,6 +57,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exitActivityDialogContent => 'Ask your parent if you can exit the activity! If you exit current data will be lost.';
+
+  @override
+  String get infoScreenTitleParent => 'Therapist Info';
+
+  @override
+  String get infoScreenTitleSpecialist => 'Your Info';
+
+  @override
+  String get infoScreenEditInfo => 'Edit Info';
+
+  @override
+  String get infoScreenOccupation => 'Occupation';
+
+  @override
+  String get infoScreenWorkplace => 'Workplace';
+
+  @override
+  String get infoScreenWorkHours => 'Business hours';
+
+  @override
+  String get infoScreenPhoneNumber => 'Phone number';
+
+  @override
+  String get infoScreenAdditionalEducation => 'Additional education';
+
+  @override
+  String get infoScreenTherapistNotConnectedMessage => 'When you connect with therapist, here you will be able to see information about them.';
+
+  @override
+  String get infoScreenEditTherapistInfoDialogMessage => 'Parents will see the info you enter here';
 
   @override
   String get stationOfHappiness => 'Station of Happiness';

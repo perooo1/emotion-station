@@ -25,7 +25,7 @@ class ChildActivitiesCompletedActivitesTab extends StatelessWidget {
         return Card(
           color: Theme.of(context).colorScheme.tertiaryContainer,
           child: ListTile(
-            subtitle: Text(DateFormat('MM/yyyy')
+            subtitle: Text(DateFormat('dd/MM/yyyy')
                 .format(activityRecords?[index].timeOfActivity ?? DateTime.now())),
             title: Text(
               activityRecords?[index].emotionStation.activityType == ActivityType.stationOfHappiness

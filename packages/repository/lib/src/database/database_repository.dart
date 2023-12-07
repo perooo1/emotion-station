@@ -33,6 +33,14 @@ abstract class IDatabaseRepository {
   //update
   Future<bool> declineSpecialistConnection({required String parentId});
   Future<bool> approveSpecialistConnection({required String parentId});
+  Future<bool> updateSpecialistInformation({
+    required String specialistId,
+    required String occupation,
+    required String workplace,
+    required String workHours,
+    required String professionalPhoneNum,
+    required String additionalEducation,
+  });
 }
 
 @Singleton(as: IDatabaseRepository)
@@ -428,6 +436,33 @@ class DatabaseRepository implements IDatabaseRepository {
     } on FirebaseException catch (e) {
       print(
           'DB MANAGER - _removeAssignedSpecialistFromChild() : Error removing specialist from child: $e');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> updateSpecialistInformation({
+    required String specialistId,
+    required String occupation,
+    required String workplace,
+    required String workHours,
+    required String professionalPhoneNum,
+    required String additionalEducation,
+  }) async {
+    try {
+      //  requested doc not found
+      await instance.collection(FIRESTORE_COLLECTION_PARENTS).doc(specialistId).update(
+        {
+          'workAddress': workplace,
+          'workHours': workHours,
+          'occupation': occupation,
+          'professionalPhoneNum': professionalPhoneNum,
+          'additionalEducation': additionalEducation,
+        },
+      );
+      return true;
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - updateSpecialistInformation() : Error updateSpecialistInformation: $e');
       return false;
     }
   }

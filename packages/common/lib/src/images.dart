@@ -7,6 +7,8 @@ class Images {
   static const fearNervous = 'assets/images/fear_nervous.webp';
   static const happinessSurprise = 'assets/images/happiness_surprise.webp';
   static const homeScreenHero = 'assets/images/home_screen_hero.png';
+  static const infoScreenHeroFirst = 'assets/images/info_screen_hero_first.webp';
+  static const infoScreenHeroSecond = 'assets/images/info_screen_hero_second.webp';
   static const recognitionAnger = 'assets/images/recognition_anger.webp';
   static const recognitionFear = 'assets/images/recognition_fear.webp';
   static const recognitionHappines = 'assets/images/recognition_happines.webp';

@@ -202,7 +202,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Attends kindergarten?'),
+                  Text(l10n.childrenScreenEnterChildAttendsKindergarten),
                   Switch(
                     value: _attendsKindergarten,
                     onChanged: (value) => setState(() => _attendsKindergarten = value),
@@ -214,7 +214,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Risky pregnancy?'),
+                  Text(l10n.childrenScreenEnterChildRiskyPregnancy),
                   Switch(
                     value: _riskyPregnancy,
                     onChanged: (value) => setState(() => _riskyPregnancy = value),
@@ -228,7 +228,7 @@ class _AddChildDialogState extends State<AddChildDialog> {
                   createChildInDatabase();
                   context.pop();
                 },
-                child: const Text('Add child'),
+                child: Text(l10n.addChildString),
               ),
             ],
           ),

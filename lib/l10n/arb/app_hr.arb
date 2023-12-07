@@ -11,6 +11,8 @@
     "parentEmail":"Email roditelja",
     "exitString":"Izlazak",
     "cancelString":"Odustani",
+    "signOutString":"Odjavi se",
+    "addChildString":"Dodaj dijete",
 
     "activityFinishedDialogMessage":"Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!",
     "activityFinishedDialogButtonText":"Povratak na glavni ekran",
@@ -19,6 +21,17 @@
 
     "exitActivityDialogTitle":"Izlazak iz aktivnosti?",
     "exitActivityDialogContent":"Pitaj roditelja smiješ li izaći iz aktivnosti! Trenutni podatci će biti izgubljeni.",
+
+    "infoScreenTitleParent":"Informacije o terapeutu",
+    "infoScreenTitleSpecialist":"Vaše informacije",
+    "infoScreenEditInfo":"Uredi informacije",
+    "infoScreenOccupation":"Zanimanje",
+    "infoScreenWorkplace":"Radno mjesto",
+    "infoScreenWorkHours":"Radno vrijeme",
+    "infoScreenPhoneNumber":"Broj telefona",
+    "infoScreenAdditionalEducation":"Dodatne edukacije",
+    "infoScreenTherapistNotConnectedMessage":"Kada se povežete, ovdje ćete moći vidjeti informacije o terapeutu.",
+    "infoScreenEditTherapistInfoDialogMessage":"Roditelji će moći vidjeti informacije koje ovdje unesete",
 
     "stationOfHappiness":"Stanica sreće", 
     "stationOfSadness":"Stanica tuge",

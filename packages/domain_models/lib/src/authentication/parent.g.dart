@@ -17,6 +17,8 @@ Parent _$ParentFromJson(Map<String, dynamic> json) => Parent(
       children: (json['children'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      specialistConnectionApproved:
+          json['specialistConnectionApproved'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$ParentToJson(Parent instance) => <String, dynamic>{
@@ -28,4 +30,5 @@ Map<String, dynamic> _$ParentToJson(Parent instance) => <String, dynamic>{
       'password': instance.password,
       'assignedSpecialistId': instance.assignedSpecialistId,
       'children': instance.children,
+      'specialistConnectionApproved': instance.specialistConnectionApproved,
     };

@@ -18,6 +18,7 @@ class Parent extends User {
     super.password,
     this.assignedSpecialistId,
     this.children,
+    this.specialistConnectionApproved = false,
   });
 
   /*
@@ -29,6 +30,7 @@ class Parent extends User {
 
   final String? assignedSpecialistId;
   final List<String>? children;
+  final bool specialistConnectionApproved;
 
   factory Parent.fromJson(Map<String, dynamic> json) => _$ParentFromJson(json);
   Map<String, dynamic> toJson() => _$ParentToJson(this);

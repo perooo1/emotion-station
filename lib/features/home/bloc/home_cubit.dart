@@ -36,6 +36,18 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
+  Future<void> declineSpecialistConnection() async {
+    emit(state.copyWith(specialistConnectionDialogShown: true));
+    await databaseRepository.declineSpecialistConnection(parentId: state.currentUser.id);
+    //potencijalni ponovni emit current usera?
+  }
+
+  Future<void> approveSpecialistConnection() async {
+    emit(state.copyWith(specialistConnectionDialogShown: true));
+    await databaseRepository.approveSpecialistConnection(parentId: state.currentUser.id);
+    //potencijalni ponovni emit current usera?
+  }
+
   void _getCurrentUserAndSetState() {
     try {
       final currentUser = authenticationManager.getCurrentUser();

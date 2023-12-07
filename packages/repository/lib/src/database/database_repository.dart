@@ -29,6 +29,10 @@ abstract class IDatabaseRepository {
   Future<Child> getChildFromDatabase({required String childId});
   Future<Parent> getParentFromDatabase({required String userId});
   Future<Specialist> getSpecialistFromDatabase({required String userId});
+
+  //update
+  Future<bool> declineSpecialistConnection({required String parentId});
+  Future<bool> approveSpecialistConnection({required String parentId});
 }
 
 @Singleton(as: IDatabaseRepository)
@@ -338,6 +342,92 @@ class DatabaseRepository implements IDatabaseRepository {
       }
     } on FirebaseException catch (e) {
       print('DB MANAGER - _assignSpecialistToChild() : Error assigning specialist to child: $e');
+      return false;
+    }
+  }
+
+  //Update
+
+  @override
+  Future<bool> declineSpecialistConnection({required String parentId}) async {
+    try {
+      final querySnapshot = await instance
+          .collection(FIRESTORE_COLLECTION_PARENTS)
+          .where('id', isEqualTo: parentId)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        final DocumentSnapshot parent = querySnapshot.docs[0];
+        final String parentId = parent.id;
+
+        await instance
+            .collection(FIRESTORE_COLLECTION_PARENTS)
+            .doc(parentId)
+            .update({'assignedSpecialistId': null});
+
+        final a = await _removeAssignedSpecialistFromChild(parentId: parentId);
+        print('db repo, a is $a');
+        return true;
+      } else {
+        return false;
+      }
+    } on FirebaseException catch (e) {
+      print(
+          'DB MANAGER - declineSpecialistConnection() : Error declinining specialist connection with parent: $e');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> approveSpecialistConnection({required String parentId}) async {
+    try {
+      final querySnapshot = await instance
+          .collection(FIRESTORE_COLLECTION_PARENTS)
+          .where('id', isEqualTo: parentId)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        final DocumentSnapshot parent = querySnapshot.docs[0];
+        final String parentId = parent.id;
+
+        await instance
+            .collection(FIRESTORE_COLLECTION_PARENTS)
+            .doc(parentId)
+            .update({'specialistConnectionApproved': true});
+        return true;
+      } else {
+        return false;
+      }
+    } on FirebaseException catch (e) {
+      print(
+          'DB MANAGER - approveSpecialistConnection() : Error declinining specialist connection with parent: $e');
+      return false;
+    }
+  }
+
+  Future<bool> _removeAssignedSpecialistFromChild({required String parentId}) async {
+    try {
+      final querySnapshot = await instance
+          .collection(FIRESTORE_COLLECTION_CHILDREN)
+          .where('parentId', isEqualTo: parentId)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        querySnapshot.docs.forEach(
+          (DocumentSnapshot child) async {
+            await instance
+                .collection(FIRESTORE_COLLECTION_CHILDREN)
+                .doc(child.id)
+                .update({'assignedSpecialistId': null});
+          },
+        );
+        return true;
+      } else {
+        return false;
+      }
+    } on FirebaseException catch (e) {
+      print(
+          'DB MANAGER - _removeAssignedSpecialistFromChild() : Error removing specialist from child: $e');
       return false;
     }
   }

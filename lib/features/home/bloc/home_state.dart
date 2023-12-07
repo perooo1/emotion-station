@@ -1,3 +1,5 @@
+//home state
+
 part of 'home_cubit.dart';
 
 class HomeState extends Equatable {
@@ -5,21 +7,26 @@ class HomeState extends Equatable {
     required this.currentUser,
     this.children,
     this.selectedChild,
+    this.specialistConnectionDialogShown = false,
   });
 
   final List<Child>? children;
   final User currentUser;
   final Child? selectedChild;
+  final bool specialistConnectionDialogShown;
 
   HomeState copyWith({
     User? currentUser,
     List<Child>? children,
     Child? selectedChild,
+    bool? specialistConnectionDialogShown,
   }) {
     return HomeState(
       children: children ?? this.children,
       currentUser: currentUser ?? this.currentUser,
       selectedChild: selectedChild ?? this.selectedChild,
+      specialistConnectionDialogShown:
+          specialistConnectionDialogShown ?? this.specialistConnectionDialogShown,
     );
   }
 
@@ -28,5 +35,6 @@ class HomeState extends Equatable {
         children,
         currentUser,
         selectedChild,
+        specialistConnectionDialogShown,
       ];
 }

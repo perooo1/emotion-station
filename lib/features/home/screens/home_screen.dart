@@ -34,7 +34,39 @@ class _HomeScreenView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final tempCubit = context.read<HomeCubit>();
 
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        final parent = state.currentUser as Parent;
+
+        if (parent.assignedSpecialistId != null &&
+            parent.specialistConnectionApproved == false &&
+            state.specialistConnectionDialogShown == false) {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Specialist requested a connection'),
+              content: Text(
+                  'Specialist with id ${parent.assignedSpecialistId} requested to connect with you.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    tempCubit.declineSpecialistConnection();
+                    context.pop();
+                  },
+                  child: Text('Decline'),
+                ),
+                TextButton(
+                    onPressed: () {
+                      tempCubit.approveSpecialistConnection();
+                      context.pop();
+                    },
+                    child: Text('Approve')),
+              ],
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         /*
         return state.currentUser.isSpecialist

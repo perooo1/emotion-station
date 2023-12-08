@@ -36,9 +36,18 @@ class _ConnectWithParentDialogState extends State<ConnectWithParentDialog> {
 
     return Dialog(
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
+            Text(
+              l10n.childrenScreenConnectWithParentDialogMessage,
+              style: const TextStyle(
+                fontStyle: FontStyle.italic,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16.0),
             ESTextInput(
               borderRadius: 16.0,
               height: 56.0,
@@ -51,6 +60,7 @@ class _ConnectWithParentDialogState extends State<ConnectWithParentDialog> {
                 );
               },
             ),
+            const SizedBox(height: 16.0),
             FilledButton(
               onPressed: () {
                 connectTherapistToParent();

@@ -13,6 +13,7 @@
     "cancelString":"Cancel",
     "signOutString":"Sign Out",
     "addChildString":"Add child",
+    "unknownString":"Unknown",
 
     "activityFinishedDialogMessage":"You have finished your journey and reached emotion station! You can now give back the phone to your parents!",
     "activityFinishedDialogButtonText":"Back to stations screen",
@@ -40,6 +41,7 @@
     
     "childrenScreenParentTitle":"Your children",
     "childrenScreenSpecialistTitle":"Assigned children",
+    "childrenScreenConnectWithParentDialogMessage":"Enter email of a parent you wish to send a connection request.",
     "childrenScreenEnterChildInfoMessage":"Please enter required info about your child",
     "childrenScreenEnterChildName":"Child name:",
     "childrenScreenEnterChildLast_name":"Child last name:",

@@ -10,6 +10,7 @@ abstract class IDatabaseRepository {
   Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId});
   Stream<QuerySnapshot> getRecordedActivitiesStream({String? childId});
   Stream<QuerySnapshot> getSingleChildStream({String? childId});
+  Stream<QuerySnapshot> getSpecialistStream({String? specialistId});
 
   //write
   Future<bool> createChildInDatabase({required Child child, required String parentId});
@@ -91,6 +92,17 @@ class DatabaseRepository implements IDatabaseRepository {
     return instance
         .collection(FIRESTORE_COLLECTION_CHILDREN)
         .where('id', isEqualTo: childId)
+        .snapshots();
+  }
+
+  @override
+  Stream<QuerySnapshot<Object?>> getSpecialistStream({String? specialistId}) {
+    if (specialistId == null) {
+      throw FormatException('Specialist id is null!');
+    }
+    return instance
+        .collection(FIRESTORE_COLLECTION_SPECIALISTS)
+        .where('id', isEqualTo: specialistId)
         .snapshots();
   }
 
@@ -450,8 +462,7 @@ class DatabaseRepository implements IDatabaseRepository {
     required String additionalEducation,
   }) async {
     try {
-      //  requested doc not found
-      await instance.collection(FIRESTORE_COLLECTION_PARENTS).doc(specialistId).update(
+      await instance.collection(FIRESTORE_COLLECTION_SPECIALISTS).doc(specialistId).update(
         {
           'workAddress': workplace,
           'workHours': workHours,

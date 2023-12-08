@@ -44,6 +44,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addChildString => 'Add child';
 
   @override
+  String get unknownString => 'Unknown';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override
@@ -105,6 +108,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get childrenScreenSpecialistTitle => 'Assigned children';
+
+  @override
+  String get childrenScreenConnectWithParentDialogMessage => 'Enter email of a parent you wish to send a connection request.';
 
   @override
   String get childrenScreenEnterChildInfoMessage => 'Please enter required info about your child';

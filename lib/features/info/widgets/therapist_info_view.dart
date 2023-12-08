@@ -33,7 +33,7 @@ class TherapistInfoScreenView extends StatelessWidget {
                     style: textStyle.copyWith(fontSize: 28.0),
                   )
                 : Text(
-                    specialist.fullName ?? 'Nema',
+                    specialist.fullName ?? l10n.unknownString,
                     style: textStyle.copyWith(fontSize: 28.0),
                   ),
             const SizedBox(height: 16.0),
@@ -49,7 +49,7 @@ class TherapistInfoScreenView extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    specialist.occupation ?? 'Nema zanimanja njikako jako dugacko',
+                    specialist.occupation ?? l10n.unknownString,
                     style: textStyle,
                   ),
                 ),
@@ -68,7 +68,7 @@ class TherapistInfoScreenView extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    specialist.workAddress ?? 'Nema adrese',
+                    specialist.workAddress ?? l10n.unknownString,
                     style: textStyle,
                   ),
                 ),
@@ -87,7 +87,7 @@ class TherapistInfoScreenView extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    specialist.workHours ?? 'Nema radnog vremena ',
+                    specialist.workHours ?? l10n.unknownString,
                     style: textStyle,
                   ),
                 ),
@@ -106,7 +106,7 @@ class TherapistInfoScreenView extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    specialist.professionalPhoneNum ?? 'Nema radnog vremena ',
+                    specialist.professionalPhoneNum ?? l10n.unknownString,
                     style: textStyle,
                   ),
                 ),
@@ -125,7 +125,7 @@ class TherapistInfoScreenView extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    specialist.additionalEducation ?? 'Nema nista, ljencina',
+                    specialist.additionalEducation ?? l10n.unknownString,
                     style: textStyle,
                   ),
                 ),

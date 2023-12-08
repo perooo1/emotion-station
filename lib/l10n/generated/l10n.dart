@@ -171,6 +171,12 @@ abstract class AppLocalizations {
   /// **'Add child'**
   String get addChildString;
 
+  /// No description provided for @unknownString.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get unknownString;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:
@@ -296,6 +302,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Assigned children'**
   String get childrenScreenSpecialistTitle;
+
+  /// No description provided for @childrenScreenConnectWithParentDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter email of a parent you wish to send a connection request.'**
+  String get childrenScreenConnectWithParentDialogMessage;
 
   /// No description provided for @childrenScreenEnterChildInfoMessage.
   ///

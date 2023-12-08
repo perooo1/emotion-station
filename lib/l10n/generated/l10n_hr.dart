@@ -44,6 +44,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get addChildString => 'Dodaj dijete';
 
   @override
+  String get unknownString => 'Nepoznato';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override
@@ -105,6 +108,9 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get childrenScreenSpecialistTitle => 'Povezana djeca';
+
+  @override
+  String get childrenScreenConnectWithParentDialogMessage => 'Unesite email roditelja kojem želite poslati zahtjev za povezivanjem.';
 
   @override
   String get childrenScreenEnterChildInfoMessage => 'Molimo unesite potrebne informacije o Vašem djetetu';

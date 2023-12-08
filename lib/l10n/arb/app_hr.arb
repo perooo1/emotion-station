@@ -13,6 +13,7 @@
     "cancelString":"Odustani",
     "signOutString":"Odjavi se",
     "addChildString":"Dodaj dijete",
+    "unknownString":"Nepoznato",
 
     "activityFinishedDialogMessage":"Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!",
     "activityFinishedDialogButtonText":"Povratak na glavni ekran",
@@ -40,6 +41,7 @@
 
     "childrenScreenParentTitle":"Vaša djeca",
     "childrenScreenSpecialistTitle":"Povezana djeca",
+    "childrenScreenConnectWithParentDialogMessage":"Unesite email roditelja kojem želite poslati zahtjev za povezivanjem.",
     "childrenScreenEnterChildInfoMessage":"Molimo unesite potrebne informacije o Vašem djetetu",
     "childrenScreenEnterChildName":"Ime djeteta:",
     "childrenScreenEnterChildLast_name":"Prezime djeteta:",

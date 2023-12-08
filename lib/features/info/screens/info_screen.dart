@@ -62,8 +62,11 @@ class _InfoScreenView extends StatelessWidget {
             //beware of const
             padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: state.currentUser is Specialist
-                ? TherapistInfoScreenView(specialist: state.currentUser as Specialist)
-                : ParentInfoScreenView(parent: state.currentUser as Parent),
+                ? TherapistInfoScreenView(specialist: state.specialist ?? Specialist(id: ''))
+                : ParentInfoScreenView(
+                    parent: state.currentUser as Parent,
+                    specialist: state.specialist ?? Specialist(id: ''),
+                  ),
 
             /*
             if (state.currentUser is Specialist) {

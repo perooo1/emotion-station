@@ -20,6 +20,7 @@ class Child {
     this.riskyPregnancy = false,
     required this.pregnancyBirthWeek,
     required this.treatmentStartMonth,
+    this.specialistNote,
   });
 
   final String id;
@@ -35,6 +36,7 @@ class Child {
   final bool? riskyPregnancy;
   final int? pregnancyBirthWeek;
   final DateTime? treatmentStartMonth;
+  final String? specialistNote;
 
   String get fullName => '${this.name} ${this.lastName}';
   bool get isGenderFemale => !isGenderMale;

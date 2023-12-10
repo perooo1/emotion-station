@@ -311,6 +311,29 @@ class ChildInfoTab extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 8.0),
+          SizedBox(
+            width: double.infinity,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.childDetailsScreenTherapistNote.toUpperCase(),
+                      style: childDescTitleTextStyle,
+                    ),
+                    const SizedBox(height: 6.0),
+                    Text(
+                      child.specialistNote ?? l10n.unknownString,
+                      style: childDescTextStyle,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           const SizedBox(height: 75.0),
         ],
       ),

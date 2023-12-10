@@ -25,6 +25,7 @@ Child _$ChildFromJson(Map<String, dynamic> json) => Child(
       treatmentStartMonth: json['treatmentStartMonth'] == null
           ? null
           : DateTime.parse(json['treatmentStartMonth'] as String),
+      specialistNote: json['specialistNote'] as String?,
     );
 
 Map<String, dynamic> _$ChildToJson(Child instance) => <String, dynamic>{
@@ -42,6 +43,7 @@ Map<String, dynamic> _$ChildToJson(Child instance) => <String, dynamic>{
       'riskyPregnancy': instance.riskyPregnancy,
       'pregnancyBirthWeek': instance.pregnancyBirthWeek,
       'treatmentStartMonth': instance.treatmentStartMonth?.toIso8601String(),
+      'specialistNote': instance.specialistNote,
     };
 
 const _$EmotionForecastEnumMap = {

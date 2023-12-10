@@ -74,6 +74,12 @@ class AppLocalizationsHr extends AppLocalizations {
   String get leftAxisTitleTimeBarChart => 'Vrijeme [s]';
 
   @override
+  String get declineString => 'Odbij';
+
+  @override
+  String get approveString => 'Prihvati';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override
@@ -216,6 +222,12 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get childDetailsScreenUnderstandingVisual => 'Vizualno';
+
+  @override
+  String get childDetailsScreenTherapistNoteDialogMessage => 'Dodajte bilješku koju će vidjeti i roditelj.';
+
+  @override
+  String get childDetailsScreenTherapistNote => 'Bilješka terapeuta';
 
   @override
   String get emotionForecast => 'Prognoza Emocija';

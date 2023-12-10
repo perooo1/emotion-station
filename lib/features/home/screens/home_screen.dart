@@ -45,23 +45,25 @@ class _HomeScreenView extends StatelessWidget {
             barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
-              title: Text('Specialist requested a connection'),
-              content: Text(
-                  'Specialist with id ${parent.assignedSpecialistId} requested to connect with you.'),
+              title: Text('Terapeut se želi povezati'),
+              //title: Text('Specialist requested a connection'),
+              content:
+                  Text('Terapeut s id ${parent.assignedSpecialistId} se želi povezati s Vama.'),
+              //'Specialist with id ${parent.assignedSpecialistId} requested to connect with you.'),
               actions: [
                 TextButton(
                   onPressed: () {
                     tempCubit.declineSpecialistConnection();
                     context.pop();
                   },
-                  child: Text('Decline'),
+                  child: Text(l10n.declineString),
                 ),
                 TextButton(
                     onPressed: () {
                       tempCubit.approveSpecialistConnection();
                       context.pop();
                     },
-                    child: Text('Approve')),
+                    child: Text(l10n.approveString)),
               ],
             ),
           );

@@ -231,6 +231,18 @@ abstract class AppLocalizations {
   /// **'Time [s]'**
   String get leftAxisTitleTimeBarChart;
 
+  /// No description provided for @declineString.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get declineString;
+
+  /// No description provided for @approveString.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get approveString;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:
@@ -518,6 +530,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Visual'**
   String get childDetailsScreenUnderstandingVisual;
+
+  /// No description provided for @childDetailsScreenTherapistNoteDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note that will be visible to both you and the parent.'**
+  String get childDetailsScreenTherapistNoteDialogMessage;
+
+  /// No description provided for @childDetailsScreenTherapistNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Therapist note'**
+  String get childDetailsScreenTherapistNote;
 
   /// No description provided for @emotionForecast.
   ///

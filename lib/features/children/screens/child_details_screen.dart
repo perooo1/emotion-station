@@ -1,11 +1,13 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/bloc/child_details_cubit.dart';
 import 'package:emotion_station/features/children/children.dart';
+import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:repository/repository.dart';
 
 class ChildDetailsScreen extends StatelessWidget {
   const ChildDetailsScreen({super.key, required this.child});
@@ -76,7 +78,17 @@ class _ChildDetailsView extends StatelessWidget {
                       ),
                     ),
                   )
-                : null,
+                : FloatingActionButton.extended(
+                    icon: const Icon(Icons.edit),
+                    label: Text(l10n.addNoteString),
+                    onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => AddNoteTherapistDialog(
+                        childId: state.child.id,
+                        databaseRepository: Injector.locateService<IDatabaseRepository>(),
+                      ),
+                    ),
+                  ),
           ),
         );
       },

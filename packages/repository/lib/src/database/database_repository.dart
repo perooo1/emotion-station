@@ -25,6 +25,7 @@ abstract class IDatabaseRepository {
     required String childId,
     required Map<DateTime, EmotionForecast>? forecast,
   });
+  Future<bool> addSpecialistNote({required String childId, required String? specialistNote});
 
   //read
   Future<Child> getChildFromDatabase({required String childId});
@@ -232,6 +233,21 @@ class DatabaseRepository implements IDatabaseRepository {
       return true;
     } on FirebaseException catch (e) {
       print('DB MANAGER - updateChildEmotionForecast() : Error updateing child emo forecast: $e');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> addSpecialistNote({required String childId, required String? specialistNote}) async {
+    try {
+      await instance
+          .collection(FIRESTORE_COLLECTION_CHILDREN)
+          .doc(childId)
+          .update({'specialistNote': specialistNote});
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - addSpecialistNote() : Error child spec note: $e');
       return false;
     }
   }

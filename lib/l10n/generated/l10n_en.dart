@@ -74,6 +74,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get leftAxisTitleTimeBarChart => 'Time [s]';
 
   @override
+  String get declineString => 'Decline';
+
+  @override
+  String get approveString => 'Approve';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override
@@ -216,6 +222,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get childDetailsScreenUnderstandingVisual => 'Visual';
+
+  @override
+  String get childDetailsScreenTherapistNoteDialogMessage => 'Add a note that will be visible to both you and the parent.';
+
+  @override
+  String get childDetailsScreenTherapistNote => 'Therapist note';
 
   @override
   String get emotionForecast => 'Emotion Forecast';

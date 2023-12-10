@@ -23,6 +23,8 @@
     "comprehensionLevelChartString":"Graf razine shvaćanja",
     "radarChartString":"Radarski prikaz",
     "leftAxisTitleTimeBarChart":"Vrijeme [s]",
+    "declineString":"Odbij",
+    "approveString":"Prihvati",
 
     "activityFinishedDialogMessage":"Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!",
     "activityFinishedDialogButtonText":"Povratak na glavni ekran",
@@ -78,6 +80,8 @@
     "childDetailsScreenUnderstanding":"Razumijevanje",
     "childDetailsScreenUnderstandingTextual":"Tekstualno",
     "childDetailsScreenUnderstandingVisual":"Vizualno",
+    "childDetailsScreenTherapistNoteDialogMessage":"Dodajte bilješku koju će vidjeti i roditelj.",
+    "childDetailsScreenTherapistNote":"Bilješka terapeuta",
 
     "emotionForecast":"Prognoza Emocija",
     "emotionForecastSad":"Tužan, plačljiv",

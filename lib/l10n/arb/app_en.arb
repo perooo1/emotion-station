@@ -23,6 +23,8 @@
     "comprehensionLevelChartString":"Comprehension level chart",
     "radarChartString":"Radar chart",
     "leftAxisTitleTimeBarChart":"Time [s]",
+    "declineString":"Decline",
+    "approveString":"Approve",
 
     "activityFinishedDialogMessage":"You have finished your journey and reached emotion station! You can now give back the phone to your parents!",
     "activityFinishedDialogButtonText":"Back to stations screen",
@@ -78,6 +80,8 @@
     "childDetailsScreenUnderstanding":"Understanding",
     "childDetailsScreenUnderstandingTextual":"Textual",
     "childDetailsScreenUnderstandingVisual":"Visual",
+    "childDetailsScreenTherapistNoteDialogMessage":"Add a note that will be visible to both you and the parent.",
+    "childDetailsScreenTherapistNote":"Therapist note",
 
     "emotionForecast":"Emotion Forecast",
     "emotionForecastSad":"Sad, Weepy ",

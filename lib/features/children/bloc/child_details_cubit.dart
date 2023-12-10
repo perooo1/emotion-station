@@ -65,6 +65,13 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
     }
   }
 
+  Future<void> addSpecialistNote(String specialistNote) async {
+    final a = await databaseRepository.addSpecialistNote(
+      childId: state.child.id,
+      specialistNote: specialistNote,
+    );
+  }
+
   _startListening() {
     _activityRecordsStream =
         databaseRepository.getRecordedActivitiesStream(childId: state.child.id);

@@ -47,6 +47,27 @@ class AppLocalizationsHr extends AppLocalizations {
   String get unknownString => 'Nepoznato';
 
   @override
+  String get addNoteString => 'Dodaj bilješku';
+
+  @override
+  String get childAnsweredString => 'Dijete je odgovorilo';
+
+  @override
+  String get totalDurationString => 'Ukupno trajanje';
+
+  @override
+  String get timeChartString => 'Graf vremena';
+
+  @override
+  String get comprehensionLevelChartString => 'Graf razine shvaćanja';
+
+  @override
+  String get radarChartString => 'Radarski prikaz';
+
+  @override
+  String get leftAxisTitleTimeBarChart => 'Vrijeme [s]';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override
@@ -168,6 +189,27 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get childDetailsScreenChildActivitiesCompletedActivities => 'Riješene aktivnosit';
+
+  @override
+  String get childDetailsScreenEmotionRecognition => 'Prepoznavanje emocije';
+
+  @override
+  String get childDetailsScreenEmotionTextualUnderstanding => 'Tekstualno razumijevanje';
+
+  @override
+  String get childDetailsScreenEmotionVisualUnderstanding => 'Vizualno razumijevanje';
+
+  @override
+  String get childDetailsScreenRecognition => 'Prepoznavanje';
+
+  @override
+  String get childDetailsScreenUnderstanding => 'Razumijevanje';
+
+  @override
+  String get childDetailsScreenUnderstandingTextual => 'Tekstualno';
+
+  @override
+  String get childDetailsScreenUnderstandingVisual => 'Vizualno';
 
   @override
   String get emotionForecastSad => 'Tužan, plačljiv';

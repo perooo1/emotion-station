@@ -177,6 +177,48 @@ abstract class AppLocalizations {
   /// **'Unknown'**
   String get unknownString;
 
+  /// No description provided for @addNoteString.
+  ///
+  /// In en, this message translates to:
+  /// **'Add note'**
+  String get addNoteString;
+
+  /// No description provided for @childAnsweredString.
+  ///
+  /// In en, this message translates to:
+  /// **'The child answered'**
+  String get childAnsweredString;
+
+  /// No description provided for @totalDurationString.
+  ///
+  /// In en, this message translates to:
+  /// **'Total duration'**
+  String get totalDurationString;
+
+  /// No description provided for @timeChartString.
+  ///
+  /// In en, this message translates to:
+  /// **'Time chart'**
+  String get timeChartString;
+
+  /// No description provided for @comprehensionLevelChartString.
+  ///
+  /// In en, this message translates to:
+  /// **'Comprehension level chart'**
+  String get comprehensionLevelChartString;
+
+  /// No description provided for @radarChartString.
+  ///
+  /// In en, this message translates to:
+  /// **'Radar chart'**
+  String get radarChartString;
+
+  /// No description provided for @leftAxisTitleTimeBarChart.
+  ///
+  /// In en, this message translates to:
+  /// **'Time [s]'**
+  String get leftAxisTitleTimeBarChart;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:
@@ -422,6 +464,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed activities'**
   String get childDetailsScreenChildActivitiesCompletedActivities;
+
+  /// No description provided for @childDetailsScreenEmotionRecognition.
+  ///
+  /// In en, this message translates to:
+  /// **'Emotion recognition'**
+  String get childDetailsScreenEmotionRecognition;
+
+  /// No description provided for @childDetailsScreenEmotionTextualUnderstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Textual understanding'**
+  String get childDetailsScreenEmotionTextualUnderstanding;
+
+  /// No description provided for @childDetailsScreenEmotionVisualUnderstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Visual understanding'**
+  String get childDetailsScreenEmotionVisualUnderstanding;
+
+  /// No description provided for @childDetailsScreenRecognition.
+  ///
+  /// In en, this message translates to:
+  /// **'Recognition'**
+  String get childDetailsScreenRecognition;
+
+  /// No description provided for @childDetailsScreenUnderstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Understanding'**
+  String get childDetailsScreenUnderstanding;
+
+  /// No description provided for @childDetailsScreenUnderstandingTextual.
+  ///
+  /// In en, this message translates to:
+  /// **'Textual'**
+  String get childDetailsScreenUnderstandingTextual;
+
+  /// No description provided for @childDetailsScreenUnderstandingVisual.
+  ///
+  /// In en, this message translates to:
+  /// **'Visual'**
+  String get childDetailsScreenUnderstandingVisual;
 
   /// No description provided for @emotionForecastSad.
   ///

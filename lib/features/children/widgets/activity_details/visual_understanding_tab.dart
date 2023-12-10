@@ -1,5 +1,6 @@
 import 'package:emotion_station/features/children/bloc/completed_activity_cubit.dart';
 import 'package:emotion_station/features/children/widgets/activity_details/activity_details.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,6 +10,20 @@ class VisualUnderstandingTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<CompletedActivityCubit>();
+    final l10n = AppLocalizations.of(context);
+
+    final answer1 = cubit.state.activityRecord.emotionStation.questions[4].options
+        .where(
+          (element) =>
+              element.comprehensionLevel == cubit.state.activityRecord.understandingVisualAnswer1,
+        )
+        .toList();
+    final answer2 = cubit.state.activityRecord.emotionStation.questions[5].options
+        .where(
+          (element) =>
+              element.comprehensionLevel == cubit.state.activityRecord.understandingVisualAnswer2,
+        )
+        .toList();
 
     return SingleChildScrollView(
       child: Padding(
@@ -24,6 +39,7 @@ class VisualUnderstandingTab extends StatelessWidget {
           children: [
             const SizedBox(height: 12.0),
             ESBarChart(
+              yAxisName: l10n.leftAxisTitleTimeBarChart,
               isObservationCategoryChart: true,
               isShowingDurationData: true,
               maxY: cubit.state.visualTabDurationData?.maxY ?? 20.0,
@@ -34,6 +50,66 @@ class VisualUnderstandingTab extends StatelessWidget {
               isObservationCategoryChart: true,
               maxY: cubit.state.visualTabComprehensionData?.maxY ?? 20.0,
               barGroups: cubit.state.visualTabComprehensionData?.dataGroups,
+            ),
+            const SizedBox(height: 12.0),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      cubit.state.activityRecord.emotionStation.questions[4].text,
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Image.asset(
+                      cubit.state.activityRecord.emotionStation.questions[4].imageAssetPath!,
+                      width: 200,
+                      height: 200,
+                    ),
+                    const SizedBox(height: 16.0),
+                    Text('${l10n.childAnsweredString}:'),
+                    const SizedBox(height: 16.0),
+                    Text(
+                      answer1[0].text,
+                      //cubit.state.activityRecord.recognitionAnswer1.toString(),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 12.0),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      cubit.state.activityRecord.emotionStation.questions[5].text,
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Image.asset(
+                      cubit.state.activityRecord.emotionStation.questions[5].imageAssetPath!,
+                      width: 200,
+                      height: 200,
+                    ),
+                    const SizedBox(height: 16.0),
+                    Text('${l10n.childAnsweredString}:'),
+                    const SizedBox(height: 16.0),
+                    Text(
+                      answer2[0].text,
+                      //cubit.state.activityRecord.recognitionAnswer1.toString(),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

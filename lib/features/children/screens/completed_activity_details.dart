@@ -50,15 +50,15 @@ class _CompletedActivityDetailsView extends StatelessWidget {
               bottom: TabBar(
                 tabs: [
                   Tab(
-                    text: 'Overview',
-                    icon: Icon(Icons.dataset),
+                    text: l10n.childDetailsScreenChildActivitiesOverview,
+                    icon: Icon(Icons.analytics),
                   ),
                   Tab(
-                    text: 'Reckognition',
+                    text: l10n.childDetailsScreenRecognition,
                     icon: Icon(Icons.visibility),
                   ),
                   Tab(
-                    text: 'Understanding',
+                    text: l10n.childDetailsScreenUnderstanding,
                     icon: Icon(Icons.psychology),
                   ),
                 ],
@@ -74,7 +74,7 @@ class _CompletedActivityDetailsView extends StatelessWidget {
             floatingActionButton: FloatingActionButton.extended(
               onPressed: () {},
               icon: Icon(Icons.edit),
-              label: Text('Add note'),
+              label: Text(l10n.addNoteString),
             ),
           ),
         );

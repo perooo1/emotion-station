@@ -1,4 +1,5 @@
 import 'package:emotion_station/features/children/children.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class EmotionUnderstandingTab extends StatefulWidget {
@@ -27,13 +28,14 @@ class _EmotionUnderstandingTabState extends State<EmotionUnderstandingTab>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       children: [
         TabBar.secondary(
           controller: _nestedTabController,
           tabs: [
-            Tab(text: 'Textual'),
-            Tab(text: 'Visual'),
+            Tab(text: l10n.childDetailsScreenUnderstandingTextual),
+            Tab(text: l10n.childDetailsScreenUnderstandingVisual),
           ],
         ),
         Expanded(

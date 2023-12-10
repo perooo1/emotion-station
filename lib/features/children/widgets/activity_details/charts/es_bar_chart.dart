@@ -1,3 +1,4 @@
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class ESBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(18.0),
@@ -40,7 +42,7 @@ class ESBarChart extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text('Prepoznavanje emocije')
+                      Text(l10n.childDetailsScreenEmotionRecognition)
                     ],
                   ),
                   const SizedBox(height: 6),
@@ -54,7 +56,7 @@ class ESBarChart extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text('Textualno razumijevanje')
+                      Text(l10n.childDetailsScreenEmotionTextualUnderstanding)
                     ],
                   ),
                   const SizedBox(height: 6),
@@ -68,7 +70,7 @@ class ESBarChart extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text('Vizualno razumijevanje')
+                      Text(l10n.childDetailsScreenEmotionVisualUnderstanding)
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -131,8 +133,8 @@ class ESBarChart extends StatelessWidget {
 
   Widget _bottomTitlesObservationCategoryChart(double value, TitleMeta meta) {
     final titles = <String>[
-      'Question 1',
-      'Question 2',
+      'Pitanje 1',
+      'Pitanje 2',
     ];
 
     final Widget text = Text(titles[value.toInt()]);

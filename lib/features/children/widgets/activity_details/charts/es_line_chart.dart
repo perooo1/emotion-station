@@ -67,7 +67,7 @@ class ESLineChart extends StatelessWidget {
   }
 
   Widget _bottomTitlesLine(double value, TitleMeta meta) {
-    final titles = <String>['0', 'R1', 'R2', 'T1', 'T2', 'V1', 'V2'];
+    final titles = <String>['0', 'Prep1', 'Prep2', 'Txt1', 'Txt2', 'Viz1', 'Viz2'];
 
     final Widget text = Text(titles[value.toInt()]);
 

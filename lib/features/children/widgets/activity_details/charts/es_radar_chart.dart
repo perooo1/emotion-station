@@ -170,11 +170,17 @@ class _ESRadarChartState extends State<ESRadarChart> {
                   getTitle: (index, angle) {
                     switch (index) {
                       case 0:
-                        return RadarChartTitle(text: 'Recognition');
+                        return RadarChartTitle(
+                          text: l10n.childDetailsScreenRecognition,
+                        );
                       case 2:
-                        return RadarChartTitle(text: 'visual');
+                        return RadarChartTitle(
+                          text: l10n.childDetailsScreenUnderstandingVisual,
+                        );
                       case 1:
-                        return RadarChartTitle(text: 'text');
+                        return RadarChartTitle(
+                          text: l10n.childDetailsScreenUnderstandingTextual,
+                        );
                       default:
                         return const RadarChartTitle(text: '');
                     }

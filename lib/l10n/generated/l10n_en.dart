@@ -47,6 +47,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknownString => 'Unknown';
 
   @override
+  String get addNoteString => 'Add note';
+
+  @override
+  String get childAnsweredString => 'The child answered';
+
+  @override
+  String get totalDurationString => 'Total duration';
+
+  @override
+  String get timeChartString => 'Time chart';
+
+  @override
+  String get comprehensionLevelChartString => 'Comprehension level chart';
+
+  @override
+  String get radarChartString => 'Radar chart';
+
+  @override
+  String get leftAxisTitleTimeBarChart => 'Time [s]';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override
@@ -168,6 +189,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get childDetailsScreenChildActivitiesCompletedActivities => 'Completed activities';
+
+  @override
+  String get childDetailsScreenEmotionRecognition => 'Emotion recognition';
+
+  @override
+  String get childDetailsScreenEmotionTextualUnderstanding => 'Textual understanding';
+
+  @override
+  String get childDetailsScreenEmotionVisualUnderstanding => 'Visual understanding';
+
+  @override
+  String get childDetailsScreenRecognition => 'Recognition';
+
+  @override
+  String get childDetailsScreenUnderstanding => 'Understanding';
+
+  @override
+  String get childDetailsScreenUnderstandingTextual => 'Textual';
+
+  @override
+  String get childDetailsScreenUnderstandingVisual => 'Visual';
 
   @override
   String get emotionForecastSad => 'Sad, Weepy ';

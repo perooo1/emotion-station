@@ -46,7 +46,7 @@ class _ChildDetailsView extends StatelessWidget {
                   ),
                   Tab(
                     text: l10n.childDetailsScreenChildActivities,
-                    icon: const Icon(Icons.playlist_add_check),
+                    icon: const Icon(Icons.analytics_outlined),
                   ),
                 ],
               ),

@@ -11,6 +11,12 @@ class AppLocalizationsHr extends AppLocalizations {
   String get testString => 'ovo je testni string';
 
   @override
+  String get yesString => 'Da';
+
+  @override
+  String get noString => 'Ne';
+
+  @override
   String get testString2 => 'bezveze';
 
   @override
@@ -212,6 +218,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get childDetailsScreenUnderstandingVisual => 'Vizualno';
 
   @override
+  String get emotionForecast => 'Prognoza Emocija';
+
+  @override
   String get emotionForecastSad => 'Tužan, plačljiv';
 
   @override
@@ -219,6 +228,9 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get emotionForecastAngry => 'Ljut, razdražljiv';
+
+  @override
+  String get emotionForecastAddEmotionDialogMessage => 'Odaberite datum i emociju svog dijeteta tog dana.';
 
   @override
   String get homeScreenSelectChildForActivity => 'Odaberite dijete koje će izvršiti aktivnost';

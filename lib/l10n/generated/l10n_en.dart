@@ -11,6 +11,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get testString => 'this is a test string';
 
   @override
+  String get yesString => 'Yes';
+
+  @override
+  String get noString => 'No';
+
+  @override
   String get testString2 => 'random';
 
   @override
@@ -212,6 +218,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get childDetailsScreenUnderstandingVisual => 'Visual';
 
   @override
+  String get emotionForecast => 'Emotion Forecast';
+
+  @override
   String get emotionForecastSad => 'Sad, Weepy ';
 
   @override
@@ -219,6 +228,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emotionForecastAngry => 'Angry, Irritable';
+
+  @override
+  String get emotionForecastAddEmotionDialogMessage => 'Choose a date and emotion of your child that day.';
 
   @override
   String get homeScreenSelectChildForActivity => 'Please select child for activity';

@@ -2,6 +2,8 @@
     "emotionStation":"Emotion Station",
 
     "testString" : "this is a test string",
+    "yesString" : "Yes",
+    "noString" : "No",
     "testString2" : "random",
     "emailString":"Email",
     "passwordString":"Password",
@@ -77,9 +79,11 @@
     "childDetailsScreenUnderstandingTextual":"Textual",
     "childDetailsScreenUnderstandingVisual":"Visual",
 
+    "emotionForecast":"Emotion Forecast",
     "emotionForecastSad":"Sad, Weepy ",
     "emotionForecastHappy":"Happy, In a good mood",
     "emotionForecastAngry":"Angry, Irritable",
+    "emotionForecastAddEmotionDialogMessage":"Choose a date and emotion of your child that day.",
 
     "homeScreenSelectChildForActivity":"Please select child for activity",
 

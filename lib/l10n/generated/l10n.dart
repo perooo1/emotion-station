@@ -105,6 +105,18 @@ abstract class AppLocalizations {
   /// **'this is a test string'**
   String get testString;
 
+  /// No description provided for @yesString.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yesString;
+
+  /// No description provided for @noString.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get noString;
+
   /// No description provided for @testString2.
   ///
   /// In en, this message translates to:
@@ -507,6 +519,12 @@ abstract class AppLocalizations {
   /// **'Visual'**
   String get childDetailsScreenUnderstandingVisual;
 
+  /// No description provided for @emotionForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'Emotion Forecast'**
+  String get emotionForecast;
+
   /// No description provided for @emotionForecastSad.
   ///
   /// In en, this message translates to:
@@ -524,6 +542,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Angry, Irritable'**
   String get emotionForecastAngry;
+
+  /// No description provided for @emotionForecastAddEmotionDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a date and emotion of your child that day.'**
+  String get emotionForecastAddEmotionDialogMessage;
 
   /// No description provided for @homeScreenSelectChildForActivity.
   ///

@@ -1,5 +1,6 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
+import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -41,7 +42,23 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('${widget.childName} is today:'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                l10n.emotionForecastAddEmotionDialogMessage,
+                style: TextStyle(fontStyle: FontStyle.italic),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            TableCalendar(
+              headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
+              focusedDay: today,
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              firstDay: DateTime(2022),
+              lastDay: DateTime.now(),
+              onDaySelected: (selectedDay, focusedDay) => _onDaySelected(selectedDay, focusedDay),
+              selectedDayPredicate: (day) => isSameDay(day, today),
+            ),
             ChoiceChip(
               showCheckmark: false,
               avatar: currentState == EmotionForecast.sad
@@ -123,15 +140,7 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
                 );
               },
             ),
-            TableCalendar(
-              headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
-              focusedDay: today,
-              startingDayOfWeek: StartingDayOfWeek.monday,
-              firstDay: DateTime(2022),
-              lastDay: DateTime.now(),
-              onDaySelected: (selectedDay, focusedDay) => _onDaySelected(selectedDay, focusedDay),
-              selectedDayPredicate: (day) => isSameDay(day, today),
-            ),
+            const SizedBox(height: 16.0),
             FilledButton(
               child: Text(l10n.childDetailsScreenAddEmotion),
               onPressed: () {

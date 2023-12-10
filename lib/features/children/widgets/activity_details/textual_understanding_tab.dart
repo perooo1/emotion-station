@@ -38,7 +38,32 @@ class TextualUnderstandingTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 12.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.timeChartString.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      Text('${l10n.totalDurationString}:'),
+                      Text(
+                        '${(cubit.state.activityRecord.understandingTextualAnswer1Duration + cubit.state.activityRecord.understandingTextualAnswer2Duration).inSeconds} s',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             ESBarChart(
               isShowingDurationData: true,
               isObservationCategoryChart: true,
@@ -47,6 +72,22 @@ class TextualUnderstandingTab extends StatelessWidget {
               barGroups: cubit.state.textualTabDurationData?.dataGroups,
             ),
             const SizedBox(height: 12.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.comprehensionLevelChartString.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             ESBarChart(
               isObservationCategoryChart: true,
               maxY: cubit.state.textualTabComprehensionData?.maxY ?? 20.0,

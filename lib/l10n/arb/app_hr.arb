@@ -2,6 +2,8 @@
     "emotionStation":"Emotion Station",
 
     "testString" : "ovo je testni string",
+    "yesString" : "Da",
+    "noString" : "Ne",
     "testString2" : "bezveze",
     "emailString":"Email",
     "passwordString":"Zaporka",
@@ -77,9 +79,11 @@
     "childDetailsScreenUnderstandingTextual":"Tekstualno",
     "childDetailsScreenUnderstandingVisual":"Vizualno",
 
+    "emotionForecast":"Prognoza Emocija",
     "emotionForecastSad":"Tužan, plačljiv",
     "emotionForecastHappy":"Sretan, dobro raspoložen",
     "emotionForecastAngry":"Ljut, razdražljiv",
+    "emotionForecastAddEmotionDialogMessage":"Odaberite datum i emociju svog dijeteta tog dana.",
 
     "homeScreenSelectChildForActivity":"Odaberite dijete koje će izvršiti aktivnost",
     

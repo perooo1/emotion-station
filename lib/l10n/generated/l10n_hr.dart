@@ -80,6 +80,18 @@ class AppLocalizationsHr extends AppLocalizations {
   String get approveString => 'Prihvati';
 
   @override
+  String get homeString => 'Početna';
+
+  @override
+  String get stationsString => 'Stanice';
+
+  @override
+  String get childrenString => 'Djeca';
+
+  @override
+  String get infoString => 'Informacije';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override

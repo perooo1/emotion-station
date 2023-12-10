@@ -25,6 +25,10 @@
     "leftAxisTitleTimeBarChart":"Time [s]",
     "declineString":"Decline",
     "approveString":"Approve",
+    "homeString":"Home",
+    "stationsString":"Stations",
+    "childrenString":"Children",
+    "infoString":"Info",
 
     "activityFinishedDialogMessage":"You have finished your journey and reached emotion station! You can now give back the phone to your parents!",
     "activityFinishedDialogButtonText":"Back to stations screen",

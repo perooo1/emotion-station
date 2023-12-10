@@ -25,6 +25,10 @@
     "leftAxisTitleTimeBarChart":"Vrijeme [s]",
     "declineString":"Odbij",
     "approveString":"Prihvati",
+    "homeString":"Početna",
+    "stationsString":"Stanice",
+    "childrenString":"Djeca",
+    "infoString":"Informacije",
 
     "activityFinishedDialogMessage":"Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!",
     "activityFinishedDialogButtonText":"Povratak na glavni ekran",

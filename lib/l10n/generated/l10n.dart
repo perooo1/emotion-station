@@ -243,6 +243,30 @@ abstract class AppLocalizations {
   /// **'Approve'**
   String get approveString;
 
+  /// No description provided for @homeString.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get homeString;
+
+  /// No description provided for @stationsString.
+  ///
+  /// In en, this message translates to:
+  /// **'Stations'**
+  String get stationsString;
+
+  /// No description provided for @childrenString.
+  ///
+  /// In en, this message translates to:
+  /// **'Children'**
+  String get childrenString;
+
+  /// No description provided for @infoString.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get infoString;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:

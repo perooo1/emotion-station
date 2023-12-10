@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class EmotionStationMainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     var currentRoutePath = GoRouterState.of(context).uri.toString();
 
     return Scaffold(
@@ -26,25 +28,25 @@ class EmotionStationMainLayout extends StatelessWidget {
           ? NavigationBar(
               destinations: [
                 authenticationManager.getCurrentUser().isSpecialist
-                    ? const NavigationDestination(
-                        icon: Icon(Icons.home_outlined),
-                        selectedIcon: Icon(Icons.home),
-                        label: 'Home',
+                    ? NavigationDestination(
+                        icon: const Icon(Icons.home_outlined),
+                        selectedIcon: const Icon(Icons.home),
+                        label: l10n.homeString,
                       )
-                    : const NavigationDestination(
-                        icon: Icon(Icons.train_outlined),
-                        selectedIcon: Icon(Icons.train),
-                        label: 'Stations',
+                    : NavigationDestination(
+                        icon: const Icon(Icons.train_outlined),
+                        selectedIcon: const Icon(Icons.train),
+                        label: l10n.stationsString,
                       ),
-                const NavigationDestination(
-                  icon: Icon(Icons.child_care_outlined),
-                  selectedIcon: Icon(Icons.child_care),
-                  label: 'Children',
+                NavigationDestination(
+                  icon: const Icon(Icons.child_care_outlined),
+                  selectedIcon: const Icon(Icons.child_care),
+                  label: l10n.childrenString,
                 ),
-                const NavigationDestination(
-                  icon: Icon(Icons.info_outline),
-                  selectedIcon: Icon(Icons.info),
-                  label: 'Info',
+                NavigationDestination(
+                  icon: const Icon(Icons.info_outline),
+                  selectedIcon: const Icon(Icons.info),
+                  label: l10n.infoString,
                 ),
               ],
               selectedIndex: navigationShell.currentIndex,

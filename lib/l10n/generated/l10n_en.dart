@@ -80,6 +80,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get approveString => 'Approve';
 
   @override
+  String get homeString => 'Home';
+
+  @override
+  String get stationsString => 'Stations';
+
+  @override
+  String get childrenString => 'Children';
+
+  @override
+  String get infoString => 'Info';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override

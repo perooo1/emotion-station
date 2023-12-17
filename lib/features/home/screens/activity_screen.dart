@@ -44,6 +44,33 @@ class ActivityScreen extends StatelessWidget {
           stationName: ActivityType.stationOfHappiness.name,
           questions: QuestionsCroatian().questionsHappiness,
         );
+      } else if (activityTypeName == ActivityType.stationOfSadness.name) {
+        return EmotionStation(
+          activityType: ActivityType.stationOfSadness,
+          stationName: ActivityType.stationOfSadness.name,
+          questions: QuestionsCroatian().questionsSadness,
+        );
+      } else if (activityTypeName == ActivityType.stationOfAnger.name) {
+        return EmotionStation(
+          activityType: ActivityType.stationOfAnger,
+          stationName: ActivityType.stationOfAnger.name,
+          questions: QuestionsCroatian().questionsAnger,
+        );
+      } else {
+        return EmotionStation(
+          activityType: ActivityType.stationOfFear,
+          stationName: ActivityType.stationOfFear.name,
+          questions: QuestionsCroatian().questionsFear,
+        );
+      }
+
+/*
+      if (activityTypeName == ActivityType.stationOfHappiness.name) {
+        return EmotionStation(
+          activityType: ActivityType.stationOfHappiness,
+          stationName: ActivityType.stationOfHappiness.name,
+          questions: QuestionsCroatian().questionsHappiness,
+        );
       } else {
         return EmotionStation(
           activityType: ActivityType.stationOfSadness,
@@ -51,6 +78,7 @@ class ActivityScreen extends StatelessWidget {
           questions: QuestionsCroatian().questionsSadness,
         );
       }
+*/
     } else {
       if (activityTypeName == ActivityType.stationOfHappiness.name) {
         return EmotionStation(

@@ -176,12 +176,178 @@ class QuestionsCroatian {
         ],
       ),
     ];
+
+    questionsAnger = [
+      Question(
+        imageAssetPath: shuffledImages.getRandomAngerRecognitionsBasic(),
+        text: 'O kojoj emociji na slici se radi?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionReckognition,
+        options: [
+          Option(text: 'Sreća', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Ljutnja', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Tuga', comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+      Question(
+        imageAssetPath: shuffledImages.getRandomJelousBasic(),
+        text: 'Koju emociju na slici prepoznaješ?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionReckognition,
+        options: [
+          Option(text: 'Slika prikazuje ljutnju', comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'Slika prikazuje tugu', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Slika prikazuje ljubomoru', comprehensionLevel: ComprehensionLevel.high),
+        ],
+      ),
+      Question(
+        text: 'Kako mali tigar doživljava trenutak?',
+        storyText:
+            'Mali tigar želio je podijeliti svoje omiljene igračke s prijateljima, ali su oni počeli bez njega. Gledao je kako se igraju, a osjećao je nešto što mu nije bilo ugodno. Kad je naposljetku pridružio skupini, nešto je ključalo u njemu.',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingTextual,
+        options: [
+          Option(
+              text: 'Ljut je jer su se prijatelji počeli igrati bez njega',
+              comprehensionLevel: ComprehensionLevel.high),
+          Option(
+              text: 'Bio je ljubomoran na prijatelje',
+              comprehensionLevel: ComprehensionLevel.partial),
+          Option(
+              text: 'Bio je sretan jer su se njegovi prijatelji već igrali',
+              comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+      Question(
+        text: 'Kako malena mačka doživljava trenutak?',
+        storyText:
+            'Mačkica donijela je svoj najnoviji crtež kako bi ga podijelila s prijateljima, ali su svi divili crtežu jedne druge mačke. Dok je promatrao hvale upućene drugoj mački, nešto se prelomilo u njenim očima, ali taj trenutak ostao je zamotan u tišini.',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingTextual,
+        options: [
+          Option(
+              text: 'Ljubomorna je na drugu mačku ', comprehensionLevel: ComprehensionLevel.high),
+          Option(
+              text: 'Ljuta je jer nitko ne gleda njezin crtež',
+              comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'Sretna je zbog druge mačke', comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+      Question(
+        imageAssetPath: shuffledImages.getRandomAngerRecognitionsComplex(),
+        text: 'Kakav osjećaj prevladava na slici?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingVisual,
+        options: [
+          Option(text: 'Prevladava osjećaj straha', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Prevladava osjećaj sreće ', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Prevladava osjećaj ljutnje', comprehensionLevel: ComprehensionLevel.high),
+        ],
+      ),
+      Question(
+        imageAssetPath: shuffledImages.getRandomJelousComplex(),
+        text: 'Što misliš, o kojoj emociji se na ovoj slici radi?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingVisual,
+        options: [
+          Option(text: 'Ljubomora', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Ljutnja', comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'tuga', comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+    ];
+
+    questionsFear = [
+      Question(
+        imageAssetPath: shuffledImages.getRandomFearBasic(),
+        text: 'O kojoj emociji na slici se radi?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionReckognition,
+        options: [
+          Option(text: 'Sreća', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Strah', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Tuga', comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+      Question(
+        imageAssetPath: shuffledImages.getRandomNervousBasic(),
+        text: 'Koju emociju na slici prepoznaješ?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionReckognition,
+        options: [
+          Option(text: 'Slika prikazuje strah', comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'Slika prikazuje tugu', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Slika prikazuje nervozu', comprehensionLevel: ComprehensionLevel.high),
+        ],
+      ),
+      Question(
+        text: 'Kako mala vjeverica doživljava ovu neobičnu i zastrašujuću situaciju?',
+        storyText:
+            'Mala vjeverica željela je istražiti tamnu špilju, no čim je zakoračila unutra, čula je jezive zvukove kako odjekuju zidovima. Strah ju je obuzeo, a srce joj je lupalo brže, gotovo kao ritam strašne glazbe koja ju okružuje. Pokušala je smireno izići iz špilje, ali nešto ju je pratilo u sjeni, izmicanje sjena izazvalo je jezu njezinim krznenim leđima.',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingTextual,
+        options: [
+          Option(
+            text: 'Bilo ju je strah zbog zvukova',
+            comprehensionLevel: ComprehensionLevel.high,
+          ),
+          Option(
+              text: 'Bila je nervozna zbog istraživanja špilje',
+              comprehensionLevel: ComprehensionLevel.partial),
+          Option(
+              text: 'Nije ju bilo strah istraživanja špilje',
+              comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+      Question(
+        text: 'Kako maleni jež doživljava ovu situaciju?',
+        storyText:
+            'Mali je jež bio pozvan na veliki ježev sastanak, ali kad je stigao, primijetio je da je zaboravio važne bilješke kod kuće. Nestrpljivo je tražio po bodljama, a srce mu je ubrzano kucalo dok je pokušavao sjetiti se ključnih informacija. Unatoč napetosti, trudio se ostati smiren pred ostalim ježevima.',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingTextual,
+        options: [
+          Option(
+              text: 'Nervozan je jer treba držati govor, a nema bilješki',
+              comprehensionLevel: ComprehensionLevel.high),
+          Option(
+              text: 'Uplašen je jer nema svojih bilješki',
+              comprehensionLevel: ComprehensionLevel.partial),
+          Option(
+              text: 'Tužan je jer nema svojih bilješki',
+              comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+      Question(
+        imageAssetPath: shuffledImages.getRandomFearComplex(),
+        text: 'Kakav osjećaj prevladava na slici?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingVisual,
+        options: [
+          Option(text: 'Prevladava osjećaj straha', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Prevladava osjećaj tuge ', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Prevladava osjećaj ljutnje', comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+      Question(
+        imageAssetPath: shuffledImages.getRandomJelousComplex(),
+        text: 'Što misliš, o kojoj emociji se na ovoj slici radi?',
+        activityType: ActivityType.stationOfSadness,
+        opservationCategory: OpservationCategory.emotionUnderstandingVisual,
+        options: [
+          Option(text: 'Nervoza', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Strah', comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'Tuga', comprehensionLevel: ComprehensionLevel.low),
+        ],
+      ),
+    ];
   }
 
   final ShuffledImages shuffledImages = ShuffledImages();
 
   late List<Question> questionsHappiness;
   late List<Question> questionsSadness;
+  late List<Question> questionsAnger;
+  late List<Question> questionsFear;
 
 /*
   final List<Question> questionsHappiness = [

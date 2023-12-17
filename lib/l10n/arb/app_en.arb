@@ -29,6 +29,7 @@
     "stationsString":"Stations",
     "childrenString":"Children",
     "infoString":"Info",
+    "backString":"Back",
 
     "activityFinishedDialogMessage":"You have finished your journey and reached emotion station! You can now give back the phone to your parents!",
     "activityFinishedDialogButtonText":"Back to stations screen",
@@ -85,6 +86,8 @@
     "childDetailsScreenUnderstandingTextual":"Textual",
     "childDetailsScreenUnderstandingVisual":"Visual",
     "childDetailsScreenTherapistNoteDialogMessage":"Add a note that will be visible to both you and the parent.",
+    "childDetailsScreenTherapistAddNoteDialogMessageActivityRecord":"Add a note for this activity record that will be visible to both you and the parent.",
+    "childDetailsScreenParentAddNoteDialogMessageActivityRecord":"Add a note for this activity record that will be visible to both you and the therapist.",
     "childDetailsScreenTherapistNote":"Therapist note",
 
     "emotionForecast":"Emotion Forecast",

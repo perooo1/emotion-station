@@ -25,7 +25,11 @@ abstract class IDatabaseRepository {
     required String childId,
     required Map<DateTime, EmotionForecast>? forecast,
   });
-  Future<bool> addSpecialistNote({required String childId, required String? specialistNote});
+  Future<bool> addSpecialistNoteChild({required String childId, required String? specialistNote});
+  Future<bool> addSpecialistNoteActivityRecord(
+      {required String activityRecordId, required String? specialistNote});
+  Future<bool> addParentNoteActivityRecord(
+      {required String activityRecordId, required String? parentNote});
 
   //read
   Future<Child> getChildFromDatabase({required String childId});
@@ -238,7 +242,8 @@ class DatabaseRepository implements IDatabaseRepository {
   }
 
   @override
-  Future<bool> addSpecialistNote({required String childId, required String? specialistNote}) async {
+  Future<bool> addSpecialistNoteChild(
+      {required String childId, required String? specialistNote}) async {
     try {
       await instance
           .collection(FIRESTORE_COLLECTION_CHILDREN)
@@ -248,6 +253,38 @@ class DatabaseRepository implements IDatabaseRepository {
       return true;
     } on FirebaseException catch (e) {
       print('DB MANAGER - addSpecialistNote() : Error child spec note: $e');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> addParentNoteActivityRecord(
+      {required String activityRecordId, required String? parentNote}) async {
+    try {
+      await instance
+          .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
+          .doc(activityRecordId)
+          .update({'parentNote': parentNote});
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - addParentNoteActivityRecord() : Error child spec note: $e');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> addSpecialistNoteActivityRecord(
+      {required String activityRecordId, required String? specialistNote}) async {
+    try {
+      await instance
+          .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
+          .doc(activityRecordId)
+          .update({'specialistNote': specialistNote});
+
+      return true;
+    } on FirebaseException catch (e) {
+      print('DB MANAGER - addSpecialistNoteActivityRecord() : Error child spec note: $e');
       return false;
     }
   }

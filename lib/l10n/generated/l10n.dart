@@ -267,6 +267,12 @@ abstract class AppLocalizations {
   /// **'Info'**
   String get infoString;
 
+  /// No description provided for @backString.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get backString;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:
@@ -560,6 +566,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add a note that will be visible to both you and the parent.'**
   String get childDetailsScreenTherapistNoteDialogMessage;
+
+  /// No description provided for @childDetailsScreenTherapistAddNoteDialogMessageActivityRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note for this activity record that will be visible to both you and the parent.'**
+  String get childDetailsScreenTherapistAddNoteDialogMessageActivityRecord;
+
+  /// No description provided for @childDetailsScreenParentAddNoteDialogMessageActivityRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note for this activity record that will be visible to both you and the therapist.'**
+  String get childDetailsScreenParentAddNoteDialogMessageActivityRecord;
 
   /// No description provided for @childDetailsScreenTherapistNote.
   ///

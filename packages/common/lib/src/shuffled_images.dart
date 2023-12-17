@@ -3,30 +3,25 @@ import 'package:common/common.dart';
 class ShuffledImages {
   final List<String> _happinessRecognitionsBasic = [
     Images.recognitionHappines,
-    Images.recognitionAnger,
-    Images.recognitionFear,
-    Images.recognitionSadness,
+    Images.happyBasic1,
+    Images.happyBasic2,
   ];
 
   final List<String> _happinessRecognitionComplex = [
     Images.happinessSurprise,
-    Images.fearNervous,
-    Images.homeScreenHero,
-    Images.recognitionSadness,
+    Images.happyComplex1,
+    Images.happyComplex2,
+    Images.happyComplex3,
   ];
 
   final List<String> _happinessUnderstandingBasic = [
     Images.understandingHappiness,
-    Images.recognitionAnger,
-    Images.recognitionFear,
-    Images.recognitionSadness,
   ];
 
   final List<String> _happinessUnderstandingComplex = [
     Images.understandingSurprise,
-    Images.recognitionAnger,
-    Images.recognitionFear,
-    Images.recognitionSadness,
+    Images.surpriseComplex1,
+    Images.surpriseComplex2,
   ];
 
   String getRandomHappinessRecognitionsBasic() {

@@ -72,16 +72,13 @@ class QuestionsCroatian {
       Question(
         imageAssetPath: shuffledImages.getRandomHappinessUnderstandingBasic(),
         //imageAssetPath: Images.understandingHappiness,
-        text: 'Odgovori, kako se djevojčica na slici osjeća?',
+        text: 'Što misliš, kako se dijete na slici osjeća?',
         activityType: ActivityType.stationOfHappiness,
         opservationCategory: OpservationCategory.emotionUnderstandingVisual,
         options: [
-          Option(
-              text: 'Iznenađeno, jer je pronašla novac ',
-              comprehensionLevel: ComprehensionLevel.partial),
-          Option(
-              text: 'Sretno, jer je pronašla novac.', comprehensionLevel: ComprehensionLevel.high),
-          Option(text: 'Ljuto, jer je pronašla novac.', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Iznenađeno', comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'Sretno', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Ljuto', comprehensionLevel: ComprehensionLevel.low),
         ],
       ),
       Question(

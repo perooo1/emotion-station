@@ -29,6 +29,7 @@
     "stationsString":"Stanice",
     "childrenString":"Djeca",
     "infoString":"Informacije",
+    "backString":"Natrag",
 
     "activityFinishedDialogMessage":"Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!",
     "activityFinishedDialogButtonText":"Povratak na glavni ekran",
@@ -85,6 +86,8 @@
     "childDetailsScreenUnderstandingTextual":"Tekstualno",
     "childDetailsScreenUnderstandingVisual":"Vizualno",
     "childDetailsScreenTherapistNoteDialogMessage":"Dodajte bilješku koju će vidjeti i roditelj.",
+    "childDetailsScreenTherapistAddNoteDialogMessageActivityRecord":"Dodajte bilješku za ovu aktivnost koju će vidjeti i roditelj.",
+    "childDetailsScreenParentAddNoteDialogMessageActivityRecord":"Dodajte bilješku za ovu aktivnost koju će vidjeti i terapeut.",
     "childDetailsScreenTherapistNote":"Bilješka terapeuta",
 
     "emotionForecast":"Prognoza Emocija",

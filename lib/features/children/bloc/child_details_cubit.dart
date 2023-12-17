@@ -66,7 +66,7 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   }
 
   Future<void> addSpecialistNote(String specialistNote) async {
-    final a = await databaseRepository.addSpecialistNote(
+    final a = await databaseRepository.addSpecialistNoteChild(
       childId: state.child.id,
       specialistNote: specialistNote,
     );

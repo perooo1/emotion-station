@@ -92,6 +92,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get infoString => 'Info';
 
   @override
+  String get backString => 'Back';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override
@@ -237,6 +240,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get childDetailsScreenTherapistNoteDialogMessage => 'Add a note that will be visible to both you and the parent.';
+
+  @override
+  String get childDetailsScreenTherapistAddNoteDialogMessageActivityRecord => 'Add a note for this activity record that will be visible to both you and the parent.';
+
+  @override
+  String get childDetailsScreenParentAddNoteDialogMessageActivityRecord => 'Add a note for this activity record that will be visible to both you and the therapist.';
 
   @override
   String get childDetailsScreenTherapistNote => 'Therapist note';

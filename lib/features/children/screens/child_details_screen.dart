@@ -83,7 +83,7 @@ class _ChildDetailsView extends StatelessWidget {
                     label: Text(l10n.addNoteString),
                     onPressed: () => showDialog(
                       context: context,
-                      builder: (context) => AddNoteTherapistDialog(
+                      builder: (context) => AddNoteDialog(
                         childId: state.child.id,
                         databaseRepository: Injector.locateService<IDatabaseRepository>(),
                       ),

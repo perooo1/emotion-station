@@ -86,20 +86,24 @@ class _HomeScreenView extends StatelessWidget {
             () => showDialog(
               context: context,
               builder: (context) => Dialog.fullscreen(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(Images.dataLoadingErrorImage),
-                    Text(l10n.errorLoadingDataMessage),
-                    FilledButton(
-                      onPressed: () {
-                        tempCubit.authenticationManager.signOut();
-                        context.goNamed(EmotionStationRoutes.loginScreen.routeName);
-                      },
-                      child: Text(l10n.errorLoadingDataGoToLoginScreen),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(Images.dataLoadingErrorImage),
+                      const SizedBox(height: 16.0),
+                      Text(l10n.errorLoadingDataMessage),
+                      FilledButton(
+                        onPressed: () {
+                          tempCubit.authenticationManager.signOut();
+                          context.goNamed(EmotionStationRoutes.loginScreen.routeName);
+                        },
+                        child: Text(l10n.errorLoadingDataGoToLoginScreen),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

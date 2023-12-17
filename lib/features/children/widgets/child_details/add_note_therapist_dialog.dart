@@ -22,7 +22,7 @@ class _AddNoteTherapistDialogState extends State<AddNoteTherapistDialog> {
   String _specialistNote = '';
 
   Future<void> addNote() async {
-    final a = await widget.databaseRepository.addSpecialistNote(
+    final a = await widget.databaseRepository.addSpecialistNoteChild(
       childId: widget.childId,
       specialistNote: _specialistNote,
     );

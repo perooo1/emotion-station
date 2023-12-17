@@ -92,6 +92,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get infoString => 'Informacije';
 
   @override
+  String get backString => 'Natrag';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override
@@ -237,6 +240,12 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get childDetailsScreenTherapistNoteDialogMessage => 'Dodajte bilješku koju će vidjeti i roditelj.';
+
+  @override
+  String get childDetailsScreenTherapistAddNoteDialogMessageActivityRecord => 'Dodajte bilješku za ovu aktivnost koju će vidjeti i roditelj.';
+
+  @override
+  String get childDetailsScreenParentAddNoteDialogMessageActivityRecord => 'Dodajte bilješku za ovu aktivnost koju će vidjeti i terapeut.';
 
   @override
   String get childDetailsScreenTherapistNote => 'Bilješka terapeuta';

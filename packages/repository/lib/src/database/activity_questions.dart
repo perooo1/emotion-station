@@ -97,76 +97,82 @@ class QuestionsCroatian {
 
     questionsSadness = [
       Question(
-        imageAssetPath: 'assets/images/boy_sad.webp',
+        imageAssetPath: shuffledImages.getRandomSadnessRecognitionsBasic(),
         text: 'O kojoj emociji na slici se radi?',
         activityType: ActivityType.stationOfSadness,
         opservationCategory: OpservationCategory.emotionReckognition,
         options: [
-          Option(text: 'Sreća', comprehensionLevel: ComprehensionLevel.high),
-          Option(text: 'Tuga', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Sreća', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Tuga', comprehensionLevel: ComprehensionLevel.high),
           Option(text: 'Ljutnja', comprehensionLevel: ComprehensionLevel.low),
         ],
       ),
       Question(
-        imageAssetPath: 'assets/images/boy_sad.webp',
-        text: 'O kojoj emociji se radi(kompleksna emocija)?',
+        imageAssetPath: shuffledImages.getRandomSadnessRecognitionsComplex(),
+        text: 'Koju emociju na slici prepoznaješ?',
         activityType: ActivityType.stationOfSadness,
         opservationCategory: OpservationCategory.emotionReckognition,
         options: [
-          Option(text: 'Sretan je', comprehensionLevel: ComprehensionLevel.low),
-          Option(text: 'Iznenađen je', comprehensionLevel: ComprehensionLevel.partial),
-          Option(text: 'Tužan je', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Slika prikazuje sreću', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Slika prikazuje tugu', comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'Slika prikazuje razočaranje', comprehensionLevel: ComprehensionLevel.high),
         ],
       ),
       Question(
-        text: 'Pitanje o tužnoj priči ide ovdje upitnik?',
+        text: 'Kako se mali zečić osjeća?',
         storyText:
-            'Ujutro su uz jezero doletjela dva velika bijela labuda. Pačić se ipak odlučio sakriti jer ga je bilo sram radi svog izgleda. Nije se mogao pojaviti tako ružan pred tako lijepim bijelim pticama. Labudovi su doplivali do njega jer su primijetili kako se skriva. Jako su raširili svoja krila u znak pozdravai pozvali ga da zaplivaju zajedno. Pačić je bio presretan. Napokon je imao prijatelje koji su ga prihvatili.',
+            'Mali zečić izgubio je svoj omiljeni plišani medvjedić na putu do škole. Kad je stigao kući, gledao je kroz prozor s izgubljenim izrazom u očima. Oči su mu bile tužne, a srce teško',
         activityType: ActivityType.stationOfSadness,
         opservationCategory: OpservationCategory.emotionUnderstandingTextual,
         options: [
           Option(
-              text: 'Jer su doletjela dva labuda', comprehensionLevel: ComprehensionLevel.partial),
-          Option(
-              text: 'napokon je imao prijatelje koji su ga prihvatili',
+              text: 'Tužan je jer je izgubio medvjedića',
               comprehensionLevel: ComprehensionLevel.high),
           Option(
-              text: 'labudovi su orimijetili da se skriva',
+              text: 'Bio je razočaran jer ga je medvjedić napustio',
+              comprehensionLevel: ComprehensionLevel.partial),
+          Option(
+              text: 'Bilo mu je svejedno za medvjedića',
               comprehensionLevel: ComprehensionLevel.low),
         ],
       ),
       Question(
-        text: 'Kompleksnije pitanje',
+        text: 'Kako patkica doživljava trenutak',
         storyText:
-            'Ujutro su uz jezero doletjela dva velika bijela labuda. Pačić se ipak odlučio sakriti jer ga je bilo sram radi svog izgleda. Nije se mogao pojaviti tako ružan pred tako lijepim bijelim pticama. Labudovi su doplivali do njega jer su primijetili kako se skriva. Jako su raširili svoja krila u znak pozdravai pozvali ga da zaplivaju zajedno. Pačić je bio presretan. Napokon je imao prijatelje koji su ga prihvatili.',
+            'Malena patka pripremila je iznenađenje za svoje prijatelje, ali nitko od njih nije došao na rođendansku zabavu. Kad je sjela za stol, s pogledom uprtim u prazne stolice, izgledala je kao da je nešto očekivala, ali se nije ostvarilo.',
         activityType: ActivityType.stationOfSadness,
         opservationCategory: OpservationCategory.emotionUnderstandingTextual,
         options: [
-          Option(text: 'ajmo reci tocan odogovor', comprehensionLevel: ComprehensionLevel.high),
-          Option(text: 'može proći', comprehensionLevel: ComprehensionLevel.partial),
-          Option(text: 'nikako', comprehensionLevel: ComprehensionLevel.low),
+          Option(
+              text: 'Razočarana je jer nitko nije došao',
+              comprehensionLevel: ComprehensionLevel.high),
+          Option(
+              text: 'Tužna je zbog svojih prijatelja',
+              comprehensionLevel: ComprehensionLevel.partial),
+          Option(
+              text: 'Nije niti očekivala prijatelje', comprehensionLevel: ComprehensionLevel.low),
         ],
       ),
       Question(
-        imageAssetPath: 'assets/images/boy_sad.webp',
-        text: 'Kako se dječak osjeća?',
+        imageAssetPath: shuffledImages.getRandomSadnessUnderstandingBasic(),
+        text: 'Kakav osjećaj prevladava na slici?',
         activityType: ActivityType.stationOfSadness,
         opservationCategory: OpservationCategory.emotionUnderstandingVisual,
         options: [
-          Option(text: 'Sretan je ', comprehensionLevel: ComprehensionLevel.low),
-          Option(text: 'ljut je ', comprehensionLevel: ComprehensionLevel.low),
-          Option(text: 'tužan je', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Prevladava osjećaj ljutnje', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Prevladava osjećaj sreće ', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Prevladava osjećaj tuge', comprehensionLevel: ComprehensionLevel.high),
         ],
       ),
       Question(
-        imageAssetPath: 'assets/images/boy_sad.webp',
-        text: 'Kako se osjeća kompleksnije?',
+        imageAssetPath: shuffledImages.getRandomSadnessUnderstandingComplex(),
+        text: 'Što misliš, o kojoj emociji se na ovoj slici radi?',
         activityType: ActivityType.stationOfSadness,
         opservationCategory: OpservationCategory.emotionUnderstandingVisual,
         options: [
-          Option(text: 'kompleksna tuga', comprehensionLevel: ComprehensionLevel.high),
-          Option(text: 'iznenađeno', comprehensionLevel: ComprehensionLevel.partial),
-          Option(text: 'kompleksna Ljutnja', comprehensionLevel: ComprehensionLevel.low),
+          Option(text: 'Razočaranje', comprehensionLevel: ComprehensionLevel.high),
+          Option(text: 'Tuga', comprehensionLevel: ComprehensionLevel.partial),
+          Option(text: 'Ljutnja', comprehensionLevel: ComprehensionLevel.low),
         ],
       ),
     ];

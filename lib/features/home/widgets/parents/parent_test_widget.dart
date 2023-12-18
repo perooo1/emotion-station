@@ -64,8 +64,8 @@ class ParentTestWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 StationStartButton(
-                  fillColor: Colors.yellow.shade100,
-                  borderColor: Colors.yellow,
+                  fillColor: Theme.of(context).colorScheme.primaryContainer,
+                  borderColor: Theme.of(context).colorScheme.primary,
                   borderRadius: 12,
                   title: l10n.stationOfHappiness,
                   onAction: () {

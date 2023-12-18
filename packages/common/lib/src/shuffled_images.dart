@@ -1,6 +1,8 @@
 import 'package:common/common.dart';
 
 class ShuffledImages {
+  //Happiness
+
   final List<String> _happinessRecognitionsBasic = [
     Images.recognitionHappines,
     Images.happyBasic1,

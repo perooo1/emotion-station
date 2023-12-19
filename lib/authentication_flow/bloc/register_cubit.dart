@@ -65,7 +65,7 @@ class RegisterCubit extends Cubit<RegisterState> {
                     name: state.name,
                     lastName: state.lastName,
                     email: state.email,
-                    password: state.password,
+                    //password: state.password,
                   )
                 : Parent(
                     id: newUserId,
@@ -73,7 +73,7 @@ class RegisterCubit extends Cubit<RegisterState> {
                     name: state.name,
                     lastName: state.lastName,
                     email: state.email,
-                    password: state.password,
+                    //password: state.password,
                   ),
           );
 

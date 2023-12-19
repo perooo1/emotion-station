@@ -95,6 +95,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get backString => 'Back';
 
   @override
+  String get rememberLoginData => 'Remember login data';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override

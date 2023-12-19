@@ -85,6 +85,7 @@ class _LoginView extends StatelessWidget {
                       children: [
                         ESTextInput(
                           borderRadius: 16.0,
+                          controller: cubit.emailController,
                           height: 56.0,
                           labelText: l10n.emailString,
                           onChanged: (email) => cubit.saveEmailToState(email),
@@ -92,12 +93,19 @@ class _LoginView extends StatelessWidget {
                         const SizedBox(height: 16.0),
                         ESTextInput(
                           borderRadius: 16.0,
+                          controller: cubit.passwordController,
                           height: 56.0,
                           labelText: l10n.passwordString,
                           obscureText: true,
                           onChanged: (password) => cubit.savePwdToState(password),
                         ),
-                        const SizedBox(height: 16.0),
+                        const SizedBox(height: 6.0),
+                        CheckboxListTile(
+                          title: Text(l10n.rememberLoginData),
+                          value: state.rememberLogin,
+                          onChanged: (value) => cubit.setRememberLogin(value!),
+                        ),
+                        const SizedBox(height: 6.0),
                       ],
                     ),
                     state.submissionStatus == SubmissionStatus.inProgress

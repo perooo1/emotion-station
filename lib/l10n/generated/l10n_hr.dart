@@ -95,6 +95,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get backString => 'Natrag';
 
   @override
+  String get rememberLoginData => 'Zapamti podatke za prijavu';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override

@@ -30,6 +30,7 @@
     "childrenString":"Children",
     "infoString":"Info",
     "backString":"Back",
+    "rememberLoginData":"Remember login data",
 
     "activityFinishedDialogMessage":"You have finished your journey and reached emotion station! You can now give back the phone to your parents!",
     "activityFinishedDialogButtonText":"Back to stations screen",

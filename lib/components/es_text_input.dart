@@ -4,6 +4,7 @@ class ESTextInput extends StatelessWidget {
   const ESTextInput({
     super.key,
     required this.borderRadius,
+    this.controller,
     this.filled = false,
     required this.height,
     required this.labelText,
@@ -12,6 +13,7 @@ class ESTextInput extends StatelessWidget {
   });
 
   final double borderRadius;
+  final TextEditingController? controller;
   final bool filled;
   final double height;
   final String labelText;
@@ -23,6 +25,7 @@ class ESTextInput extends StatelessWidget {
     return SizedBox(
       height: height,
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           labelText: labelText,
           filled: filled,

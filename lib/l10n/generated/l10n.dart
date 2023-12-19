@@ -273,6 +273,12 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get backString;
 
+  /// No description provided for @rememberLoginData.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember login data'**
+  String get rememberLoginData;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:

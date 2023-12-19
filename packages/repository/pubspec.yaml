@@ -16,6 +16,7 @@ dependencies:
     path: ../common
   firebase_auth: ^4.10.0
   cloud_firestore: ^4.9.2
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   lints: ^2.0.0

@@ -30,6 +30,7 @@
     "childrenString":"Djeca",
     "infoString":"Informacije",
     "backString":"Natrag",
+    "rememberLoginData":"Zapamti podatke za prijavu",
 
     "activityFinishedDialogMessage":"Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!",
     "activityFinishedDialogButtonText":"Povratak na glavni ekran",

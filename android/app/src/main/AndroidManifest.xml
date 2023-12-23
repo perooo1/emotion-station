@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.plenart.emotion_station">
    <application
-        android:label="emotion_station"
+        android:label="Emotion Station"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

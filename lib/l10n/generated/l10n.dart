@@ -279,6 +279,18 @@ abstract class AppLocalizations {
   /// **'Remember login data'**
   String get rememberLoginData;
 
+  /// No description provided for @addChildScreenMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Click on the + button to add child'**
+  String get addChildScreenMessage;
+
+  /// No description provided for @connectWithParentMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Click on the + button to connect with parent'**
+  String get connectWithParentMessage;
+
   /// No description provided for @activityFinishedDialogMessage.
   ///
   /// In en, this message translates to:

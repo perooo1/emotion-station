@@ -31,6 +31,8 @@
     "infoString":"Informacije",
     "backString":"Natrag",
     "rememberLoginData":"Zapamti podatke za prijavu",
+    "addChildScreenMessage":"Kliknite na + gumb kako biste dodali dijete",
+    "connectWithParentMessage":"Kliknite na + gumb kako biste se povezali s roditeljima",
 
     "activityFinishedDialogMessage":"Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!",
     "activityFinishedDialogButtonText":"Povratak na glavni ekran",

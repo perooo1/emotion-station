@@ -1,5 +1,6 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/children/children.dart';
+import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/navigation/navigation.dart';
 import 'package:emotion_station/utils/helper_classes/helper_classes.dart';
 import 'package:flutter/material.dart';
@@ -12,24 +13,27 @@ class ParentChildrenScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (context, index) {
-        return ChildCell(
-          child: children?[index] ??
-              Child(
-                id: 'id',
-                parentId: 'fef',
-                name: 'name',
-                lastName: 'lastName',
-                age: 5,
-                isGenderMale: true,
-                diagnosis: 'diagnosis',
-                attendsKindergarten: false,
-                riskyPregnancy: false,
-                pregnancyBirthWeek: 22,
-                treatmentStartMonth: DateTime.now(),
-              ),
-        );
+    final l10n = AppLocalizations.of(context);
+
+    return children?.length != 0
+        ? ListView.separated(
+            itemBuilder: (context, index) {
+              return ChildCell(
+                child: children?[index] ??
+                    Child(
+                      id: 'id',
+                      parentId: 'fef',
+                      name: 'name',
+                      lastName: 'lastName',
+                      age: 5,
+                      isGenderMale: true,
+                      diagnosis: 'diagnosis',
+                      attendsKindergarten: false,
+                      riskyPregnancy: false,
+                      pregnancyBirthWeek: 22,
+                      treatmentStartMonth: DateTime.now(),
+                    ),
+              );
 /*
         return ListTile(
           tileColor: Colors.amber,
@@ -45,9 +49,14 @@ class ParentChildrenScreenView extends StatelessWidget {
           ),
         );
 */
-      },
-      separatorBuilder: (context, index) => const SizedBox(height: 16),
-      itemCount: children?.length ?? 0,
-    );
+            },
+            separatorBuilder: (context, index) => const SizedBox(height: 16),
+            itemCount: children?.length ?? 0,
+          )
+        : Center(
+            child: Text(l10n.addChildScreenMessage),
+          );
+
+    ;
   }
 }

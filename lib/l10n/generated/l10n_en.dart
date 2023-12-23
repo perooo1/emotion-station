@@ -98,6 +98,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rememberLoginData => 'Remember login data';
 
   @override
+  String get addChildScreenMessage => 'Click on the + button to add child';
+
+  @override
+  String get connectWithParentMessage => 'Click on the + button to connect with parent';
+
+  @override
   String get activityFinishedDialogMessage => 'You have finished your journey and reached emotion station! You can now give back the phone to your parents!';
 
   @override

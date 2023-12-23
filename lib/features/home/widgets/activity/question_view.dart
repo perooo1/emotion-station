@@ -28,14 +28,20 @@ class QuestionView extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           if (question.storyText != null)
+            Expanded(
+              flex: 2,
+              child: Text(question.storyText!),
+            ),
+/*
             SingleChildScrollView(
-              child: Padding(
+              child: Padding( 
                 padding: const EdgeInsets.all(8.0),
                 child: Expanded(
                   child: Text(question.storyText!),
                 ),
               ),
             ),
+*/
           /*
             Expanded(
               child: Text(question.storyText!),

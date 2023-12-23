@@ -31,6 +31,8 @@
     "infoString":"Info",
     "backString":"Back",
     "rememberLoginData":"Remember login data",
+    "addChildScreenMessage":"Click on the + button to add child",
+    "connectWithParentMessage":"Click on the + button to connect with parent",
 
     "activityFinishedDialogMessage":"You have finished your journey and reached emotion station! You can now give back the phone to your parents!",
     "activityFinishedDialogButtonText":"Back to stations screen",

@@ -98,6 +98,12 @@ class AppLocalizationsHr extends AppLocalizations {
   String get rememberLoginData => 'Zapamti podatke za prijavu';
 
   @override
+  String get addChildScreenMessage => 'Kliknite na + gumb kako biste dodali dijete';
+
+  @override
+  String get connectWithParentMessage => 'Kliknite na + gumb kako biste se povezali s roditeljima';
+
+  @override
   String get activityFinishedDialogMessage => 'Tvoje putovanje je uspješno završeno, stigao si na stanicu! Sada možeš vratiti mobitel roditeljima!';
 
   @override

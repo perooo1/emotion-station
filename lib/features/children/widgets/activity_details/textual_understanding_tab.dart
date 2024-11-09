@@ -13,22 +13,25 @@ class TextualUnderstandingTab extends StatelessWidget {
 
     final l10n = AppLocalizations.of(context);
 
-    final answer1 = cubit.state.activityRecord.emotionStation.questions[2].options
-        .where(
-          (element) =>
-              element.comprehensionLevel == cubit.state.activityRecord.understandingTextualAnswer1,
-        )
-        .toList();
-    final answer2 = cubit.state.activityRecord.emotionStation.questions[3].options
-        .where(
-          (element) =>
-              element.comprehensionLevel == cubit.state.activityRecord.understandingTextualAnswer2,
-        )
-        .toList();
+    final answer1 =
+        cubit.state.activityRecord.emotionStation.questions[2].options
+            .where(
+              (element) =>
+                  element.comprehensionLevel ==
+                  cubit.state.activityRecord.understandingTextualAnswer1,
+            )
+            .toList();
+    final answer2 =
+        cubit.state.activityRecord.emotionStation.questions[3].options
+            .where(
+              (element) =>
+                  element.comprehensionLevel ==
+                  cubit.state.activityRecord.understandingTextualAnswer2,
+            )
+            .toList();
 
     return SingleChildScrollView(
       child: Padding(
-        //padding: const EdgeInsets.all(16.0),
         padding: const EdgeInsets.only(
           left: 16.0,
           top: 16.0,
@@ -102,7 +105,8 @@ class TextualUnderstandingTab extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      cubit.state.activityRecord.emotionStation.questions[2].storyText!,
+                      cubit.state.activityRecord.emotionStation.questions[2]
+                          .storyText!,
                     ),
                     const SizedBox(height: 16.0),
                     const Divider(),
@@ -110,8 +114,10 @@ class TextualUnderstandingTab extends StatelessWidget {
                     const SizedBox(height: 16.0),
                     Text(
                       answer1[0].text,
-                      //cubit.state.activityRecord.recognitionAnswer1.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
@@ -126,19 +132,22 @@ class TextualUnderstandingTab extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      cubit.state.activityRecord.emotionStation.questions[3].storyText!,
+                      cubit.state.activityRecord.emotionStation.questions[3]
+                          .storyText!,
                     ),
                     const SizedBox(height: 16.0),
                     const Divider(),
                     Text(
                       '${l10n.childAnsweredString}:',
-                      style: TextStyle(fontStyle: FontStyle.italic),
+                      style: const TextStyle(fontStyle: FontStyle.italic),
                     ),
                     const SizedBox(height: 16.0),
                     Text(
                       answer2[0].text,
-                      //cubit.state.activityRecord.recognitionAnswer1.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),

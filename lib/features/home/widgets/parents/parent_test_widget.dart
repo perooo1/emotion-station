@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:common/common.dart';
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/home/bloc/home_cubit.dart';
@@ -31,7 +29,7 @@ class ParentTestWidget extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Center(
             child: Column(
               children: [
@@ -47,7 +45,7 @@ class ParentTestWidget extends StatelessWidget {
                   inputDecorationTheme: InputDecorationTheme(
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.outlineVariant,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(16.0)),
                     ),
                   ),
@@ -55,12 +53,16 @@ class ParentTestWidget extends StatelessWidget {
                   onSelected: (value) {
                     cubit.onChildSelected(value!);
                   },
-                  dropdownMenuEntries: cubit.state.children?.map<DropdownMenuEntry<Child>>(
-                        (Child value) {
-                          return DropdownMenuEntry<Child>(value: value, label: value.name);
-                        },
-                      ).toList() ??
-                      List.empty(),
+                  dropdownMenuEntries:
+                      cubit.state.children?.map<DropdownMenuEntry<Child>>(
+                            (Child value) {
+                              return DropdownMenuEntry<Child>(
+                                value: value,
+                                label: value.name,
+                              );
+                            },
+                          ).toList() ??
+                          List.empty(),
                 ),
                 const SizedBox(height: 16.0),
                 StationStartButton(
@@ -72,10 +74,12 @@ class ParentTestWidget extends StatelessWidget {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
                       pathParameters: {
-                        ActivityRouteParameters.childId: cubit.state.selectedChild!.id
+                        ActivityRouteParameters.childId:
+                            cubit.state.selectedChild!.id
                       },
                       queryParameters: {
-                        ActivityRouteParameters.activityType: ActivityType.stationOfHappiness.name
+                        ActivityRouteParameters.activityType:
+                            ActivityType.stationOfHappiness.name
                       },
                     );
                   },
@@ -90,10 +94,12 @@ class ParentTestWidget extends StatelessWidget {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
                       pathParameters: {
-                        ActivityRouteParameters.childId: cubit.state.selectedChild!.id
+                        ActivityRouteParameters.childId:
+                            cubit.state.selectedChild!.id
                       },
                       queryParameters: {
-                        ActivityRouteParameters.activityType: ActivityType.stationOfSadness.name
+                        ActivityRouteParameters.activityType:
+                            ActivityType.stationOfSadness.name
                       },
                     );
                   },
@@ -108,10 +114,12 @@ class ParentTestWidget extends StatelessWidget {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
                       pathParameters: {
-                        ActivityRouteParameters.childId: cubit.state.selectedChild!.id
+                        ActivityRouteParameters.childId:
+                            cubit.state.selectedChild!.id
                       },
                       queryParameters: {
-                        ActivityRouteParameters.activityType: ActivityType.stationOfFear.name
+                        ActivityRouteParameters.activityType:
+                            ActivityType.stationOfFear.name
                       },
                     );
                   },
@@ -126,10 +134,12 @@ class ParentTestWidget extends StatelessWidget {
                     context.goNamed(
                       EmotionStationRoutes.activityScreen.routeName,
                       pathParameters: {
-                        ActivityRouteParameters.childId: cubit.state.selectedChild!.id
+                        ActivityRouteParameters.childId:
+                            cubit.state.selectedChild!.id
                       },
                       queryParameters: {
-                        ActivityRouteParameters.activityType: ActivityType.stationOfAnger.name
+                        ActivityRouteParameters.activityType:
+                            ActivityType.stationOfAnger.name
                       },
                     );
                   },

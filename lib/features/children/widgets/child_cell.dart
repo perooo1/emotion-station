@@ -24,13 +24,6 @@ class ChildCell extends StatelessWidget {
       ),
       child: Card(
         color: Theme.of(context).colorScheme.secondaryContainer,
-
-        /*
-         child.isGenderMale
-            ? Theme.of(context).colorScheme.primaryContainer
-            : Theme.of(context).colorScheme.tertiaryContainer,
-*/
-
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -49,7 +42,8 @@ class ChildCell extends StatelessWidget {
                 children: [
                   Expanded(child: Text(child.age.toString())),
                   Expanded(
-                      child: Text('${l10n.childrenScreenEnterChildDiagnosis} ${child.diagnosis}')),
+                      child: Text(
+                          '${l10n.childrenScreenEnterChildDiagnosis} ${child.diagnosis}')),
                   Expanded(
                     child: Text(
                       '${l10n.childrenScreenEnterChildPregnancyStartOfTreatment}: ${DateFormat('MM/yyyy').format(child.treatmentStartMonth ?? DateTime.now())}',

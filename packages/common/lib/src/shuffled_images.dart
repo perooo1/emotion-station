@@ -11,11 +11,6 @@ class ShuffledImages {
 
   final List<String> _happinessRecognitionComplex = [
     Images.happinessSurprise,
-    /*
-    Images.happyComplex1,
-    Images.happyComplex2,
-    Images.happyComplex3,
-    */
   ];
 
   final List<String> _happinessUnderstandingBasic = [

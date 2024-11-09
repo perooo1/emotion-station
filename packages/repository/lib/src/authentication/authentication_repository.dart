@@ -42,20 +42,19 @@ class AuthenticationRepository implements IAuthenticationRepository {
         password: password,
       );
       return response.user?.uid != null ? true : false;
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
-      throw e;
+    } on FirebaseAuthException catch (_) {
+      rethrow;
     }
   }
 
   @override
   Future<bool> signIn({required String email, required String password}) async {
     try {
-      final response = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      final response = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       return response.user?.uid != null ? true : false;
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
-      throw e;
+    } on FirebaseAuthException catch (_) {
+      rethrow;
     }
   }
 

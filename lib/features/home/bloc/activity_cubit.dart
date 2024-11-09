@@ -16,19 +16,6 @@ class ActivityCubit extends Cubit<ActivityState> {
           ActivityState(emotionStation: emotionStation),
         );
 
-/*
-  ActivityCubit({required this.databaseRepository})
-      : super(
-          ActivityState(
-            emotionStation: EmotionStation(
-              activityType: ActivityType.stationOfSadness,
-              stationName: ActivityType.stationOfSadness.name,
-              questions: QuestionsCroatian().questionsHappiness,
-            ),
-          ),
-        );
-*/
-
   final IDatabaseRepository databaseRepository;
 
   final controller = PageController();
@@ -53,7 +40,6 @@ class ActivityCubit extends Cubit<ActivityState> {
   }
 
   void manageStopwatch() {
-    // I dont like!!!!!!
     if (state.recognitionAnswer1 != null &&
         state.recognitionAnswer2 == null &&
         state.understandingTextualAnswer1 == null &&
@@ -74,29 +60,32 @@ class ActivityCubit extends Cubit<ActivityState> {
         state.understandingTextualAnswer2 == null &&
         state.understandingVisualAnswer1 == null &&
         state.understandingVisualAnswer2 == null) {
-      emit(state.copyWith(understandingTextualAnswer1Duration: stopwatch.elapsed));
+      emit(state.copyWith(
+          understandingTextualAnswer1Duration: stopwatch.elapsed));
     } else if (state.recognitionAnswer1 != null &&
         state.recognitionAnswer2 != null &&
         state.understandingTextualAnswer1 != null &&
         state.understandingTextualAnswer2 != null &&
         state.understandingVisualAnswer1 == null &&
         state.understandingVisualAnswer2 == null) {
-      emit(state.copyWith(understandingTextualAnswer2Duration: stopwatch.elapsed));
+      emit(state.copyWith(
+          understandingTextualAnswer2Duration: stopwatch.elapsed));
     } else if (state.recognitionAnswer1 != null &&
         state.recognitionAnswer2 != null &&
         state.understandingTextualAnswer1 != null &&
         state.understandingTextualAnswer2 != null &&
         state.understandingVisualAnswer1 != null &&
         state.understandingVisualAnswer2 == null) {
-      emit(state.copyWith(understandingVisualAnswer1Duration: stopwatch.elapsed));
+      emit(state.copyWith(
+          understandingVisualAnswer1Duration: stopwatch.elapsed));
     } else {
-      emit(state.copyWith(understandingVisualAnswer2Duration: stopwatch.elapsed));
+      emit(state.copyWith(
+          understandingVisualAnswer2Duration: stopwatch.elapsed));
       stopwatch.stop();
     }
   }
 
   void setAnswer(ComprehensionLevel? answer, int index) {
-    //potential non-nullable parameter
     switch (index) {
       case 0:
         emit(state.copyWith(recognitionAnswer1: answer));
@@ -120,8 +109,6 @@ class ActivityCubit extends Cubit<ActivityState> {
   }
 
   Future<void> recordActivity({required String childId}) async {
-    //todo make async and future type BE CAREFUL OF LAST TIMER
-
     final activityRecord = ActivityRecord(
       emotionStation: state.emotionStation,
       childId: childId,
@@ -136,16 +123,21 @@ class ActivityCubit extends Cubit<ActivityState> {
       recognitionAnswer2Duration:
           state.recognitionAnswer2Duration! - state.recognitionAnswer1Duration!,
       understandingTextualAnswer1Duration:
-          state.understandingTextualAnswer1Duration! - state.recognitionAnswer2Duration!,
+          state.understandingTextualAnswer1Duration! -
+              state.recognitionAnswer2Duration!,
       understandingTextualAnswer2Duration:
-          state.understandingTextualAnswer2Duration! - state.understandingTextualAnswer1Duration!,
+          state.understandingTextualAnswer2Duration! -
+              state.understandingTextualAnswer1Duration!,
       understandingVisualAnswer1Duration:
-          state.understandingVisualAnswer1Duration! - state.understandingTextualAnswer2Duration!,
+          state.understandingVisualAnswer1Duration! -
+              state.understandingTextualAnswer2Duration!,
       understandingVisualAnswer2Duration:
-          state.understandingVisualAnswer2Duration! - state.understandingVisualAnswer1Duration!,
+          state.understandingVisualAnswer2Duration! -
+              state.understandingVisualAnswer1Duration!,
     );
 
-    final a = await databaseRepository.recordCompletedActivity(activityRecord: activityRecord);
+    await databaseRepository.recordCompletedActivity(
+        activityRecord: activityRecord);
   }
 
   @override

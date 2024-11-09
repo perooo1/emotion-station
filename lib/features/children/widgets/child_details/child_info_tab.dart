@@ -49,15 +49,16 @@ class ChildInfoTab extends StatelessWidget {
                   ),
                   TableCalendar(
                     onPageChanged: (focusedDay) => focusedDay = focusedDay,
-                    headerStyle: const HeaderStyle(titleCentered: true, formatButtonVisible: false),
+                    headerStyle: const HeaderStyle(
+                        titleCentered: true, formatButtonVisible: false),
                     focusedDay: focusedDay,
                     firstDay: child.treatmentStartMonth ?? DateTime(2022),
-                    //firstDay: DateTime(2022),
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     lastDay: DateTime.now(),
                     locale: '${lokal.languageCode}_${lokal.countryCode}',
                     eventLoader: (day) {
-                      if (cubit.state.emotionsInCalendar == EmotionsInCalendar.sad) {
+                      if (cubit.state.emotionsInCalendar ==
+                          EmotionsInCalendar.sad) {
                         var forecast = cubit.state.emotionForecast?.entries
                             .where(
                               (element) =>
@@ -70,7 +71,8 @@ class ChildInfoTab extends StatelessWidget {
                             .toList();
 
                         return forecast ?? [];
-                      } else if (cubit.state.emotionsInCalendar == EmotionsInCalendar.happy) {
+                      } else if (cubit.state.emotionsInCalendar ==
+                          EmotionsInCalendar.happy) {
                         var forecast = cubit.state.emotionForecast?.entries
                             .where(
                               (element) =>
@@ -83,7 +85,8 @@ class ChildInfoTab extends StatelessWidget {
                             .toList();
 
                         return forecast ?? [];
-                      } else if (cubit.state.emotionsInCalendar == EmotionsInCalendar.angry) {
+                      } else if (cubit.state.emotionsInCalendar ==
+                          EmotionsInCalendar.angry) {
                         var forecast = cubit.state.emotionForecast?.entries
                             .where(
                               (element) =>
@@ -117,7 +120,8 @@ class ChildInfoTab extends StatelessWidget {
                           for (var element in a) {
                             if (element.name == EmotionForecast.sad.name) {
                               return const Icon(Icons.cloudy_snowing);
-                            } else if (element.name == EmotionForecast.happy.name) {
+                            } else if (element.name ==
+                                EmotionForecast.happy.name) {
                               return const Icon(Icons.wb_sunny_outlined);
                             } else {
                               return const Icon(Icons.thunderstorm);
@@ -140,45 +144,55 @@ class ChildInfoTab extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ChoiceChip(
-                    avatar: cubit.state.emotionsInCalendar == EmotionsInCalendar.all
+                    avatar: cubit.state.emotionsInCalendar ==
+                            EmotionsInCalendar.all
                         ? Icon(
                             Icons.event_note,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           )
                         : Icon(
                             Icons.event_note_outlined,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           ),
                     showCheckmark: false,
                     label: Text(l10n.childDetailsScreenAllEmotions),
-                    selected: cubit.state.emotionsInCalendar == EmotionsInCalendar.all,
+                    selected: cubit.state.emotionsInCalendar ==
+                        EmotionsInCalendar.all,
                     onSelected: (_) {
-                      cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.all);
+                      cubit.selectForecastEmotionToDisplay(
+                          EmotionsInCalendar.all);
                     },
                   ),
                   ChoiceChip(
                     showCheckmark: false,
-                    avatar: cubit.state.emotionsInCalendar == EmotionsInCalendar.sad
+                    avatar: cubit.state.emotionsInCalendar ==
+                            EmotionsInCalendar.sad
                         ? Icon(
                             Icons.cloudy_snowing,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           )
                         : Icon(
                             Icons.cloud_outlined,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           ),
                     label: Text(l10n.emotionForecastSad),
-                    selected: cubit.state.emotionsInCalendar == EmotionsInCalendar.sad,
+                    selected: cubit.state.emotionsInCalendar ==
+                        EmotionsInCalendar.sad,
                     onSelected: (_) {
-                      cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.sad);
+                      cubit.selectForecastEmotionToDisplay(
+                          EmotionsInCalendar.sad);
                     },
                   ),
                 ],
@@ -190,44 +204,54 @@ class ChildInfoTab extends StatelessWidget {
                 children: [
                   ChoiceChip(
                     showCheckmark: false,
-                    avatar: cubit.state.emotionsInCalendar == EmotionsInCalendar.angry
+                    avatar: cubit.state.emotionsInCalendar ==
+                            EmotionsInCalendar.angry
                         ? Icon(
                             Icons.thunderstorm,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           )
                         : Icon(
                             Icons.thunderstorm_outlined,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           ),
                     label: Text(l10n.emotionForecastAngry),
-                    selected: cubit.state.emotionsInCalendar == EmotionsInCalendar.angry,
+                    selected: cubit.state.emotionsInCalendar ==
+                        EmotionsInCalendar.angry,
                     onSelected: (_) {
-                      cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.angry);
+                      cubit.selectForecastEmotionToDisplay(
+                          EmotionsInCalendar.angry);
                     },
                   ),
                   ChoiceChip(
                     showCheckmark: false,
-                    avatar: cubit.state.emotionsInCalendar == EmotionsInCalendar.happy
+                    avatar: cubit.state.emotionsInCalendar ==
+                            EmotionsInCalendar.happy
                         ? Icon(
                             Icons.sunny,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           )
                         : Icon(
                             Icons.wb_sunny_outlined,
-                            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.dark
                                 ? Colors.white
                                 : null,
                           ),
                     label: Text(l10n.emotionForecastHappy),
-                    selected: cubit.state.emotionsInCalendar == EmotionsInCalendar.happy,
+                    selected: cubit.state.emotionsInCalendar ==
+                        EmotionsInCalendar.happy,
                     onSelected: (_) {
-                      cubit.selectForecastEmotionToDisplay(EmotionsInCalendar.happy);
+                      cubit.selectForecastEmotionToDisplay(
+                          EmotionsInCalendar.happy);
                     },
                   ),
                 ],
@@ -266,22 +290,27 @@ class ChildInfoTab extends StatelessWidget {
                     ),
                     const SizedBox(height: 6.0),
                     Text(
-                      l10n.childrenScreenEnterChildPregnancyStartOfTreatment.toUpperCase(),
+                      l10n.childrenScreenEnterChildPregnancyStartOfTreatment
+                          .toUpperCase(),
                       style: childDescTitleTextStyle,
                     ),
                     const SizedBox(height: 6.0),
                     Text(
-                      DateFormat('MM/yyyy').format(child.treatmentStartMonth ?? DateTime.now()),
+                      DateFormat('MM/yyyy')
+                          .format(child.treatmentStartMonth ?? DateTime.now()),
                       style: childDescTextStyle,
                     ),
                     const SizedBox(height: 6.0),
                     Text(
-                      l10n.childrenScreenEnterChildAttendsKindergarten.toUpperCase(),
+                      l10n.childrenScreenEnterChildAttendsKindergarten
+                          .toUpperCase(),
                       style: childDescTitleTextStyle,
                     ),
                     const SizedBox(height: 6.0),
                     Text(
-                      child.attendsKindergarten ?? false ? l10n.yesString : l10n.noString,
+                      child.attendsKindergarten ?? false
+                          ? l10n.yesString
+                          : l10n.noString,
                       style: childDescTextStyle,
                     ),
                     const SizedBox(height: 6.0),
@@ -291,12 +320,15 @@ class ChildInfoTab extends StatelessWidget {
                     ),
                     const SizedBox(height: 6.0),
                     Text(
-                      child.riskyPregnancy ?? false ? l10n.yesString : l10n.noString,
+                      child.riskyPregnancy ?? false
+                          ? l10n.yesString
+                          : l10n.noString,
                       style: childDescTextStyle,
                     ),
                     const SizedBox(height: 6.0),
                     Text(
-                      l10n.childrenScreenEnterChildPregnancyBirthWeek.toUpperCase(),
+                      l10n.childrenScreenEnterChildPregnancyBirthWeek
+                          .toUpperCase(),
                       style: childDescTitleTextStyle,
                     ),
                     const SizedBox(height: 6.0),

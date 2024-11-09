@@ -1,5 +1,3 @@
-//home state
-
 part of 'home_cubit.dart';
 
 class HomeState extends Equatable {
@@ -25,8 +23,8 @@ class HomeState extends Equatable {
       children: children ?? this.children,
       currentUser: currentUser ?? this.currentUser,
       selectedChild: selectedChild ?? this.selectedChild,
-      specialistConnectionDialogShown:
-          specialistConnectionDialogShown ?? this.specialistConnectionDialogShown,
+      specialistConnectionDialogShown: specialistConnectionDialogShown ??
+          this.specialistConnectionDialogShown,
     );
   }
 

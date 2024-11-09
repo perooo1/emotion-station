@@ -13,7 +13,7 @@ class InfoScreenCubit extends Cubit<InfoScreenState> {
   InfoScreenCubit({
     required this.authenticationManager,
     required this.databaseRepository,
-  }) : super(InfoScreenState(currentUser: User.empty)) {
+  }) : super(const InfoScreenState(currentUser: User.empty)) {
     getCurrentUserAndSetState();
     _startListening();
   }
@@ -26,8 +26,8 @@ class InfoScreenCubit extends Cubit<InfoScreenState> {
   Future<void> signOut() async {
     try {
       await authenticationManager.signOut();
-    } on firebase_auth.FirebaseAuthException catch (error) {
-      emit(state.copyWith(currentUser: User(id: 'sign out error')));
+    } on firebase_auth.FirebaseAuthException catch (_) {
+      emit(state.copyWith(currentUser: const User(id: 'sign out error')));
     }
   }
 
@@ -44,9 +44,7 @@ class InfoScreenCubit extends Cubit<InfoScreenState> {
           currentUser: currentUser,
         ));
       }
-    } catch (e) {
-      print('error home cubit - getCurrentUserAndSetState');
-    }
+    } catch (_) {}
   }
 
   void _startListening() {
@@ -56,17 +54,18 @@ class InfoScreenCubit extends Cubit<InfoScreenState> {
       if (currentUser.assignedSpecialistId == null) {
         emit(state.copyWith(specialist: Specialist(id: '')));
       } else {
-        _specialistStream =
-            databaseRepository.getSpecialistStream(specialistId: currentUser.assignedSpecialistId);
+        _specialistStream = databaseRepository.getSpecialistStream(
+            specialistId: currentUser.assignedSpecialistId);
       }
     } else {
-      _specialistStream = databaseRepository.getSpecialistStream(specialistId: currentUser.id);
+      _specialistStream =
+          databaseRepository.getSpecialistStream(specialistId: currentUser.id);
     }
 
     _specialistStream?.listen(
       (querySnapshot) {
-        final Specialist specialist =
-            Specialist.fromJson(querySnapshot.docs[0].data() as Map<String, dynamic>);
+        final Specialist specialist = Specialist.fromJson(
+            querySnapshot.docs[0].data() as Map<String, dynamic>);
 
         emit(state.copyWith(specialist: specialist));
       },

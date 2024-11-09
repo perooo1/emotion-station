@@ -12,10 +12,11 @@ class BaseAuthenticatedEvent extends Equatable {
 }
 
 class AuthenticatedEvent extends BaseAuthenticatedEvent {
-  AuthenticatedEvent({required this.user});
+  const AuthenticatedEvent({required this.user});
 
   final User user;
 
+  @override
   bool get isAuthenticated => true;
 
   @override
@@ -29,5 +30,6 @@ class AuthenticatedEvent extends BaseAuthenticatedEvent {
 class UnauthenticatedEvent extends BaseAuthenticatedEvent {
   const UnauthenticatedEvent();
 
+  @override
   bool get isAuthenticated => false;
 }

@@ -1,5 +1,4 @@
 // Package imports:
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:domain_models/domain_models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,7 +48,8 @@ class RegisterCubit extends Cubit<RegisterState> {
   Future<void> onRegisterSubmit() async {
     try {
       emit(state.copyWith(submissionStatus: SubmissionStatus.inProgress));
-      final isSuccess = await authenticationManager.registerUserWithEmailAndPassword(
+      final isSuccess =
+          await authenticationManager.registerUserWithEmailAndPassword(
         email: state.email,
         password: state.password,
       );
@@ -57,7 +57,8 @@ class RegisterCubit extends Cubit<RegisterState> {
       if (isSuccess) {
         final newUserId = authenticationManager.currentUserId!;
         try {
-          final successfull = await authenticationManager.registerUserInDatabase(
+          final successfull =
+              await authenticationManager.registerUserInDatabase(
             user: state.isSpecialist
                 ? Specialist(
                     id: newUserId,
@@ -65,7 +66,6 @@ class RegisterCubit extends Cubit<RegisterState> {
                     name: state.name,
                     lastName: state.lastName,
                     email: state.email,
-                    //password: state.password,
                   )
                 : Parent(
                     id: newUserId,
@@ -73,20 +73,18 @@ class RegisterCubit extends Cubit<RegisterState> {
                     name: state.name,
                     lastName: state.lastName,
                     email: state.email,
-                    //password: state.password,
                   ),
           );
 
           successfull
               ? emit(state.copyWith(submissionStatus: SubmissionStatus.success))
-              : emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
-        } on FirebaseException catch (e) {
-          print(e.message);
+              : emit(state.copyWith(
+                  submissionStatus: SubmissionStatus.genericError));
+        } on FirebaseException catch (_) {
           emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
         }
       }
-    } on FirebaseAuthException catch (error) {
-      print(error.message);
+    } on FirebaseAuthException catch (_) {
       emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
     }
   }

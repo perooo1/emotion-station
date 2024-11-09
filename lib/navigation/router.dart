@@ -59,9 +59,10 @@ class EmotionStationRouter extends IRouter {
                     path:
                         '${EmotionStationRoutes.activityScreen.path}/:${ActivityRouteParameters.childId}',
                     pageBuilder: (context, state) {
-                      final id = state.pathParameters[ActivityRouteParameters.childId];
-                      final activityTypeName =
-                          state.uri.queryParameters[ActivityRouteParameters.activityType];
+                      final id =
+                          state.pathParameters[ActivityRouteParameters.childId];
+                      final activityTypeName = state.uri.queryParameters[
+                          ActivityRouteParameters.activityType];
                       return MaterialPage<void>(
                         child: ActivityScreen(
                           childId: id!,
@@ -103,29 +104,22 @@ class EmotionStationRouter extends IRouter {
                             treatmentStartMonth: DateTime.now(),
                           );
 
-                      return MaterialPage<void>(child: ChildDetailsScreen(child: child));
-
-/*
-                      final child = state.extra! as Child;
-                      return MaterialPage<void>(child: ChildDetailsScreen(child: child));
-*/
+                      return MaterialPage<void>(
+                          child: ChildDetailsScreen(child: child));
                     },
                     routes: [
                       GoRoute(
-                        name: EmotionStationRoutes.completedActivityDetails.routeName,
-                        path: EmotionStationRoutes.completedActivityDetails.path,
+                        name: EmotionStationRoutes
+                            .completedActivityDetails.routeName,
+                        path:
+                            EmotionStationRoutes.completedActivityDetails.path,
                         pageBuilder: (context, state) {
                           final childData = state.extra! as ChildRouteData;
                           return MaterialPage<void>(
-                              child: CompletedActivityDetails(
-                                  activityRecord: childData.activityRecord!));
-
-/*
-                          final activityRecord = state.extra! as ActivityRecord;
-                          return MaterialPage<void>(
-                            child: CompletedActivityDetails(activityRecord: activityRecord),
+                            child: CompletedActivityDetails(
+                              activityRecord: childData.activityRecord!,
+                            ),
                           );
-*/
                         },
                       ),
                     ],

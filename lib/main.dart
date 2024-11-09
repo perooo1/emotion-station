@@ -21,10 +21,9 @@ Future<void> main() async {
   final authRepository = Injector.locateService<IAuthenticationRepository>();
   final router = Injector.locateService<IRouter>();
 
-  runApp(EmotionStationApp(authenticationRepository: authRepository, router: router));
+  runApp(EmotionStationApp(
+      authenticationRepository: authRepository, router: router));
 }
-
-ThemeManager _themeManager = ThemeManager();
 
 class EmotionStationApp extends StatelessWidget {
   const EmotionStationApp({
@@ -53,12 +52,10 @@ class EmotionStationApp extends StatelessWidget {
         Locale('hr'),
       ],
 
-      //locale: Locale('en'),
       title: 'Emotion Station',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system, //_themeManager.themeMode,
-      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

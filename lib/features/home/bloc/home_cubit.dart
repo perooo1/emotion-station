@@ -14,7 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit({
     required this.authenticationManager,
     required this.databaseRepository,
-  }) : super(HomeState(currentUser: User.empty)) {
+  }) : super(const HomeState(currentUser: User.empty)) {
     _getCurrentUserAndSetState();
     _startListening();
   }
@@ -31,21 +31,23 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> signOutHome() async {
     try {
       await authenticationManager.signOut();
-    } on firebase_auth.FirebaseAuthException catch (error) {
-      emit(state.copyWith(currentUser: User(id: 'sign out error')));
+    } on firebase_auth.FirebaseAuthException catch (_) {
+      emit(state.copyWith(currentUser: const User(id: 'sign out error')));
     }
   }
 
   Future<void> declineSpecialistConnection() async {
     emit(state.copyWith(specialistConnectionDialogShown: true));
-    await databaseRepository.declineSpecialistConnection(parentId: state.currentUser.id);
-    //potencijalni ponovni emit current usera?
+    await databaseRepository.declineSpecialistConnection(
+      parentId: state.currentUser.id,
+    );
   }
 
   Future<void> approveSpecialistConnection() async {
     emit(state.copyWith(specialistConnectionDialogShown: true));
-    await databaseRepository.approveSpecialistConnection(parentId: state.currentUser.id);
-    //potencijalni ponovni emit current usera?
+    await databaseRepository.approveSpecialistConnection(
+      parentId: state.currentUser.id,
+    );
   }
 
   void _getCurrentUserAndSetState() {
@@ -61,30 +63,13 @@ class HomeCubit extends Cubit<HomeState> {
           currentUser: currentUser,
         ));
       }
-    } catch (e) {
-      print('error home cubit - getCurrentUserAndSetState');
+    } catch (_) {
+      //Silent catch
     }
   }
 
   void _startListening() {
     if (authenticationManager.getCurrentUser() is Specialist) {
-      // kod specialista ne trebam tu listu u home screenu
-
-/*
-      _childrenStream = databaseRepository.getChildrenStream(
-        specialistId: authenticationManager.getCurrentUser().id,
-      );
-
-      _childrenStream?.listen(
-        (querySnapshot) {
-          final List<Child> children = [];
-          for (var doc in querySnapshot.docs) {
-            children.add(Child.fromJson(doc.data() as Map<String, dynamic>));
-          }
-          emit(state.copyWith(children: children));
-        },
-      );
-*/
     } else {
       _childrenStream = databaseRepository.getChildrenStream(
         parentId: authenticationManager.getCurrentUser().id,
@@ -96,7 +81,12 @@ class HomeCubit extends Cubit<HomeState> {
           for (var doc in querySnapshot.docs) {
             children.add(Child.fromJson(doc.data() as Map<String, dynamic>));
           }
-          emit(state.copyWith(children: children, selectedChild: children.first));
+          emit(
+            state.copyWith(
+              children: children,
+              selectedChild: children.first,
+            ),
+          );
         },
       );
     }

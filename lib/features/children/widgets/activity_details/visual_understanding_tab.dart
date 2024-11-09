@@ -12,22 +12,25 @@ class VisualUnderstandingTab extends StatelessWidget {
     final cubit = context.read<CompletedActivityCubit>();
     final l10n = AppLocalizations.of(context);
 
-    final answer1 = cubit.state.activityRecord.emotionStation.questions[4].options
-        .where(
-          (element) =>
-              element.comprehensionLevel == cubit.state.activityRecord.understandingVisualAnswer1,
-        )
-        .toList();
-    final answer2 = cubit.state.activityRecord.emotionStation.questions[5].options
-        .where(
-          (element) =>
-              element.comprehensionLevel == cubit.state.activityRecord.understandingVisualAnswer2,
-        )
-        .toList();
+    final answer1 =
+        cubit.state.activityRecord.emotionStation.questions[4].options
+            .where(
+              (element) =>
+                  element.comprehensionLevel ==
+                  cubit.state.activityRecord.understandingVisualAnswer1,
+            )
+            .toList();
+    final answer2 =
+        cubit.state.activityRecord.emotionStation.questions[5].options
+            .where(
+              (element) =>
+                  element.comprehensionLevel ==
+                  cubit.state.activityRecord.understandingVisualAnswer2,
+            )
+            .toList();
 
     return SingleChildScrollView(
       child: Padding(
-        //padding: const EdgeInsets.all(16.0),
         padding: const EdgeInsets.only(
           left: 16.0,
           top: 16.0,
@@ -101,12 +104,14 @@ class VisualUnderstandingTab extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      cubit.state.activityRecord.emotionStation.questions[4].text,
-                      style: TextStyle(fontStyle: FontStyle.italic),
+                      cubit.state.activityRecord.emotionStation.questions[4]
+                          .text,
+                      style: const TextStyle(fontStyle: FontStyle.italic),
                     ),
                     const SizedBox(height: 16.0),
                     Image.asset(
-                      cubit.state.activityRecord.emotionStation.questions[4].imageAssetPath!,
+                      cubit.state.activityRecord.emotionStation.questions[4]
+                          .imageAssetPath!,
                       width: 200,
                       height: 200,
                     ),
@@ -115,8 +120,10 @@ class VisualUnderstandingTab extends StatelessWidget {
                     const SizedBox(height: 16.0),
                     Text(
                       answer1[0].text,
-                      //cubit.state.activityRecord.recognitionAnswer1.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
@@ -131,12 +138,14 @@ class VisualUnderstandingTab extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      cubit.state.activityRecord.emotionStation.questions[5].text,
-                      style: TextStyle(fontStyle: FontStyle.italic),
+                      cubit.state.activityRecord.emotionStation.questions[5]
+                          .text,
+                      style: const TextStyle(fontStyle: FontStyle.italic),
                     ),
                     const SizedBox(height: 16.0),
                     Image.asset(
-                      cubit.state.activityRecord.emotionStation.questions[5].imageAssetPath!,
+                      cubit.state.activityRecord.emotionStation.questions[5]
+                          .imageAssetPath!,
                       width: 200,
                       height: 200,
                     ),
@@ -145,8 +154,10 @@ class VisualUnderstandingTab extends StatelessWidget {
                     const SizedBox(height: 16.0),
                     Text(
                       answer2[0].text,
-                      //cubit.state.activityRecord.recognitionAnswer1.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),

@@ -2,7 +2,6 @@ import 'package:common/common.dart';
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
 import 'package:emotion_station/utils/utils.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class TherapistInfoScreenView extends StatelessWidget {
@@ -12,7 +11,8 @@ class TherapistInfoScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle textStyle = TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic);
+    const TextStyle textStyle =
+        TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic);
     final l10n = AppLocalizations.of(context);
 
     return SingleChildScrollView(

@@ -1,6 +1,5 @@
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
-import 'package:emotion_station/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -46,17 +45,19 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 l10n.emotionForecastAddEmotionDialogMessage,
-                style: TextStyle(fontStyle: FontStyle.italic),
+                style: const TextStyle(fontStyle: FontStyle.italic),
                 textAlign: TextAlign.center,
               ),
             ),
             TableCalendar(
-              headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
+              headerStyle: const HeaderStyle(
+                  titleCentered: true, formatButtonVisible: false),
               focusedDay: today,
               startingDayOfWeek: StartingDayOfWeek.monday,
               firstDay: DateTime(2022),
               lastDay: DateTime.now(),
-              onDaySelected: (selectedDay, focusedDay) => _onDaySelected(selectedDay, focusedDay),
+              onDaySelected: (selectedDay, focusedDay) =>
+                  _onDaySelected(selectedDay, focusedDay),
               selectedDayPredicate: (day) => isSameDay(day, today),
             ),
             ChoiceChip(
@@ -64,19 +65,20 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               avatar: currentState == EmotionForecast.sad
                   ? Icon(
                       Icons.cloudy_snowing,
-                      color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                      color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.dark
                           ? Colors.white
                           : null,
                     )
                   : Icon(
                       Icons.cloud_outlined,
-                      color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                      color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.dark
                           ? Colors.white
                           : null,
                     ),
               label: Text(l10n.emotionForecastSad),
               selected: currentState == EmotionForecast.sad,
-              //selected: widget.selectedEmotion == EmotionForecast.sad,
               onSelected: (_) {
                 widget.setForecastEmotion(EmotionForecast.sad);
                 setState(
@@ -91,19 +93,20 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               avatar: currentState == EmotionForecast.happy
                   ? Icon(
                       Icons.sunny,
-                      color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                      color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.dark
                           ? Colors.white
                           : null,
                     )
                   : Icon(
                       Icons.wb_sunny_outlined,
-                      color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                      color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.dark
                           ? Colors.white
                           : null,
                     ),
               label: Text(l10n.emotionForecastHappy),
               selected: currentState == EmotionForecast.happy,
-              //selected: widget.selectedEmotion == EmotionForecast.happy,
               onSelected: (_) {
                 widget.setForecastEmotion(EmotionForecast.happy);
                 setState(
@@ -118,19 +121,20 @@ class _AddEmotionDialogState extends State<AddEmotionDialog> {
               avatar: currentState == EmotionForecast.angry
                   ? Icon(
                       Icons.thunderstorm,
-                      color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                      color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.dark
                           ? Colors.white
                           : null,
                     )
                   : Icon(
                       Icons.thunderstorm_outlined,
-                      color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                      color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.dark
                           ? Colors.white
                           : null,
                     ),
               label: Text(l10n.emotionForecastAngry),
               selected: currentState == EmotionForecast.angry,
-              //selected: widget.selectedEmotion == EmotionForecast.angry,
               onSelected: (_) {
                 widget.setForecastEmotion(EmotionForecast.angry);
                 setState(

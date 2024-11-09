@@ -12,7 +12,7 @@ class ChildrenScreenCubit extends Cubit<ChildrenScreenState> {
   ChildrenScreenCubit({
     required this.authenticationManager,
     required this.databaseRepository,
-  }) : super(ChildrenScreenState(currentUser: User.empty)) {
+  }) : super(const ChildrenScreenState(currentUser: User.empty)) {
     _getCurrentUserAndSetState();
     _startListening();
   }
@@ -35,8 +35,8 @@ class ChildrenScreenCubit extends Cubit<ChildrenScreenState> {
           currentUser: currentUser,
         ));
       }
-    } catch (e) {
-      print('error home cubit - getCurrentUserAndSetState');
+    } catch (_) {
+      //Silent catch
     }
   }
 

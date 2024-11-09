@@ -8,10 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:emotion_station/authentication_flow/bloc/sign_in_cubit.dart';
 import 'package:emotion_station/injector/injector.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:repository/repository.dart';
 
 class ChildrenScreen extends StatelessWidget {
@@ -27,7 +25,7 @@ class ChildrenScreen extends StatelessWidget {
 }
 
 class _ChildrenScreenView extends StatelessWidget {
-  const _ChildrenScreenView({super.key});
+  const _ChildrenScreenView();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +44,6 @@ class _ChildrenScreenView extends StatelessWidget {
             ),
           ),
           body: Padding(
-            //beware of const
             padding: const EdgeInsets.all(16.0),
             child: Center(
                 child: state.currentUser is Specialist
@@ -54,17 +51,19 @@ class _ChildrenScreenView extends StatelessWidget {
                     : ParentChildrenScreenView(children: state.children)),
           ),
           floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
             onPressed: () => showDialog<String>(
               context: context,
               builder: (BuildContext context) => state.currentUser.isSpecialist
                   ? ConnectWithParentDialog(
                       authenticationManager: tempCubit.authenticationManager,
-                      databaseRepository: Injector.locateService<IDatabaseRepository>(),
+                      databaseRepository:
+                          Injector.locateService<IDatabaseRepository>(),
                     )
                   : AddChildDialog(
                       authenticationManager: tempCubit.authenticationManager,
-                      databaseRepository: Injector.locateService<IDatabaseRepository>(),
+                      databaseRepository:
+                          Injector.locateService<IDatabaseRepository>(),
                     ),
             ),
           ),

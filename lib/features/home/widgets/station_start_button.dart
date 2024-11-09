@@ -39,7 +39,6 @@ class StationStartButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(title),
-            //Image.asset(icon ?? ''),
           ],
         ),
       ),

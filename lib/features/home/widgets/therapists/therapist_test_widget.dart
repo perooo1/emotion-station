@@ -1,13 +1,8 @@
 import 'package:common/common.dart';
 import 'package:domain_models/domain_models.dart';
-import 'package:emotion_station/features/home/bloc/home_cubit.dart';
 import 'package:emotion_station/features/home/widgets/widgets.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
-import 'package:emotion_station/navigation/routes.dart';
-import 'package:emotion_station/utils/constants/activity_route_parameters.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class TherapistTestWidget extends StatelessWidget {
   const TherapistTestWidget({super.key, required this.specialist});
@@ -17,7 +12,6 @@ class TherapistTestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final cubit = context.read<HomeCubit>();
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +20,7 @@ class TherapistTestWidget extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Center(
             child: Column(
               children: [

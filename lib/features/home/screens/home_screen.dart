@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _HomeScreenView extends StatelessWidget {
-  const _HomeScreenView({super.key});
+  const _HomeScreenView();
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +45,9 @@ class _HomeScreenView extends StatelessWidget {
             barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
-              title: Text('Terapeut se želi povezati'),
-              //title: Text('Specialist requested a connection'),
-              content:
-                  Text('Terapeut s id ${parent.assignedSpecialistId} se želi povezati s Vama.'),
-              //'Specialist with id ${parent.assignedSpecialistId} requested to connect with you.'),
+              title: const Text('Terapeut se želi povezati'),
+              content: Text(
+                  'Terapeut s id ${parent.assignedSpecialistId} se želi povezati s Vama.'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -70,14 +68,9 @@ class _HomeScreenView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        /*
-        return state.currentUser.isSpecialist
-            ? TherapistTestWidget(specialist: state.currentUser)
-            : ParentTestWidget(parent: state.currentUser);
-*/
-
         if (state.currentUser is Specialist) {
-          return TherapistTestWidget(specialist: state.currentUser as Specialist);
+          return TherapistTestWidget(
+              specialist: state.currentUser as Specialist);
         } else if (state.currentUser is Parent) {
           return ParentTestWidget(parent: state.currentUser as Parent);
         } else {
@@ -98,7 +91,8 @@ class _HomeScreenView extends StatelessWidget {
                       FilledButton(
                         onPressed: () {
                           tempCubit.authenticationManager.signOut();
-                          context.goNamed(EmotionStationRoutes.loginScreen.routeName);
+                          context.goNamed(
+                              EmotionStationRoutes.loginScreen.routeName);
                         },
                         child: Text(l10n.errorLoadingDataGoToLoginScreen),
                       ),
@@ -110,31 +104,6 @@ class _HomeScreenView extends StatelessWidget {
           );
           return const Placeholder();
         }
-
-/*
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(l10n.test_string_2),
-          ),
-          body: Padding(
-            //beware of const
-            padding: EdgeInsets.all(16.0),
-            child: Center(
-              child: Column(
-                children: [
-                  Text('This is a home widget when logged in'),
-                  Text('Current logged in user id: ${state.currentUser.id}'),
-                  Text('Current logged in user email: ${state.currentUser.email}'),
-                  Text('Current logged in full name: ${state.currentUser.fullName}'),
-                  Text(
-                      'Current logged in user specialist from user obj? : ${state.currentUser.isSpecialist.toString()}'),
-                ],
-              ),
-            ),
-          ),
-
-        );
-*/
       },
     );
   }

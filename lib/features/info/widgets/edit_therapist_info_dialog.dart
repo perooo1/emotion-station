@@ -1,8 +1,6 @@
 import 'package:emotion_station/components/components.dart';
 import 'package:emotion_station/l10n/generated/l10n.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:repository/repository.dart';
 
@@ -17,7 +15,8 @@ class EditTherapistInfoDialog extends StatefulWidget {
   final String specialistId;
 
   @override
-  State<EditTherapistInfoDialog> createState() => _EditTherapistInfoDialogState();
+  State<EditTherapistInfoDialog> createState() =>
+      _EditTherapistInfoDialogState();
 }
 
 class _EditTherapistInfoDialogState extends State<EditTherapistInfoDialog> {
@@ -34,7 +33,7 @@ class _EditTherapistInfoDialogState extends State<EditTherapistInfoDialog> {
     String professionalPhoneNum,
     String additionalEducation,
   ) async {
-    final succ = await widget.databaseRepository.updateSpecialistInformation(
+    await widget.databaseRepository.updateSpecialistInformation(
       specialistId: widget.specialistId,
       occupation: occupation,
       workplace: workplace,
@@ -51,7 +50,7 @@ class _EditTherapistInfoDialogState extends State<EditTherapistInfoDialog> {
     return Dialog(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               Text(
@@ -126,7 +125,6 @@ class _EditTherapistInfoDialogState extends State<EditTherapistInfoDialog> {
               const SizedBox(height: 16),
               FilledButton(
                 onPressed: () {
-                  //TODO add info to specialist
                   updateSpecialistInfo(
                     _occupation,
                     _workplace,

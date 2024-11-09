@@ -7,25 +7,29 @@ abstract class IDatabaseRepository {
   FirebaseFirestore get instance;
 
   //streams
-  Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId});
+  Stream<QuerySnapshot> getChildrenStream(
+      {String? parentId, String? specialistId});
   Stream<QuerySnapshot> getRecordedActivitiesStream({String? childId});
   Stream<QuerySnapshot> getSingleChildStream({String? childId});
   Stream<QuerySnapshot> getSpecialistStream({String? specialistId});
 
   //write
-  Future<bool> createChildInDatabase({required Child child, required String parentId});
+  Future<bool> createChildInDatabase(
+      {required Child child, required String parentId});
   Future<bool> connectSpecialistWithParent({
     required String parentEmail,
     required String currentSpecialistId,
   });
-  Future<bool> recordCompletedActivity({required ActivityRecord activityRecord});
+  Future<bool> recordCompletedActivity(
+      {required ActivityRecord activityRecord});
   Future<bool> registerParent({required Parent parent});
   Future<bool> registerSpecialist({required Specialist specialist});
   Future<bool> updateChildEmotionForecast({
     required String childId,
     required Map<DateTime, EmotionForecast>? forecast,
   });
-  Future<bool> addSpecialistNoteChild({required String childId, required String? specialistNote});
+  Future<bool> addSpecialistNoteChild(
+      {required String childId, required String? specialistNote});
   Future<bool> addSpecialistNoteActivityRecord(
       {required String activityRecordId, required String? specialistNote});
   Future<bool> addParentNoteActivityRecord(
@@ -61,10 +65,12 @@ class DatabaseRepository implements IDatabaseRepository {
 
   //streams
 
-  Stream<QuerySnapshot> getChildrenStream({String? parentId, String? specialistId}) {
+  @override
+  Stream<QuerySnapshot> getChildrenStream(
+      {String? parentId, String? specialistId}) {
     final bool isSpecialist = specialistId != null;
     if (parentId == null && specialistId == null) {
-      throw FormatException('Both parent and specialist are null!');
+      throw const FormatException('Both parent and specialist are null!');
     }
 
     return isSpecialist
@@ -79,9 +85,10 @@ class DatabaseRepository implements IDatabaseRepository {
   }
 
   @override
-  Stream<QuerySnapshot<Object?>> getRecordedActivitiesStream({String? childId}) {
+  Stream<QuerySnapshot<Object?>> getRecordedActivitiesStream(
+      {String? childId}) {
     if (childId == null) {
-      throw FormatException('Both parent and specialist are null!');
+      throw const FormatException('Both parent and specialist are null!');
     }
     return instance
         .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
@@ -92,7 +99,7 @@ class DatabaseRepository implements IDatabaseRepository {
   @override
   Stream<QuerySnapshot> getSingleChildStream({String? childId}) {
     if (childId == null) {
-      throw FormatException('Child id is null!');
+      throw const FormatException('Child id is null!');
     }
     return instance
         .collection(FIRESTORE_COLLECTION_CHILDREN)
@@ -103,7 +110,7 @@ class DatabaseRepository implements IDatabaseRepository {
   @override
   Stream<QuerySnapshot<Object?>> getSpecialistStream({String? specialistId}) {
     if (specialistId == null) {
-      throw FormatException('Specialist id is null!');
+      throw const FormatException('Specialist id is null!');
     }
     return instance
         .collection(FIRESTORE_COLLECTION_SPECIALISTS)
@@ -114,7 +121,8 @@ class DatabaseRepository implements IDatabaseRepository {
   //write
 
   @override
-  Future<bool> createChildInDatabase({required Child child, required String parentId}) async {
+  Future<bool> createChildInDatabase(
+      {required Child child, required String parentId}) async {
     try {
       await instance
           .collection(FIRESTORE_COLLECTION_CHILDREN)
@@ -122,11 +130,10 @@ class DatabaseRepository implements IDatabaseRepository {
           .set(child.toJson(), SetOptions(merge: true))
           .then((value) => print('child added'));
 
-      var a = await _connectChildWithParent(childId: child.id, parentDocId: parentId);
+      await _connectChildWithParent(childId: child.id, parentDocId: parentId);
 
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - createChildInDatabase() : Error adding child document: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -141,14 +148,14 @@ class DatabaseRepository implements IDatabaseRepository {
           .then((value) => print('parent added'));
 
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - registerSpecialist() : Error adding parent document: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
 
   @override
-  Future<bool> recordCompletedActivity({required ActivityRecord activityRecord}) async {
+  Future<bool> recordCompletedActivity(
+      {required ActivityRecord activityRecord}) async {
     try {
       await instance
           .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
@@ -158,8 +165,7 @@ class DatabaseRepository implements IDatabaseRepository {
           .then((value) => print('activity record'));
 
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - recordCompletedActivity() : Error adding activity record document: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -174,8 +180,7 @@ class DatabaseRepository implements IDatabaseRepository {
           .then((value) => print('specialist added'));
 
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - registerSpecialist() : Error adding specialist document: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -200,18 +205,15 @@ class DatabaseRepository implements IDatabaseRepository {
             .doc(parentId)
             .update({'assignedSpecialistId': currentSpecialistId});
 
-        final a = await _assignSpecialistToChild(
+        await _assignSpecialistToChild(
           currentSpecialistId: currentSpecialistId,
           parentId: parentId,
         );
-        print('db repo, a is $a');
         return true;
       } else {
         return false;
       }
     } on FirebaseException catch (e) {
-      print(
-          'DB MANAGER - connectSpecialistWithParent() : Error connecting specialist with parent: $e');
       return false;
     }
   }
@@ -224,7 +226,6 @@ class DatabaseRepository implements IDatabaseRepository {
     try {
       final Map<String, String> convertedForecast = forecast?.map(
             (key, value) => MapEntry(key.toString(), value.name.toString()),
-            //(key, value) => MapEntry(key.toString(), value.toString()),
           ) ??
           {};
 
@@ -232,11 +233,9 @@ class DatabaseRepository implements IDatabaseRepository {
           .collection(FIRESTORE_COLLECTION_CHILDREN)
           .doc(childId)
           .update({'emotionForecast': convertedForecast});
-      //.update({'emotionForecast.${forecast?.keys.first}': forecast?.values.first});
 
       return true;
     } on FirebaseException catch (e) {
-      print('DB MANAGER - updateChildEmotionForecast() : Error updateing child emo forecast: $e');
       return false;
     }
   }
@@ -251,8 +250,7 @@ class DatabaseRepository implements IDatabaseRepository {
           .update({'specialistNote': specialistNote});
 
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - addSpecialistNote() : Error child spec note: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -267,15 +265,15 @@ class DatabaseRepository implements IDatabaseRepository {
           .update({'parentNote': parentNote});
 
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - addParentNoteActivityRecord() : Error child spec note: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
 
   @override
   Future<bool> addSpecialistNoteActivityRecord(
-      {required String activityRecordId, required String? specialistNote}) async {
+      {required String activityRecordId,
+      required String? specialistNote}) async {
     try {
       await instance
           .collection(FIRESTORE_COLLECTION_ACTIVITY_RECORDS)
@@ -283,8 +281,7 @@ class DatabaseRepository implements IDatabaseRepository {
           .update({'specialistNote': specialistNote});
 
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - addSpecialistNoteActivityRecord() : Error child spec note: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -294,11 +291,13 @@ class DatabaseRepository implements IDatabaseRepository {
   @override
   Future<Child> getChildFromDatabase({required String childId}) async {
     try {
-      final snapshot = await instance.collection(FIRESTORE_COLLECTION_CHILDREN).doc(childId).get();
+      final snapshot = await instance
+          .collection(FIRESTORE_COLLECTION_CHILDREN)
+          .doc(childId)
+          .get();
       if (snapshot.data() != null) {
         return Child.fromJson(snapshot.data()!);
       } else {
-        print('DB MANAGER - getParentFromDatabase() : getParentFromDatabase snapshot data is null');
         return Child(
           id: '',
           parentId: '',
@@ -313,8 +312,7 @@ class DatabaseRepository implements IDatabaseRepository {
           treatmentStartMonth: DateTime.now(),
         );
       }
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - getParentFromDatabase() : error reading parent doc from database: $e');
+    } on FirebaseException catch (_) {
       return Child(
         id: '',
         parentId: '',
@@ -334,15 +332,16 @@ class DatabaseRepository implements IDatabaseRepository {
   @override
   Future<Parent> getParentFromDatabase({required String userId}) async {
     try {
-      final snapshot = await instance.collection(FIRESTORE_COLLECTION_PARENTS).doc(userId).get();
+      final snapshot = await instance
+          .collection(FIRESTORE_COLLECTION_PARENTS)
+          .doc(userId)
+          .get();
       if (snapshot.data() != null) {
         return Parent.fromJson(snapshot.data()!);
       } else {
-        print('DB MANAGER - getParentFromDatabase() : getParentFromDatabase snapshot data is null');
         return Parent(id: '');
       }
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - getParentFromDatabase() : error reading parent doc from database: $e');
+    } on FirebaseException catch (_) {
       return Parent(id: '');
     }
   }
@@ -350,24 +349,24 @@ class DatabaseRepository implements IDatabaseRepository {
   @override
   Future<Specialist> getSpecialistFromDatabase({required String userId}) async {
     try {
-      final snapshot =
-          await instance.collection(FIRESTORE_COLLECTION_SPECIALISTS).doc(userId).get();
+      final snapshot = await instance
+          .collection(FIRESTORE_COLLECTION_SPECIALISTS)
+          .doc(userId)
+          .get();
       if (snapshot.data() != null) {
         return Specialist.fromJson(snapshot.data()!);
       } else {
-        print(
-            'DB MANAGER - getParentFromDatabase() : getSpecialistFromDatabase snapshot data is null');
         return Specialist(id: '');
       }
-    } on FirebaseException catch (e) {
-      print(
-          'DB MANAGER - getParentFromDatabase() : error reading specialist doc from database: $e');
+    } on FirebaseException catch (_) {
       return Specialist(id: '');
     }
   }
 
-  Future<bool> _connectChildWithParent(
-      {required String childId, required String parentDocId}) async {
+  Future<bool> _connectChildWithParent({
+    required String childId,
+    required String parentDocId,
+  }) async {
     // need to pass parent Id (which is currently logged in user)
     try {
       await instance
@@ -380,12 +379,10 @@ class DatabaseRepository implements IDatabaseRepository {
           )
           .then((value) => print("addded child to parent"))
           .catchError((err) {
-            print("Failed to add child to user $parentDocId");
             return false;
           });
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - _connectChildWithParent() : Error adding achild to parent document: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -414,7 +411,6 @@ class DatabaseRepository implements IDatabaseRepository {
         return false;
       }
     } on FirebaseException catch (e) {
-      print('DB MANAGER - _assignSpecialistToChild() : Error assigning specialist to child: $e');
       return false;
     }
   }
@@ -438,15 +434,12 @@ class DatabaseRepository implements IDatabaseRepository {
             .doc(parentId)
             .update({'assignedSpecialistId': null});
 
-        final a = await _removeAssignedSpecialistFromChild(parentId: parentId);
-        print('db repo, a is $a');
+        await _removeAssignedSpecialistFromChild(parentId: parentId);
         return true;
       } else {
         return false;
       }
-    } on FirebaseException catch (e) {
-      print(
-          'DB MANAGER - declineSpecialistConnection() : Error declinining specialist connection with parent: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -472,13 +465,12 @@ class DatabaseRepository implements IDatabaseRepository {
         return false;
       }
     } on FirebaseException catch (e) {
-      print(
-          'DB MANAGER - approveSpecialistConnection() : Error declinining specialist connection with parent: $e');
       return false;
     }
   }
 
-  Future<bool> _removeAssignedSpecialistFromChild({required String parentId}) async {
+  Future<bool> _removeAssignedSpecialistFromChild(
+      {required String parentId}) async {
     try {
       final querySnapshot = await instance
           .collection(FIRESTORE_COLLECTION_CHILDREN)
@@ -498,9 +490,7 @@ class DatabaseRepository implements IDatabaseRepository {
       } else {
         return false;
       }
-    } on FirebaseException catch (e) {
-      print(
-          'DB MANAGER - _removeAssignedSpecialistFromChild() : Error removing specialist from child: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }
@@ -515,7 +505,10 @@ class DatabaseRepository implements IDatabaseRepository {
     required String additionalEducation,
   }) async {
     try {
-      await instance.collection(FIRESTORE_COLLECTION_SPECIALISTS).doc(specialistId).update(
+      await instance
+          .collection(FIRESTORE_COLLECTION_SPECIALISTS)
+          .doc(specialistId)
+          .update(
         {
           'workAddress': workplace,
           'workHours': workHours,
@@ -525,8 +518,7 @@ class DatabaseRepository implements IDatabaseRepository {
         },
       );
       return true;
-    } on FirebaseException catch (e) {
-      print('DB MANAGER - updateSpecialistInformation() : Error updateSpecialistInformation: $e');
+    } on FirebaseException catch (_) {
       return false;
     }
   }

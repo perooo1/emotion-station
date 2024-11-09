@@ -22,7 +22,7 @@ class _AddNoteTherapistDialogState extends State<AddNoteTherapistDialog> {
   String _specialistNote = '';
 
   Future<void> addNote() async {
-    final a = await widget.databaseRepository.addSpecialistNoteChild(
+    await widget.databaseRepository.addSpecialistNoteChild(
       childId: widget.childId,
       specialistNote: _specialistNote,
     );
@@ -39,7 +39,7 @@ class _AddNoteTherapistDialogState extends State<AddNoteTherapistDialog> {
           children: [
             Text(
               l10n.childDetailsScreenTherapistNoteDialogMessage,
-              style: TextStyle(fontStyle: FontStyle.italic),
+              style: const TextStyle(fontStyle: FontStyle.italic),
             ),
             const SizedBox(height: 16),
             ESTextInput(

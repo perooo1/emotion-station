@@ -32,13 +32,10 @@ class _QuestionAnswersState extends State<QuestionAnswers> {
             child: OptionButton(
               isSelected: checkIfButtonSelected(index),
               option: widget.options[index],
-              //onOptionSelected: (comprehensionLevel) => cubit.setAnswer(comprehensionLevel),
               onOptionSelected: (comprehensionLevel) {
                 selectSingleButton(index);
                 widget.onOptionSelected(comprehensionLevel);
               },
-              //isselected = isselected;
-              //potencijalno samo kao referenca?
             ),
           ),
         ),

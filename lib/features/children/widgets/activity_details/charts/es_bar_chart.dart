@@ -35,8 +35,8 @@ class ESBarChart extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.all(6.0),
+                        decoration: const BoxDecoration(
                           color: Colors.greenAccent,
                           shape: BoxShape.circle,
                         ),
@@ -49,8 +49,8 @@ class ESBarChart extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.all(6.0),
+                        decoration: const BoxDecoration(
                           color: Colors.orangeAccent,
                           shape: BoxShape.circle,
                         ),
@@ -63,8 +63,8 @@ class ESBarChart extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.all(6.0),
+                        decoration: const BoxDecoration(
                           color: Colors.redAccent,
                           shape: BoxShape.circle,
                         ),
@@ -103,7 +103,7 @@ class ESBarChart extends StatelessWidget {
                     leftTitles: isShowingDurationData
                         ? AxisTitles(
                             axisNameWidget: Text(yAxisName ?? ''),
-                            sideTitles: SideTitles(
+                            sideTitles: const SideTitles(
                               showTitles: true,
                               interval: 1,
                               reservedSize: 45,
@@ -147,7 +147,7 @@ class ESBarChart extends StatelessWidget {
 
   Widget _bottomTitlesOverviewChart(double value, TitleMeta meta) {
     if (isGeneralOverview == true) {
-      final titles = <String>['Happy', 'Sadness', 'Fear', 'Anger'];
+      //final titles = <String>['Happy', 'Sadness', 'Fear', 'Anger'];
       final titlesCroatian = <String>['Sreća', 'Tuga', 'Strah', 'Ljutnja'];
 
       final Widget text = Text(titlesCroatian[value.toInt()]);
@@ -157,7 +157,7 @@ class ESBarChart extends StatelessWidget {
         child: text,
       );
     } else {
-      final titles = <String>['Recognition', 'Textual', 'Visual'];
+      //final titles = <String>['Recognition', 'Textual', 'Visual'];
       final titlesCroatian = <String>['Prepoznavanje', 'Teskt', 'Vizualno'];
 
       final Widget text = Text(titlesCroatian[value.toInt()]);

@@ -19,7 +19,10 @@ abstract class IAuthenticationManager {
 
   User getCurrentUser();
   Future<bool> registerUserInDatabase({required User user});
-  Future<bool> registerUserWithEmailAndPassword({required String email, required String password});
+  Future<bool> registerUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
   Future<bool> signIn({required String email, required String password});
   Future<void> signOut();
 }
@@ -37,22 +40,25 @@ class AuthenticationManager implements IAuthenticationManager {
   final IDatabaseRepository databaseRepository;
 
   User _currentUser = User.empty;
-  BaseAuthenticatedEvent _authenticatedState = UnauthenticatedEvent();
+  BaseAuthenticatedEvent _authenticatedState = const UnauthenticatedEvent();
 
-  final StreamController<BaseAuthenticatedEvent> _authenticatedChangedController =
+  final StreamController<BaseAuthenticatedEvent>
+      _authenticatedChangedController =
       StreamController<BaseAuthenticatedEvent>.broadcast();
 
   @override
   User getCurrentUser() => _currentUser;
 
   @override
-  Stream<BaseAuthenticatedEvent> get authenticatedChanged => _authenticatedChangedController.stream;
+  Stream<BaseAuthenticatedEvent> get authenticatedChanged =>
+      _authenticatedChangedController.stream;
 
   @override
   bool get isAuthenticated => _authenticatedState.isAuthenticated;
 
   @override
-  bool get isAuthenticatedInFirebaseRepo => authenticationRepository.isUserAuthenticated;
+  bool get isAuthenticatedInFirebaseRepo =>
+      authenticationRepository.isUserAuthenticated;
 
   @override
   String? get currentUserId => authenticationRepository.currentUserId;
@@ -73,9 +79,11 @@ class AuthenticationManager implements IAuthenticationManager {
   @override
   Future<bool> registerUserInDatabase({required User user}) async {
     if (user is Parent) {
-      final parentRegisterSuccess = await databaseRepository.registerParent(parent: user);
+      final parentRegisterSuccess =
+          await databaseRepository.registerParent(parent: user);
       if (parentRegisterSuccess == true) {
-        _currentUser = await databaseRepository.getParentFromDatabase(userId: user.id);
+        _currentUser =
+            await databaseRepository.getParentFromDatabase(userId: user.id);
         return true;
       }
       return false;
@@ -83,40 +91,39 @@ class AuthenticationManager implements IAuthenticationManager {
       final specialistRegisterSuccess =
           await databaseRepository.registerSpecialist(specialist: user);
       if (specialistRegisterSuccess == true) {
-        _currentUser = await databaseRepository.getSpecialistFromDatabase(userId: user.id);
+        _currentUser =
+            await databaseRepository.getSpecialistFromDatabase(userId: user.id);
         return true;
       }
       return false;
     } else {
-      print('auth manager - register user in db is false');
       return false;
     }
   }
 
   @override
   Future<bool> signIn({required String email, required String password}) async {
-    final isSignInSuccess = await authenticationRepository.signIn(email: email, password: password);
+    final isSignInSuccess =
+        await authenticationRepository.signIn(email: email, password: password);
 
     if (isSignInSuccess == false) {
-      print('AUTH MANAGER - signIn() : sign in succes je false : ${isSignInSuccess.toString()}');
       return false;
     } else {
       // first search through specialist collection and return true if document exists
-      final specialist =
-          await databaseRepository.getSpecialistFromDatabase(userId: _currentUser.id);
+      final specialist = await databaseRepository.getSpecialistFromDatabase(
+          userId: _currentUser.id);
       if (specialist.id.isNotEmpty) {
         _currentUser = specialist;
         return true;
       } else {
-        print('AUTH MANAGER - signIn() : specialac id is empty : ${specialist.id}');
         //if not in specialist, search through parents collection and return if document exists
-        final parent = await databaseRepository.getParentFromDatabase(userId: _currentUser.id);
+        final parent = await databaseRepository.getParentFromDatabase(
+            userId: _currentUser.id);
         if (parent.id.isNotEmpty) {
           _currentUser = parent;
           return true;
         } else {
           //user not found in either collection, something went wrong
-          print('AUTH MANAGER - signIn() : parent id is empty : ${parent.id}');
           return false;
         }
       }
@@ -132,7 +139,7 @@ class AuthenticationManager implements IAuthenticationManager {
     authenticationRepository.user.listen(
       (firebase_auth.User? firebaseUser) {
         if (firebaseUser == null) {
-          _setAuthenticatedState(UnauthenticatedEvent());
+          _setAuthenticatedState(const UnauthenticatedEvent());
           _currentUser = User.empty;
         } else {
           _setAuthenticatedState(AuthenticatedEvent(user: firebaseUser.toUser));

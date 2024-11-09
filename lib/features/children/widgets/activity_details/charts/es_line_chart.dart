@@ -2,7 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class ESLineChart extends StatelessWidget {
-  const ESLineChart({required this.axisBorderValues, required this.spots, super.key});
+  const ESLineChart(
+      {required this.axisBorderValues, required this.spots, super.key});
 
   final List<double> axisBorderValues;
   final List<FlSpot> spots;
@@ -34,12 +35,12 @@ class ESLineChart extends StatelessWidget {
                 topTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false),
                 ),
-                leftTitles: AxisTitles(
+                leftTitles: const AxisTitles(
                   axisNameWidget: Text('Vrijeme [s]'),
                   sideTitles: SideTitles(showTitles: true, reservedSize: 40),
                 ),
                 bottomTitles: AxisTitles(
-                  axisNameWidget: Text('Redni broj i vrsta pitanja'),
+                  axisNameWidget: const Text('Redni broj i vrsta pitanja'),
                   sideTitles: SideTitles(
                     showTitles: true,
                     reservedSize: 42,
@@ -55,7 +56,6 @@ class ESLineChart extends StatelessWidget {
                   barWidth: 8,
                   isStrokeCapRound: true,
                   dotData: const FlDotData(show: false),
-                  //belowBarData: BarAreaData(show: false),
                   spots: spots,
                 ),
               ],
@@ -67,7 +67,15 @@ class ESLineChart extends StatelessWidget {
   }
 
   Widget _bottomTitlesLine(double value, TitleMeta meta) {
-    final titles = <String>['0', 'Prep1', 'Prep2', 'Txt1', 'Txt2', 'Viz1', 'Viz2'];
+    final titles = <String>[
+      '0',
+      'Prep1',
+      'Prep2',
+      'Txt1',
+      'Txt2',
+      'Viz1',
+      'Viz2'
+    ];
 
     final Widget text = Text(titles[value.toInt()]);
 

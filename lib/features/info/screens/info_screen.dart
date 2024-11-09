@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:common/common.dart';
 import 'package:domain_models/domain_models.dart';
 import 'package:emotion_station/features/info/bloc/info_screen_cubit.dart';
 import 'package:emotion_station/features/info/widgets/edit_therapist_info_dialog.dart';
@@ -30,7 +29,7 @@ class InfoScreen extends StatelessWidget {
 }
 
 class _InfoScreenView extends StatelessWidget {
-  const _InfoScreenView({super.key});
+  const _InfoScreenView();
 
   @override
   Widget build(BuildContext context) {
@@ -52,42 +51,23 @@ class _InfoScreenView extends StatelessWidget {
                       tooltip: l10n.signOutString,
                       onPressed: () {
                         infoScreenCubit.authenticationManager.signOut();
-                        context.goNamed(EmotionStationRoutes.loginScreen.routeName);
+                        context.goNamed(
+                            EmotionStationRoutes.loginScreen.routeName);
                       },
                     ),
                   ]
                 : [],
           ),
           body: Padding(
-            //beware of const
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+            padding:
+                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: state.currentUser is Specialist
-                ? TherapistInfoScreenView(specialist: state.specialist ?? Specialist(id: ''))
+                ? TherapistInfoScreenView(
+                    specialist: state.specialist ?? Specialist(id: ''))
                 : ParentInfoScreenView(
                     parent: state.currentUser as Parent,
                     specialist: state.specialist ?? Specialist(id: ''),
                   ),
-
-            /*
-            if (state.currentUser is Specialist) {
-          return TherapistTestWidget(specialist: state.currentUser as Specialist);
-        } else if (state.currentUser is Parent) {
-          return ParentTestWidget(parent: state.currentUser as Parent);
-        } 
-*/
-
-/*            
-            Center(
-              child: Column(
-                children: [
-                  Text('current user full name: ${state.currentUser.fullName}'),
-                  Text('current user email: ${state.currentUser.email}'),
-                  Text(
-                      ' is current user specialist? ${state.currentUser.isSpecialist.toString()} '),
-                ],
-              ),
-            ),
-*/
           ),
           floatingActionButton: state.currentUser.isParent
               ? FloatingActionButton.extended(
@@ -106,7 +86,8 @@ class _InfoScreenView extends StatelessWidget {
                   onPressed: () => showDialog(
                     context: context,
                     builder: (context) => EditTherapistInfoDialog(
-                      databaseRepository: Injector.locateService<IDatabaseRepository>(),
+                      databaseRepository:
+                          Injector.locateService<IDatabaseRepository>(),
                       specialistId: state.currentUser.id,
                     ),
                   ),

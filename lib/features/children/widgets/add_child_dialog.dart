@@ -51,20 +51,10 @@ class _AddChildDialogState extends State<AddChildDialog> {
       treatmentStartMonth: _treatmentStartMonth,
     );
 
-    final addChildSuccess = await widget.databaseRepository.createChildInDatabase(
+    await widget.databaseRepository.createChildInDatabase(
       child: child,
       parentId: widget.authenticationManager.getCurrentUser().id,
     );
-    print(addChildSuccess);
-
-/*
-    final parentRegisterSuccess = await databaseRepository.registerParent(parent: user);
-      if (parentRegisterSuccess == true) {
-        _currentUser = await databaseRepository.getParentFromDatabase(userId: user.id);
-        return true;
-      }
-      return false;
-*/
   }
 
   @override
@@ -172,7 +162,8 @@ class _AddChildDialogState extends State<AddChildDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    child: Text(l10n.childrenScreenEnterChildPregnancyTreatmentStartMonth),
+                    child: Text(l10n
+                        .childrenScreenEnterChildPregnancyTreatmentStartMonth),
                     onPressed: () => showMonthPicker(
                       context: context,
                       lastDate: DateTime.now(),
@@ -182,7 +173,8 @@ class _AddChildDialogState extends State<AddChildDialog> {
                         if (value != null) {
                           setState(
                             () {
-                              _treatmentStartMonth = DateTime(value.year, value.month);
+                              _treatmentStartMonth =
+                                  DateTime(value.year, value.month);
                             },
                           );
                         }
@@ -205,7 +197,8 @@ class _AddChildDialogState extends State<AddChildDialog> {
                   Text(l10n.childrenScreenEnterChildAttendsKindergarten),
                   Switch(
                     value: _attendsKindergarten,
-                    onChanged: (value) => setState(() => _attendsKindergarten = value),
+                    onChanged: (value) =>
+                        setState(() => _attendsKindergarten = value),
                   )
                 ],
               ),
@@ -217,14 +210,14 @@ class _AddChildDialogState extends State<AddChildDialog> {
                   Text(l10n.childrenScreenEnterChildRiskyPregnancy),
                   Switch(
                     value: _riskyPregnancy,
-                    onChanged: (value) => setState(() => _riskyPregnancy = value),
+                    onChanged: (value) =>
+                        setState(() => _riskyPregnancy = value),
                   )
                 ],
               ),
               const SizedBox(height: 16),
               FilledButton(
                 onPressed: () {
-                  //Navigator.pop(context);
                   createChildInDatabase();
                   context.pop();
                 },

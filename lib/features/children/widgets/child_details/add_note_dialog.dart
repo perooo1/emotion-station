@@ -29,17 +29,18 @@ class _AddNoteDialogState extends State<AddNoteDialog> {
 
   Future<void> addNote() async {
     if (widget.isActivityDetails == true && widget.isParentNote == true) {
-      final a = await widget.databaseRepository.addParentNoteActivityRecord(
+      await widget.databaseRepository.addParentNoteActivityRecord(
         activityRecordId: widget.activityRecordId!,
         parentNote: _note,
       );
-    } else if (widget.isActivityDetails == true && widget.isParentNote == false) {
-      final a = await widget.databaseRepository.addSpecialistNoteActivityRecord(
+    } else if (widget.isActivityDetails == true &&
+        widget.isParentNote == false) {
+      await widget.databaseRepository.addSpecialistNoteActivityRecord(
         activityRecordId: widget.activityRecordId!,
         specialistNote: _note,
       );
     } else {
-      final a = await widget.databaseRepository.addSpecialistNoteChild(
+      await widget.databaseRepository.addSpecialistNoteChild(
         childId: widget.childId,
         specialistNote: _note,
       );
@@ -58,11 +59,12 @@ class _AddNoteDialogState extends State<AddNoteDialog> {
             Text(
               widget.isActivityDetails
                   ? widget.isParentNote
-                      ? l10n.childDetailsScreenParentAddNoteDialogMessageActivityRecord
-                      : l10n.childDetailsScreenTherapistAddNoteDialogMessageActivityRecord
+                      ? l10n
+                          .childDetailsScreenParentAddNoteDialogMessageActivityRecord
+                      : l10n
+                          .childDetailsScreenTherapistAddNoteDialogMessageActivityRecord
                   : l10n.childDetailsScreenTherapistNoteDialogMessage,
-              //l10n.childDetailsScreenTherapistNoteDialogMessage,
-              style: TextStyle(fontStyle: FontStyle.italic),
+              style: const TextStyle(fontStyle: FontStyle.italic),
             ),
             const SizedBox(height: 16),
             ESTextInput(

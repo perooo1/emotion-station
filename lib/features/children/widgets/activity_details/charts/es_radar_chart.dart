@@ -35,11 +35,14 @@ class _ESRadarChartState extends State<ESRadarChart> {
               : false;
 
       return RadarDataSet(
-        fillColor:
-            isSelected ? rawDataSet.color.withOpacity(0.2) : rawDataSet.color.withOpacity(0.05),
-        borderColor: isSelected ? rawDataSet.color : rawDataSet.color.withOpacity(0.25),
+        fillColor: isSelected
+            ? rawDataSet.color.withOpacity(0.2)
+            : rawDataSet.color.withOpacity(0.05),
+        borderColor:
+            isSelected ? rawDataSet.color : rawDataSet.color.withOpacity(0.25),
         entryRadius: isSelected ? 3 : 2,
-        dataEntries: rawDataSet.values.map((e) => RadarEntry(value: e)).toList(),
+        dataEntries:
+            rawDataSet.values.map((e) => RadarEntry(value: e)).toList(),
         borderWidth: isSelected ? 2.3 : 2,
       );
     }).toList();
@@ -97,7 +100,8 @@ class _ESRadarChartState extends State<ESRadarChart> {
                                 },
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 300),
-                                  margin: const EdgeInsets.symmetric(vertical: 2),
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 2),
                                   height: 26,
                                   decoration: BoxDecoration(
                                     color: isSelected
@@ -113,9 +117,11 @@ class _ESRadarChartState extends State<ESRadarChart> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       AnimatedContainer(
-                                        duration: const Duration(milliseconds: 400),
+                                        duration:
+                                            const Duration(milliseconds: 400),
                                         curve: Curves.easeInToLinear,
-                                        padding: EdgeInsets.all(isSelected ? 8 : 6),
+                                        padding:
+                                            EdgeInsets.all(isSelected ? 8 : 6),
                                         decoration: BoxDecoration(
                                           color: value.color,
                                           shape: BoxShape.circle,
@@ -123,14 +129,18 @@ class _ESRadarChartState extends State<ESRadarChart> {
                                       ),
                                       const SizedBox(width: 8),
                                       AnimatedDefaultTextStyle(
-                                        duration: const Duration(milliseconds: 300),
+                                        duration:
+                                            const Duration(milliseconds: 300),
                                         curve: Curves.easeInToLinear,
                                         style: TextStyle(
                                           color: isSelected
-                                              ? Theme.of(context).colorScheme.onPrimary
-                                              : Theme.of(context).colorScheme.onPrimaryContainer,
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimaryContainer,
                                         ),
-                                        //child: Text(value.title),
                                         child: Text(value.title),
                                       ),
                                     ],
@@ -159,7 +169,8 @@ class _ESRadarChartState extends State<ESRadarChart> {
                         return;
                       }
                       setState(() {
-                        selectedDataSetIndex = response?.touchedSpot?.touchedDataSetIndex ?? -1;
+                        selectedDataSetIndex =
+                            response?.touchedSpot?.touchedDataSetIndex ?? -1;
                       });
                     },
                   ),
@@ -186,11 +197,11 @@ class _ESRadarChartState extends State<ESRadarChart> {
                     }
                   },
                   tickCount: 1,
-                  ticksTextStyle: const TextStyle(color: Colors.transparent, fontSize: 10),
+                  ticksTextStyle:
+                      const TextStyle(color: Colors.transparent, fontSize: 10),
                   tickBorderData: const BorderSide(color: Colors.transparent),
                   gridBorderData: const BorderSide(width: 2),
                   dataSets: showingDataSet(),
-                  //dataSets: widget.dataSets,
                 ),
                 swapAnimationDuration: const Duration(milliseconds: 400),
               ),

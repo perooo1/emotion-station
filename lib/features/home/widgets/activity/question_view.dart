@@ -15,7 +15,8 @@ class QuestionView extends StatelessWidget {
     final cubit = context.read<ActivityCubit>();
 
     return Container(
-      padding: const EdgeInsets.only(left: 8.0, top: 8.0, right: 8.0, bottom: 88),
+      padding:
+          const EdgeInsets.only(left: 8.0, top: 8.0, right: 8.0, bottom: 88),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,26 +33,12 @@ class QuestionView extends StatelessWidget {
               flex: 2,
               child: Text(question.storyText!),
             ),
-/*
-            SingleChildScrollView(
-              child: Padding( 
-                padding: const EdgeInsets.all(8.0),
-                child: Expanded(
-                  child: Text(question.storyText!),
-                ),
-              ),
-            ),
-*/
-          /*
-            Expanded(
-              child: Text(question.storyText!),
-            ),
-            */
           const SizedBox(height: 16),
           Expanded(child: Text(question.text)),
           const SizedBox(height: 16),
           QuestionAnswers(
-            onOptionSelected: (comprehensionLevel) => cubit.setAnswer(comprehensionLevel, index),
+            onOptionSelected: (comprehensionLevel) =>
+                cubit.setAnswer(comprehensionLevel, index),
             options: question.options,
           ),
         ],

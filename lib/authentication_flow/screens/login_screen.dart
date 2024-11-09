@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _LoginView extends StatelessWidget {
-  const _LoginView({super.key});
+  const _LoginView();
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +34,23 @@ class _LoginView extends StatelessWidget {
     final SignInCubit cubit = context.read<SignInCubit>();
 
     return BlocConsumer<SignInCubit, SignInState>(
-      listenWhen: (previous, current) => previous.submissionStatus != current.submissionStatus,
+      listenWhen: (previous, current) =>
+          previous.submissionStatus != current.submissionStatus,
       listener: (context, state) {
         if (state.submissionStatus == SubmissionStatus.success) {
           context.goNamed(EmotionStationRoutes.homeScreen.routeName);
           return;
         }
         if (state.submissionStatus == SubmissionStatus.genericError ||
-            state.submissionStatus == SubmissionStatus.invalidCredentialsError) {
+            state.submissionStatus ==
+                SubmissionStatus.invalidCredentialsError) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(l10n.snackbarMessageLoginError)));
+            ..showSnackBar(
+              SnackBar(
+                content: Text(l10n.snackbarMessageLoginError),
+              ),
+            );
         }
       },
       builder: (context, state) {
@@ -97,7 +103,8 @@ class _LoginView extends StatelessWidget {
                           height: 56.0,
                           labelText: l10n.passwordString,
                           obscureText: true,
-                          onChanged: (password) => cubit.savePwdToState(password),
+                          onChanged: (password) =>
+                              cubit.savePwdToState(password),
                         ),
                         const SizedBox(height: 6.0),
                         CheckboxListTile(
@@ -127,8 +134,9 @@ class _LoginView extends StatelessWidget {
                                   Text(l10n.notRegisteredMessage),
                                   const SizedBox(width: 6),
                                   OutlinedButton(
-                                    onPressed: () => context
-                                        .goNamed(EmotionStationRoutes.registerScreen.routeName),
+                                    onPressed: () => context.goNamed(
+                                        EmotionStationRoutes
+                                            .registerScreen.routeName),
                                     child: Text(l10n.registerHereMessage),
                                   ),
                                 ],

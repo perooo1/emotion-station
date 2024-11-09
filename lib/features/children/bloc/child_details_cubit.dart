@@ -40,7 +40,11 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   }
 
   void selectForecastDateAddDialog(DateTime date) {
-    emit(state.copyWith(selectedEmotionDateAddDialog: DateTime(date.year, date.month, date.day)));
+    emit(
+      state.copyWith(
+        selectedEmotionDateAddDialog: DateTime(date.year, date.month, date.day),
+      ),
+    );
   }
 
   Future<void> updateChildEmotionForecast() async {
@@ -49,16 +53,17 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
       forecast[state.selectedEmotionDateAddDialog ?? DateTime.now()] =
           state.selectedEmotionAddDialog;
 
-      final a = await databaseRepository.updateChildEmotionForecast(
+      await databaseRepository.updateChildEmotionForecast(
         childId: state.child.id,
         forecast: forecast,
       );
     } else {
       final Map<DateTime, EmotionForecast> newForecast = {
-        state.selectedEmotionDateAddDialog ?? DateTime.now(): state.selectedEmotionAddDialog
+        state.selectedEmotionDateAddDialog ?? DateTime.now():
+            state.selectedEmotionAddDialog
       };
 
-      final a = await databaseRepository.updateChildEmotionForecast(
+      await databaseRepository.updateChildEmotionForecast(
         childId: state.child.id,
         forecast: newForecast,
       );
@@ -66,28 +71,30 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   }
 
   Future<void> addSpecialistNote(String specialistNote) async {
-    final a = await databaseRepository.addSpecialistNoteChild(
+    await databaseRepository.addSpecialistNoteChild(
       childId: state.child.id,
       specialistNote: specialistNote,
     );
   }
 
-  _startListening() {
+  void _startListening() {
     _activityRecordsStream =
         databaseRepository.getRecordedActivitiesStream(childId: state.child.id);
 
-    _singleChildStream = databaseRepository.getSingleChildStream(childId: state.child.id);
+    _singleChildStream =
+        databaseRepository.getSingleChildStream(childId: state.child.id);
 
     _activityRecordsStream?.listen(
       (querySnapshot) {
         final List<ActivityRecord> records = [];
         for (var doc in querySnapshot.docs) {
-          records.add(ActivityRecord.fromJson(doc.data() as Map<String, dynamic>));
+          records
+              .add(ActivityRecord.fromJson(doc.data() as Map<String, dynamic>));
         }
         records.sort((a, b) => b.timeOfActivity.compareTo(a.timeOfActivity));
         emit(state.copyWith(activityRecords: records, child: null));
-        //emit(state.copyWith(activityRecords: records));
-        //now add aktivnosti za pojedinu stanicu, potencijalno izbacit izvan .listen i stavit unutar _startListening metode
+
+        //add activities for each emotion station
         List<ActivityRecord> stationOfHappinessRecords = [];
         List<ActivityRecord> stationOfSadnessRecords = [];
         List<ActivityRecord> stationOfFearRecords = [];
@@ -95,25 +102,33 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
 
         stationOfHappinessRecords = records
             .where(
-              (element) => element.emotionStation.activityType == ActivityType.stationOfHappiness,
+              (element) =>
+                  element.emotionStation.activityType ==
+                  ActivityType.stationOfHappiness,
             )
             .toList();
 
         stationOfSadnessRecords = records
             .where(
-              (element) => element.emotionStation.activityType == ActivityType.stationOfSadness,
+              (element) =>
+                  element.emotionStation.activityType ==
+                  ActivityType.stationOfSadness,
             )
             .toList();
 
         stationOfAngerRecords = records
             .where(
-              (element) => element.emotionStation.activityType == ActivityType.stationOfAnger,
+              (element) =>
+                  element.emotionStation.activityType ==
+                  ActivityType.stationOfAnger,
             )
             .toList();
 
         stationOfFearRecords = records
             .where(
-              (element) => element.emotionStation.activityType == ActivityType.stationOfFear,
+              (element) =>
+                  element.emotionStation.activityType ==
+                  ActivityType.stationOfFear,
             )
             .toList();
 
@@ -132,8 +147,8 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
 
     _singleChildStream?.listen(
       (querySnapshot) {
-        //final DocumentSnapshot child = querySnapshot.docs[0];
-        final Child child = Child.fromJson(querySnapshot.docs[0].data() as Map<String, dynamic>);
+        final Child child = Child.fromJson(
+            querySnapshot.docs[0].data() as Map<String, dynamic>);
 
         emit(state.copyWith(emotionForecast: child.emotionForecast));
       },
@@ -143,10 +158,14 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   //Overview charts
 
   void _mapOverviewTabChart() {
-    final stationOfHappinessData = _calculateAverageBarChartData(state.stationOfHappinessRecords);
-    final stationOfSadnessData = _calculateAverageBarChartData(state.stationOfSadnessRecords);
-    final stationOfFearData = _calculateAverageBarChartData(state.stationOfFearRecords);
-    final stationOfAngerData = _calculateAverageBarChartData(state.stationOfAngerRecords);
+    final stationOfHappinessData =
+        _calculateAverageBarChartData(state.stationOfHappinessRecords);
+    final stationOfSadnessData =
+        _calculateAverageBarChartData(state.stationOfSadnessRecords);
+    final stationOfFearData =
+        _calculateAverageBarChartData(state.stationOfFearRecords);
+    final stationOfAngerData =
+        _calculateAverageBarChartData(state.stationOfAngerRecords);
 
     final barGroupHappiness = _createOverviewTabBarChartDataGroup(
       x: 0,
@@ -190,7 +209,8 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
     );
   }
 
-  Map<String, double> _calculateAverageBarChartData(List<ActivityRecord>? stationRecords) {
+  Map<String, double> _calculateAverageBarChartData(
+      List<ActivityRecord>? stationRecords) {
     double recognitionData = 0.0;
     double textualData = 0.0;
     double visualData = 0.0;
@@ -253,10 +273,14 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
   }
 
   void _mapOverviewRadarChart() {
-    final stationOfHappinessData = _calculateAverageRadarChartData(state.stationOfHappinessRecords);
-    final stationOfSadnessData = _calculateAverageRadarChartData(state.stationOfSadnessRecords);
-    final stationOfFearData = _calculateAverageRadarChartData(state.stationOfFearRecords);
-    final stationOfAngerData = _calculateAverageRadarChartData(state.stationOfAngerRecords);
+    final stationOfHappinessData =
+        _calculateAverageRadarChartData(state.stationOfHappinessRecords);
+    final stationOfSadnessData =
+        _calculateAverageRadarChartData(state.stationOfSadnessRecords);
+    final stationOfFearData =
+        _calculateAverageRadarChartData(state.stationOfFearRecords);
+    final stationOfAngerData =
+        _calculateAverageRadarChartData(state.stationOfAngerRecords);
 
     final List<RadarChartDataSet> rawDataSets = [];
 
@@ -265,7 +289,6 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
         stationOfHappinessData,
         stationOfHappinessColor,
         'Stanica sreće',
-        //'Station of Happiness',
       ),
     );
     rawDataSets.add(
@@ -280,7 +303,6 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
         stationOfFearData,
         stationOfFearColor,
         'Stanica straha',
-        //'Station of Fear',
       ),
     );
     rawDataSets.add(
@@ -288,7 +310,6 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
         stationOfAngerData,
         stationOfAngerColor,
         'Stanica ljutnje',
-        //'Station of Anger',
       ),
     );
 
@@ -316,7 +337,8 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
     );
   }
 
-  Map<String, double> _calculateAverageRadarChartData(List<ActivityRecord>? stationRecords) {
+  Map<String, double> _calculateAverageRadarChartData(
+      List<ActivityRecord>? stationRecords) {
     double recognitionData = 0.0;
     double textualData = 0.0;
     double visualData = 0.0;

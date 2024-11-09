@@ -34,9 +34,12 @@ class SignInCubit extends Cubit<SignInState> {
   Future<void> _readRememberedLoginData() async {
     emit(
       state.copyWith(
-        email: await secureStorageRepository.readEmail(SecureStorageRepository.EMAIL_KEY) ?? '',
-        password:
-            await secureStorageRepository.readPassword(SecureStorageRepository.PASSWORD_KEY) ?? '',
+        email: await secureStorageRepository
+                .readEmail(SecureStorageRepository.EMAIL_KEY) ??
+            '',
+        password: await secureStorageRepository
+                .readPassword(SecureStorageRepository.PASSWORD_KEY) ??
+            '',
       ),
     );
 
@@ -44,51 +47,39 @@ class SignInCubit extends Cubit<SignInState> {
     passwordController.text = state.password;
   }
 
-  void setRememberLogin(bool value) => emit(state.copyWith(rememberLogin: value));
+  void setRememberLogin(bool value) =>
+      emit(state.copyWith(rememberLogin: value));
 
   Future<void> onLoginSubmit() async {
     try {
       emit(state.copyWith(submissionStatus: SubmissionStatus.inProgress));
 
       if (state.rememberLogin == true) {
-        secureStorageRepository.writeEmail(SecureStorageRepository.EMAIL_KEY, state.email);
-        secureStorageRepository.writePassword(SecureStorageRepository.PASSWORD_KEY, state.password);
+        secureStorageRepository.writeEmail(
+            SecureStorageRepository.EMAIL_KEY, state.email);
+        secureStorageRepository.writePassword(
+            SecureStorageRepository.PASSWORD_KEY, state.password);
       }
-      final isSuccess =
-          await authenticationManager.signIn(email: state.email, password: state.password);
+      final isSuccess = await authenticationManager.signIn(
+          email: state.email, password: state.password);
       if (isSuccess == true) {
         emit(state.copyWith(submissionStatus: SubmissionStatus.success));
       } else {
-        print('is success in sign in cubit is ${isSuccess.toString()}');
         emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
       }
-    } on FirebaseAuthException catch (error) {
-      print(error.message);
-      emit(state.copyWith(submissionStatus: SubmissionStatus.invalidCredentialsError));
+    } on FirebaseAuthException catch (_) {
+      emit(
+        state.copyWith(
+          submissionStatus: SubmissionStatus.invalidCredentialsError,
+        ),
+      );
     }
-
-/*
-    try {
-      emit(state.copyWith(submissionStatus: SubmissionStatus.inProgress));
-      final isSuccess =
-          await authenticationManager.signIn(email: state.email, password: state.password);
-      if (isSuccess == true) {
-        emit(state.copyWith(submissionStatus: SubmissionStatus.success));
-      } else {
-        print('is success in sign in cubit is ${isSuccess.toString()}');
-        emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
-      }
-    } on FirebaseAuthException catch (error) {
-      print(error.message);
-      emit(state.copyWith(submissionStatus: SubmissionStatus.invalidCredentialsError));
-    }
-*/
   }
 
   Future<void> signOut() async {
     try {
       await authenticationManager.signOut();
-    } on FirebaseAuthException catch (error) {
+    } on FirebaseAuthException catch (_) {
       emit(state.copyWith(submissionStatus: SubmissionStatus.genericError));
     }
   }

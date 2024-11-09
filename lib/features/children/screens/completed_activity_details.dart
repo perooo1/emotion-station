@@ -14,7 +14,8 @@ class CompletedActivityDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CompletedActivityCubit>(
-      create: (_) => GetIt.I.get<CompletedActivityCubit>(param1: activityRecord),
+      create: (_) =>
+          GetIt.I.get<CompletedActivityCubit>(param1: activityRecord),
       child: const _CompletedActivityDetailsView(),
     );
   }
@@ -36,7 +37,8 @@ class _CompletedActivityDetailsView extends StatelessWidget {
             appBar: AppBar(
               centerTitle: true,
               title: Text(
-                state.activityRecord.emotionStation.activityType == ActivityType.stationOfHappiness
+                state.activityRecord.emotionStation.activityType ==
+                        ActivityType.stationOfHappiness
                     ? l10n.stationOfHappiness
                     : state.activityRecord.emotionStation.activityType ==
                             ActivityType.stationOfSadness
@@ -46,25 +48,24 @@ class _CompletedActivityDetailsView extends StatelessWidget {
                             ? l10n.stationOfFear
                             : l10n.stationOfAnger,
               ),
-              //title: Text(state.activityRecord.emotionStation.stationName),
               bottom: TabBar(
                 tabs: [
                   Tab(
                     text: l10n.childDetailsScreenChildActivitiesOverview,
-                    icon: Icon(Icons.analytics),
+                    icon: const Icon(Icons.analytics),
                   ),
                   Tab(
                     text: l10n.childDetailsScreenRecognition,
-                    icon: Icon(Icons.visibility),
+                    icon: const Icon(Icons.visibility),
                   ),
                   Tab(
                     text: l10n.childDetailsScreenUnderstanding,
-                    icon: Icon(Icons.psychology),
+                    icon: const Icon(Icons.psychology),
                   ),
                 ],
               ),
             ),
-            body: TabBarView(
+            body: const TabBarView(
               children: [
                 OverviewTab(),
                 EmotionRecognitionTab(),
@@ -73,40 +74,12 @@ class _CompletedActivityDetailsView extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton.extended(
               onPressed: () {},
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
               label: Text(l10n.addNoteString),
             ),
           ),
         );
-
-/*
-        return Scaffold(
-          appBar: AppBar(),
-          body: Center(
-            child: Column(
-              children: [
-                Text('This is activity details'),
-                Text('Record: ${state.activityRecord.timeOfActivity.toString()}'),
-              ],
-            ),
-          ),
-        );
-*/
       },
     );
-
-/*
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          children: [
-            Text('This is activity details'),
-            Text('Record: ${activityRecord.timeOfActivity.toString()}'),
-          ],
-        ),
-      ),
-    );
-*/
   }
 }

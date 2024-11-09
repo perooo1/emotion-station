@@ -6,7 +6,8 @@ class EmotionUnderstandingTab extends StatefulWidget {
   const EmotionUnderstandingTab({super.key});
 
   @override
-  State<EmotionUnderstandingTab> createState() => _EmotionUnderstandingTabState();
+  State<EmotionUnderstandingTab> createState() =>
+      _EmotionUnderstandingTabState();
 }
 
 class _EmotionUnderstandingTabState extends State<EmotionUnderstandingTab>
@@ -21,7 +22,6 @@ class _EmotionUnderstandingTabState extends State<EmotionUnderstandingTab>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _nestedTabController.dispose();
     super.dispose();
   }
@@ -41,7 +41,7 @@ class _EmotionUnderstandingTabState extends State<EmotionUnderstandingTab>
         Expanded(
           child: TabBarView(
             controller: _nestedTabController,
-            children: [
+            children: const [
               TextualUnderstandingTab(),
               VisualUnderstandingTab(),
             ],

@@ -1,16 +1,8 @@
-# emotion_station
+# Emotion Station
 
-Master thesis project
+Emotion station is a mobile application developed as a software solution in Master thesis project "[The role of mobile platforms in rehabilitative procedures](https://dabar.srce.hr/islandora/object/etfos%3A4617) ". The application is focused on the emotional development of children. The goal is to involve all individuals in the rehabilitation process of child with developmental difficulties - parent, rehabilitator and the child himself. Activities inside the app are intended for children 5-10 years of age. Emotion Station can be used from two perspectives - parent and therapist.
 
-## Getting Started
+Emotion station is developed for both Android and iOS platforms usingn Flutter framework and Dart programming language. Firebase platform is used for backend and authentication.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Main screen, child view, activity](<read-me-images/Screenshot 2024-11-09 at 20.46.16.png>)
+![Activity details, therapist info](<read-me-images/Screenshot 2024-11-09 at 20.46.34.png>)
